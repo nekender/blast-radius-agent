@@ -57,3 +57,53 @@ def structured(system: str, prompt: str, schema: type[T], *, use_cache: bool = T
         cache.write_text(out.model_dump_json())
         return out
     raise RuntimeError(f"LLM output failed validation twice: {last_error}")
+
+
+# ---------------- tool-using agent loop ----------------
+
+class Tool:
+    """A tool the model may call. `fn(**input) -> str` runs in our code; the model only sees its text result."""
+
+    def __init__(self, name: str, description: str, params: dict, fn):
+        self.name, self.description, self.params, self.fn = name, description, params, fn
+
+    def spec(self) -> dict:
+        return {"name": self.name, "description": self.description,
+                "input_schema": {"type": "object", "properties": self.params, "required": list(self.params)}}
+
+
+def agent_loop(system: str, prompt: str, tools: list[Tool], finish: str, *, max_turns: int = 15,
+               max_tokens: int = 4000, on_step=None) -> tuple[dict | None, list[dict]]:
+    """Run the model with tools until it calls the `finish` tool or runs out of turns.
+
+    Returns (finish tool input or None, trace). The trace records every call and result, so a run can be
+    replayed, inspected and evaluated (trajectory, not just the final answer). The loop is the only place
+    the model acts; every action is a tool that our code implements and can refuse.
+    """
+    by_name = {t.name: t for t in tools}
+    messages = [{"role": "user", "content": prompt}]
+    trace: list[dict] = []
+    for turn in range(max_turns):
+        resp = _get_client().messages.create(model=SETTINGS.model, max_tokens=max_tokens, system=system,
+                                             tools=[t.spec() for t in tools], messages=messages)
+        messages.append({"role": "assistant", "content": resp.content})
+        calls = [b for b in resp.content if b.type == "tool_use"]
+        if not calls:
+            messages.append({"role": "user", "content": f"Use a tool. Call `{finish}` when you are done."})
+            continue
+        results = []
+        for c in calls:
+            if c.name == finish:
+                trace.append({"turn": turn, "tool": c.name, "input": c.input})
+                return c.input, trace
+            try:
+                out = by_name[c.name].fn(**c.input) if c.name in by_name else f"error: no tool named {c.name}"
+            except Exception as e:  # noqa: BLE001 - a failed tool is information for the model, not a crash
+                out = f"error: {e.__class__.__name__}: {e}"
+            out = str(out)[:6000]
+            trace.append({"turn": turn, "tool": c.name, "input": c.input, "output": out[:500]})
+            if on_step:
+                on_step(trace[-1])
+            results.append({"type": "tool_result", "tool_use_id": c.id, "content": out})
+        messages.append({"role": "user", "content": results})
+    return None, trace

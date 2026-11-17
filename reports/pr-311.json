@@ -35,11 +35,12 @@
  "impacts": [
   {
    "kind": "requirement",
-   "id": "RT-a3d605",
-   "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
-   "confidence": 1.0,
+   "id": "API-0ba81e",
+   "label": "App calls PUT /api/articles/:p",
+   "confidence": 0.95,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 1 element(s)",
+    "assessment: PUT /api/articles/:p is newly issued from the editor by this change. (1.00 -> 0.95)"
    ],
    "observed": true
   },
@@ -47,29 +48,55 @@
    "kind": "requirement",
    "id": "SEL-5351ce",
    "label": "Editor: 'Publish Article' button",
-   "confidence": 1.0,
+   "confidence": 0.85,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)",
+    "assessment: Covers both Publish buttons, one of which has a changed branch. (1.00 -> 0.85)"
    ],
    "observed": true
   },
   {
    "kind": "requirement",
-   "id": "API-0ba81e",
-   "label": "App calls PUT /api/articles/:p",
-   "confidence": 0.6,
+   "id": "RT-a3d605",
+   "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
+   "confidence": 0.8,
    "why": [
-    "expects PUT /api/articles/:p, which the changed code calls; UI evidence unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+    "proven by changed UI: 2 element(s)",
+    "assessment: A general requirement for the editor page. Edit mode is affected and create mode is a regression risk. (1.00 -> 0.80)"
    ],
-   "observed": false
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-a50b54",
+   "label": "Route /editor/:slug shows Edit article",
+   "confidence": 0.75,
+   "why": [
+    "describes /editor/:p, a page this change affects",
+    "assessment: The edit route's submit behaviour is what changed, though the route rendering itself is not. (0.50 -> 0.75)"
+   ],
+   "observed": true
   },
   {
    "kind": "requirement",
    "id": "RTE-9bb4d9",
    "label": "Route /editor shows New article",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /editor, a page this change affects"
+    "describes /editor, a page this change affects",
+    "assessment: The new-article route is only affected through the unchanged create branch. (0.50 -> 0.30)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
+   "label": "Edit your own published article",
+   "confidence": 1.0,
+   "why": [
+    "passes through changed UI (2 step(s))",
+    "its final action calls PUT /api/articles/:p, which the changed code calls",
+    "assessment: Exercises exactly the new slug-to-update branch, the core of the fix. (1.00 -> 1.00)"
    ],
    "observed": true
   },
@@ -77,30 +104,44 @@
    "kind": "flow",
    "id": "flow:/editor:POST /api/articles",
    "label": "Publish a new article",
-   "confidence": 1.0,
+   "confidence": 0.6,
    "why": [
     "passes through changed UI (1 step(s))",
-    "its final action calls POST /api/articles, which the changed code calls"
+    "its final action calls POST /api/articles, which the changed code calls",
+    "assessment: The create branch is logically unchanged, but the code was restructured so a regression check is worthwhile. (1.00 -> 0.60)"
    ],
    "observed": true
   },
   {
    "kind": "flow",
-   "id": "flow:code:/editor/:p:submitForm",
-   "label": "Edit and republish an existing article",
-   "confidence": 0.6,
+   "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+   "label": "Delete your own article",
+   "confidence": 0.5,
    "why": [
-    "its final action calls POST /api/articles, PUT /api/articles/:p, which the changed code calls"
+    "passes through changed UI (1 step(s))",
+    "assessment: The editor is only used for setup (create an article). The create path is unchanged, and the DELETE action is not touched. (1.00 -> 0.50, capped)"
    ],
-   "observed": false
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_931b9f6f4af9",
+   "label": "'Publish Article' on /editor/:p (owner)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler",
+    "assessment: The Publish button on /editor/:slug now takes the changed PUT branch. (1.00 -> 1.00)"
+   ],
+   "observed": true
   },
   {
    "kind": "element",
    "id": "el_056643d01480",
    "label": "'Publish Article' on /editor (authed)",
-   "confidence": 1.0,
+   "confidence": 0.6,
    "why": [
-    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler"
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler",
+    "assessment: The new-article Publish button takes the unchanged create branch. It still needs a regression check because the shared submit code was refactored. (1.00 -> 0.60)"
    ],
    "observed": true
   },
@@ -115,14 +156,14 @@
    "observed": true
   },
   {
-   "kind": "unmapped_code",
-   "id": "PUT /api/articles/:p",
-   "label": "API call PUT /api/articles/:p",
-   "confidence": 0.7,
+   "kind": "screen",
+   "id": "/editor/:p|owner",
+   "label": "/editor/:p (owner)",
+   "confidence": 1.0,
    "why": [
-    "EditorComponent.submitForm() can call PUT /api/articles/:p, but no crawled button triggered it"
+    "contains 'Publish Article'"
    ],
-   "observed": false
+   "observed": true
   }
  ],
  "coverage_lost": [
@@ -134,24 +175,203 @@
   {
    "requirement": "API-0ba81e",
    "statement": "App calls PUT /api/articles/:p",
-   "why": "no UI coverage to re-check it with (unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state)"
+   "why": "every element that proves it is changed by this PR"
   }
  ],
- "needs_review": [
-  {
-   "item": "API call PUT /api/articles/:p",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.7
-  },
-  {
-   "item": "Edit and republish an existing article",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.6
-  },
-  {
-   "item": "App calls PUT /api/articles/:p",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.6
-  }
- ]
+ "needs_review": [],
+ "assessment": {
+  "behaviour_change": "submitForm now reads the route slug. On /editor/:slug it calls articleService.update, a PUT, and otherwise it calls create, a POST. Before, it always called create, so edits were sent as POSTs. The create path is unchanged.",
+  "applied": [
+   {
+    "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
+    "confidence": 1.0,
+    "reason": "Exercises exactly the new slug-to-update branch, the core of the fix.",
+    "from": 1.0,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "el_931b9f6f4af9",
+    "confidence": 1.0,
+    "reason": "The Publish button on /editor/:slug now takes the changed PUT branch.",
+    "from": 1.0,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "API-0ba81e",
+    "confidence": 0.95,
+    "reason": "PUT /api/articles/:p is newly issued from the editor by this change.",
+    "from": 1.0,
+    "to": 0.95,
+    "capped": false
+   },
+   {
+    "id": "RTE-a50b54",
+    "confidence": 0.75,
+    "reason": "The edit route's submit behaviour is what changed, though the route rendering itself is not.",
+    "from": 0.5,
+    "to": 0.75,
+    "capped": false
+   },
+   {
+    "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+    "confidence": 0.25,
+    "reason": "The editor is only used for setup (create an article). The create path is unchanged, and the DELETE action is not touched.",
+    "from": 1.0,
+    "to": 0.5,
+    "capped": true
+   },
+   {
+    "id": "flow:/editor:POST /api/articles",
+    "confidence": 0.6,
+    "reason": "The create branch is logically unchanged, but the code was restructured so a regression check is worthwhile.",
+    "from": 1.0,
+    "to": 0.6,
+    "capped": false
+   },
+   {
+    "id": "el_056643d01480",
+    "confidence": 0.6,
+    "reason": "The new-article Publish button takes the unchanged create branch. It still needs a regression check because the shared submit code was refactored.",
+    "from": 1.0,
+    "to": 0.6,
+    "capped": false
+   },
+   {
+    "id": "RTE-9bb4d9",
+    "confidence": 0.3,
+    "reason": "The new-article route is only affected through the unchanged create branch.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "SEL-5351ce",
+    "confidence": 0.85,
+    "reason": "Covers both Publish buttons, one of which has a changed branch.",
+    "from": 1.0,
+    "to": 0.85,
+    "capped": false
+   },
+   {
+    "id": "RT-a3d605",
+    "confidence": 0.8,
+    "reason": "A general requirement for the editor page. Edit mode is affected and create mode is a regression risk.",
+    "from": 1.0,
+    "to": 0.8,
+    "capped": false
+   }
+  ],
+  "rejected": [],
+  "retest_first": [
+   "flow:/editor/:p:PUT /api/articles/:p:owner",
+   "el_931b9f6f4af9",
+   "API-0ba81e",
+   "flow:/editor:POST /api/articles",
+   "el_056643d01480",
+   "SEL-5351ce",
+   "RT-a3d605",
+   "RTE-a50b54"
+  ],
+  "tool_calls": 4,
+  "finished": true,
+  "trace": [
+   {
+    "tool": "read_diff",
+    "input": {}
+   },
+   {
+    "tool": "method_source",
+    "input": {
+     "method_id": "EditorComponent.submitForm"
+    }
+   },
+   {
+    "tool": "inspect",
+    "input": {
+     "item_ids": [
+      "flow:/article/:p:DELETE /api/articles/:p:owner",
+      "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "flow:/editor:POST /api/articles",
+      "el_056643d01480",
+      "el_931b9f6f4af9",
+      "API-0ba81e",
+      "RTE-a50b54",
+      "RTE-9bb4d9",
+      "SEL-5351ce",
+      "RT-a3d605"
+     ]
+    }
+   },
+   {
+    "tool": "finish",
+    "input": {
+     "behaviour_change": "submitForm now reads the route slug. On /editor/:slug it calls articleService.update, a PUT, and otherwise it calls create, a POST. Before, it always called create, so edits were sent as POSTs. The create path is unchanged.",
+     "adjustments": [
+      {
+       "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
+       "confidence": 1.0,
+       "reason": "Exercises exactly the new slug-to-update branch, the core of the fix."
+      },
+      {
+       "id": "el_931b9f6f4af9",
+       "confidence": 1.0,
+       "reason": "The Publish button on /editor/:slug now takes the changed PUT branch."
+      },
+      {
+       "id": "API-0ba81e",
+       "confidence": 0.95,
+       "reason": "PUT /api/articles/:p is newly issued from the editor by this change."
+      },
+      {
+       "id": "RTE-a50b54",
+       "confidence": 0.75,
+       "reason": "The edit route's submit behaviour is what changed, though the route rendering itself is not."
+      },
+      {
+       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+       "confidence": 0.25,
+       "reason": "The editor is only used for setup (create an article). The create path is unchanged, and the DELETE action is not touched."
+      },
+      {
+       "id": "flow:/editor:POST /api/articles",
+       "confidence": 0.6,
+       "reason": "The create branch is logically unchanged, but the code was restructured so a regression check is worthwhile."
+      },
+      {
+       "id": "el_056643d01480",
+       "confidence": 0.6,
+       "reason": "The new-article Publish button takes the unchanged create branch. It still needs a regression check because the shared submit code was refactored."
+      },
+      {
+       "id": "RTE-9bb4d9",
+       "confidence": 0.3,
+       "reason": "The new-article route is only affected through the unchanged create branch."
+      },
+      {
+       "id": "SEL-5351ce",
+       "confidence": 0.85,
+       "reason": "Covers both Publish buttons, one of which has a changed branch."
+      },
+      {
+       "id": "RT-a3d605",
+       "confidence": 0.8,
+       "reason": "A general requirement for the editor page. Edit mode is affected and create mode is a regression risk."
+      }
+     ],
+     "retest_first": [
+      "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "el_931b9f6f4af9",
+      "API-0ba81e",
+      "flow:/editor:POST /api/articles",
+      "el_056643d01480",
+      "SEL-5351ce",
+      "RT-a3d605",
+      "RTE-a50b54"
+     ]
+    }
+   }
+  ]
+ }
 }

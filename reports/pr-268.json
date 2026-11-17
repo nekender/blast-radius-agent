@@ -90,11 +90,41 @@
  "impacts": [
   {
    "kind": "requirement",
+   "id": "RTE-9bb4d9",
+   "label": "Route /editor shows New article",
+   "confidence": 0.5,
+   "why": [
+    "describes /editor, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-a50b54",
+   "label": "Route /editor/:slug shows Edit article",
+   "confidence": 0.5,
+   "why": [
+    "describes /editor/:p, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
    "id": "RT-a3d605",
    "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
    "confidence": 1.0,
    "why": [
-    "proven by changed UI: 5 element(s)"
+    "proven by changed UI: 10 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-0ba81e",
+   "label": "App calls PUT /api/articles/:p",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
    ],
    "observed": true
   },
@@ -104,7 +134,7 @@
    "label": "Editor page has a 'Enter tags' field",
    "confidence": 1.0,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -114,7 +144,7 @@
    "label": "Editor page has a 'body' field",
    "confidence": 1.0,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -124,7 +154,7 @@
    "label": "Editor page has a 'description' field",
    "confidence": 1.0,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -134,7 +164,7 @@
    "label": "Editor page has a 'title' field",
    "confidence": 1.0,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -144,7 +174,7 @@
    "label": "Editor: 'Publish Article' button",
    "confidence": 1.0,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -154,7 +184,7 @@
    "label": "App calls POST /api/articles/:p/comments",
    "confidence": 0.63,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -164,7 +194,7 @@
    "label": "Article detail page has a 'Write a comment...' field",
    "confidence": 0.63,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -174,7 +204,7 @@
    "label": "Article detail: 'Post Comment' button",
    "confidence": 0.63,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -200,41 +230,34 @@
   },
   {
    "kind": "requirement",
-   "id": "API-7a6c73",
-   "label": "App calls GET /api/articles/:p",
-   "confidence": 0.6,
-   "why": [
-    "expects GET /api/articles/:p, which the changed code calls"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
    "id": "API-c87520",
    "label": "App calls GET /api/user",
-   "confidence": 0.6,
+   "confidence": 0.4,
    "why": [
-    "expects GET /api/user, which the changed code calls"
+    "expects GET /api/user, which the changed code calls",
+    "assessment: GET /api/user is now called only on the edit path with a slug. It is covered by the home authed page and is not the focus of the change. (0.60 -> 0.40)"
    ],
    "observed": true
   },
   {
    "kind": "requirement",
-   "id": "API-0ba81e",
-   "label": "App calls PUT /api/articles/:p",
-   "confidence": 0.6,
+   "id": "API-7a6c73",
+   "label": "App calls GET /api/articles/:p",
+   "confidence": 0.35,
    "why": [
-    "expects PUT /api/articles/:p, which the changed code calls; UI evidence unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+    "expects GET /api/articles/:p, which the changed code calls",
+    "assessment: Covered by the anon article page. The change removes a bogus GET on the new-article path. The edit path with a slug is unchanged. (0.60 -> 0.35)"
    ],
-   "observed": false
+   "observed": true
   },
   {
    "kind": "requirement",
    "id": "RT-8d2a7d",
    "label": "An article page is available at /article/article-slug-here.",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /article/:p, a page this change affects"
+    "describes /article/:p, a page this change affects",
+    "assessment: The article page is only indirectly affected, through the directive. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -242,9 +265,10 @@
    "kind": "requirement",
    "id": "RTE-42099b",
    "label": "Route / shows Home / Global Feed",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /, a page this change affects"
+    "describes /, a page this change affects",
+    "assessment: Home route only touches the directive for gated links. Page availability is unchanged. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -252,9 +276,10 @@
    "kind": "requirement",
    "id": "RTE-634532",
    "label": "Route /?feed=following shows Your Feed",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /, a page this change affects"
+    "describes /, a page this change affects",
+    "assessment: Only the directive-gated 'Your Feed' tab is loosely related. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -262,9 +287,10 @@
    "kind": "requirement",
    "id": "RTE-b97e16",
    "label": "Route /?page=N shows Paginated feed",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /, a page this change affects"
+    "describes /, a page this change affects",
+    "assessment: Pagination is unrelated to the changed code. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -272,19 +298,10 @@
    "kind": "requirement",
    "id": "RTE-8a2508",
    "label": "Route /article/:slug shows Article detail",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /article/:p, a page this change affects"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
-   "id": "RTE-9bb4d9",
-   "label": "Route /editor shows New article",
-   "confidence": 0.5,
-   "why": [
-    "describes /editor, a page this change affects"
+    "describes /article/:p, a page this change affects",
+    "assessment: The article route is only indirectly affected, through the directive. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -292,9 +309,10 @@
    "kind": "requirement",
    "id": "RTE-870845",
    "label": "Route /tag/:tag shows Filtered by tag",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /tag/:p, a page this change affects"
+    "describes /tag/:p, a page this change affects",
+    "assessment: The tag route is unrelated to the changed code. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -302,9 +320,10 @@
    "kind": "requirement",
    "id": "RTE-7e86cd",
    "label": "Route /tag/:tag?page=N shows Paginated tag view",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /tag/:p, a page this change affects"
+    "describes /tag/:p, a page this change affects",
+    "assessment: Tag pagination is unrelated to the changed code. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -312,9 +331,10 @@
    "kind": "requirement",
    "id": "RT-73bc40",
    "label": "The article page renders the server's markdown on the client side.",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /article/:p, a page this change affects"
+    "describes /article/:p, a page this change affects",
+    "assessment: Markdown rendering on the article page is unaffected. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -322,9 +342,10 @@
    "kind": "requirement",
    "id": "RT-1521bc",
    "label": "The home page is available at the URL /.",
-   "confidence": 0.5,
+   "confidence": 0.3,
    "why": [
-    "describes /, a page this change affects"
+    "describes /, a page this change affects",
+    "assessment: Home URL availability is unaffected. (0.50 -> 0.30)"
    ],
    "observed": true
   },
@@ -341,23 +362,60 @@
   },
   {
    "kind": "flow",
-   "id": "flow:/article/:p:POST /api/articles/:p/comments",
-   "label": "Post a comment on an article",
-   "confidence": 0.63,
+   "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
+   "label": "Edit your own published article",
+   "confidence": 1.0,
    "why": [
-    "passes through changed UI (2 step(s))"
+    "passes through changed UI (9 step(s))",
+    "its final action calls PUT /api/articles/:p, which the changed code calls"
    ],
    "observed": true
   },
   {
    "kind": "flow",
-   "id": "flow:code:/editor/:p:submitForm",
-   "label": "Edit and republish an existing article",
-   "confidence": 0.6,
+   "id": "flow:/article/:p:POST /api/articles/:p/comments",
+   "label": "Post a comment on an article",
+   "confidence": 0.5,
    "why": [
-    "its final action calls POST /api/articles, PUT /api/articles/:p, which the changed code calls"
+    "passes through changed UI (2 step(s))",
+    "assessment: Login makes the comment form appear through the directive, so it is exercised. The comment POST itself is unchanged. (0.63 -> 0.50)"
    ],
-   "observed": false
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+   "label": "Delete your own article",
+   "confidence": 0.5,
+   "why": [
+    "passes through changed UI (4 step(s))",
+    "assessment: Uses /editor to create an article before the delete. That setup does hit the fixed new-article path, but the delete action itself is outside the changed code. (1.00 -> 0.50, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_465be0127f05",
+   "label": "'Your Feed' on / (authed)",
+   "confidence": 0.63,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_6ba838f0fdb4",
+   "label": "'Post Comment' on /article/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page"
+   ],
+   "observed": true
   },
   {
    "kind": "element",
@@ -372,8 +430,31 @@
   },
   {
    "kind": "element",
+   "id": "el_fc37ba7b4b70",
+   "label": "'Article Title' on /editor/:p (owner)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
    "id": "el_1057898a8492",
    "label": "'Enter tags' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.addTag() changed; bound to EditorComponent.addTag(); matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_47be39b5fdee",
+   "label": "'Enter tags' on /editor/:p (owner)",
    "confidence": 1.0,
    "why": [
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page",
@@ -397,8 +478,32 @@
   },
   {
    "kind": "element",
+   "id": "el_931b9f6f4af9",
+   "label": "'Publish Article' on /editor/:p (owner)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler",
+    "EditorComponent.addTag() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler",
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
    "id": "el_f3bf44beec50",
    "label": "'What's this article about?' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_b9c375f43aa5",
+   "label": "'What's this article about?' on /editor/:p (owner)",
    "confidence": 1.0,
    "why": [
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page",
@@ -419,8 +524,19 @@
   },
   {
    "kind": "element",
-   "id": "el_6ba838f0fdb4",
-   "label": "'Post Comment' on /article/:p (authed)",
+   "id": "el_77695bcb047e",
+   "label": "'Write your article (in markdown)' on /editor/:p (owner)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_59787cd73034",
+   "label": "'Post Comment' on /article/:p (owner)",
    "confidence": 0.63,
    "why": [
     "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page",
@@ -443,13 +559,13 @@
   },
   {
    "kind": "element",
-   "id": "el_465be0127f05",
-   "label": "'Your Feed' on / (authed)",
+   "id": "el_bdbafbad864f",
+   "label": "'Write a comment...' on /article/:p (owner)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page"
    ],
    "observed": true
   },
@@ -467,37 +583,14 @@
   },
   {
    "kind": "element",
-   "id": "el_0a336e79b71e",
-   "label": "'Angular frontend' on / (anon)",
-   "confidence": 0.5,
-   "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "element",
-   "id": "el_f1f342963de7",
-   "label": "'Angular frontend' on /tag/:p (anon)",
-   "confidence": 0.5,
-   "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "element",
    "id": "el_e164b6e2063d",
    "label": "'sign up' on /article/:p (anon)",
-   "confidence": 0.5,
+   "confidence": 0.35,
    "why": [
     "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page",
     "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page"
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page",
+    "assessment: Anon-only link. The first creation path still works, but the authRef guard could stop it reappearing after logout. (0.50 -> 0.35)"
    ],
    "observed": true
   },
@@ -505,11 +598,12 @@
    "kind": "element",
    "id": "el_3d0ff24ebf99",
    "label": "'Sign in' on /article/:p (anon)",
-   "confidence": 0.48,
+   "confidence": 0.35,
    "why": [
     "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login",
     "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login"
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login",
+    "assessment: Anon-only header and article link. The first creation path still works, but the authRef guard could stop it reappearing after logout. (0.48 -> 0.35)"
    ],
    "observed": true
   },
@@ -517,11 +611,12 @@
    "kind": "element",
    "id": "el_7c024e05b31c",
    "label": "'Sign up' on /article/:p (anon)",
-   "confidence": 0.48,
+   "confidence": 0.35,
    "why": [
     "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register",
     "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register"
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register",
+    "assessment: Anon-only header and article link. The first creation path still works, but the authRef guard could stop it reappearing after logout. (0.48 -> 0.35)"
    ],
    "observed": true
   },
@@ -551,30 +646,6 @@
   },
   {
    "kind": "element",
-   "id": "el_a60b8dcf94f5",
-   "label": "'h1' on / (anon)",
-   "confidence": 0.32,
-   "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "element",
-   "id": "el_248dc057f729",
-   "label": "'h1' on /tag/:p (anon)",
-   "confidence": 0.32,
-   "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "element",
    "id": "src/app/features/article/pages/article/article.component.html:123:div",
    "label": "'or to add comments on this article.' in code",
    "confidence": 0.32,
@@ -586,16 +657,82 @@
    "observed": false
   },
   {
+   "kind": "element",
+   "id": "el_0a336e79b71e",
+   "label": "'Angular frontend' on / (anon)",
+   "confidence": 0.3,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "assessment: Static anon text. It is not gated by the changed directive's behaviour in any meaningful way. (0.50 -> 0.30)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_f1f342963de7",
+   "label": "'Angular frontend' on /tag/:p (anon)",
+   "confidence": 0.3,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "assessment: Static anon text that is unaffected. (0.50 -> 0.30)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_a60b8dcf94f5",
+   "label": "'h1' on / (anon)",
+   "confidence": 0.3,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "assessment: Static anon heading that is unaffected. (0.32 -> 0.30)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_248dc057f729",
+   "label": "'h1' on /tag/:p (anon)",
+   "confidence": 0.3,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "assessment: Static anon heading that is unaffected. (0.32 -> 0.30)"
+   ],
+   "observed": true
+  },
+  {
    "kind": "screen",
    "id": "/editor|authed",
    "label": "/editor (authed)",
    "confidence": 1.0,
    "why": [
-    "contains 'Enter tags'",
-    "contains 'Publish Article'",
     "contains 'What's this article about?'",
     "contains 'Write your article (in markdown)'",
-    "contains 'Article Title'"
+    "contains 'Publish Article'",
+    "contains 'Article Title'",
+    "contains 'Enter tags'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/editor/:p|owner",
+   "label": "/editor/:p (owner)",
+   "confidence": 1.0,
+   "why": [
+    "contains 'What's this article about?'",
+    "contains 'Write your article (in markdown)'",
+    "contains 'Publish Article'",
+    "contains 'Article Title'",
+    "contains 'Enter tags'"
    ],
    "observed": true
   },
@@ -613,6 +750,17 @@
    "kind": "screen",
    "id": "/article/:p|authed",
    "label": "/article/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "contains 'Write a comment...'",
+    "contains 'Post Comment'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/article/:p|owner",
+   "label": "/article/:p (owner)",
    "confidence": 0.63,
    "why": [
     "contains 'Write a comment...'",
@@ -648,8 +796,8 @@
    "confidence": 0.5,
    "why": [
     "contains 'sign up'",
-    "contains 'Sign up'",
-    "contains 'Sign in'"
+    "contains 'Sign in'",
+    "contains 'Sign up'"
    ],
    "observed": true
   },
@@ -663,16 +811,6 @@
     "contains ''"
    ],
    "observed": true
-  },
-  {
-   "kind": "unmapped_code",
-   "id": "PUT /api/articles/:p",
-   "label": "API call PUT /api/articles/:p",
-   "confidence": 0.42,
-   "why": [
-    "EditorComponent.submitForm() can call PUT /api/articles/:p, but no crawled button triggered it"
-   ],
-   "observed": false
   }
  ],
  "coverage_lost": [
@@ -719,7 +857,7 @@
   {
    "requirement": "API-0ba81e",
    "statement": "App calls PUT /api/articles/:p",
-   "why": "no UI coverage to re-check it with (unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state)"
+   "why": "every element that proves it is changed by this PR"
   },
   {
    "requirement": "API-72914e",
@@ -728,11 +866,6 @@
   }
  ],
  "needs_review": [
-  {
-   "item": "'or to add comments on this article.' in code",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.32
-  },
   {
    "item": "'Realworld' in code",
    "why": "only seen in code, never observed in the running app",
@@ -744,19 +877,9 @@
    "confidence": 0.32
   },
   {
-   "item": "API call PUT /api/articles/:p",
+   "item": "'or to add comments on this article.' in code",
    "why": "only seen in code, never observed in the running app",
-   "confidence": 0.42
-  },
-  {
-   "item": "Edit and republish an existing article",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.6
-  },
-  {
-   "item": "App calls PUT /api/articles/:p",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.6
+   "confidence": 0.32
   },
   {
    "item": "'h1' on /tag/:p (anon)",
@@ -768,5 +891,512 @@
    "why": "low confidence (0.32)",
    "confidence": 0.32
   }
- ]
+ ],
+ "assessment": {
+  "behaviour_change": "EditorComponent.ngOnInit now loads the article and current user only when the route has a slug. Before, /editor (new article) called GET /api/articles/undefined and then redirected or errored. ShowAuthedDirective now creates its view only once, guarded by authRef, so repeated auth emissions no longer stack duplicate views. authRef is never reset after clear(), so after logout and a second login (or the reverse) the gated view may not come back. This affects persistent components such as the header.",
+  "applied": [
+   {
+    "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+    "confidence": 0.45,
+    "reason": "Uses /editor to create an article before the delete. That setup does hit the fixed new-article path, but the delete action itself is outside the changed code.",
+    "from": 1.0,
+    "to": 0.5,
+    "capped": true
+   },
+   {
+    "id": "API-7a6c73",
+    "confidence": 0.35,
+    "reason": "Covered by the anon article page. The change removes a bogus GET on the new-article path. The edit path with a slug is unchanged.",
+    "from": 0.6,
+    "to": 0.35,
+    "capped": false
+   },
+   {
+    "id": "API-c87520",
+    "confidence": 0.4,
+    "reason": "GET /api/user is now called only on the edit path with a slug. It is covered by the home authed page and is not the focus of the change.",
+    "from": 0.6,
+    "to": 0.4,
+    "capped": false
+   },
+   {
+    "id": "RTE-42099b",
+    "confidence": 0.25,
+    "reason": "Home route only touches the directive for gated links. Page availability is unchanged.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RTE-634532",
+    "confidence": 0.3,
+    "reason": "Only the directive-gated 'Your Feed' tab is loosely related.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RTE-b97e16",
+    "confidence": 0.2,
+    "reason": "Pagination is unrelated to the changed code.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RTE-870845",
+    "confidence": 0.2,
+    "reason": "The tag route is unrelated to the changed code.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RTE-7e86cd",
+    "confidence": 0.2,
+    "reason": "Tag pagination is unrelated to the changed code.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RT-1521bc",
+    "confidence": 0.2,
+    "reason": "Home URL availability is unaffected.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RT-73bc40",
+    "confidence": 0.15,
+    "reason": "Markdown rendering on the article page is unaffected.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "el_0a336e79b71e",
+    "confidence": 0.15,
+    "reason": "Static anon text. It is not gated by the changed directive's behaviour in any meaningful way.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "el_f1f342963de7",
+    "confidence": 0.15,
+    "reason": "Static anon text that is unaffected.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "el_a60b8dcf94f5",
+    "confidence": 0.1,
+    "reason": "Static anon heading that is unaffected.",
+    "from": 0.32,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "el_248dc057f729",
+    "confidence": 0.1,
+    "reason": "Static anon heading that is unaffected.",
+    "from": 0.32,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "el_e164b6e2063d",
+    "confidence": 0.35,
+    "reason": "Anon-only link. The first creation path still works, but the authRef guard could stop it reappearing after logout.",
+    "from": 0.5,
+    "to": 0.35,
+    "capped": false
+   },
+   {
+    "id": "el_3d0ff24ebf99",
+    "confidence": 0.35,
+    "reason": "Anon-only header and article link. The first creation path still works, but the authRef guard could stop it reappearing after logout.",
+    "from": 0.48,
+    "to": 0.35,
+    "capped": false
+   },
+   {
+    "id": "el_7c024e05b31c",
+    "confidence": 0.35,
+    "reason": "Anon-only header and article link. The first creation path still works, but the authRef guard could stop it reappearing after logout.",
+    "from": 0.48,
+    "to": 0.35,
+    "capped": false
+   },
+   {
+    "id": "RTE-8a2508",
+    "confidence": 0.3,
+    "reason": "The article route is only indirectly affected, through the directive.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "RT-8d2a7d",
+    "confidence": 0.3,
+    "reason": "The article page is only indirectly affected, through the directive.",
+    "from": 0.5,
+    "to": 0.3,
+    "capped": false
+   },
+   {
+    "id": "flow:/article/:p:POST /api/articles/:p/comments",
+    "confidence": 0.5,
+    "reason": "Login makes the comment form appear through the directive, so it is exercised. The comment POST itself is unchanged.",
+    "from": 0.63,
+    "to": 0.5,
+    "capped": false
+   }
+  ],
+  "rejected": [],
+  "retest_first": [
+   "flow:/editor:POST /api/articles",
+   "RTE-9bb4d9",
+   "flow:/editor/:p:PUT /api/articles/:p:owner",
+   "RTE-a50b54",
+   "RT-a3d605",
+   "API-0ba81e",
+   "el_465be0127f05",
+   "flow:/article/:p:POST /api/articles/:p/comments",
+   "el_6ba838f0fdb4"
+  ],
+  "tool_calls": 8,
+  "finished": true,
+  "trace": [
+   {
+    "tool": "read_diff",
+    "input": {}
+   },
+   {
+    "tool": "inspect",
+    "input": {
+     "item_ids": [
+      "flow:/editor:POST /api/articles",
+      "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "flow:/article/:p:DELETE /api/articles/:p:owner",
+      "flow:/article/:p:POST /api/articles/:p/comments",
+      "API-7a6c73",
+      "API-c87520",
+      "SEL-22d377",
+      "RT-91f4d5",
+      "API-0ba81e",
+      "el_465be0127f05",
+      "el_6ba838f0fdb4",
+      "RTE-9bb4d9",
+      "RTE-a50b54",
+      "RT-a3d605"
+     ]
+    }
+   },
+   {
+    "tool": "finish",
+    "input": {
+     "behaviour_change": "EditorComponent.ngOnInit now loads the article and current user only when a slug is in the route. Previously /editor (new article) called GET /api/articles/undefined and then redirected or errored. ShowAuthedDirective now creates its embedded view only once (guarded by authRef), which stops duplicate views when the auth state emits repeatedly. However, authRef is never reset after clear(), so the view may not come back after a logout followed by a login.",
+     "adjustments": [
+      {
+       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+       "confidence": 0.35,
+       "reason": "Uses /editor only as setup to create an article. The delete action itself is not in the changed code."
+      },
+      {
+       "id": "API-7a6c73",
+       "confidence": 0.35,
+       "reason": "Covered by the anon article page. The change removes a GET on the new-article path and leaves the edit path (slug present) unchanged."
+      },
+      {
+       "id": "API-c87520",
+       "confidence": 0.4,
+       "reason": "GET /api/user is still called on the edit path only. It is no longer called on /editor, and it is not the focus of this change."
+      },
+      {
+       "id": "RTE-42099b",
+       "confidence": 0.25,
+       "reason": "Home route only touches the directive for auth-gated links. Behaviour is unchanged."
+      },
+      {
+       "id": "RTE-634532",
+       "confidence": 0.3,
+       "reason": "Only the directive-gated 'Your Feed' tab is loosely related."
+      },
+      {
+       "id": "RTE-b97e16",
+       "confidence": 0.2,
+       "reason": "Pagination is unrelated to the changed code."
+      },
+      {
+       "id": "RTE-870845",
+       "confidence": 0.2,
+       "reason": "Tag route is unrelated to the changed code."
+      },
+      {
+       "id": "RTE-7e86cd",
+       "confidence": 0.2,
+       "reason": "Tag pagination is unrelated to the changed code."
+      },
+      {
+       "id": "RT-1521bc",
+       "confidence": 0.2,
+       "reason": "Home URL availability is unaffected."
+      },
+      {
+       "id": "RT-73bc40",
+       "confidence": 0.15,
+       "reason": "Markdown rendering on the article page is unaffected."
+      },
+      {
+       "id": "el_0a336e79b71e",
+       "confidence": 0.15,
+       "reason": "Anonymous static text is unaffected."
+      },
+      {
+       "id": "el_f1f342963de7",
+       "confidence": 0.15,
+       "reason": "Anonymous static text is unaffected."
+      },
+      {
+       "id": "el_a60b8dcf94f5",
+       "confidence": 0.1,
+       "reason": "Anonymous static heading is unaffected."
+      },
+      {
+       "id": "el_248dc057f729",
+       "confidence": 0.1,
+       "reason": "Anonymous static heading is unaffected."
+      },
+      {
+       "id": "el_e164b6e2063d",
+       "confidence": 0.3,
+       "reason": "Anon-only element. The directive's non-authed branch is still affected, but only marginally."
+      },
+      {
+       "id": "el_3d0ff24ebf99",
+       "confidence": 0.3,
+       "reason": "Anon-only element. The directive's non-authed branch is still affected, but only marginally."
+      },
+      {
+       "id": "el_7c024e05b31c",
+       "confidence": 0.3,
+       "reason": "Anon-only element. The directive's non-authed branch is still affected, but only marginally."
+      },
+      {
+       "id": "RTE-8a2508",
+       "confidence": 0.3,
+       "reason": "The article route is only indirectly affected, through the directive."
+      },
+      {
+       "id": "RT-8d2a7d",
+       "confidence": 0.3,
+       "reason": "The article page is only indirectly affected, through the directive."
+      }
+     ],
+     "retest_first": [
+      "flow:/editor:POST /api/articles",
+      "RTE-9bb4d9",
+      "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "RTE-a50b54",
+      "RT-a3d605",
+      "API-0ba81e",
+      "flow:/article/:p:POST /api/articles/:p/comments",
+      "el_6ba838f0fdb4",
+      "el_465be0127f05"
+     ]
+    }
+   },
+   {
+    "tool": "verifier",
+    "input": {
+     "ungrounded": [
+      "RT-1521bc",
+      "RT-73bc40",
+      "RT-8d2a7d",
+      "RTE-42099b",
+      "RTE-634532",
+      "RTE-7e86cd",
+      "RTE-870845",
+      "RTE-8a2508",
+      "RTE-b97e16",
+      "el_0a336e79b71e",
+      "el_248dc057f729",
+      "el_3d0ff24ebf99",
+      "el_7c024e05b31c",
+      "el_a60b8dcf94f5",
+      "el_e164b6e2063d",
+      "el_f1f342963de7"
+     ]
+    }
+   },
+   {
+    "tool": "read_diff",
+    "input": {}
+   },
+   {
+    "tool": "inspect",
+    "input": {
+     "item_ids": [
+      "RT-1521bc",
+      "RT-73bc40",
+      "RT-8d2a7d",
+      "RTE-42099b",
+      "RTE-634532",
+      "RTE-7e86cd",
+      "RTE-870845",
+      "RTE-8a2508",
+      "RTE-b97e16",
+      "el_0a336e79b71e",
+      "el_248dc057f729",
+      "el_3d0ff24ebf99",
+      "el_7c024e05b31c",
+      "el_a60b8dcf94f5",
+      "el_e164b6e2063d",
+      "el_f1f342963de7",
+      "flow:/article/:p:DELETE /api/articles/:p:owner",
+      "API-7a6c73",
+      "API-c87520"
+     ]
+    }
+   },
+   {
+    "tool": "inspect",
+    "input": {
+     "item_ids": [
+      "el_a60b8dcf94f5",
+      "el_e164b6e2063d",
+      "el_f1f342963de7",
+      "flow:/article/:p:DELETE /api/articles/:p:owner",
+      "API-7a6c73",
+      "API-c87520",
+      "flow:/article/:p:POST /api/articles/:p/comments",
+      "el_465be0127f05"
+     ]
+    }
+   },
+   {
+    "tool": "finish",
+    "input": {
+     "behaviour_change": "EditorComponent.ngOnInit now loads the article and current user only when the route has a slug. Before, /editor (new article) called GET /api/articles/undefined and then redirected or errored. ShowAuthedDirective now creates its view only once, guarded by authRef, so repeated auth emissions no longer stack duplicate views. authRef is never reset after clear(), so after logout and a second login (or the reverse) the gated view may not come back. This affects persistent components such as the header.",
+     "adjustments": [
+      {
+       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+       "confidence": 0.45,
+       "reason": "Uses /editor to create an article before the delete. That setup does hit the fixed new-article path, but the delete action itself is outside the changed code."
+      },
+      {
+       "id": "API-7a6c73",
+       "confidence": 0.35,
+       "reason": "Covered by the anon article page. The change removes a bogus GET on the new-article path. The edit path with a slug is unchanged."
+      },
+      {
+       "id": "API-c87520",
+       "confidence": 0.4,
+       "reason": "GET /api/user is now called only on the edit path with a slug. It is covered by the home authed page and is not the focus of the change."
+      },
+      {
+       "id": "RTE-42099b",
+       "confidence": 0.25,
+       "reason": "Home route only touches the directive for gated links. Page availability is unchanged."
+      },
+      {
+       "id": "RTE-634532",
+       "confidence": 0.3,
+       "reason": "Only the directive-gated 'Your Feed' tab is loosely related."
+      },
+      {
+       "id": "RTE-b97e16",
+       "confidence": 0.2,
+       "reason": "Pagination is unrelated to the changed code."
+      },
+      {
+       "id": "RTE-870845",
+       "confidence": 0.2,
+       "reason": "The tag route is unrelated to the changed code."
+      },
+      {
+       "id": "RTE-7e86cd",
+       "confidence": 0.2,
+       "reason": "Tag pagination is unrelated to the changed code."
+      },
+      {
+       "id": "RT-1521bc",
+       "confidence": 0.2,
+       "reason": "Home URL availability is unaffected."
+      },
+      {
+       "id": "RT-73bc40",
+       "confidence": 0.15,
+       "reason": "Markdown rendering on the article page is unaffected."
+      },
+      {
+       "id": "el_0a336e79b71e",
+       "confidence": 0.15,
+       "reason": "Static anon text. It is not gated by the changed directive's behaviour in any meaningful way."
+      },
+      {
+       "id": "el_f1f342963de7",
+       "confidence": 0.15,
+       "reason": "Static anon text that is unaffected."
+      },
+      {
+       "id": "el_a60b8dcf94f5",
+       "confidence": 0.1,
+       "reason": "Static anon heading that is unaffected."
+      },
+      {
+       "id": "el_248dc057f729",
+       "confidence": 0.1,
+       "reason": "Static anon heading that is unaffected."
+      },
+      {
+       "id": "el_e164b6e2063d",
+       "confidence": 0.35,
+       "reason": "Anon-only link. The first creation path still works, but the authRef guard could stop it reappearing after logout."
+      },
+      {
+       "id": "el_3d0ff24ebf99",
+       "confidence": 0.35,
+       "reason": "Anon-only header and article link. The first creation path still works, but the authRef guard could stop it reappearing after logout."
+      },
+      {
+       "id": "el_7c024e05b31c",
+       "confidence": 0.35,
+       "reason": "Anon-only header and article link. The first creation path still works, but the authRef guard could stop it reappearing after logout."
+      },
+      {
+       "id": "RTE-8a2508",
+       "confidence": 0.3,
+       "reason": "The article route is only indirectly affected, through the directive."
+      },
+      {
+       "id": "RT-8d2a7d",
+       "confidence": 0.3,
+       "reason": "The article page is only indirectly affected, through the directive."
+      },
+      {
+       "id": "flow:/article/:p:POST /api/articles/:p/comments",
+       "confidence": 0.5,
+       "reason": "Login makes the comment form appear through the directive, so it is exercised. The comment POST itself is unchanged."
+      }
+     ],
+     "retest_first": [
+      "flow:/editor:POST /api/articles",
+      "RTE-9bb4d9",
+      "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "RTE-a50b54",
+      "RT-a3d605",
+      "API-0ba81e",
+      "el_465be0127f05",
+      "flow:/article/:p:POST /api/articles/:p/comments",
+      "el_6ba838f0fdb4"
+     ]
+    }
+   }
+  ]
+ }
 }

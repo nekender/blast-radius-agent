@@ -462,7 +462,7 @@ def link_requirements(reqs: list[Requirement], crawl: Crawl, cm: CodeMap, idx: I
 
 # ---------------- flows ----------------
 
-AUTH_WORDS = {"anon": "logged out", "authed": "logged in", "owner": "as the owner"}
+AUTH_WORDS = {"anon": "logged out", "authed": "logged in", "owner": "logged in, as the content's owner"}
 
 
 def _describe(step: str, elements: dict[str, Element], screens: dict, tels: dict[str, TemplateElement]) -> str:
@@ -533,7 +533,7 @@ def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index, use_cache: bool = True
     flows: dict[tuple, Flow] = {}
     login: list[str] = []
     for sid, els in by_screen.items():
-        if sid not in paths[sid.split("|")[1]]:
+        if sid.split("|")[1] not in paths or sid not in paths[sid.split("|")[1]]:
             continue
         for el in els:
             writes = [f"{c.method} {c.path}" for c in el.triggers if c.blocked]
@@ -541,7 +541,7 @@ def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index, use_cache: bool = True
                 login = action_steps(sid, el)
     for sid, els in sorted(by_screen.items()):
         auth = sid.split("|")[1]
-        if sid not in paths[auth]:
+        if auth not in paths or sid not in paths[auth]:
             continue
         for el in els:
             writes = [f"{c.method} {c.path}" for c in el.triggers if c.blocked]
@@ -554,10 +554,40 @@ def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index, use_cache: bool = True
             flows[key] = Flow(id=f"flow:{screens[sid].template}:{writes[0]}", name="", steps=steps,
                               action_element=el.id, calls=writes, requires_login=auth == "authed")
 
+    # Reached by the exploration agent as the content's owner: its own path up to each owner page, then that
+    # page's form and writing action (from the dry-run click on the recorded page).
+    for j in crawl.journeys:
+        seq: list[str] = []
+        last_screen = None
+        for st in j["steps"]:
+            if st["screen"] in screens and st["screen"] != last_screen:
+                seq.append(st["screen"])
+                last_screen = st["screen"]
+            if st["element"] and (not seq or seq[-1] != st["element"]):
+                seq.append(st["element"])
+        # Owner pages the agent reached by its last click (e.g. 'Edit Article' -> the editor) aren't steps of
+        # their own: extend the path through the recorded link from the page before.
+        for t in crawl.transitions:
+            nxt = f"{t.to_template}|owner"
+            if t.from_screen in seq and t.from_screen.endswith("|owner") and nxt in screens and nxt not in seq:
+                seq += ([] if seq[-1] == t.element_id else [t.element_id]) + [nxt]
+        for sid in [x for x in seq if x in screens and x.endswith("|owner")]:
+            for el in by_screen[sid]:
+                writes = [f"{c.method} {c.path}" for c in el.triggers if c.blocked]
+                key = (screens[sid].template, writes[0]) if writes else None
+                if not writes or key in flows:
+                    continue
+                m = re.search(r"^(.*?\bform\b[^>]*)", el.css_path)
+                inputs = [e.id for e in by_screen[sid] if e.tag in ("input", "textarea") and not e.repeated
+                          and m and e.css_path.startswith(m.group(1))]
+                flows[key] = Flow(id=f"flow:{screens[sid].template}:{writes[0]}:owner", name="",
+                                  steps=login + seq[:seq.index(sid) + 1] + inputs + [el.id], action_element=el.id,
+                                  calls=writes, requires_login=True)
+
     # Stitched from code: pages never reached, whose components have handlers that write.
     reached = {s.template for s in crawl.screens}
     for r in cm.routes:
-        if r.template in reached or not r.component:
+        if r.template in reached or not r.component:  # reached by the crawl or the exploration agent
             continue
         comp = idx.by_name[r.component]
         entry: list[str] = []

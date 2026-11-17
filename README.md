@@ -4,6 +4,12 @@ An agent that crawls a live web app, reads its product spec, maps its source cod
 in a Neo4j knowledge graph, and, given a real pull request, tells a QA lead in plain English which
 controls, user flows and requirements the change puts at risk, and how sure it is.
 
+The graph is the grounding; two LLM agents work on top of it, with guardrails in code:
+- an **exploration agent** that drives the browser to reach states the crawl can't (e.g. pages only an article's
+  author sees), under a write policy enforced at the network layer, with verified cleanup;
+- an **assessment agent** that reads the diff and the graph through tools and re-ranks the blast radius by what the
+  change actually does, only for items it inspected, within bounds, never removing anything.
+
 - **App:** [RealWorld "Conduit"](https://demo.realworld.show), Angular frontend
 - **Code:** [realworld-apps/angular-realworld-example-app](https://github.com/realworld-apps/angular-realworld-example-app)
 - **Spec:** the RealWorld [frontend spec](https://docs.realworld.show/specifications/frontend/routing/) and the
@@ -24,6 +30,7 @@ docker compose up -d              # Neo4j on bolt://localhost:7687, browser UI o
 git clone https://github.com/realworld-apps/angular-realworld-example-app data/repo
 
 .venv/bin/python -m blast_radius build --recrawl   # crawl (~5 min) + spec + code + links -> Neo4j
+.venv/bin/python -m blast_radius explore           # exploration agent closes owner-only gaps, then rebuilds (needs a key)
 .venv/bin/python -m blast_radius pr 311            # -> reports/pr-311.md and reports/pr-311.json
 .venv/bin/python -m blast_radius eval 311 --runs 5 # score against evals/gold/pr-311.json
 .venv/bin/python -m pytest -q tests
@@ -41,17 +48,24 @@ The graph, the traversal and the confidence scores don't use the LLM at all.
 **Writes to the live app:** the crawler signs up one throwaway account (`br-test-xxxx`, stored in
 `.state/account.json`). Every other request that would write (POST/PUT/DELETE) is intercepted and
 aborted: buttons are clicked in a "dry run" so we learn which API they call without changing anything.
+The one exception is `explore`: it may create **one** article titled `br-test: ...` and delete what it created;
+every other write is still aborted, cleanup runs in a `finally` and is checked (404), and leftovers from a crashed
+run are deleted at the start of the next. The committed `artifacts/` already include an exploration run
+(`artifacts/explore_trace.json`), so you don't need to run it to see the results.
 
 ## What's where
 
 | Stage | File | LLM? |
 |---|---|---|
 | 1 Crawl (Playwright, logged out + logged in, dry-run clicks) | `blast_radius/crawl.py` | no |
+| 1b Exploration agent (browser tools, write policy, cleanup) | `blast_radius/explore.py` | **agent** |
 | 2 Spec → requirements (tables parsed; prose bullets by LLM) | `blast_radius/spec.py` | prose only |
 | 3 Code map (routes, components, methods, templates, endpoints) | `blast_radius/code_map.py` | no |
 | 4 Link layers, absence as Gap nodes, flows | `blast_radius/link.py` | judge for evidence-free requirements only |
 | Graph schema + blast-radius queries | `blast_radius/graph.py` | no |
 | 5 PR → impacts with confidence | `blast_radius/blast.py` | no |
+| 5b Assessment agent (graph tools, grounding + bounds) | `blast_radius/assess.py` | **agent** |
+| Tool-using agent loop (shared, traced) | `blast_radius/llm.py` | |
 | 6 Report for a QA lead + verifier | `blast_radius/report.py` | prose only, verified |
 | Orchestration (LangGraph) | `blast_radius/pipeline.py` | |
 | Evals | `evals/run_eval.py`, `evals/gold/` | |

@@ -4,7 +4,7 @@ build:   crawl ─┬─> ingest_spec ─┬─> link ─> load_graph
                 └─> map_code ────┘
          (crawl is skipped when artifacts/crawl.json exists and --recrawl isn't set)
 
-reason:  analyse_pr ─> write_report ─> verify ──ok──> save (report files + PullRequest node in Neo4j)
+reason:  analyse_pr ─> assess (agent) ─> write_report ─> verify ──ok──> save (report files + PullRequest node in Neo4j)
                             ^            │ errors, first time
                             └────────────┘
                                          │ errors again ─> template_report ─> save
@@ -118,6 +118,18 @@ def n_analyse(s: ReasonState) -> ReasonState:
     return {"blast": br, "attempts": 0, "errors": []}
 
 
+def n_assess(s: ReasonState) -> ReasonState:
+    from .assess import assess
+    from .blast import fetch_pr
+    head = CodeMap.model_validate_json((SETTINGS.artifacts / "codemap.json").read_text())
+    g = Graph()
+    try:
+        br = assess(s["blast"], fetch_pr(s["pr"]), head, g, use_cache=s.get("use_cache", True))
+    finally:
+        g.close()
+    return {"blast": br}
+
+
 def n_write(s: ReasonState) -> ReasonState:
     from . import llm
     if not llm.available():
@@ -164,11 +176,12 @@ def n_save(s: ReasonState) -> ReasonState:
 
 def reason_graph():
     g = StateGraph(ReasonState)
-    for name, fn in [("analyse_pr", n_analyse), ("write_report", n_write), ("verify", n_verify),
+    for name, fn in [("analyse_pr", n_analyse), ("assess", n_assess), ("write_report", n_write), ("verify", n_verify),
                      ("render", n_render), ("template_report", n_template), ("save", n_save)]:
         g.add_node(name, fn)
     g.add_edge(START, "analyse_pr")
-    g.add_edge("analyse_pr", "write_report")
+    g.add_edge("analyse_pr", "assess")
+    g.add_edge("assess", "write_report")
     g.add_edge("write_report", "verify")
     g.add_conditional_edges("verify", route_after_verify, ["render", "write_report", "template_report"])
     g.add_edge("render", "save")

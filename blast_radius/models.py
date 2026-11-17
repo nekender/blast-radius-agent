@@ -56,6 +56,7 @@ class Crawl(BaseModel):
     elements: list[Element]
     transitions: list[Transition]
     unreached: list[dict] = Field(default_factory=list)   # templates seen in links but never visited, with reason
+    journeys: list[dict] = Field(default_factory=list)    # paths the exploration agent took (explore.py)
 
 
 # ---------- Requirements layer (from the spec) ----------
@@ -199,3 +200,4 @@ class BlastRadius(BaseModel):
     impacts: list[Impact]
     coverage_lost: list[dict]
     needs_review: list[dict]
+    assessment: dict | None = None   # the assessment agent's behaviour summary, adjustments and trace

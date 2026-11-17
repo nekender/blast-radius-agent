@@ -10,7 +10,9 @@
   "missed": [],
   "unexpected": [],
   "must_not_hits": [],
-  "report_pass_rate": 1.0
+  "report_pass_rate": 1.0,
+  "agent_top_flow_ok_rate": null,
+  "agent_ungrounded_adjustments": 0
  },
  "runs": [
   {
@@ -19,10 +21,14 @@
    "missed": [],
    "unexpected": [],
    "must_not_hits": [],
+   "agent_finished": true,
+   "agent_ungrounded": 0,
+   "agent_top_flow_ok": null,
+   "agent_tool_calls": 3,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "ce08cd7c13"
+   "hash": "ff48272511"
   },
   {
    "recall": 1.0,
@@ -30,10 +36,14 @@
    "missed": [],
    "unexpected": [],
    "must_not_hits": [],
+   "agent_finished": true,
+   "agent_ungrounded": 0,
+   "agent_top_flow_ok": null,
+   "agent_tool_calls": 3,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "ce08cd7c13"
+   "hash": "ff48272511"
   },
   {
    "recall": 1.0,
@@ -41,10 +51,14 @@
    "missed": [],
    "unexpected": [],
    "must_not_hits": [],
+   "agent_finished": true,
+   "agent_ungrounded": 0,
+   "agent_top_flow_ok": null,
+   "agent_tool_calls": 6,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "ce08cd7c13"
+   "hash": "ff48272511"
   }
  ]
 }

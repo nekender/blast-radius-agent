@@ -48,7 +48,22 @@ def template_report(br: BlastRadius) -> str:
         lines += [f"- {n['item']}: {n['why']}" for n in br.needs_review] + [""]
     lines += ["## Code that changed", ""]
     lines += [f"- `{c['file']}` · {c['unit']}" for c in br.changed]
+    lines += _assessment_md(br)
     return "\n".join(lines) + "\n"
+
+
+def _assessment_md(br: BlastRadius) -> list[str]:
+    a = br.assessment or {}
+    if not a.get("applied") and not a.get("rejected"):
+        return []
+    label = {i.id: i.label for i in br.impacts}
+    out = ["", "## How the assessment agent changed the ranking", "",
+           "| Item | Before | After | Why |", "|---|---|---|---|"]
+    out += [f"| {label.get(x['id'], x['id'])} | {x['from']:.2f} | {x['to']:.2f}{' (capped)' if x.get('capped') else ''} "
+            f"| {x['reason']} |" for x in a.get("applied", []) if abs(x["to"] - x["from"]) >= 0.005]
+    out += [f"| {label.get(x['id'], x['id'])} | | rejected | {x['rejected_because']} |" for x in a.get("rejected", [])]
+    out += [f"", f"*{a.get('tool_calls', 0)} tool calls; full trace in `reports/pr-{br.pr}.json`.*"]
+    return out
 
 
 class Bullet(BaseModel):
@@ -72,12 +87,15 @@ You get facts about a pull request: what changed, which flows, pages, controls a
 each with an id, a confidence and the evidence. Rules:
 - Plain product language: say "the Publish Article button on the editor page", not method or file names.
 - Every bullet lists in refs the ids of the facts it is about. Use only ids from the facts.
-- Mention every fact with confidence >= 0.75. Say clearly which items were never seen in the running app.
+- Mention every fact with confidence >= 0.75. Say clearly which items were never seen in the running app; if every
+  item was seen, don't write a section about it. Never write a section or bullet that has nothing to report.
+- If what_the_change_does is given, open with it in plain words. Re-test items in the order of the impact list.
 - No numbers or claims that are not in the facts. Short sentences."""
 
 
 def _facts(br: BlastRadius) -> dict:
     return {"pr": br.pr, "title": br.title,
+            "what_the_change_does": (br.assessment or {}).get("behaviour_change", ""),
             "impacts": [{"id": i.id, "kind": i.kind, "label": i.label, "confidence": i.confidence,
                          "observed_in_app": i.observed, "evidence": i.why} for i in br.impacts if i.kind != "screen"],
             "coverage_lost": br.coverage_lost, "needs_review": br.needs_review}
@@ -106,6 +124,7 @@ def render(w: Written, br: BlastRadius) -> str:
     for s in w.sections:
         out += [f"## {s.title}", ""] + [f"- {b.text}{tag(b)}" for b in s.bullets] + [""]
     out += ["## Code that changed", ""] + [f"- `{c['file']}` · {c['unit']}" for c in br.changed]
+    out += _assessment_md(br)
     return "\n".join(out) + "\n"
 
 

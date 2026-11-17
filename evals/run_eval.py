@@ -9,7 +9,11 @@ Two questions, answered separately:
    - the deterministic part (graph traversal) must produce the identical impact set every run (hash)
    - the LLM part (the report) is run with the cache off; each run must pass verification
      (no invented ids, every high-confidence item mentioned). pass^k = all k runs pass.
-A run is "correct" when recall == 1, no must_not hits, and its report passes verification.
+3b. The assessment agent (fresh each run): it must finish, the first flow it ranks must match the gold
+   `top_flow_calls` where given, and we count adjustments it tried without inspecting the item first
+   (rejected by the guard, reported as a discipline metric).
+A run is "correct" when recall == 1, no must_not hits, its report passes verification, and the agent's top
+flow is right.
 """
 from __future__ import annotations
 
@@ -17,7 +21,8 @@ import hashlib
 import json
 
 from blast_radius import llm, report
-from blast_radius.blast import analyse
+from blast_radius.assess import assess
+from blast_radius.blast import analyse, fetch_pr
 from blast_radius.config import ROOT, SETTINGS
 from blast_radius.graph import Graph
 from blast_radius.models import CodeMap
@@ -63,17 +68,32 @@ def run(number: int, runs: int) -> None:
             br = analyse(number, head, g)
             h = hashlib.sha1(json.dumps([(i.kind, i.id, i.confidence) for i in br.impacts]).encode()).hexdigest()[:10]
             hashes.add(h)
-            s = score(br, gold)
+            if llm.available():
+                br = assess(br, fetch_pr(number), head, g, use_cache=False)
+                a = br.assessment or {}
+                flows = [i for i in br.impacts if i.kind == "flow"]
+                top = FLOW_CALLS.get(flows[0].id, []) if flows else []
+                s_agent = {"agent_finished": a.get("finished", False),
+                           "agent_ungrounded": sum("inspecting" in r["rejected_because"] for r in a.get("rejected", [])),
+                           "agent_top_flow_ok": gold.get("top_flow_calls") in top if gold.get("top_flow_calls") else None,
+                           "agent_tool_calls": a.get("tool_calls", 0)}
+            else:
+                s_agent = {}
+            s = score(br, gold) | s_agent
             if llm.available():
                 _, meta = report.write(br, use_cache=False)
                 s["report_ok"] = meta["writer"] == "llm"
                 s["report_errors"] = meta["errors"]
             else:
                 s["report_ok"] = None
-            s["correct"] = s["recall"] == 1 and not s["must_not_hits"] and s["report_ok"] is not False
+            # Ungrounded adjustments are rejected by the guard, so they can't make the output wrong; they're
+            # tracked separately as agent discipline, not as run failures.
+            s["correct"] = (s["recall"] == 1 and not s["must_not_hits"] and s["report_ok"] is not False
+                            and s.get("agent_top_flow_ok") is not False)
             s["hash"] = h
             rows.append(s)
-            print(f"run {k + 1}: recall {s['recall']} precision {s['precision']} report_ok {s['report_ok']} hash {h}")
+            print(f"run {k + 1}: recall {s['recall']} precision {s['precision']} report_ok {s['report_ok']} "
+                  f"agent_top_flow_ok {s.get('agent_top_flow_ok')} tool_calls {s.get('agent_tool_calls')} hash {h}")
     finally:
         g.close()
     summary = {
@@ -84,6 +104,9 @@ def run(number: int, runs: int) -> None:
         "recall": rows[0]["recall"], "precision": rows[0]["precision"],
         "missed": rows[0]["missed"], "unexpected": rows[0]["unexpected"], "must_not_hits": rows[0]["must_not_hits"],
         "report_pass_rate": None if rows[0]["report_ok"] is None else sum(r["report_ok"] for r in rows) / runs,
+        "agent_top_flow_ok_rate": None if rows[0].get("agent_top_flow_ok") is None
+        else sum(bool(r["agent_top_flow_ok"]) for r in rows) / runs,
+        "agent_ungrounded_adjustments": sum(r.get("agent_ungrounded", 0) for r in rows),
     }
     out = ROOT / "evals" / f"results-pr-{number}.json"
     out.write_text(json.dumps({"summary": summary, "runs": rows}, indent=1))

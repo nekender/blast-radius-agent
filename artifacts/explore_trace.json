@@ -1,0 +1,139 @@
+{
+ "goals": [
+  "Delete button container (span.mod-options) (pages *): in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:33) under condition 'canModify$ | async",
+  "Delete icon (inside `.mod-options`) (i.ion-trash-a) (pages *): in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:36) under condition 'canModify$ | async",
+  "Article detail: 'Delete Article' button (pages /article/:p): in code at ArticleComponent (src/app/features/article/pages/article/article.component.html:37) under condition 'canModify()', but never show",
+  "Article detail: 'Edit Article' a (pages /article/:p): in code at ArticleComponent (src/app/features/article/pages/article/article.component.html:33) under condition 'canModify()', but never show",
+  "App calls PUT /api/articles/:p (pages *): in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs ",
+  "App calls DELETE /api/articles/:p (pages *): in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs ",
+  "App calls DELETE /api/articles/:p/comments/:p (pages *): in code at CommentsService (src/app/features/article/services/comments.service.ts), but never shown in crawled states (anon, authed); needs ",
+  "The article page shows a Delete Article button only to the article's author. (pages /article/:p): in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:36) under condition 'canModify$ | async"
+ ],
+ "finish": {
+  "summary": "I created one article, \"br-test--author-controls-check\", and opened its page as the author. Both the \"Edit Article\" link and the \"Delete Article\" button showed, each twice on the page (top and bottom). The Edit link led to /editor/br-test--author-controls-check. The system's blocked-writes list now includes DELETE /api/articles/:p and PUT /api/articles/:p, so those calls were observed, but both were blocked and I never saw them succeed. I did not click Delete or submit the edit myself.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Posting a comment is blocked (POST /api/articles/:p/comments is on the blocked list), so there was no comment of mine to show them on. The article had no comments to start with, and I didn't check other articles."
+ },
+ "trace": [
+  {
+   "turn": 0,
+   "tool": "observe",
+   "input": {},
+   "output": "url: https://demo.realworld.show/\npage: /\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a> Your Feed -> /?feed=following\n6: <a> Global Feed -> /\n7: <a>  -> /profile/sarahchen\n8: <a> sarahchen -> /profile/sarahchen\n9: <button> 1\n10: <a> Introduction to Machine Learning for Developers Getting started with ML concepts -> /article/introduct"
+  },
+  {
+   "turn": 1,
+   "tool": "goto",
+   "input": {
+    "path": "/editor"
+   },
+   "output": "url: https://demo.realworld.show/editor\npage: /editor\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this article about?\n7: <textarea> Write your article (in markdown)\n8: <input> Enter tags\n9: <button> Publish Article\n10: <a>  -> /\n11: <a> RealWorld OSS Project -> https://github.com/gothinkster/real"
+  },
+  {
+   "turn": 2,
+   "tool": "fill",
+   "input": {
+    "index": 5,
+    "text": "br-test: author controls check"
+   },
+   "output": "filled Article Title"
+  },
+  {
+   "turn": 2,
+   "tool": "fill",
+   "input": {
+    "index": 6,
+    "text": "Automated test"
+   },
+   "output": "filled What's this article about?"
+  },
+  {
+   "turn": 2,
+   "tool": "fill",
+   "input": {
+    "index": 7,
+    "text": "This is an automated test article."
+   },
+   "output": "filled Write your article (in markdown)"
+  },
+  {
+   "turn": 2,
+   "tool": "click",
+   "input": {
+    "index": 9
+   },
+   "output": "clicked 'Publish Article'\nurl: https://demo.realworld.show/article/br-test--author-controls-check\npage: /article/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['DELETE /api/articles/:p', 'POST /api/articles/:p/comments']\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a>  -> /profile/br-test-11c596\n6: <a> br-test-11c596 -> /profile/"
+  },
+  {
+   "turn": 3,
+   "tool": "click",
+   "input": {
+    "index": 7
+   },
+   "output": "clicked 'Edit Article'\nurl: https://demo.realworld.show/editor/br-test--author-controls-check\npage: /editor/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['DELETE /api/articles/:p', 'POST /api/articles/:p/comments', 'PUT /api/articles/:p']\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this ar"
+  },
+  {
+   "turn": 4,
+   "tool": "finish",
+   "input": {
+    "summary": "I created one article, \"br-test--author-controls-check\", and opened its page as the author. Both the \"Edit Article\" link and the \"Delete Article\" button showed, each twice on the page (top and bottom). The Edit link led to /editor/br-test--author-controls-check. The system's blocked-writes list now includes DELETE /api/articles/:p and PUT /api/articles/:p, so those calls were observed, but both were blocked and I never saw them succeed. I did not click Delete or submit the edit myself.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Posting a comment is blocked (POST /api/articles/:p/comments is on the blocked list), so there was no comment of mine to show them on. The article had no comments to start with, and I didn't check other articles."
+   }
+  }
+ ],
+ "recorded_owner_screens": [
+  "/article/:p|owner",
+  "/editor/:p|owner"
+ ],
+ "created": [
+  "br-test--author-controls-check"
+ ],
+ "deleted": [
+  {
+   "slug": "br-test--author-controls-check",
+   "delete_status": 204,
+   "verified_gone": true
+  }
+ ],
+ "leftovers_cleaned": [],
+ "blocked_writes": [
+  "DELETE /api/articles/:p",
+  "POST /api/articles/:p/comments",
+  "PUT /api/articles/:p"
+ ],
+ "journey": [
+  {
+   "action": "goto",
+   "label": "/editor",
+   "url": "https://demo.realworld.show/",
+   "css": ""
+  },
+  {
+   "action": "fill",
+   "label": "Article Title",
+   "url": "https://demo.realworld.show/editor",
+   "css": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(1) > input.form-control.form-control-lg"
+  },
+  {
+   "action": "fill",
+   "label": "What's this article about?",
+   "url": "https://demo.realworld.show/editor",
+   "css": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(2) > input.form-control"
+  },
+  {
+   "action": "fill",
+   "label": "Write your article (in markdown)",
+   "url": "https://demo.realworld.show/editor",
+   "css": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(3) > textarea.form-control"
+  },
+  {
+   "action": "click",
+   "label": "Publish Article",
+   "url": "https://demo.realworld.show/editor",
+   "css": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > button.btn.btn-lg"
+  },
+  {
+   "action": "click",
+   "label": "Edit Article",
+   "url": "https://demo.realworld.show/article/br-test--author-controls-check",
+   "css": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > span > a.btn.btn-sm"
+  }
+ ]
+}
