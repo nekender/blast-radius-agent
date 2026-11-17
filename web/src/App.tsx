@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Activity, ClipboardCheck, FlaskConical, Layers, Network, Radar } from 'lucide-react'
+import { Activity, ClipboardCheck, FlaskConical, Inbox, Layers, Network, Radar } from 'lucide-react'
 import { useFetch } from './api'
 import Coverage from './views/Coverage'
 import Evals from './views/Evals'
 import Explore from './views/Explore'
+import Inputs from './views/Inputs'
 import GraphView from './views/GraphView'
 import LiveRun, { RebuildButton } from './views/LiveRun'
 import System from './views/System'
 
 const TABS = [
+  { key: 'inputs', label: 'Inputs', icon: Inbox, hint: 'app, code, spec, tests, PRs' },
   { key: 'system', label: 'System', icon: Layers, hint: 'what it is, what it saw' },
   { key: 'live', label: 'Live run', icon: Activity, hint: 'analyse a PR, live' },
   { key: 'graph', label: 'Blast radius', icon: Network, hint: 'the PR as a graph' },
@@ -19,8 +21,8 @@ const TABS = [
 type Tab = typeof TABS[number]['key']
 
 export default function App() {
-  const initial = (location.hash.slice(1) as Tab) || 'system'
-  const [tab, setTab] = useState<Tab>(TABS.some(t => t.key === initial) ? initial : 'system')
+  const initial = (location.hash.slice(1) as Tab) || 'inputs'
+  const [tab, setTab] = useState<Tab>(TABS.some(t => t.key === initial) ? initial : 'inputs')
   const [pr, setPr] = useState(311)
   const { data: overview, reload } = useFetch<any>('/api/overview')
   useEffect(() => { if (location.hash.slice(1) !== tab) location.hash = tab; document.querySelector('main')?.scrollTo({ top: 0 }) }, [tab])
@@ -80,6 +82,7 @@ export default function App() {
           </div>
         </header>
         <div className="px-8 py-6 max-w-[1800px]">
+          {tab === 'inputs' && <Inputs goTo={(t) => setTab(t as Tab)} />}
           {tab === 'system' && <System />}
           {tab === 'live' && <LiveRun initialPr={pr} onDone={(n) => { setPr(n); reload() }} />}
           {tab === 'graph' && <GraphView pr={pr} setPr={setPr} reports={reports} />}

@@ -142,6 +142,54 @@ def overview():
             "model": SETTINGS.model, "app_url": SETTINGS.app_url, "repo": SETTINGS.repo}
 
 
+@app.get("/api/inputs")
+def inputs():
+    """Everything the system takes in, with links to the real thing: app, code, spec, tests, PRs, this repo."""
+    from collections import Counter
+    from .code_map import git
+    cm = _read(SETTINGS.artifacts / "codemap.json", {}) or {}
+    reqs = _read(SETTINGS.artifacts / "requirements.json", []) or []
+    crawl = _read(SETTINGS.artifacts / "crawl.json", {}) or {}
+    links = _read(SETTINGS.artifacts / "links.json", {}) or {}
+    kinds = Counter(c["kind"] for c in cm.get("components", []))
+    try:
+        head = git("log", "-1", "--format=%h · %ad", "--date=short").strip()
+    except Exception:  # noqa: BLE001
+        head = cm.get("commit", "")[:7]
+    by_source = Counter(r["source"].split("#")[0] for r in reqs)
+    e2e = SETTINGS.spec_dir / "e2e"
+    spec_files = sorted(p.name for p in e2e.glob("*.spec.ts"))
+    prs = []
+    for n in sorted((int(p.stem) for p in (SETTINGS.data / "prs").glob("*.json")), reverse=True):
+        d = _read(SETTINGS.data / "prs" / f"{n}.json", {})
+        if (SETTINGS.reports_dir / f"pr-{n}.json").exists():
+            prs.append({"number": n, "title": d.get("title"), "url": d.get("url"), "files": [f["path"] for f in d.get("files", [])],
+                        "merge_commit": (d.get("merge_commit") or "")[:7]})
+    home = next((s for s in crawl.get("screens", []) if s["id"] == "/|anon"), None)
+    gh = "https://github.com/realworld-apps"
+    return {
+        "app": {"url": SETTINGS.app_url, "screens": len(crawl.get("screens", [])), "elements": len(crawl.get("elements", [])),
+                "screenshot": home.get("screenshot") if home else None},
+        "code": {"repo": SETTINGS.repo, "url": f"https://github.com/{SETTINGS.repo}", "head": head,
+                 "routes": len(cm.get("routes", [])), "components": kinds.get("component", 0), "services": kinds.get("service", 0),
+                 "directives": kinds.get("directive", 0), "methods": sum(len(c["methods"]) for c in cm.get("components", [])),
+                 "template_elements": len(cm.get("template_elements", [])),
+                 "endpoints": len({e for c in cm.get("components", []) for e in c.get("endpoints", {}).values()}),
+                 "route_list": list(dict.fromkeys(r["template"] for r in cm.get("routes", [])))},
+        "spec": {"docs": "https://docs.realworld.show/specifications/frontend/routing/",
+                 "files": [{"name": "routing.md", "url": f"{gh}/realworld/blob/main/docs/src/content/docs/specifications/frontend/routing.md", "read_by": "read by an LLM (prose)", "requirements": by_source.get("docs/specifications/frontend/routing.md", 0)},
+                           {"name": "SELECTORS.md", "url": f"{gh}/realworld/blob/main/specs/e2e/SELECTORS.md", "read_by": "read by code (tables)", "requirements": by_source.get("specs/e2e/SELECTORS.md", 0)},
+                           {"name": "templates.md", "url": f"{gh}/realworld/blob/main/docs/src/content/docs/specifications/frontend/templates.md", "read_by": "context for the LLM", "requirements": 0}],
+                 "requirements": len(reqs)},
+        "tests": {"url": f"{gh}/realworld/tree/main/specs/e2e", "files": spec_files,
+                  "tests": links.get("summary", {}).get("tests"), "steps": links.get("summary", {}).get("test_steps"),
+                  "linked": links.get("summary", {}).get("tests_linked")},
+        "prs": prs,
+        "project": {"url": "https://github.com/nekender/blast-radius-agent",
+                    "design": "https://github.com/nekender/blast-radius-agent/blob/main/docs/design.md"},
+    }
+
+
 @app.get("/api/report/{pr}")
 def report(pr: int):
     data = _read(SETTINGS.reports_dir / f"pr-{pr}.json")
