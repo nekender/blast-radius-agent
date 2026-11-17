@@ -15,6 +15,12 @@
   "report_pass_rate": 1.0,
   "agent_top_flow_ok_rate": 1.0,
   "agent_ungrounded_adjustments": 0,
+  "usd_per_run_mean": 0.1195,
+  "usd_per_run_max": 0.2149,
+  "seconds_per_run_median": 34.9,
+  "seconds_per_run_max": 54.4,
+  "tokens_per_run_mean": 39112,
+  "usd_for_this_eval": 0.5977,
   "agent_top_test_ok_rate": 1.0
  },
  "runs": [
@@ -33,6 +39,9 @@
    "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
+   "usd": 0.0954,
+   "seconds": 34.9,
+   "tokens": 29740,
    "correct": true,
    "hash": "c4df6f3801"
   },
@@ -51,6 +60,9 @@
    "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
+   "usd": 0.0932,
+   "seconds": 32.3,
+   "tokens": 29618,
    "correct": true,
    "hash": "c4df6f3801"
   },
@@ -65,10 +77,13 @@
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": true,
-   "agent_tool_calls": 5,
+   "agent_tool_calls": 10,
    "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
+   "usd": 0.2149,
+   "seconds": 54.4,
+   "tokens": 75593,
    "correct": true,
    "hash": "c4df6f3801"
   },
@@ -87,6 +102,9 @@
    "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
+   "usd": 0.0995,
+   "seconds": 35.6,
+   "tokens": 30762,
    "correct": true,
    "hash": "c4df6f3801"
   },
@@ -105,6 +123,9 @@
    "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
+   "usd": 0.0947,
+   "seconds": 32.7,
+   "tokens": 29847,
    "correct": true,
    "hash": "c4df6f3801"
   }

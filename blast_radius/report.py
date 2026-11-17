@@ -48,8 +48,23 @@ def template_report(br: BlastRadius) -> str:
         lines += [f"- {n['item']}: {n['why']}" for n in br.needs_review] + [""]
     lines += ["## Code that changed", ""]
     lines += [f"- `{c['file']}` · {c['unit']}" for c in br.changed]
-    lines += _assessment_md(br)
+    lines += _assessment_md(br) + _cost_md(br)
     return "\n".join(lines) + "\n"
+
+
+def _cost_md(br: BlastRadius) -> list[str]:
+    c = br.cost or {}
+    t = (c.get("llm") or {}).get("total")
+    if not t:
+        return []
+    stages = c.get("seconds_by_stage", {})
+    by = (c.get("llm") or {}).get("by_stage", {})
+    rows = " · ".join(f"{k} ${v['usd_uncached']:.3f}" for k, v in by.items())
+    return ["", "## What this report cost", "",
+            f"- **${t['usd_uncached']:.3f}** from scratch ({t['api_calls'] or t['calls']} model calls, "
+            f"{t['input_tokens']:,} input / {t['output_tokens']:,} output tokens, {c['llm']['model']}); "
+            f"this run paid ${t['usd']:.3f} after caching. By stage: {rows}.",
+            f"- {c.get('seconds_total', 0)} s wall clock: " + ", ".join(f"{k} {v} s" for k, v in stages.items()) + "."]
 
 
 def _assessment_md(br: BlastRadius) -> list[str]:
@@ -125,7 +140,7 @@ def render(w: Written, br: BlastRadius) -> str:
     for s in w.sections:
         out += [f"## {s.title}", ""] + [f"- {b.text}{tag(b)}" for b in s.bullets] + [""]
     out += ["## Code that changed", ""] + [f"- `{c['file']}` · {c['unit']}" for c in br.changed]
-    out += _assessment_md(br)
+    out += _assessment_md(br) + _cost_md(br)
     return "\n".join(out) + "\n"
 
 

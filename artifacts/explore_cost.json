@@ -1,0 +1,36 @@
+{
+ "measured": "2026-11-17",
+ "note": "one exploration run measured for cost; the committed graph uses an earlier run of the same agent",
+ "tool_calls": 15,
+ "llm": {
+  "model": "claude-sonnet-5-5",
+  "total": {
+   "calls": 8,
+   "api_calls": 8,
+   "input_tokens": 25841,
+   "output_tokens": 1278,
+   "usd": 0.0645,
+   "usd_uncached": 0.0645,
+   "llm_seconds": 26.2
+  },
+  "by_stage": {
+   "explore": {
+    "calls": 8,
+    "api_calls": 8,
+    "input_tokens": 25841,
+    "output_tokens": 1278,
+    "usd": 0.0645,
+    "usd_uncached": 0.0645,
+    "llm_seconds": 26.2
+   }
+  }
+ },
+ "seconds_total": 100.2,
+ "deleted": [
+  {
+   "slug": "br-test--comment-delete-check",
+   "delete_status": 204,
+   "verified_gone": true
+  }
+ ]
+}

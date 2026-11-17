@@ -100,6 +100,8 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
     if use_cache and cache.exists():
         saved = json.loads(cache.read_text())
         result, trace = saved["result"], saved["trace"]
+        for e in saved.get("usage", []):          # replay the cost as cached: $0 now, original tokens kept
+            llm.LEDGER.append({**e, "cached": True, "usd": 0.0, "stage": "assess"})
         inspected = _inspected(trace, ids)
     else:
         tools = [
@@ -120,6 +122,7 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
         ]
         prompt = (f"PR #{br.pr}: {br.title}\nChanged code units: {[c['unit'] for c in br.changed]}\n\n"
                   f"Impact list:\n{impacts()}")
+        ledger_start = len(llm.LEDGER)
         result, trace = llm.agent_loop(SYSTEM, prompt, tools, "finish", max_turns=max_turns)
         inspected = _inspected(trace, ids)
         # Verifier feedback, once: adjustments to items it never inspected are sent back to inspect and resubmit.
@@ -133,7 +136,7 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
             result = result2 or result
             inspected = _inspected(trace, ids)
         cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_text(json.dumps({"result": result, "trace": trace}, default=str))
+        cache.write_text(json.dumps({"result": result, "trace": trace, "usage": llm.LEDGER[ledger_start:]}, default=str))
 
     applied, rejected = [], []
     for adj in (result or {}).get("adjustments", []):

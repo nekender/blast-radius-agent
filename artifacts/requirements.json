@@ -1688,20 +1688,20 @@
   "kind": "route",
   "evidence": {
    "texts": [
-    "conduit",
     "A place to share your knowledge."
    ],
    "name_attrs": [],
    "placeholders": [],
    "classes": [
-    "home-page"
+    "home-page",
+    "banner"
    ],
    "api": []
   }
  },
  {
-  "id": "RT-4bf4c6",
-  "statement": "The home page shows a list of popular tags.",
+  "id": "RT-f00216",
+  "statement": "The home page shows a list of tags.",
   "source": "docs/specifications/frontend/routing.md",
   "pages": [
    "/"
@@ -1717,15 +1717,14 @@
    "classes": [
     "sidebar",
     "tag-list",
-    "tag-pill",
-    "tag-default"
+    "tag-pill"
    ],
    "api": []
   }
  },
  {
-  "id": "RT-91f4d5",
-  "statement": "The home page shows a list of articles pulled from the Your Feed, Global Feed, or a selected tag.",
+  "id": "RT-545488",
+  "statement": "The home page lists articles pulled from the Your Feed, the Global Feed, or a selected tag.",
   "source": "docs/specifications/frontend/routing.md",
   "pages": [
    "/"
@@ -1780,15 +1779,13 @@
   "evidence": {
    "texts": [
     "Sign in",
-    "Sign up",
-    "Need an account?",
-    "Have an account?"
+    "Sign up"
    ],
    "name_attrs": [],
    "placeholders": [
+    "Username",
     "Email",
-    "Password",
-    "Username"
+    "Password"
    ],
    "classes": [
     "auth-page"
@@ -1797,8 +1794,8 @@
   }
  },
  {
-  "id": "RT-a37437",
-  "statement": "Authentication uses JWT and the token is stored in localStorage.",
+  "id": "RT-889705",
+  "statement": "Authentication uses a JWT token stored in localStorage.",
   "source": "docs/specifications/frontend/routing.md",
   "pages": [
    "/login",
@@ -1903,15 +1900,14 @@
    "placeholders": [],
    "classes": [
     "article-page",
-    "article-content",
-    "article-meta"
+    "article-content"
    ],
    "api": []
   }
  },
  {
-  "id": "RT-aaec7c",
-  "statement": "The article page shows a Delete Article button only to the article's author.",
+  "id": "RT-c95d18",
+  "statement": "A Delete Article button is shown only to the article's author.",
   "source": "docs/specifications/frontend/routing.md",
   "pages": [
    "/article/:p"
@@ -1932,8 +1928,8 @@
   }
  },
  {
-  "id": "RT-73bc40",
-  "statement": "The article page renders the server's markdown on the client side.",
+  "id": "RT-e3b2f7",
+  "statement": "The article page renders the markdown body from the server on the client side.",
   "source": "docs/specifications/frontend/routing.md",
   "pages": [
    "/article/:p"
@@ -1960,21 +1956,24 @@
   "needs": "anon",
   "kind": "element",
   "evidence": {
-   "texts": [],
+   "texts": [
+    "Post Comment"
+   ],
    "name_attrs": [],
-   "placeholders": [],
+   "placeholders": [
+    "Write a comment..."
+   ],
    "classes": [
+    "comment-form",
     "card",
-    "card-text",
-    "comment-author",
-    "date-posted"
+    "card-text"
    ],
    "api": []
   }
  },
  {
-  "id": "RT-15c469",
-  "statement": "Each comment shows a delete button only to the comment's author.",
+  "id": "RT-b27d36",
+  "statement": "A delete comment button is shown only to the comment's author.",
   "source": "docs/specifications/frontend/routing.md",
   "pages": [
    "/article/:p"

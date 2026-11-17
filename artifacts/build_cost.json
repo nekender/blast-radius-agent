@@ -1,0 +1,40 @@
+{
+ "llm": {
+  "model": "claude-sonnet-5-5",
+  "total": {
+   "calls": 4,
+   "api_calls": 0,
+   "input_tokens": 13430,
+   "output_tokens": 3908,
+   "usd": 0.0,
+   "usd_uncached": 0.0659,
+   "llm_seconds": 0
+  },
+  "by_stage": {
+   "link": {
+    "calls": 3,
+    "api_calls": 0,
+    "input_tokens": 4639,
+    "output_tokens": 1140,
+    "usd": 0.0,
+    "usd_uncached": 0.0207,
+    "llm_seconds": 0
+   },
+   "spec": {
+    "calls": 1,
+    "api_calls": 0,
+    "input_tokens": 8791,
+    "output_tokens": 2768,
+    "usd": 0.0,
+    "usd_uncached": 0.0453,
+    "llm_seconds": 0
+   }
+  }
+ },
+ "seconds_by_stage": {
+  "crawl": 0.0,
+  "spec": 0.0,
+  "code": 0.5,
+  "link": 0.5
+ }
+}

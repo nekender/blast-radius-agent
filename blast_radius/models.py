@@ -202,3 +202,4 @@ class BlastRadius(BaseModel):
     coverage_lost: list[dict]
     needs_review: list[dict]
     assessment: dict | None = None   # the assessment agent's behaviour summary, adjustments and trace
+    cost: dict | None = None         # LLM tokens and dollars by stage, wall-clock seconds by stage

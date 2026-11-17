@@ -20,6 +20,9 @@ from __future__ import annotations
 import hashlib
 import json
 
+import statistics
+import time
+
 from blast_radius import llm, report
 from blast_radius.assess import assess
 from blast_radius.blast import analyse, fetch_pr
@@ -65,6 +68,8 @@ def run(number: int, runs: int) -> None:
     rows, hashes = [], set()
     try:
         for k in range(runs):
+            llm.reset_ledger()
+            t0 = time.monotonic()
             br = analyse(number, head, g)
             h = hashlib.sha1(json.dumps([(i.kind, i.id, i.confidence) for i in br.impacts]).encode()).hexdigest()[:10]
             hashes.add(h)
@@ -91,11 +96,14 @@ def run(number: int, runs: int) -> None:
                 s["report_ok"] = None
             # Ungrounded adjustments are rejected by the guard, so they can't make the output wrong; they're
             # tracked separately as agent discipline, not as run failures.
+            spent = llm.summarize()["total"]
+            s["usd"], s["seconds"] = spent["usd"], round(time.monotonic() - t0, 1)
+            s["tokens"] = spent["input_tokens"] + spent["output_tokens"]
             s["correct"] = (s["recall"] == 1 and not s["must_not_hits"] and s["report_ok"] is not False
                             and s.get("agent_top_flow_ok") is not False and s.get("agent_top_test_ok") is not False)
             s["hash"] = h
             rows.append(s)
-            print(f"run {k + 1}: recall {s['recall']} precision {s['precision']} report_ok {s['report_ok']} "
+            print(f"run {k + 1}: ${s['usd']:.3f} {s['seconds']}s recall {s['recall']} precision {s['precision']} report_ok {s['report_ok']} "
                   f"agent_top_flow_ok {s.get('agent_top_flow_ok')} top_test_ok {s.get('agent_top_test_ok')} tool_calls {s.get('agent_tool_calls')} hash {h}")
     finally:
         g.close()
@@ -110,6 +118,12 @@ def run(number: int, runs: int) -> None:
         "agent_top_flow_ok_rate": None if rows[0].get("agent_top_flow_ok") is None
         else sum(bool(r["agent_top_flow_ok"]) for r in rows) / runs,
         "agent_ungrounded_adjustments": sum(r.get("agent_ungrounded", 0) for r in rows),
+        "usd_per_run_mean": round(statistics.mean(r["usd"] for r in rows), 4),
+        "usd_per_run_max": round(max(r["usd"] for r in rows), 4),
+        "seconds_per_run_median": round(statistics.median(r["seconds"] for r in rows), 1),
+        "seconds_per_run_max": max(r["seconds"] for r in rows),
+        "tokens_per_run_mean": round(statistics.mean(r["tokens"] for r in rows)),
+        "usd_for_this_eval": round(sum(r["usd"] for r in rows), 4),
         "agent_top_test_ok_rate": None if rows[0].get("agent_top_test_ok") is None
         else sum(bool(r["agent_top_test_ok"]) for r in rows) / runs,
     }

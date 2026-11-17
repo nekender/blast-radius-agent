@@ -41,6 +41,10 @@ only), one app, and write-gated states beyond article ownership. Section 5 defen
 every LLM report passed verification, and the assessment agent put the right journey first in every run with no
 ungrounded adjustments. Section 4 explains why that is weaker evidence than it looks.
 
+**Cost:** about **$0.10 and 35 seconds per PR** on Claude Sonnet 5.5 (graph traversal free and under a second; the
+assessment agent and the report are the spend), $0.07 for a from-scratch graph build, $0.07 per exploration run.
+Every report states its own cost.
+
 ## 1. Agent decomposition
 
 ```mermaid
@@ -334,6 +338,31 @@ one verifier round-trip took it to 0.
 
 **Next for evals:** 20 labelled PRs, with RealWorld's own Playwright E2E suite run at each PR's parent and merge commits
 as an independent oracle; and trajectory metrics for the exploration agent (steps to goal, blocked-write attempts).
+
+### Cost and latency
+
+Every model call goes through one ledger (`llm.py`) that records its stage, tokens, dollars and seconds; cached
+answers are recorded at $0 with their original token counts, so both "what this run paid" and "what it costs from
+scratch" are known. Prices: Claude Sonnet 5.5 at $2 / $10 per million input / output tokens. Each report ends with
+its own cost; the numbers below are from the eval runs (agent and report fresh every run, no cache).
+
+| What | When it runs | Model calls | Cost | Time |
+|---|---|---|---|---|
+| Crawl | when the app changes | 0 | $0 | ~5 min (browser) |
+| Build (spec prose + LLM judge + flow names) | after a crawl | 4 | $0.066 from scratch, $0 cached | ~30 s from scratch, ~1 s cached |
+| Exploration agent | when there are owner-state gaps | 8 turns, 15 tool calls | $0.065 | ~100 s (mostly browser) |
+| **PR #311** (5 runs) | per PR | 4 typical | **mean $0.12, median $0.095, max $0.215** | median 35 s, max 54 s |
+| **PR #268** (3 runs) | per PR | 4–5 | mean $0.19, max $0.21 | median 43 s, max 49 s |
+
+Per PR, the graph traversal is under a second and free; the money is in the assessment agent (~$0.065–0.08) and the
+report (~$0.035–0.09, larger PRs have more to write). The tail run on #311 ($0.215, 10 tool calls) is the verifier
+round-trip: the agent adjusted items it hadn't inspected, was sent back, and resubmitted. Grounding costs about one
+extra assessment when it triggers, which is what I'd want to pay for it. The whole eval (8 runs) cost $1.16.
+
+**Levers I haven't pulled, cheapest first:** prompt caching on the agent's system prompt and tools (each turn resends
+them, so most of its input tokens are a repeated prefix); the Batch API for eval runs (half price, not latency
+sensitive); and a smaller model for the report writer, whose output is verified anyway. Each needs the eval re-run to
+show quality holds before it's switched on.
 
 ## 5. Scope decisions
 

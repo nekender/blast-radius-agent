@@ -92,10 +92,21 @@
    "kind": "requirement",
    "id": "RTE-9bb4d9",
    "label": "Route /editor shows New article",
-   "confidence": 0.9,
+   "confidence": 0.95,
    "why": [
     "describes /editor, a page this change affects",
-    "assessment: /editor with no slug is the exact branch changed. (0.50 -> 0.90)"
+    "assessment: /editor with no slug is the path that was fixed. (0.50 -> 0.95)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-a50b54",
+   "label": "Route /editor/:slug shows Edit article",
+   "confidence": 0.8,
+   "why": [
+    "describes /editor/:p, a page this change affects",
+    "assessment: The edit route now sits behind the slug guard. Check that prefill and the author redirect still work. (0.50 -> 0.80)"
    ],
    "observed": true
   },
@@ -211,8 +222,18 @@
   },
   {
    "kind": "requirement",
-   "id": "RT-91f4d5",
-   "label": "The home page shows a list of articles pulled from the Your Feed, Global Feed, or a selected tag.",
+   "id": "RT-e04d74",
+   "label": "The article page has a comments section at the bottom of the page.",
+   "confidence": 0.63,
+   "why": [
+    "proven by changed UI: 4 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RT-545488",
+   "label": "The home page lists articles pulled from the Your Feed, the Global Feed, or a selected tag.",
    "confidence": 0.63,
    "why": [
     "proven by changed UI: 1 element(s)"
@@ -221,34 +242,11 @@
   },
   {
    "kind": "requirement",
-   "id": "RTE-a50b54",
-   "label": "Route /editor/:slug shows Edit article",
-   "confidence": 0.6,
-   "why": [
-    "describes /editor/:p, a page this change affects",
-    "assessment: The edit-with-slug branch is unchanged but is still guarded by the new condition. (0.50 -> 0.60)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
-   "id": "API-7a6c73",
-   "label": "App calls GET /api/articles/:p",
-   "confidence": 0.5,
-   "why": [
-    "expects GET /api/articles/:p, which the changed code calls",
-    "assessment: GET article by slug is now skipped on /editor and otherwise unchanged. (0.60 -> 0.50)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
    "id": "API-c87520",
    "label": "App calls GET /api/user",
-   "confidence": 0.5,
+   "confidence": 0.6,
    "why": [
-    "expects GET /api/user, which the changed code calls",
-    "assessment: GET /api/user is now called only on the edit path. (0.60 -> 0.50)"
+    "expects GET /api/user, which the changed code calls"
    ],
    "observed": true
   },
@@ -324,8 +322,8 @@
   },
   {
    "kind": "requirement",
-   "id": "RT-73bc40",
-   "label": "The article page renders the server's markdown on the client side.",
+   "id": "RT-e3b2f7",
+   "label": "The article page renders the markdown body from the server on the client side.",
    "confidence": 0.5,
    "why": [
     "describes /article/:p, a page this change affects"
@@ -336,9 +334,20 @@
    "kind": "requirement",
    "id": "RT-1521bc",
    "label": "The home page is available at the URL /.",
-   "confidence": 0.35,
+   "confidence": 0.5,
    "why": [
-    "proven by changed UI: 1 element(s)"
+    "describes /, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-7a6c73",
+   "label": "App calls GET /api/articles/:p",
+   "confidence": 0.4,
+   "why": [
+    "expects GET /api/articles/:p, which the changed code calls",
+    "assessment: The new-article route no longer calls GET /articles/:p. The edit route still does, and the article page is unchanged. (0.60 -> 0.40)"
    ],
    "observed": true
   },
@@ -350,19 +359,28 @@
    "why": [
     "passes through changed UI (5 step(s))",
     "its final action calls POST /api/articles, which the changed code calls",
-    "assessment: Exactly the changed branch: new-article page with no slug now skips the fetch and the redirect. (1.00 -> 1.00)"
+    "assessment: Exercises the fixed new-article path: no slug, so no article fetch or author redirect. (1.00 -> 1.00)"
    ],
    "observed": true
   },
   {
    "kind": "flow",
    "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
-   "label": "Edit your published article",
-   "confidence": 0.8,
+   "label": "Edit your own published article",
+   "confidence": 1.0,
    "why": [
     "passes through changed UI (9 step(s))",
-    "its final action calls PUT /api/articles/:p, which the changed code calls",
-    "assessment: Edit path with a slug is unchanged, but the flow also visits /editor to create the article first. (1.00 -> 0.80)"
+    "its final action calls PUT /api/articles/:p, which the changed code calls"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:/article/:p:POST /api/articles/:p/comments",
+   "label": "Comment on an article",
+   "confidence": 0.63,
+   "why": [
+    "passes through changed UI (2 step(s))"
    ],
    "observed": true
   },
@@ -370,9 +388,10 @@
    "kind": "flow",
    "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
    "label": "Delete your own article",
-   "confidence": 1.0,
+   "confidence": 0.5,
    "why": [
-    "passes through changed UI (4 step(s))"
+    "passes through changed UI (4 step(s))",
+    "assessment: Uses the editor only as setup to publish an article; the action under test is Delete. (1.00 -> 0.50, capped)"
    ],
    "observed": true
   },
@@ -380,20 +399,10 @@
    "kind": "flow",
    "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
    "label": "Favorite your own published article",
-   "confidence": 1.0,
+   "confidence": 0.5,
    "why": [
-    "passes through changed UI (4 step(s))"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "flow",
-   "id": "flow:/article/:p:POST /api/articles/:p/comments",
-   "label": "Post a comment on an article",
-   "confidence": 0.65,
-   "why": [
-    "passes through changed UI (2 step(s))",
-    "assessment: The flow logs in and then loads the article, so the comment form depends on the directive's view creation. (0.63 -> 0.65)"
+    "passes through changed UI (4 step(s))",
+    "assessment: Uses the editor only as setup; favoriting is not changed. (1.00 -> 0.50, capped)"
    ],
    "observed": true
   },
@@ -401,10 +410,10 @@
    "kind": "test",
    "id": "T:articles.spec.ts:32",
    "label": "should create a new article (articles.spec.ts:32)",
-   "confidence": 0.95,
+   "confidence": 1.0,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Creates a new article on /editor, the changed no-slug path. (0.90 -> 0.95)"
+    "assessment: Creates an article on /editor, which is exactly the changed branch. (0.90 -> 1.00)"
    ],
    "observed": true
   },
@@ -412,43 +421,10 @@
    "kind": "test",
    "id": "T:articles.spec.ts:51",
    "label": "should edit an existing article (articles.spec.ts:51)",
-   "confidence": 0.75,
+   "confidence": 0.9,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)",
-    "assessment: Edit path is unchanged, but the test creates an article on /editor first. (0.90 -> 0.75)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:articles.spec.ts:288",
-   "label": "should only allow author to edit/delete article (articles.spec.ts:288)",
-   "confidence": 0.8,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Creates an article on /editor and checks author-only edit/delete visibility, which depends on the directive. (0.90 -> 0.80)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:comments.spec.ts:105",
-   "label": "should require login to post comment (comments.spec.ts:105)",
-   "confidence": 0.75,
-   "why": [
-    "acts on 'Write a comment...', which this change puts at risk (locator 'textarea[placeholder=\"Write a comment...\"]' on any page)",
-    "assessment: Checks the logged-out versus logged-in comment form, which is rendered through ShowAuthedDirective. (0.57 -> 0.75)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:error-handling.spec.ts:68",
-   "label": "should handle 400 on article creation (error-handling.spec.ts:68)",
-   "confidence": 0.8,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor)",
-    "assessment: Fills and submits the create form on /editor, whose initialisation changed. (0.90 -> 0.80)"
+    "assessment: Covers both the create and edit paths of the editor. The edit branch must still prefill and work. (0.90 -> 0.90)"
    ],
    "observed": true
   },
@@ -456,21 +432,32 @@
    "kind": "test",
    "id": "T:error-handling.spec.ts:622",
    "label": "should show error message on create article form when network fails (error-handling.spec.ts:622)",
-   "confidence": 0.8,
+   "confidence": 0.95,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Fills and submits the create form on /editor, whose initialisation changed. (0.90 -> 0.80)"
+    "assessment: Create-article form on /editor, the changed no-slug path. (0.90 -> 0.95)"
    ],
    "observed": true
   },
   {
    "kind": "test",
-   "id": "T:error-handling.spec.ts:650",
-   "label": "should show error message on update article form when network fails (error-handling.spec.ts:650)",
+   "id": "T:comments.spec.ts:105",
+   "label": "should require login to post comment (comments.spec.ts:105)",
    "confidence": 0.7,
    "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)",
-    "assessment: Update form on /editor/:p; the edit branch is unchanged but still goes through the new condition. (0.90 -> 0.70)"
+    "acts on 'Write a comment...', which this change puts at risk (locator 'textarea[placeholder=\"Write a comment...\"]' on any page)",
+    "assessment: Tests the anon vs authed comment form, which depends on the ShowAuthed directive. (0.57 -> 0.70)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:comments.spec.ts:31",
+   "label": "should add a comment to an article (comments.spec.ts:31)",
+   "confidence": 0.65,
+   "why": [
+    "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)",
+    "assessment: The comment form is rendered through ShowAuthed, which changed. (0.57 -> 0.65)"
    ],
    "observed": true
   },
@@ -488,16 +475,6 @@
    "kind": "test",
    "id": "T:null-fields.spec.ts:42",
    "label": "newly registered user should show default avatar on article meta (null-fields.spec.ts:42)",
-   "confidence": 0.9,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:url-navigation.spec.ts:206",
-   "label": "page should reset when switching feeds (url-navigation.spec.ts:206)",
    "confidence": 0.9,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
@@ -546,31 +523,31 @@
   },
   {
    "kind": "test",
-   "id": "T:navigation.spec.ts:139",
-   "label": "should display popular tags (navigation.spec.ts:139)",
-   "confidence": 0.9,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:social.spec.ts:97",
-   "label": "should display user articles on profile (social.spec.ts:97)",
-   "confidence": 0.9,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
    "id": "T:navigation.spec.ts:63",
    "label": "should filter articles by tag (navigation.spec.ts:63)",
    "confidence": 0.9,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:68",
+   "label": "should handle 400 on article creation (error-handling.spec.ts:68)",
+   "confidence": 0.9,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:199",
+   "label": "should handle 403 when updating article (error-handling.spec.ts:199)",
+   "confidence": 0.9,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor/:p)"
    ],
    "observed": true
   },
@@ -588,6 +565,16 @@
    "kind": "test",
    "id": "T:navigation.spec.ts:183",
    "label": "should navigate to article from author name (navigation.spec.ts:183)",
+   "confidence": 0.9,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:288",
+   "label": "should only allow author to edit/delete article (articles.spec.ts:288)",
    "confidence": 0.9,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
@@ -621,6 +608,16 @@
    "confidence": 0.9,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:650",
+   "label": "should show error message on update article form when network fails (error-handling.spec.ts:650)",
+   "confidence": 0.9,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)"
    ],
    "observed": true
   },
@@ -676,28 +673,6 @@
   },
   {
    "kind": "test",
-   "id": "T:articles.spec.ts:73",
-   "label": "should delete an article (articles.spec.ts:73)",
-   "confidence": 0.7,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Creates an article on /editor and then relies on owner-only delete buttons that depend on the directive. (0.90 -> 0.70)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:error-handling.spec.ts:199",
-   "label": "should handle 403 when updating article (error-handling.spec.ts:199)",
-   "confidence": 0.6,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor/:p)",
-    "assessment: Update form on /editor/:p; the edit branch is unchanged. (0.90 -> 0.60)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
    "id": "T:url-navigation.spec.ts:65",
    "label": "clicking Your Feed should navigate to /?feed=following (url-navigation.spec.ts:65)",
    "confidence": 0.57,
@@ -713,16 +688,6 @@
    "confidence": 0.57,
    "why": [
     "acts on 'Your Feed', which this change puts at risk (locator 'a[href=\"/\"]' on /)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:comments.spec.ts:31",
-   "label": "should add a comment to an article (comments.spec.ts:31)",
-   "confidence": 0.57,
-   "why": [
-    "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
    "observed": true
   },
@@ -838,12 +803,56 @@
   },
   {
    "kind": "test",
+   "id": "T:articles.spec.ts:73",
+   "label": "should delete an article (articles.spec.ts:73)",
+   "confidence": 0.45,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Creates an article as setup, then deletes it. Delete is not changed. (0.90 -> 0.45)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:206",
+   "label": "page should reset when switching feeds (url-navigation.spec.ts:206)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Feed and page reset logic is not changed by this PR. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:139",
+   "label": "should display popular tags (navigation.spec.ts:139)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Popular tags display; only loosely connected to the changed code. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:social.spec.ts:97",
+   "label": "should display user articles on profile (social.spec.ts:97)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Uses article creation as setup for a profile check. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
    "id": "T:null-fields.spec.ts:152",
    "label": "author avatars should render on other user articles in feed (null-fields.spec.ts:152)",
    "confidence": 0.3,
    "why": [
     "acts on 'Your Feed', which this change puts at risk (locator 'a.nav-link' on /)",
-    "assessment: Only locates the feed link and checks avatars; weak link to the change. (0.32 -> 0.30)"
+    "assessment: Avatar rendering in the feed; not affected. (0.32 -> 0.30)"
    ],
    "observed": true
   },
@@ -1162,10 +1171,10 @@
    "confidence": 1.0,
    "why": [
     "contains 'Enter tags'",
-    "contains 'Write your article (in markdown)'",
-    "contains 'Publish Article'",
     "contains 'What's this article about?'",
-    "contains 'Article Title'"
+    "contains 'Publish Article'",
+    "contains 'Article Title'",
+    "contains 'Write your article (in markdown)'"
    ],
    "observed": true
   },
@@ -1176,10 +1185,10 @@
    "confidence": 1.0,
    "why": [
     "contains 'Enter tags'",
-    "contains 'Write your article (in markdown)'",
-    "contains 'Publish Article'",
     "contains 'What's this article about?'",
-    "contains 'Article Title'"
+    "contains 'Publish Article'",
+    "contains 'Article Title'",
+    "contains 'Write your article (in markdown)'"
    ],
    "observed": true
   },
@@ -1199,8 +1208,8 @@
    "label": "/article/:p (authed)",
    "confidence": 0.63,
    "why": [
-    "contains 'Write a comment...'",
-    "contains 'Post Comment'"
+    "contains 'Post Comment'",
+    "contains 'Write a comment...'"
    ],
    "observed": true
   },
@@ -1210,8 +1219,8 @@
    "label": "/article/:p (owner)",
    "confidence": 0.63,
    "why": [
-    "contains 'Write a comment...'",
-    "contains 'Post Comment'"
+    "contains 'Post Comment'",
+    "contains 'Write a comment...'"
    ],
    "observed": true
   },
@@ -1254,8 +1263,8 @@
    "confidence": 0.5,
    "why": [
     "contains 'Sign in'",
-    "contains 'sign up'",
-    "contains 'Sign up'"
+    "contains 'Sign up'",
+    "contains 'sign up'"
    ],
    "observed": true
   }
@@ -1324,7 +1333,7 @@
  ],
  "needs_review": [
   {
-   "item": "'Realworld' in code",
+   "item": "'This is the demo from the project. This demo is connected to a demo backend that' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
@@ -1334,7 +1343,7 @@
    "confidence": 0.32
   },
   {
-   "item": "'This is the demo from the project. This demo is connected to a demo backend that' in code",
+   "item": "'Realworld' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
@@ -1352,150 +1361,137 @@
    "item": "author avatars should render on other user articles in feed (null-fields.spec.ts:152)",
    "why": "low confidence (0.32)",
    "confidence": 0.32
-  },
-  {
-   "item": "The home page is available at the URL /.",
-   "why": "low confidence (0.35)",
-   "confidence": 0.35
   }
  ],
  "assessment": {
-  "behaviour_change": "EditorComponent.ngOnInit now fetches the article and current user only when the route has a slug. /editor for a new article no longer calls GET /api/articles/undefined or runs the author-check redirect. The edit path is unchanged. ShowAuthedDirective now creates its embedded view only once, using a stored authRef. authRef is never cleared after viewContainer.clear(), so a logout followed by a login in the same session may not re-show authed content. Anonymous-only content may not re-show after a login-then-logout either.",
+  "behaviour_change": "EditorComponent.ngOnInit now loads the article and checks the author only when the route has a slug. Before, /editor (new article) called GET /api/articles/undefined and the author check, which broke the New Article page. ShowAuthedDirective now creates its view only once (it guards on authRef), so it no longer duplicates the embedded view on repeated auth emissions. authRef is never reset after clear(), so a logout followed by a login may not re-render the content. Re-test that.",
   "applied": [
    {
-    "id": "flow:/editor:POST /api/articles",
-    "confidence": 1.0,
-    "reason": "Exactly the changed branch: new-article page with no slug now skips the fetch and the redirect.",
+    "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+    "confidence": 0.4,
+    "reason": "Uses the editor only as setup to publish an article; the action under test is Delete.",
     "from": 1.0,
-    "to": 1.0,
-    "capped": false
-   },
-   {
-    "id": "RTE-9bb4d9",
-    "confidence": 0.9,
-    "reason": "/editor with no slug is the exact branch changed.",
-    "from": 0.5,
-    "to": 0.9,
-    "capped": false
-   },
-   {
-    "id": "T:articles.spec.ts:32",
-    "confidence": 0.95,
-    "reason": "Creates a new article on /editor, the changed no-slug path.",
-    "from": 0.9,
-    "to": 0.95,
-    "capped": false
-   },
-   {
-    "id": "T:error-handling.spec.ts:68",
-    "confidence": 0.8,
-    "reason": "Fills and submits the create form on /editor, whose initialisation changed.",
-    "from": 0.9,
-    "to": 0.8,
-    "capped": false
-   },
-   {
-    "id": "T:error-handling.spec.ts:622",
-    "confidence": 0.8,
-    "reason": "Fills and submits the create form on /editor, whose initialisation changed.",
-    "from": 0.9,
-    "to": 0.8,
-    "capped": false
-   },
-   {
-    "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
-    "confidence": 0.8,
-    "reason": "Edit path with a slug is unchanged, but the flow also visits /editor to create the article first.",
-    "from": 1.0,
-    "to": 0.8,
-    "capped": false
-   },
-   {
-    "id": "RTE-a50b54",
-    "confidence": 0.6,
-    "reason": "The edit-with-slug branch is unchanged but is still guarded by the new condition.",
-    "from": 0.5,
-    "to": 0.6,
-    "capped": false
-   },
-   {
-    "id": "T:articles.spec.ts:51",
-    "confidence": 0.75,
-    "reason": "Edit path is unchanged, but the test creates an article on /editor first.",
-    "from": 0.9,
-    "to": 0.75,
-    "capped": false
-   },
-   {
-    "id": "API-7a6c73",
-    "confidence": 0.5,
-    "reason": "GET article by slug is now skipped on /editor and otherwise unchanged.",
-    "from": 0.6,
     "to": 0.5,
-    "capped": false
+    "capped": true
    },
    {
-    "id": "T:comments.spec.ts:105",
-    "confidence": 0.75,
-    "reason": "Checks the logged-out versus logged-in comment form, which is rendered through ShowAuthedDirective.",
-    "from": 0.57,
-    "to": 0.75,
-    "capped": false
-   },
-   {
-    "id": "flow:/article/:p:POST /api/articles/:p/comments",
-    "confidence": 0.65,
-    "reason": "The flow logs in and then loads the article, so the comment form depends on the directive's view creation.",
-    "from": 0.63,
-    "to": 0.65,
-    "capped": false
+    "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+    "confidence": 0.35,
+    "reason": "Uses the editor only as setup; favoriting is not changed.",
+    "from": 1.0,
+    "to": 0.5,
+    "capped": true
    },
    {
     "id": "T:articles.spec.ts:73",
-    "confidence": 0.7,
-    "reason": "Creates an article on /editor and then relies on owner-only delete buttons that depend on the directive.",
+    "confidence": 0.45,
+    "reason": "Creates an article as setup, then deletes it. Delete is not changed.",
     "from": 0.9,
-    "to": 0.7,
+    "to": 0.45,
     "capped": false
    },
    {
-    "id": "T:articles.spec.ts:288",
-    "confidence": 0.8,
-    "reason": "Creates an article on /editor and checks author-only edit/delete visibility, which depends on the directive.",
+    "id": "T:social.spec.ts:97",
+    "confidence": 0.3,
+    "reason": "Uses article creation as setup for a profile check.",
     "from": 0.9,
-    "to": 0.8,
-    "capped": false
+    "to": 0.4,
+    "capped": true
    },
    {
-    "id": "T:error-handling.spec.ts:650",
-    "confidence": 0.7,
-    "reason": "Update form on /editor/:p; the edit branch is unchanged but still goes through the new condition.",
+    "id": "T:navigation.spec.ts:139",
+    "confidence": 0.2,
+    "reason": "Popular tags display; only loosely connected to the changed code.",
     "from": 0.9,
-    "to": 0.7,
-    "capped": false
+    "to": 0.4,
+    "capped": true
    },
    {
-    "id": "T:error-handling.spec.ts:199",
-    "confidence": 0.6,
-    "reason": "Update form on /editor/:p; the edit branch is unchanged.",
+    "id": "T:url-navigation.spec.ts:206",
+    "confidence": 0.2,
+    "reason": "Feed and page reset logic is not changed by this PR.",
     "from": 0.9,
-    "to": 0.6,
-    "capped": false
+    "to": 0.4,
+    "capped": true
    },
    {
     "id": "T:null-fields.spec.ts:152",
-    "confidence": 0.2,
-    "reason": "Only locates the feed link and checks avatars; weak link to the change.",
+    "confidence": 0.15,
+    "reason": "Avatar rendering in the feed; not affected.",
     "from": 0.32,
     "to": 0.3,
     "capped": false
    },
    {
-    "id": "API-c87520",
-    "confidence": 0.5,
-    "reason": "GET /api/user is now called only on the edit path.",
+    "id": "API-7a6c73",
+    "confidence": 0.4,
+    "reason": "The new-article route no longer calls GET /articles/:p. The edit route still does, and the article page is unchanged.",
     "from": 0.6,
-    "to": 0.5,
+    "to": 0.4,
+    "capped": false
+   },
+   {
+    "id": "flow:/editor:POST /api/articles",
+    "confidence": 1.0,
+    "reason": "Exercises the fixed new-article path: no slug, so no article fetch or author redirect.",
+    "from": 1.0,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "T:articles.spec.ts:32",
+    "confidence": 1.0,
+    "reason": "Creates an article on /editor, which is exactly the changed branch.",
+    "from": 0.9,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "T:error-handling.spec.ts:622",
+    "confidence": 0.95,
+    "reason": "Create-article form on /editor, the changed no-slug path.",
+    "from": 0.9,
+    "to": 0.95,
+    "capped": false
+   },
+   {
+    "id": "T:articles.spec.ts:51",
+    "confidence": 0.9,
+    "reason": "Covers both the create and edit paths of the editor. The edit branch must still prefill and work.",
+    "from": 0.9,
+    "to": 0.9,
+    "capped": false
+   },
+   {
+    "id": "RTE-9bb4d9",
+    "confidence": 0.95,
+    "reason": "/editor with no slug is the path that was fixed.",
+    "from": 0.5,
+    "to": 0.95,
+    "capped": false
+   },
+   {
+    "id": "RTE-a50b54",
+    "confidence": 0.8,
+    "reason": "The edit route now sits behind the slug guard. Check that prefill and the author redirect still work.",
+    "from": 0.5,
+    "to": 0.8,
+    "capped": false
+   },
+   {
+    "id": "T:comments.spec.ts:105",
+    "confidence": 0.7,
+    "reason": "Tests the anon vs authed comment form, which depends on the ShowAuthed directive.",
+    "from": 0.57,
+    "to": 0.7,
+    "capped": false
+   },
+   {
+    "id": "T:comments.spec.ts:31",
+    "confidence": 0.65,
+    "reason": "The comment form is rendered through ShowAuthed, which changed.",
+    "from": 0.57,
+    "to": 0.65,
     "capped": false
    }
   ],
@@ -1506,13 +1502,12 @@
    "RTE-9bb4d9",
    "flow:/editor/:p:PUT /api/articles/:p:owner",
    "T:articles.spec.ts:51",
-   "T:articles.spec.ts:288",
-   "T:comments.spec.ts:105",
-   "T:error-handling.spec.ts:68",
    "T:error-handling.spec.ts:622",
-   "T:error-handling.spec.ts:650"
+   "RTE-a50b54",
+   "T:comments.spec.ts:105",
+   "T:comments.spec.ts:31"
   ],
-  "tool_calls": 9,
+  "tool_calls": 3,
   "finished": true,
   "trace": [
    {
@@ -1525,110 +1520,108 @@
      "item_ids": [
       "flow:/editor:POST /api/articles",
       "flow:/editor/:p:PUT /api/articles/:p:owner",
-      "API-7a6c73",
-      "API-c87520",
-      "RTE-9bb4d9",
-      "RTE-a50b54",
-      "T:articles.spec.ts:32",
-      "T:articles.spec.ts:51",
-      "T:comments.spec.ts:105",
-      "API-0ba81e",
-      "T:null-fields.spec.ts:152",
-      "T:url-navigation.spec.ts:65",
       "flow:/article/:p:DELETE /api/articles/:p:owner",
-      "flow:/profile/:p:POST /api/articles/:p/favorite:owner"
+      "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+      "T:articles.spec.ts:32",
+      "T:error-handling.spec.ts:622",
+      "T:articles.spec.ts:51",
+      "API-7a6c73",
+      "T:articles.spec.ts:73",
+      "T:social.spec.ts:97",
+      "T:navigation.spec.ts:139",
+      "T:url-navigation.spec.ts:206",
+      "T:comments.spec.ts:105",
+      "T:comments.spec.ts:31",
+      "RTE-9bb4d9",
+      "RTE-a50b54",
+      "T:null-fields.spec.ts:152"
      ]
     }
    },
    {
     "tool": "finish",
     "input": {
-     "behaviour_change": "The editor's ngOnInit now only fetches the article and current user when the route has a slug. Opening /editor for a new article no longer calls GET /api/articles/undefined, and the edit path is unchanged. ShowAuthedDirective now creates its embedded view only once, using a stored authRef. This stops duplicate views on repeated auth emissions, but authRef is never cleared after viewContainer.clear(). A logout followed by a login in the same session may therefore not re-show authed content.",
+     "behaviour_change": "EditorComponent.ngOnInit now loads the article and checks the author only when the route has a slug. Before, /editor (new article) called GET /api/articles/undefined and the author check, which broke the New Article page. ShowAuthedDirective now creates its view only once (it guards on authRef), so it no longer duplicates the embedded view on repeated auth emissions. authRef is never reset after clear(), so a logout followed by a login may not re-render the content. Re-test that.",
      "adjustments": [
       {
-       "id": "flow:/editor:POST /api/articles",
-       "confidence": 1.0,
-       "reason": "Exactly the changed branch: new-article page with no slug now skips the fetch and the redirect."
+       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+       "confidence": 0.4,
+       "reason": "Uses the editor only as setup to publish an article; the action under test is Delete."
       },
       {
-       "id": "RTE-9bb4d9",
-       "confidence": 0.9,
-       "reason": "/editor with no slug is the exact branch changed."
-      },
-      {
-       "id": "T:articles.spec.ts:32",
-       "confidence": 0.95,
-       "reason": "Creates a new article on /editor, the changed no-slug path."
-      },
-      {
-       "id": "T:error-handling.spec.ts:68",
-       "confidence": 0.8,
-       "reason": "Exercises the create form, whose initialisation changed."
-      },
-      {
-       "id": "T:error-handling.spec.ts:622",
-       "confidence": 0.8,
-       "reason": "Exercises the create form, whose initialisation changed."
-      },
-      {
-       "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
-       "confidence": 0.8,
-       "reason": "Edit path logic is unchanged because the slug is present, but the flow also creates an article via /editor first."
-      },
-      {
-       "id": "RTE-a50b54",
-       "confidence": 0.6,
-       "reason": "The edit-with-slug branch is unchanged."
-      },
-      {
-       "id": "T:articles.spec.ts:51",
-       "confidence": 0.75,
-       "reason": "Edit path is unchanged, but the test creates an article on /editor first."
-      },
-      {
-       "id": "API-7a6c73",
-       "confidence": 0.5,
-       "reason": "GET article by slug is now skipped on /editor and otherwise unchanged."
-      },
-      {
-       "id": "T:comments.spec.ts:105",
-       "confidence": 0.75,
-       "reason": "Checks the logged-out versus logged-in comment form, which is rendered through ShowAuthedDirective."
-      },
-      {
-       "id": "flow:/article/:p:POST /api/articles/:p/comments",
-       "confidence": 0.65,
-       "reason": "The comment form depends on the directive's view creation."
+       "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+       "confidence": 0.35,
+       "reason": "Uses the editor only as setup; favoriting is not changed."
       },
       {
        "id": "T:articles.spec.ts:73",
-       "confidence": 0.6,
-       "reason": "The owner-only delete buttons on the article page depend on ShowAuthed rendering."
+       "confidence": 0.45,
+       "reason": "Creates an article as setup, then deletes it. Delete is not changed."
       },
       {
-       "id": "T:articles.spec.ts:288",
-       "confidence": 0.7,
-       "reason": "Checks author-only edit/delete visibility, which depends on directive rendering."
+       "id": "T:social.spec.ts:97",
+       "confidence": 0.3,
+       "reason": "Uses article creation as setup for a profile check."
       },
       {
-       "id": "T:error-handling.spec.ts:650",
-       "confidence": 0.7,
-       "reason": "Update form; the edit branch is unchanged."
+       "id": "T:navigation.spec.ts:139",
+       "confidence": 0.2,
+       "reason": "Popular tags display; only loosely connected to the changed code."
       },
       {
-       "id": "T:error-handling.spec.ts:199",
-       "confidence": 0.6,
-       "reason": "Update form; the edit branch is unchanged."
+       "id": "T:url-navigation.spec.ts:206",
+       "confidence": 0.2,
+       "reason": "Feed and page reset logic is not changed by this PR."
       },
       {
        "id": "T:null-fields.spec.ts:152",
-       "confidence": 0.2,
-       "reason": "Only locates the feed link and checks avatars; weak link to the change."
+       "confidence": 0.15,
+       "reason": "Avatar rendering in the feed; not affected."
       },
       {
-       "id": "API-c87520",
-       "confidence": 0.5,
-       "reason": "GET /api/user is still called only on the edit path."
+       "id": "API-7a6c73",
+       "confidence": 0.4,
+       "reason": "The new-article route no longer calls GET /articles/:p. The edit route still does, and the article page is unchanged."
+      },
+      {
+       "id": "flow:/editor:POST /api/articles",
+       "confidence": 1.0,
+       "reason": "Exercises the fixed new-article path: no slug, so no article fetch or author redirect."
+      },
+      {
+       "id": "T:articles.spec.ts:32",
+       "confidence": 1.0,
+       "reason": "Creates an article on /editor, which is exactly the changed branch."
+      },
+      {
+       "id": "T:error-handling.spec.ts:622",
+       "confidence": 0.95,
+       "reason": "Create-article form on /editor, the changed no-slug path."
+      },
+      {
+       "id": "T:articles.spec.ts:51",
+       "confidence": 0.9,
+       "reason": "Covers both the create and edit paths of the editor. The edit branch must still prefill and work."
+      },
+      {
+       "id": "RTE-9bb4d9",
+       "confidence": 0.95,
+       "reason": "/editor with no slug is the path that was fixed."
+      },
+      {
+       "id": "RTE-a50b54",
+       "confidence": 0.8,
+       "reason": "The edit route now sits behind the slug guard. Check that prefill and the author redirect still work."
+      },
+      {
+       "id": "T:comments.spec.ts:105",
+       "confidence": 0.7,
+       "reason": "Tests the anon vs authed comment form, which depends on the ShowAuthed directive."
+      },
+      {
+       "id": "T:comments.spec.ts:31",
+       "confidence": 0.65,
+       "reason": "The comment form is rendered through ShowAuthed, which changed."
       }
      ],
      "retest_first": [
@@ -1637,180 +1630,53 @@
       "RTE-9bb4d9",
       "flow:/editor/:p:PUT /api/articles/:p:owner",
       "T:articles.spec.ts:51",
-      "T:articles.spec.ts:288",
-      "T:comments.spec.ts:105",
-      "T:error-handling.spec.ts:68",
       "T:error-handling.spec.ts:622",
-      "T:error-handling.spec.ts:650"
-     ]
-    }
-   },
-   {
-    "tool": "verifier",
-    "input": {
-     "ungrounded": [
-      "T:articles.spec.ts:288",
-      "T:articles.spec.ts:73",
-      "T:error-handling.spec.ts:199",
-      "T:error-handling.spec.ts:622",
-      "T:error-handling.spec.ts:650",
-      "T:error-handling.spec.ts:68",
-      "flow:/article/:p:POST /api/articles/:p/comments"
-     ]
-    }
-   },
-   {
-    "tool": "read_diff",
-    "input": {}
-   },
-   {
-    "tool": "inspect",
-    "input": {
-     "item_ids": "[\"T:articles.spec.ts:288\",\"T:articles.spec.ts:73\",\"T:error-handling.spec.ts:199\",\"T:error-handling.spec.ts:622\",\"T:error-handling.spec.ts:650\",\"T:error-handling.spec.ts:68\",\"flow:/article/:p:POST /api/articles/:p/comments\",\"flow:/editor:POST /api/articles\",\"RTE-9bb4d9\",\"T:articles.spec.ts:32\",\"flow:/editor/:p:PUT /api/articles/:p:owner\",\"RTE-a50b54\",\"T:articles.spec.ts:51\",\"API-7a6c73\",\"T:comments.spec.ts:105\",\"T:null-fields.spec.ts:152\",\"API-c87520\"]}\n</invoke>\n"
-    }
-   },
-   {
-    "tool": "inspect",
-    "input": {
-     "item_ids": [
-      "T:articles.spec.ts:288",
-      "T:articles.spec.ts:73",
-      "T:error-handling.spec.ts:199",
-      "T:error-handling.spec.ts:622",
-      "T:error-handling.spec.ts:650",
-      "T:error-handling.spec.ts:68",
-      "flow:/article/:p:POST /api/articles/:p/comments",
-      "flow:/editor:POST /api/articles",
-      "RTE-9bb4d9",
-      "T:articles.spec.ts:32",
-      "flow:/editor/:p:PUT /api/articles/:p:owner",
       "RTE-a50b54",
-      "T:articles.spec.ts:51",
-      "API-7a6c73",
       "T:comments.spec.ts:105",
-      "T:null-fields.spec.ts:152",
-      "API-c87520"
-     ]
-    }
-   },
-   {
-    "tool": "inspect",
-    "input": {
-     "item_ids": [
-      "RTE-a50b54",
-      "T:articles.spec.ts:51",
-      "API-7a6c73",
-      "T:comments.spec.ts:105",
-      "T:null-fields.spec.ts:152",
-      "API-c87520"
-     ]
-    }
-   },
-   {
-    "tool": "finish",
-    "input": {
-     "behaviour_change": "EditorComponent.ngOnInit now fetches the article and current user only when the route has a slug. /editor for a new article no longer calls GET /api/articles/undefined or runs the author-check redirect. The edit path is unchanged. ShowAuthedDirective now creates its embedded view only once, using a stored authRef. authRef is never cleared after viewContainer.clear(), so a logout followed by a login in the same session may not re-show authed content. Anonymous-only content may not re-show after a login-then-logout either.",
-     "adjustments": [
-      {
-       "id": "flow:/editor:POST /api/articles",
-       "confidence": 1.0,
-       "reason": "Exactly the changed branch: new-article page with no slug now skips the fetch and the redirect."
-      },
-      {
-       "id": "RTE-9bb4d9",
-       "confidence": 0.9,
-       "reason": "/editor with no slug is the exact branch changed."
-      },
-      {
-       "id": "T:articles.spec.ts:32",
-       "confidence": 0.95,
-       "reason": "Creates a new article on /editor, the changed no-slug path."
-      },
-      {
-       "id": "T:error-handling.spec.ts:68",
-       "confidence": 0.8,
-       "reason": "Fills and submits the create form on /editor, whose initialisation changed."
-      },
-      {
-       "id": "T:error-handling.spec.ts:622",
-       "confidence": 0.8,
-       "reason": "Fills and submits the create form on /editor, whose initialisation changed."
-      },
-      {
-       "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
-       "confidence": 0.8,
-       "reason": "Edit path with a slug is unchanged, but the flow also visits /editor to create the article first."
-      },
-      {
-       "id": "RTE-a50b54",
-       "confidence": 0.6,
-       "reason": "The edit-with-slug branch is unchanged but is still guarded by the new condition."
-      },
-      {
-       "id": "T:articles.spec.ts:51",
-       "confidence": 0.75,
-       "reason": "Edit path is unchanged, but the test creates an article on /editor first."
-      },
-      {
-       "id": "API-7a6c73",
-       "confidence": 0.5,
-       "reason": "GET article by slug is now skipped on /editor and otherwise unchanged."
-      },
-      {
-       "id": "T:comments.spec.ts:105",
-       "confidence": 0.75,
-       "reason": "Checks the logged-out versus logged-in comment form, which is rendered through ShowAuthedDirective."
-      },
-      {
-       "id": "flow:/article/:p:POST /api/articles/:p/comments",
-       "confidence": 0.65,
-       "reason": "The flow logs in and then loads the article, so the comment form depends on the directive's view creation."
-      },
-      {
-       "id": "T:articles.spec.ts:73",
-       "confidence": 0.7,
-       "reason": "Creates an article on /editor and then relies on owner-only delete buttons that depend on the directive."
-      },
-      {
-       "id": "T:articles.spec.ts:288",
-       "confidence": 0.8,
-       "reason": "Creates an article on /editor and checks author-only edit/delete visibility, which depends on the directive."
-      },
-      {
-       "id": "T:error-handling.spec.ts:650",
-       "confidence": 0.7,
-       "reason": "Update form on /editor/:p; the edit branch is unchanged but still goes through the new condition."
-      },
-      {
-       "id": "T:error-handling.spec.ts:199",
-       "confidence": 0.6,
-       "reason": "Update form on /editor/:p; the edit branch is unchanged."
-      },
-      {
-       "id": "T:null-fields.spec.ts:152",
-       "confidence": 0.2,
-       "reason": "Only locates the feed link and checks avatars; weak link to the change."
-      },
-      {
-       "id": "API-c87520",
-       "confidence": 0.5,
-       "reason": "GET /api/user is now called only on the edit path."
-      }
-     ],
-     "retest_first": [
-      "flow:/editor:POST /api/articles",
-      "T:articles.spec.ts:32",
-      "RTE-9bb4d9",
-      "flow:/editor/:p:PUT /api/articles/:p:owner",
-      "T:articles.spec.ts:51",
-      "T:articles.spec.ts:288",
-      "T:comments.spec.ts:105",
-      "T:error-handling.spec.ts:68",
-      "T:error-handling.spec.ts:622",
-      "T:error-handling.spec.ts:650"
+      "T:comments.spec.ts:31"
      ]
     }
    }
   ]
+ },
+ "cost": {
+  "llm": {
+   "model": "claude-sonnet-5-5",
+   "total": {
+    "calls": 4,
+    "api_calls": 4,
+    "input_tokens": 53346,
+    "output_tokens": 6644,
+    "usd": 0.1731,
+    "usd_uncached": 0.1731,
+    "llm_seconds": 47.9
+   },
+   "by_stage": {
+    "assess": {
+     "calls": 3,
+     "api_calls": 3,
+     "input_tokens": 31568,
+     "output_tokens": 2030,
+     "usd": 0.0834,
+     "usd_uncached": 0.0834,
+     "llm_seconds": 15.8
+    },
+    "report": {
+     "calls": 1,
+     "api_calls": 1,
+     "input_tokens": 21778,
+     "output_tokens": 4614,
+     "usd": 0.0897,
+     "usd_uncached": 0.0897,
+     "llm_seconds": 32.1
+    }
+   }
+  },
+  "seconds_by_stage": {
+   "traverse": 0.9,
+   "assess": 15.8,
+   "report": 32.1
+  },
+  "seconds_total": 48.8
  }
 }

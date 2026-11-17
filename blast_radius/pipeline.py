@@ -16,17 +16,32 @@ a retry buried in a function. Every stage except the spec prose and the report p
 from __future__ import annotations
 
 import json
-from typing import Any, TypedDict
+import operator
+from typing import Annotated, Any, TypedDict
+
+import time
 
 from langgraph.graph import END, START, StateGraph
 
-from . import code_map, crawl as crawl_mod, link, report, spec
+from . import code_map, crawl as crawl_mod, link, llm, report, spec
 from .config import SETTINGS
 from .graph import Graph
 from .models import BlastRadius, CodeMap, Crawl
 
 
+def timed(name: str, fn):
+    """Run a node inside an LLM cost stage and record its wall-clock seconds in state['timings']."""
+    def run(s):
+        t0 = time.monotonic()
+        with llm.stage(name):
+            out = fn(s) or {}
+        # merged by the state's reducer; nodes that share a stage name (write, verify, render) add up
+        return {**out, "timings": {name: round(s.get("timings", {}).get(name, 0) + time.monotonic() - t0, 1)}}
+    return run
+
+
 class BuildState(TypedDict, total=False):
+    timings: Annotated[dict, operator.or_]
     recrawl: bool
     crawl: Crawl
     reqs: list
@@ -35,6 +50,7 @@ class BuildState(TypedDict, total=False):
 
 
 def n_crawl(s: BuildState) -> BuildState:
+    llm.reset_ledger()
     path = SETTINGS.artifacts / "crawl.json"
     if path.exists() and not s.get("recrawl"):
         return {"crawl": Crawl.model_validate_json(path.read_text())}
@@ -54,6 +70,7 @@ def n_code(s: BuildState) -> BuildState:
 
 
 def n_link_and_load(s: BuildState) -> BuildState:
+    t_link = time.monotonic()
     cr, cm, reqs = s["crawl"], s["codemap"], s["reqs"]
     idx = link.Index(cm)
     code_ui, review_ui = link.link_code_ui(cr, cm, idx)
@@ -78,6 +95,11 @@ def n_link_and_load(s: BuildState) -> BuildState:
         "needs_review": len(review_ui) + len(review_req),
         **test_stats,
     }
+    cost = llm.summarize()
+    summary["llm_usd"] = cost["total"]["usd"]
+    summary["llm_usd_from_scratch"] = cost["total"]["usd_uncached"]
+    (SETTINGS.artifacts / "build_cost.json").write_text(json.dumps(
+        {"llm": cost, "seconds_by_stage": {**s.get("timings", {}), "link": round(time.monotonic() - t_link, 1)}}, indent=1))
     (SETTINGS.artifacts / "links.json").write_text(json.dumps({
         "summary": summary, "gaps": [g.model_dump() for g in gaps], "flows": [f.model_dump() for f in flows],
         "review": review_ui + review_req, "code_ui": [l.model_dump() for l in code_ui],
@@ -88,10 +110,10 @@ def n_link_and_load(s: BuildState) -> BuildState:
 
 def build_graph():
     g = StateGraph(BuildState)
-    g.add_node("crawl", n_crawl)
-    g.add_node("ingest_spec", n_spec)
-    g.add_node("map_code", n_code)
-    g.add_node("link_and_load", n_link_and_load)
+    g.add_node("crawl", timed("crawl", n_crawl))
+    g.add_node("ingest_spec", timed("spec", n_spec))
+    g.add_node("map_code", timed("code", n_code))
+    g.add_node("link_and_load", timed("link", n_link_and_load))
     g.add_edge(START, "crawl")
     g.add_edge("crawl", "ingest_spec")
     g.add_edge("crawl", "map_code")
@@ -103,6 +125,7 @@ def build_graph():
 # ---------------- reason ----------------
 
 class ReasonState(TypedDict, total=False):
+    timings: Annotated[dict, operator.or_]
     pr: int
     use_cache: bool
     blast: BlastRadius
@@ -115,6 +138,7 @@ class ReasonState(TypedDict, total=False):
 
 def n_analyse(s: ReasonState) -> ReasonState:
     from .blast import analyse
+    llm.reset_ledger()
     head = CodeMap.model_validate_json((SETTINGS.artifacts / "codemap.json").read_text())
     g = Graph()
     try:
@@ -159,11 +183,19 @@ def route_after_verify(s: ReasonState) -> str:
     return "write_report" if s.get("attempts", 0) < 2 else "template_report"
 
 
+def _account(s: ReasonState) -> None:
+    """All model calls for this PR are done by now: attach tokens, dollars and seconds to the result."""
+    s["blast"].cost = {"llm": llm.summarize(), "seconds_by_stage": s.get("timings", {}),
+                       "seconds_total": round(sum(s.get("timings", {}).values()), 1)}
+
+
 def n_render(s: ReasonState) -> ReasonState:
+    _account(s)
     return {"markdown": report.render(s["written"], s["blast"]), "writer": "llm"}
 
 
 def n_template(s: ReasonState) -> ReasonState:
+    _account(s)
     return {"markdown": report.template_report(s["blast"]), "writer": "template"}
 
 
@@ -182,9 +214,11 @@ def n_save(s: ReasonState) -> ReasonState:
 
 def reason_graph():
     g = StateGraph(ReasonState)
+    stages = {"analyse_pr": "traverse", "assess": "assess", "write_report": "report", "verify": "report",
+              "render": "report", "template_report": "report", "save": "save"}
     for name, fn in [("analyse_pr", n_analyse), ("assess", n_assess), ("write_report", n_write), ("verify", n_verify),
                      ("render", n_render), ("template_report", n_template), ("save", n_save)]:
-        g.add_node(name, fn)
+        g.add_node(name, timed(stages[name], fn))
     g.add_edge(START, "analyse_pr")
     g.add_edge("analyse_pr", "assess")
     g.add_edge("assess", "write_report")

@@ -36,7 +36,7 @@ def main() -> None:
         from .explore import explore
         from .pipeline import build_graph
         rep = explore(args.turns)
-        print(json.dumps({k: rep.get(k) for k in ("recorded_owner_screens", "created", "deleted", "blocked_writes", "finish")},
+        print(json.dumps({k: rep.get(k) for k in ("recorded_owner_screens", "created", "deleted", "blocked_writes", "finish", "cost")},
                          indent=2, default=str))
         print(json.dumps(build_graph().invoke({"recrawl": False})["summary"], indent=2))
     elif args.cmd == "pr":

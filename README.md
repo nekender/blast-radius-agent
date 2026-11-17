@@ -43,6 +43,10 @@ git clone https://github.com/realworld-apps/angular-realworld-example-app data/r
 `artifacts/screens/` holds a screenshot of every screen the crawler saw; `artifacts/dom/` the matching DOM snapshot;
 `artifacts/a11y/` the normalised accessibility snapshot used for state identity.
 
+**Cost:** every report ends with what it cost (tokens, dollars, seconds by stage). Typical PR: about $0.10 and
+35 s on Claude Sonnet 5.5; a from-scratch graph build about $0.07; an exploration run about $0.07. Details in
+`artifacts/build_cost.json`, `artifacts/explore_cost.json`, `evals/results-pr-*.json` and the design doc.
+
 **Without an API key** everything still runs (tested from a fresh clone: 79 of 106 requirements covered instead of 92): the spec prose becomes "behaviour" requirements with no UI
 evidence (they go to review), and the report uses the deterministic template instead of LLM prose.
 The graph, the traversal and the confidence scores don't use the LLM at all.

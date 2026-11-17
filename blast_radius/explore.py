@@ -234,7 +234,12 @@ def explore(max_turns: int = 25) -> dict:
     goals = gap_goals()
     if not goals:
         return {"goals": [], "note": "no owner-state gaps to close"}
-    report = asyncio.run(ex.run_agent(goals, max_turns=max_turns))
+    import time
+    llm.reset_ledger()
+    t0 = time.monotonic()
+    with llm.stage("explore"):
+        report = asyncio.run(ex.run_agent(goals, max_turns=max_turns))
+    report["cost"] = {"llm": llm.summarize(), "seconds_total": round(time.monotonic() - t0, 1)}
     ex._retemplate()
     merged = Crawl(app_url=base.app_url, screens=list(ex.screens.values()), elements=list(ex.elements.values()),
                    transitions=ex.transitions, unreached=ex.unreached, journeys=[_journey(ex, report)])
