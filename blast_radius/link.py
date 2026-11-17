@@ -125,8 +125,13 @@ class Index:
 
 # ---------------- code <-> UI ----------------
 
+IMPLIED_ROLE = {"a": "link", "button": "button", "textarea": "textbox", "select": "combobox", "nav": "navigation",
+                "h1": "heading", "h2": "heading", "h3": "heading", "ul": "list"}
+
+
 def _score(el: Element, t: TemplateElement, comp: Component, idx: Index) -> tuple[float, list[str]]:
     s, why = 0.0, []
+    implied = "textbox" if t.tag == "input" else IMPLIED_ROLE.get(t.tag)
     if el.tag == t.tag:
         s += 0.15
     elif not (el.tag in ("a", "button") and t.tag in ("a", "button")):
@@ -161,6 +166,9 @@ def _score(el: Element, t: TemplateElement, comp: Component, idx: Index) -> tupl
             s += 0.5; why.append(f"dry-run call {sorted(observed & reach)[0]} matches handler")
         elif reach:
             s -= 0.3
+    # The accessibility role confirms a match that other evidence already supports; on its own it can't create one.
+    if s >= SETTINGS.link_review and el.role and implied and el.role == implied:
+        s += 0.05; why.append(f"role {el.role}")
     return min(s, 1.0), why
 
 

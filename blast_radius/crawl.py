@@ -42,15 +42,38 @@ EXTRACT_JS = r"""
     }
     return parts.join(' > ');
   };
+  // Accessibility role and name: what a control IS and what it's CALLED, the way assistive tech sees it.
+  const roleOf = (el) => {
+    const r = el.getAttribute('role'); if (r) return r;
+    const t = el.tagName.toLowerCase(), type = (el.getAttribute('type') || '').toLowerCase();
+    if (t === 'a') return el.hasAttribute('href') ? 'link' : 'generic';
+    if (t === 'button') return 'button';
+    if (t === 'textarea') return 'textbox';
+    if (t === 'select') return 'combobox';
+    if (t === 'nav') return 'navigation';
+    if (/^h[1-6]$/.test(t)) return 'heading';
+    if (t === 'ul' || t === 'ol') return 'list';
+    if (t === 'input') return ({checkbox: 'checkbox', radio: 'radio', submit: 'button', button: 'button',
+                                search: 'searchbox'})[type] || 'textbox';
+    return null;
+  };
+  const clean = (s) => (s || '').replace(/\s+/g, ' ').trim().slice(0, 80);
+  const nameOf = (el) => {
+    if (el.getAttribute('aria-label')) return clean(el.getAttribute('aria-label'));
+    const by = el.getAttribute('aria-labelledby');
+    if (by) return clean(by.split(' ').map(id => (document.getElementById(id) || {}).innerText || '').join(' '));
+    if (el.id) { const l = document.querySelector(`label[for="${el.id}"]`); if (l) return clean(l.innerText); }
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')
+      return clean(el.getAttribute('placeholder') || el.getAttribute('title') || el.getAttribute('name'));
+    return clean(el.innerText || el.getAttribute('title') || (el.querySelector('img') || {}).alt || el.value);
+  };
   const out = [];
   for (const el of document.querySelectorAll(sel)) {
     const r = el.getBoundingClientRect();
     const visible = r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden';
     if (!visible) continue;
-    const text = (el.getAttribute('aria-label') || el.innerText || el.getAttribute('placeholder') || el.value || '')
-      .replace(/\s+/g, ' ').trim().slice(0, 80);
     out.push({
-      tag: el.tagName.toLowerCase(), role: el.getAttribute('role'), label: el.tagName === 'NAV' ? '' : text,
+      tag: el.tagName.toLowerCase(), role: roleOf(el), label: el.tagName === 'NAV' ? '' : nameOf(el),
       name_attr: el.getAttribute('name'), placeholder: el.getAttribute('placeholder'),
       input_type: el.getAttribute('type'), href: el.getAttribute('href'),
       classes: [...el.classList].filter(c => !c.startsWith('ng-')), css_path: cssPath(el),
@@ -112,6 +135,7 @@ class Crawler:
         self.unreached: list[dict] = []
         self.calls: list[ApiCall] = []
         self.shots = SETTINGS.artifacts / "screens"
+        self._a11y_sets: dict[str, list[set[str]]] = {}
         self.doms = SETTINGS.artifacts / "dom"
 
     # ----- account (the one write the crawler is allowed to make) -----
@@ -247,17 +271,30 @@ class Crawler:
                     links.append(full.split("#")[0])
         tpl = self.templater.template(urlparse(page.url).path or "/")
         screen_id = f"{tpl}|{auth}"
-        structure = _hash(*sorted({NTH.sub("", r["css_path"]) for r in raw}))
+        a11y_lines = await self._a11y_lines(page)
+        structure = _hash(*sorted(a11y_lines))
         screen = self.screens.get(screen_id)
         if screen is None:
             shot = f"{_hash(screen_id)}.png"
             await page.screenshot(path=str(self.shots / shot), full_page=True)
             dom = f"{_hash(screen_id)}.html"
             (self.doms / dom).write_text(await page.content())
+            a11y = SETTINGS.artifacts / "a11y"
+            a11y.mkdir(parents=True, exist_ok=True)
+            (a11y / f"{_hash(screen_id)}.txt").write_text("\n".join(a11y_lines))
             screen = Screen(id=screen_id, template=tpl, auth=auth, sample_urls=[], title=await page.title(),
                             structure_hash=structure, on_load_calls=_dedupe(on_load), screenshot=f"artifacts/screens/{shot}",
                             dom=f"artifacts/dom/{dom}")
+            screen.a11y_states = [structure]
             self.screens[screen_id] = screen
+            self._a11y_sets[screen_id] = [set(a11y_lines)]
+        else:
+            # Same route and login state, different accessibility tree = a different UI state on one URL.
+            # Near-duplicates (a list with 10 vs 11 rows) are the same state: Jaccard >= 0.9 on (role, name) lines.
+            sets = self._a11y_sets.setdefault(screen_id, [])
+            if all(len(set(a11y_lines) & x) / max(1, len(set(a11y_lines) | x)) < 0.9 for x in sets):
+                sets.append(set(a11y_lines))
+                screen.a11y_states.append(structure)
         screen.sample_urls.append(page.url)
 
         elements = self._to_elements(raw, screen_id)
@@ -303,6 +340,30 @@ class Crawler:
                 href_template=href_tpl, classes=first["classes"], css_path=first["css_path"], repeated=data_driven,
             ))
         return out
+
+    async def _a11y_lines(self, page: Page) -> list[str]:
+        """Playwright's accessibility snapshot, normalised for state identity: roles and names, with volatile
+        values (numbers, dates, user content in lists) stripped and repeated list items collapsed."""
+        try:
+            snap = await page.locator("body").aria_snapshot(timeout=5000)
+        except Exception:  # noqa: BLE001
+            return []
+        lines, prev = [], None
+        for line in snap.splitlines():
+            line = line.strip()
+            if line.startswith("- /url:"):
+                continue                                   # where a link goes is already in the element list
+            line = re.sub(r"\d+", "#", line)
+            m = re.match(r'^- (\w+)(?: "(.*?)")?(.*)$', line)
+            if m:
+                role, name, rest = m.groups()
+                # keep the names of controls (Home, Sign in, Publish Article); drop user content (titles, text, dates)
+                keep = role in ("link", "button", "textbox", "checkbox", "combobox", "tab") and name and len(name) <= 20
+                line = f"- {role}" + (f' "{name}"' if keep else "") + rest.split(":")[0]
+            if line and line != prev:
+                lines.append(line)
+            prev = line
+        return lines
 
     async def _dry_run_clicks(self, page: Page, url: str, screen_id: str, elements: list[Element]) -> None:
         """Click each button with writes blocked; record the API calls it attempts and where it navigates."""

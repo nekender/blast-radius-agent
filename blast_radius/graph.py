@@ -14,6 +14,7 @@ Schema (justified in docs/design.md against the blast-radius query):
                  (:Method)-[:CALLS_API]->(:Endpoint)
   Code <-> UI    (:TemplateElement)-[:RENDERS {confidence, method, evidence}]->(:Element)
                  (:Screen)-[:SERVED_BY]->(:Component)
+  Tests          (:Requirement)-[:TESTED_BY {confidence, via}]->(:Test)-[:USES {confidence, selector}]->(:Element)
   PRs            (:PullRequest)-[:CHANGES]->(:Method)
                  (:PullRequest)-[:PUTS_AT_RISK {confidence, why, observed}]->(:Element|:Flow|:Requirement|...)
                  (:PullRequest)-[:LOSES_COVERAGE {why}]->(:Requirement)
@@ -29,7 +30,7 @@ from .config import SETTINGS
 from .models import CodeMap, Crawl, Flow, Gap, Link, Requirement
 
 CONSTRAINTS = ["Requirement", "Screen", "Element", "Flow", "Gap", "File", "Component", "Method",
-               "TemplateElement", "Endpoint", "PullRequest"]
+               "TemplateElement", "Endpoint", "PullRequest", "Test"]
 
 
 class Graph:
@@ -59,6 +60,14 @@ class Graph:
                      f"MERGE (x)-[e:{rel}]->(y) SET e += r.props", rows=rows)
 
     # ------------- load everything -------------
+
+    def load_tests(self, tests, uses: list[Link], tested: list[Link]):
+        self.nodes("Test", [{"id": t.id, "name": t.name, "file": t.file, "line": t.line,
+                             "label": f"{t.name} ({t.file.split('/')[-1]}:{t.line})", "steps": len(t.steps)} for t in tests])
+        self.edges("Test", "USES", "Element", [{"src": l.src, "dst": l.dst, "props": {"confidence": l.confidence,
+                                                "selector": l.evidence}} for l in uses])
+        self.edges("Requirement", "TESTED_BY", "Test", [{"src": l.src, "dst": l.dst, "props": {"confidence": l.confidence,
+                                                         "via": l.evidence}} for l in tested])
 
     def load(self, crawl: Crawl, cm: CodeMap, reqs: list[Requirement], code_ui: list[Link], method_links: list[Link],
              req_links: list[Link], gaps: list[Gap], flows: list[Flow]):
@@ -139,7 +148,7 @@ class Graph:
                     MERGE (p)-[e:CHANGES]->(m) SET e.unit = r.unit, e.file = r.file, e.lineage = r.lineage""",
                  id=pid, rows=[{"method": m, "unit": c["unit"], "file": c["file"], "lineage": c.get("lineage")}
                                for c in br.changed for m in c["resolved"]])
-        labels = {"element": ["Element", "TemplateElement"], "screen": ["Screen"], "flow": ["Flow"],
+        labels = {"element": ["Element", "TemplateElement"], "screen": ["Screen"], "flow": ["Flow"], "test": ["Test"],
                   "requirement": ["Requirement"], "unmapped_code": ["Endpoint"]}
         for kind, labs in labels.items():
             rows = [{"id": i.id, "conf": i.confidence, "why": i.why, "observed": i.observed}
@@ -173,6 +182,21 @@ class Graph:
             OPTIONAL MATCH (e)-[:CALLS|LOADS]->(ep) WHERE e:Element OR e:Screen
             RETURN m.id AS method, ep.id AS endpoint, collect(DISTINCT e.id) AS observed_by
         """, mids=method_ids)
+
+    def tests_touching(self, element_ids: list[str]) -> list[dict]:
+        return self.run("""
+            MATCH (t:Test)-[u:USES]->(e:Element) WHERE e.id IN $els AND u.confidence >= $min_conf
+            RETURN t.id AS id, t.label AS label, collect({element: e.id, label: e.label, conf: u.confidence,
+                   selector: u.selector}) AS via
+        """, els=element_ids, min_conf=SETTINGS.link_review)
+
+    def tests_for_requirements(self, req_ids: list[str]) -> dict[str, list[str]]:
+        rows = self.run("""
+            UNWIND $ids AS rid MATCH (q:Requirement {id: rid})
+            OPTIONAL MATCH (q)-[:TESTED_BY]->(t:Test)
+            RETURN q.id AS id, collect(t.id) AS tests
+        """, ids=req_ids)
+        return {r["id"]: r["tests"] for r in rows}
 
     def flows_touching(self, ids: list[str]) -> list[dict]:
         return self.run("""

@@ -1,0 +1,35 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link " New Article"
+- listitem
+- link " Settings"
+- listitem
+- link "br-test-#c#"
+- img
+- text
+- heading [level=#]
+- list
+- group
+- textbox
+- group
+- textbox "Username"
+- group
+- textbox "Short bio about you"
+- group
+- textbox "Email"
+- group
+- textbox "New Password"
+- button "Update Settings"
+- separator
+- button
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

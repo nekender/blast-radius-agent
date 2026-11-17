@@ -77,6 +77,9 @@ def run(number: int, runs: int) -> None:
                            "agent_ungrounded": sum("inspecting" in r["rejected_because"] for r in a.get("rejected", [])),
                            "agent_top_flow_ok": gold.get("top_flow_calls") in top if gold.get("top_flow_calls") else None,
                            "agent_tool_calls": a.get("tool_calls", 0)}
+                tests = [i for i in br.impacts if i.kind == "test"]
+                if gold.get("top_test_contains"):
+                    s_agent["agent_top_test_ok"] = bool(tests) and gold["top_test_contains"] in tests[0].label.lower()
             else:
                 s_agent = {}
             s = score(br, gold) | s_agent
@@ -89,11 +92,11 @@ def run(number: int, runs: int) -> None:
             # Ungrounded adjustments are rejected by the guard, so they can't make the output wrong; they're
             # tracked separately as agent discipline, not as run failures.
             s["correct"] = (s["recall"] == 1 and not s["must_not_hits"] and s["report_ok"] is not False
-                            and s.get("agent_top_flow_ok") is not False)
+                            and s.get("agent_top_flow_ok") is not False and s.get("agent_top_test_ok") is not False)
             s["hash"] = h
             rows.append(s)
             print(f"run {k + 1}: recall {s['recall']} precision {s['precision']} report_ok {s['report_ok']} "
-                  f"agent_top_flow_ok {s.get('agent_top_flow_ok')} tool_calls {s.get('agent_tool_calls')} hash {h}")
+                  f"agent_top_flow_ok {s.get('agent_top_flow_ok')} top_test_ok {s.get('agent_top_test_ok')} tool_calls {s.get('agent_tool_calls')} hash {h}")
     finally:
         g.close()
     summary = {
@@ -107,6 +110,8 @@ def run(number: int, runs: int) -> None:
         "agent_top_flow_ok_rate": None if rows[0].get("agent_top_flow_ok") is None
         else sum(bool(r["agent_top_flow_ok"]) for r in rows) / runs,
         "agent_ungrounded_adjustments": sum(r.get("agent_ungrounded", 0) for r in rows),
+        "agent_top_test_ok_rate": None if rows[0].get("agent_top_test_ok") is None
+        else sum(bool(r["agent_top_test_ok"]) for r in rows) / runs,
     }
     out = ROOT / "evals" / f"results-pr-{number}.json"
     out.write_text(json.dumps({"summary": summary, "runs": rows}, indent=1))

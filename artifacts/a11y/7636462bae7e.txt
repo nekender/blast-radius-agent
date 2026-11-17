@@ -1,0 +1,51 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link "Sign in"
+- listitem
+- link "Sign up"
+- img
+- heading [level=#]
+- paragraph
+- button " Follow sarahchen"
+- list
+- listitem
+- link "My Posts"
+- listitem
+- link "Favorited Posts"
+- link
+- img
+- link "janesmith"
+- text
+- button " #"
+- 'link "React Hooks: Best Practices and Common Pitfalls Essential patterns and anti-patterns when working with React Hooks Read more... frontend hooks javascript react"':
+- 'heading "React Hooks: Best Practices and Common Pitfalls" [level=#]'
+- paragraph
+- text
+- list
+- listitem
+- link
+- img
+- link "johndoe"
+- text
+- button " #"
+- link
+- heading [level=#]
+- paragraph
+- text
+- list
+- listitem
+- navigation
+- list
+- listitem
+- button "#"
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

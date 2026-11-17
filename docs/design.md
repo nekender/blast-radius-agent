@@ -20,15 +20,18 @@ enumerated spec matters: you can only claim something is *absent* if you know wh
 | Layer | Source | What the graph holds today |
 |---|---|---|
 | Requirements | spec tables (code) + routing prose (LLM) | 106 requirements: 100 covered, 6 unknown (each with a reason) |
-| UI | Playwright crawl (logged out, logged in) + exploration agent (as a content owner) | 16 screens, 252 elements, 10 user journeys, all observed |
+| UI | Playwright crawl (logged out, logged in) + exploration agent (as a content owner) | 17 screens, 267 elements (each with its accessibility role and name), 11 user journeys, all observed; 7 screens show two distinct UI states on one route |
+| Tests | RealWorld's own Playwright E2E suite, parsed | 129 tests, 1,254 steps; 90 tests linked to the controls they use; 96 of 106 requirements tested, 10 untested |
 | Code | Angular-aware parse of the repo at any commit | 11 routes, every component method with line ranges, 24 service endpoints |
-| Code ↔ UI | scored matching + an independent API-call check | 216 of 252 elements linked to the template that renders them |
+| Code ↔ UI | scored matching + an independent API-call check | 229 of 267 elements linked to the template that renders them |
 
 **Sample output:** [`reports/pr-311.md`](../reports/pr-311.md). PR #311 changes how the editor saves an article. The
 assessment agent read the diff and says what changed in behaviour: *editing an existing article now sends PUT; creating
 one still sends POST.* The report ranks **"Edit your own published article"** first (observed in the running app,
 because the exploration agent created an article, opened it as its author and reached the edit page), then the create
-path as a regression check, and lowers journeys that only use the editor as a setup step.
+path as a regression check, and lowers journeys that only use the editor as a setup step. It lists the **tests to
+re-run**: 28 tests in the suite click the changed button; the edit tests come first, the create tests are regression
+checks, and the ones that only publish an article as setup are ranked low.
 
 **Where I went deep:** the **code ↔ UI link**, **requirements ↔ UI including absence**, and **two guarded agents**
 that close the gaps the deterministic parts leave. **Where I scoped down:** code parsing (regex + HTML parser, Angular
@@ -62,6 +65,7 @@ needs judgment or reads prose; and every LLM output checked by code before it co
 |---|---|---|
 | 1 Crawl | Code | The ground everything stands on. If it varied run to run, nothing downstream would be reproducible or evaluable. |
 | 1b Explore | **LLM agent** with browser tools | Some states need a plan, not breadth-first search: "to see the author's Edit button, first publish an article, then open it". The agent reads the open gaps and decides how to reach them. |
+| 2b Tests | Code | The E2E suite is code: each test is read as ordered steps ("on page X, act on selector Y"), helpers expanded, and each selector resolved to crawled controls. |
 | 2 Spec | Code for tables, LLM for prose | SELECTORS.md is tables (89 requirements): no reason to pay a model to read a table. Routing prose becomes requirements **with the UI evidence that would prove them**, schema-constrained. |
 | 3 Code map | Code | Routes, methods, bindings and line ranges are facts; diff mapping needs them exact. |
 | 4 Link | Code (scored); LLM judge only for evidence-free requirements | Matching a crawled button to its template is a scoring problem with good features. |
@@ -124,8 +128,16 @@ the editor to set up the article it deletes.
   account and turned the "logged-in" crawl into a second logged-out one: coverage fell from 92 to 67 with no error.
   Now the session is verified first (saved token, then saved login, then a new account) and every logged-in page is
   checked against the app's own auth state; a mismatch stops the crawl.
-- **State identity = route template + login state** (anon, authed, owner). Templates are learned from URLs; each is
-  visited at most twice, so 500 articles are one screen.
+- **State identity = route template + login state** (anon, authed, owner), **plus an accessibility fingerprint.**
+  Templates are learned from URLs; each is visited at most twice, so 500 articles are one screen. Every visit also
+  takes Playwright's accessibility snapshot (roles and accessible names: what things are *for*, not how they're
+  drawn), strips volatile values (numbers, dates, user content), and hashes it. A second visit whose snapshot differs
+  by more than near-duplicate (Jaccard < 0.9 on the role-name lines) is recorded as a distinct state on the same
+  route: 7 screens have two, e.g. an article with comments and one without.
+- **Elements carry their accessibility role and name** (link "Sign in", textbox "Article Title"), computed the way
+  assistive tech does (explicit role, else implied by the tag; name from aria-label, label, text, placeholder). Role
+  is a confirming signal in code ↔ UI scoring: it can strengthen a match, never create one (when it could, it
+  created 11 false ties, mostly between the Follow and Favorite buttons, which are both "button").
 
 Both pipelines are LangGraph graphs (`pipeline.py`). The spec and code stages run in parallel; the reason graph is
 *analyse → assess (agent) → write → verify → rewrite once or fall back*, with the verify branch as an explicit
@@ -144,6 +156,9 @@ flowchart TB
     E -->|NAVIGATES_TO| S
     F[Flow] -->|STEP| E
   end
+  subgraph TESTS[Tests, from the E2E suite]
+    TS[Test]
+  end
   subgraph CODE[Code]
     FI[File] -->|DEFINES| C[Component]
     C -->|HAS_METHOD| M[Method]
@@ -151,6 +166,8 @@ flowchart TB
     M -->|AFFECTS| T
   end
   R -->|COVERED_BY| E
+  R -->|TESTED_BY| TS
+  TS -->|USES| E
   G -->|SEARCHED| S
   T -->|RENDERS| E
   S -->|SERVED_BY| C
@@ -168,9 +185,11 @@ The same schema as text, with edge properties:
 Requirements  (Requirement)-[:COVERED_BY {confidence, method, evidence}]->(Element | Screen)
               (Requirement)-[:HAS_GAP]->(Gap {status, reason})-[:SEARCHED]->(Screen)
               (Requirement)-[:EXPECTS_API]->(Endpoint)
-UI            (Screen {template, auth: anon|authed|owner})-[:HAS]->(Element)-[:NAVIGATES_TO]->(Screen)
+UI            (Screen {template, auth: anon|authed|owner, a11y_states})-[:HAS]->(Element {role, label})
+              (Element)-[:NAVIGATES_TO]->(Screen)
               (Element)-[:CALLS {observed}]->(Endpoint)      (Screen)-[:LOADS]->(Endpoint)
               (Flow)-[:STEP {order}]->(Screen | Element | TemplateElement)
+Tests         (Requirement)-[:TESTED_BY {confidence, via}]->(Test)-[:USES {confidence, selector}]->(Element)
 Code          (File)-[:DEFINES]->(Component)-[:HAS_METHOD]->(Method)-[:CALLS_API]->(Endpoint)
               (Component)-[:HAS_TEMPLATE]->(TemplateElement)
               (Method)-[:AFFECTS {why}]->(TemplateElement)
@@ -184,7 +203,8 @@ PRs           (PullRequest)-[:CHANGES]->(Method)
 **Justified against the query I actually run.** The blast radius is one traversal:
 
 > changed `Method` → `AFFECTS` → `TemplateElement` → `RENDERS` → `Element` ← `HAS` ← `Screen`;
-> then `Flow`s with a `STEP` on those elements; then `Requirement`s whose `COVERED_BY` points at them.
+> then `Flow`s with a `STEP` on those elements, `Test`s that `USE` them, and `Requirement`s whose `COVERED_BY`
+> points at them, each with the tests that check it.
 
 1. **`TemplateElement` sits between `Method` and `Element`.** A method doesn't render anything; it is bound to markup
    (`(click)="submitForm()"`), and markup renders into the page. That hop is what lets a report say *why* a button is
@@ -194,7 +214,14 @@ PRs           (PullRequest)-[:CHANGES]->(Method)
 3. **Confidence lives on edges.** A button isn't uncertain; the link to it is. Path confidence = product of edges.
 4. **Login state is part of a screen's identity,** including **owner**. "The editor as the article's author" is a
    different screen from "the editor for a new article", and requirements say which state they need.
-5. **The graph is also the agents' memory and their check.** The exploration agent's goals come from `Gap` nodes;
+5. **Two kinds of coverage, two edges.** `COVERED_BY` means *the UI shows it* (evidence on a crawled screen).
+   `TESTED_BY` means *a test checks it*. They answer different questions: a requirement can be on screen and
+   untested (the favourites tab), or tested but never observed by us (comment deletion). The second is Testsigma's
+   Requirement → Test → Element model; "requirements that lose coverage" in the brief means this one.
+   `TESTED_BY` comes three ways, with their own confidence: the test uses a control that proves the requirement
+   (0.9), its selector names the requirement's evidence (0.85, class-only 0.5), or it opens the page that shows or
+   loads it (0.5–0.6).
+6. **The graph is also the agents' memory and their check.** The exploration agent's goals come from `Gap` nodes;
    the assessment agent can only adjust items that exist in it. Each analysed PR is written back as a `PullRequest`
    node, so "which PRs touch the sign-in journey?" is one query.
 
@@ -217,6 +244,11 @@ write policy deliberately doesn't create.
 My first version reported 7 requirements as absent; checking each by hand showed all 7 were wrong (a crawler bug, a
 spec-parser bug, and two write-gated calls). So **absence needs three facts: the page was crawled, in a state that
 should show it, and the code doesn't have it either.**
+
+**Coverage in the test sense.** 10 requirements are checked by no test in the suite, for example the favourites
+tab route, following and unfollowing (`POST`/`DELETE /api/profiles/:p/follow`), unfavouriting, deleting a comment, and
+the two JWT-storage behaviours. On the UI side, 142 of 207 controls are touched by no test (counted per login state,
+so a nav link appears up to three times). That list is what a Coverage agent would hand to Gen.
 
 **Partial presence found real spec drift,** confirmed in the source: profile tabs say "My Posts / Favorited Posts"
 (spec: "My Articles / Favorited Articles"); the settings placeholder is "Username" (spec: "Your Name"); the home banner's
@@ -273,10 +305,17 @@ create or change anything outside its policy, whatever it decides.
 5. **A run is correct** when all of the above hold. The bar is **pass^k**, all k runs correct: a QA lead sees one
    report, so one bad run in five is a bad tool.
 
-| PR | Runs | Deterministic identical | Recall | Precision | Agent top journey right | Ungrounded adjustments | Report checks | pass^k |
+| PR | Runs | Deterministic identical | Recall | Precision | Agent's top journey / top test right | Ungrounded adjustments | Report checks | pass^k |
 |---|---|---|---|---|---|---|---|---|
-| #311 (editor save) | 5 | yes | 1.0 | 1.0 | 5/5 | 0 | 5/5 | yes |
+| #311 (editor save) | 5 | yes | 1.0 | 0.98 | 5/5 · 5/5 | 0 | 5/5 | yes |
 | #268 (editor + login directive) | 3 | yes | 1.0 | 1.0 | n/a | 0 | 3/3 | yes |
+
+#311's precision is 0.98 because the second exploration run found a new owner journey ("Favorite your own
+published article") that only uses the editor as a setup step. It isn't in the gold set; the assessment agent
+lowered it to 0.5. I left the gold set as it was rather than relabel after seeing the output.
+
+Gold sets now include tests: #311 must list "should edit an existing article" and must not list any settings test;
+#268 must list the "Your Feed", "add a comment" and "require login to post comment" tests.
 
 **What the evals caught while building:** the agent first adjusted items it hadn't inspected (4 on #311, 11–15 on
 #268). The guard rejected them, so outputs stayed correct, but it was a discipline problem: batching `inspect` and
@@ -287,6 +326,9 @@ one verifier round-trip took it to 0.
   directive), which is why lineage exists. I'd want a second labeller.
 - **#268's `acceptable` list is broad**, so its precision says little. One item was added to #311's `acceptable` after
   the exploration agent found it (the delete journey), noted in the file.
+- **The test parser reads the suite statically.** 90 of 129 tests link to controls; of the other 39, 35 are
+  error-handling, API-failure, health and XSS tests that mostly mock the network or check page state, and about 4
+  look like parser misses. Running the suite with Playwright tracing would give the true element list per test.
 - **The spec stage and the exploration agent aren't re-run per eval.** Their variance would show as different graphs;
   the next eval is N full builds compared on requirement sets and reached states.
 
@@ -299,6 +341,8 @@ as an independent oracle; and trajectory metrics for the exploration agent (step
 - **Code ↔ UI at method granularity, with two independent signals.** The dry-run API cross-check turns a text match
   into a corroborated link.
 - **Absence as evidence**, with gaps that drive the exploration agent.
+- **The test layer**: 129 real tests linked to the controls they use, so the report names the tests to re-run and
+  the requirements whose tests all go through changed code.
 - **Two agents with guardrails in code**: a write policy enforced at the network layer, verified cleanup, grounding
   and bounds on every adjustment, full traces.
 - **Old PRs against moved code**: diff mapped at the PR's own commit, carried to today's code by selector, name and
@@ -309,6 +353,8 @@ as an independent oracle; and trajectory metrics for the exploration agent (step
 | Cut | Why | Cost | Next |
 |---|---|---|---|
 | Write-gated states beyond article ownership (following, comments) | Each write to a public demo needs a policy and cleanup; one article proved the pattern. | 6 requirements stay unknown, each with its reason. | Per-goal write budgets in the policy (e.g. one comment, deleted after). |
+| No Healer or Arbiter | Both act on a *failing test run*; the brief has no execution step, and faking failures would be a weaker signal than the real suite. | Not demonstrated. | The pieces they need are here: role + name fingerprints and scoring for re-finding an element (Healer), and requirement priority via `TESTED_BY` for triage (Arbiter). |
+| Accessible names computed in page JS, not the full spec | Covers roles and names for every control on this app in a few lines. | Edge cases of the accname spec (nested labels, `aria-describedby`). | Use Chromium's computed accessibility tree via CDP. |
 | Regex + HTML parser, Angular only | 63 files, one framework: method-level precision in hours. | Unusual TS syntax missed; a new framework needs a binding extractor. | tree-sitter for TS/TSX, per-framework binding extractors. |
 | Crawl budget: 2 instances per template, ~40 pages | 13 page types; more instances add little. | Rare page variants unseen. | Structure hash to detect variants, visit until nothing new. |
 | No semantic matching of spec text | Variance where code can decide. | Synonyms ("Your Name" vs "Username") show as partial. | Embedding match as a weaker, labelled signal. |
@@ -319,9 +365,10 @@ as an independent oracle; and trajectory metrics for the exploration agent (step
 1. **An independent eval oracle** (2 days). RealWorld's Playwright suite at each PR's parent and merge commits, outcome
    changes as labels, 20 PRs. This replaces "labelled by the person who built it", and gives data to calibrate the
    confidence weights and to measure both agents properly.
-2. **Generate tests for what's at risk** (2 days). The assessment agent's re-test list plus each journey's observed
-   steps are most of a Playwright test; generate them, run them, and feed failures back as evidence. That closes the
-   loop from "what might break" to "here's the test that shows it" (Testsigma's Gen agent territory).
+2. **Generate tests for the gaps** (2 days). The 10 untested requirements and the at-risk journeys with no test
+   already have observed steps and selectors in the graph, which is most of a Playwright test. Generate them, run
+   them, and link them back with `TESTED_BY`. That closes the loop from "what's missing" to "here's the test"
+   (Coverage → Gen).
 3. **tree-sitter code layer + a second framework** (3 days), to prove the schema isn't Angular-shaped: only the
    binding extractor should change.
 
@@ -332,11 +379,12 @@ Order: 1 makes every later change measurable; 2 is the most direct value for a Q
 The brief describes "the intelligence layer beneath agentic testing". That is what the graph is, and the two agents
 show the pattern for building on it: **agents that act, grounded in a map they can't argue with.**
 
-- **Coverage:** `absent / unknown / partial` gaps say what to test next, and the exploration agent shows an agent
-  turning gaps into observations.
-- **Healer:** the code ↔ UI scoring (multiple signals, state fit, DOM position, a corroborating API call) is
-  re-finding an element after a change, run in the other direction.
-- **Analyzer / impact analysis:** the blast radius plus the assessment agent's ranking picks which tests to run or
-  regenerate for a PR, instead of running everything.
+- **The context graph:** Requirement → `TESTED_BY` → Test → `USES` → Element, plus the code layer underneath it.
+- **Coverage:** two kinds of gap: not shown in the UI (`absent / unknown / partial`) and not checked by any test
+  (10 requirements, 142 controls). The exploration agent shows an agent turning gaps into observations.
+- **Healer:** elements carry role + accessible name fingerprints, and the code ↔ UI scoring (multiple signals, state
+  fit, DOM position, a corroborating API call) is re-finding an element after a change, run in the other direction.
+- **Analyzer / impact analysis:** for a PR, the tests to re-run, ranked by the assessment agent, instead of the
+  whole suite.
 - **Agent governance:** the write policy, verified cleanup, grounding checks and saved traces are the controls an
   agent platform needs before agents act on real systems.

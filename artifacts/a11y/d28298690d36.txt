@@ -1,0 +1,43 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link " New Article"
+- listitem
+- link " Settings"
+- listitem
+- link "br-test-#c#"
+- img
+- text
+- img
+- heading [level=#]
+- paragraph
+- link
+- list
+- listitem
+- link "My Posts"
+- listitem
+- link "Favorited Posts"
+- link
+- img
+- link "br-test-#c#"
+- text
+- button " #"
+- 'link "br-test: author controls check Automated test Read more..."':
+- 'heading "br-test: author controls check" [level=#]'
+- paragraph
+- text
+- list
+- navigation
+- list
+- listitem
+- button "#"
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

@@ -12,7 +12,8 @@
   "must_not_hits": [],
   "report_pass_rate": 1.0,
   "agent_top_flow_ok_rate": null,
-  "agent_ungrounded_adjustments": 0
+  "agent_ungrounded_adjustments": 0,
+  "agent_top_test_ok_rate": null
  },
  "runs": [
   {
@@ -28,22 +29,7 @@
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "ff48272511"
-  },
-  {
-   "recall": 1.0,
-   "precision": 1.0,
-   "missed": [],
-   "unexpected": [],
-   "must_not_hits": [],
-   "agent_finished": true,
-   "agent_ungrounded": 0,
-   "agent_top_flow_ok": null,
-   "agent_tool_calls": 3,
-   "report_ok": true,
-   "report_errors": [],
-   "correct": true,
-   "hash": "ff48272511"
+   "hash": "13fd4c1024"
   },
   {
    "recall": 1.0,
@@ -58,7 +44,22 @@
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "ff48272511"
+   "hash": "13fd4c1024"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "agent_finished": true,
+   "agent_ungrounded": 0,
+   "agent_top_flow_ok": null,
+   "agent_tool_calls": 8,
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "13fd4c1024"
   }
  ]
 }

@@ -1,0 +1,54 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link "Sign in"
+- listitem
+- link "Sign up"
+- heading [level=#]
+- link
+- img
+- link "sarahchen"
+- text
+- button " Follow sarahchen"
+- button
+- paragraph
+- heading [level=#]
+- paragraph
+- heading [level=#]
+- paragraph
+- heading [level=#]
+- paragraph
+- list
+- listitem
+- separator
+- link
+- img
+- link "sarahchen"
+- text
+- button " Follow sarahchen"
+- button
+- link "Sign in"
+- text
+- link "sign up"
+- text
+- list
+- paragraph
+- link
+- img
+- link "mikewilson"
+- text
+- paragraph
+- link
+- img
+- link "janesmith"
+- text
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

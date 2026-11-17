@@ -12,11 +12,12 @@ The graph is the grounding; two LLM agents work on top of it, with guardrails in
 
 - **App:** [RealWorld "Conduit"](https://demo.realworld.show), Angular frontend
 - **Code:** [realworld-apps/angular-realworld-example-app](https://github.com/realworld-apps/angular-realworld-example-app)
+- **Tests:** RealWorld's [Playwright E2E suite](https://github.com/realworld-apps/realworld/tree/main/specs/e2e) (129 tests), parsed into the graph
 - **Spec:** the RealWorld [frontend spec](https://docs.realworld.show/specifications/frontend/routing/) and the
   [E2E selectors contract](https://github.com/realworld-apps/realworld/blob/main/specs/e2e/SELECTORS.md)
 - **Sample output:** [reports/pr-311.md](reports/pr-311.md) for PR [#311](https://github.com/realworld-apps/angular-realworld-example-app/pull/311)
 - **Design document:** [docs/design.md](docs/design.md) (PDF: [docs/design.pdf](docs/design.pdf))
-- `data/spec/` and `data/prs/` are cached copies of the public RealWorld spec (MIT) and GitHub PR data, so runs are reproducible offline.
+- `data/spec/` (including `data/spec/e2e/`) and `data/prs/` are cached copies of the public RealWorld spec (MIT) and GitHub PR data, so runs are reproducible offline.
 
 ## Run it
 
@@ -39,7 +40,8 @@ git clone https://github.com/realworld-apps/angular-realworld-example-app data/r
 `build` without `--recrawl` reuses `artifacts/crawl.json`, so you can rebuild the graph in seconds.
 
 `pr <n>` also writes the result into Neo4j as a `PullRequest` node (see the Cypher below).
-`artifacts/screens/` holds a screenshot of every screen the crawler saw; `artifacts/dom/` the matching DOM snapshot.
+`artifacts/screens/` holds a screenshot of every screen the crawler saw; `artifacts/dom/` the matching DOM snapshot;
+`artifacts/a11y/` the normalised accessibility snapshot used for state identity.
 
 **Without an API key** everything still runs (tested from a fresh clone: 79 of 106 requirements covered instead of 92): the spec prose becomes "behaviour" requirements with no UI
 evidence (they go to review), and the report uses the deterministic template instead of LLM prose.
@@ -60,6 +62,7 @@ run are deleted at the start of the next. The committed `artifacts/` already inc
 | 1 Crawl (Playwright, logged out + logged in, dry-run clicks) | `blast_radius/crawl.py` | no |
 | 1b Exploration agent (browser tools, write policy, cleanup) | `blast_radius/explore.py` | **agent** |
 | 2 Spec → requirements (tables parsed; prose bullets by LLM) | `blast_radius/spec.py` | prose only |
+| 2b Test suite → Test nodes, USES / TESTED_BY | `blast_radius/suite.py` | no |
 | 3 Code map (routes, components, methods, templates, endpoints) | `blast_radius/code_map.py` | no |
 | 4 Link layers, absence as Gap nodes, flows | `blast_radius/link.py` | judge for evidence-free requirements only |
 | Graph schema + blast-radius queries | `blast_radius/graph.py` | no |
@@ -81,6 +84,13 @@ RETURN q.statement, g.reason, collect(s.id);
 MATCH (p:PullRequest {number: 311})-[r:PUTS_AT_RISK]->(x)
 RETURN labels(x)[0] AS kind, coalesce(x.name, x.label, x.statement, x.id) AS item, r.confidence, r.observed
 ORDER BY r.confidence DESC;
+
+// Tests to re-run for a PR, most important first
+MATCH (p:PullRequest {number: 311})-[r:PUTS_AT_RISK]->(t:Test)
+RETURN t.label, r.confidence ORDER BY r.confidence DESC;
+
+// Requirements no test checks
+MATCH (q:Requirement) WHERE NOT (q)-[:TESTED_BY]->(:Test) RETURN q.statement;
 
 // From a changed method to the requirements it puts at risk
 MATCH (m:Method {id:'EditorComponent.submitForm'})-[:AFFECTS]->(:TemplateElement)-[r:RENDERS]->(e:Element)

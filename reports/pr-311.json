@@ -37,32 +37,10 @@
    "kind": "requirement",
    "id": "API-0ba81e",
    "label": "App calls PUT /api/articles/:p",
-   "confidence": 0.95,
+   "confidence": 1.0,
    "why": [
     "proven by changed UI: 1 element(s)",
-    "assessment: PUT /api/articles/:p is newly issued from the editor by this change. (1.00 -> 0.95)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
-   "id": "SEL-5351ce",
-   "label": "Editor: 'Publish Article' button",
-   "confidence": 0.85,
-   "why": [
-    "proven by changed UI: 2 element(s)",
-    "assessment: Covers both Publish buttons, one of which has a changed branch. (1.00 -> 0.85)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
-   "id": "RT-a3d605",
-   "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
-   "confidence": 0.8,
-   "why": [
-    "proven by changed UI: 2 element(s)",
-    "assessment: A general requirement for the editor page. Edit mode is affected and create mode is a regression risk. (1.00 -> 0.80)"
+    "assessment: PUT /api/articles/:p is now issued from the editor; this is the fix itself. (1.00 -> 1.00)"
    ],
    "observed": true
   },
@@ -70,10 +48,30 @@
    "kind": "requirement",
    "id": "RTE-a50b54",
    "label": "Route /editor/:slug shows Edit article",
-   "confidence": 0.75,
+   "confidence": 0.85,
    "why": [
     "describes /editor/:p, a page this change affects",
-    "assessment: The edit route's submit behaviour is what changed, though the route rendering itself is not. (0.50 -> 0.75)"
+    "assessment: The /editor/:slug edit route is where the behaviour changed. (0.50 -> 0.85)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RT-a3d605",
+   "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 2 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-5351ce",
+   "label": "Editor: 'Publish Article' button",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 2 element(s)"
    ],
    "observed": true
   },
@@ -81,22 +79,22 @@
    "kind": "requirement",
    "id": "RTE-9bb4d9",
    "label": "Route /editor shows New article",
-   "confidence": 0.3,
+   "confidence": 0.4,
    "why": [
     "describes /editor, a page this change affects",
-    "assessment: The new-article route is only affected through the unchanged create branch. (0.50 -> 0.30)"
+    "assessment: The /editor new-article route is not affected by the change. (0.50 -> 0.40)"
    ],
    "observed": true
   },
   {
    "kind": "flow",
    "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
-   "label": "Edit your own published article",
+   "label": "Edit your published article",
    "confidence": 1.0,
    "why": [
     "passes through changed UI (2 step(s))",
     "its final action calls PUT /api/articles/:p, which the changed code calls",
-    "assessment: Exercises exactly the new slug-to-update branch, the core of the fix. (1.00 -> 1.00)"
+    "assessment: Exercises exactly the new update branch. (1.00 -> 1.00)"
    ],
    "observed": true
   },
@@ -108,7 +106,7 @@
    "why": [
     "passes through changed UI (1 step(s))",
     "its final action calls POST /api/articles, which the changed code calls",
-    "assessment: The create branch is logically unchanged, but the code was restructured so a regression check is worthwhile. (1.00 -> 0.60)"
+    "assessment: The create branch is unchanged apart from refactoring. It still needs a regression check. (1.00 -> 0.60)"
    ],
    "observed": true
   },
@@ -119,7 +117,326 @@
    "confidence": 0.5,
    "why": [
     "passes through changed UI (1 step(s))",
-    "assessment: The editor is only used for setup (create an article). The create path is unchanged, and the DELETE action is not touched. (1.00 -> 0.50, capped)"
+    "assessment: Only uses the editor to create the article in setup. Delete is not changed. (1.00 -> 0.50, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+   "label": "Favorite your own published article",
+   "confidence": 0.5,
+   "why": [
+    "passes through changed UI (1 step(s))",
+    "assessment: Only uses publish as setup. Favoriting is not changed. (1.00 -> 0.50, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:51",
+   "label": "should edit an existing article (articles.spec.ts:51)",
+   "confidence": 1.0,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Edits an existing article, which is the changed PUT branch. (0.90 -> 1.00)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:235",
+   "label": "should remove all tags when editing an article (articles.spec.ts:235)",
+   "confidence": 0.95,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Edits an article and removes its tags through the update branch. (0.90 -> 0.95)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:199",
+   "label": "should handle 403 when updating article (error-handling.spec.ts:199)",
+   "confidence": 0.95,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor/:p)",
+    "assessment: A 403 on update now comes from the PUT path, so the error handling needs re-testing. (0.90 -> 0.95)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:650",
+   "label": "should show error message on update article form when network fails (error-handling.spec.ts:650)",
+   "confidence": 0.95,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)",
+    "assessment: Network failure on the update form now goes through the update observable. (0.90 -> 0.95)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:32",
+   "label": "should create a new article (articles.spec.ts:32)",
+   "confidence": 0.6,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Create path only. It is a regression check on the refactored shared code. (0.90 -> 0.60)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:68",
+   "label": "should handle 400 on article creation (error-handling.spec.ts:68)",
+   "confidence": 0.5,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor)",
+    "assessment: Create-path error handling is unchanged. (0.90 -> 0.50)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:error-handling.spec.ts:622",
+   "label": "should show error message on create article form when network fails (error-handling.spec.ts:622)",
+   "confidence": 0.5,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Create-path network failure is unchanged. (0.90 -> 0.50)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:null-fields.spec.ts:53",
+   "label": "newly registered user should show default avatar in comment section (null-fields.spec.ts:53)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Avatar display. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:null-fields.spec.ts:42",
+   "label": "newly registered user should show default avatar on article meta (null-fields.spec.ts:42)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Avatar display. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:206",
+   "label": "page should reset when switching feeds (url-navigation.spec.ts:206)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Feed pagination. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:111",
+   "label": "pagination should update URL with ?page=N (url-navigation.spec.ts:111)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Pagination URL. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:182",
+   "label": "pagination should work with /tag/:tag (url-navigation.spec.ts:182)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Tag pagination. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:73",
+   "label": "should delete an article (articles.spec.ts:73)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Delete test. Publish is setup only. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:99",
+   "label": "should delete an article when server returns 200 instead of 204 (articles.spec.ts:99)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Delete test. Publish is setup only. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:213",
+   "label": "should display article preview correctly (articles.spec.ts:213)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Preview display. Creation is setup only. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:139",
+   "label": "should display popular tags (navigation.spec.ts:139)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Popular tags. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:social.spec.ts:97",
+   "label": "should display user articles on profile (social.spec.ts:97)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Profile article list. Publish is setup only. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:63",
+   "label": "should filter articles by tag (navigation.spec.ts:63)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Tag filtering. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:137",
+   "label": "should load correct page when navigating directly to ?page=N (url-navigation.spec.ts:137)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Pagination navigation. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:183",
+   "label": "should navigate to article from author name (navigation.spec.ts:183)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Navigation from author name. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:288",
+   "label": "should only allow author to edit/delete article (articles.spec.ts:288)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Checks author-only edit and delete visibility. The editor submit is not central. (0.90 -> 0.40)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:160",
+   "label": "should paginate articles (navigation.spec.ts:160)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Pagination. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:200",
+   "label": "should show article count on profile tabs (navigation.spec.ts:200)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Profile tab counts. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:navigation.spec.ts:109",
+   "label": "should switch between Global Feed and Your Feed (navigation.spec.ts:109)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Feed switching. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:144",
+   "label": "should unfavorite an article (articles.spec.ts:144)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Unfavorite test. Publish is setup only. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:187",
+   "label": "should view article from home feed (articles.spec.ts:187)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Home feed view. Publish is setup only. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:social.spec.ts:45",
+   "label": "should view own profile (social.spec.ts:45)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Own profile view. Not related to the editor submit change. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:234",
+   "label": "tag pagination shows correct articles per page (url-navigation.spec.ts:234)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Tag pagination. Not related to the editor submit change. (0.90 -> 0.40, capped)"
    ],
    "observed": true
   },
@@ -129,8 +446,8 @@
    "label": "'Publish Article' on /editor/:p (owner)",
    "confidence": 1.0,
    "why": [
-    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler",
-    "assessment: The Publish button on /editor/:slug now takes the changed PUT branch. (1.00 -> 1.00)"
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler; role button",
+    "assessment: Publish on /editor/:p now triggers update instead of create. (1.00 -> 1.00)"
    ],
    "observed": true
   },
@@ -138,10 +455,9 @@
    "kind": "element",
    "id": "el_056643d01480",
    "label": "'Publish Article' on /editor (authed)",
-   "confidence": 0.6,
+   "confidence": 1.0,
    "why": [
-    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler",
-    "assessment: The new-article Publish button takes the unchanged create branch. It still needs a regression check because the shared submit code was refactored. (1.00 -> 0.60)"
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler; role button"
    ],
    "observed": true
   },
@@ -170,109 +486,321 @@
   {
    "requirement": "SEL-5351ce",
    "statement": "Editor: 'Publish Article' button",
-   "why": "every element that proves it is changed by this PR"
+   "kind": "tests_at_risk",
+   "why": "all 28 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "API-0ba81e",
    "statement": "App calls PUT /api/articles/:p",
-   "why": "every element that proves it is changed by this PR"
+   "kind": "tests_at_risk",
+   "why": "all 5 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   }
  ],
  "needs_review": [],
  "assessment": {
-  "behaviour_change": "submitForm now reads the route slug. On /editor/:slug it calls articleService.update, a PUT, and otherwise it calls create, a POST. Before, it always called create, so edits were sent as POSTs. The create path is unchanged.",
+  "behaviour_change": "submitForm now branches on the route slug. With a slug (/editor/:slug) it calls articleService.update, which sends PUT. Without one (/editor) it still calls create, which sends POST. Before this change, editing sent a create request, so the edit path is the one that changed. The create path is functionally unchanged apart from refactoring.",
   "applied": [
    {
     "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
     "confidence": 1.0,
-    "reason": "Exercises exactly the new slug-to-update branch, the core of the fix.",
-    "from": 1.0,
-    "to": 1.0,
-    "capped": false
-   },
-   {
-    "id": "el_931b9f6f4af9",
-    "confidence": 1.0,
-    "reason": "The Publish button on /editor/:slug now takes the changed PUT branch.",
+    "reason": "Exercises exactly the new update branch.",
     "from": 1.0,
     "to": 1.0,
     "capped": false
    },
    {
     "id": "API-0ba81e",
-    "confidence": 0.95,
-    "reason": "PUT /api/articles/:p is newly issued from the editor by this change.",
+    "confidence": 1.0,
+    "reason": "PUT /api/articles/:p is now issued from the editor; this is the fix itself.",
     "from": 1.0,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "T:articles.spec.ts:51",
+    "confidence": 1.0,
+    "reason": "Edits an existing article, which is the changed PUT branch.",
+    "from": 0.9,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "T:articles.spec.ts:235",
+    "confidence": 0.95,
+    "reason": "Edits an article and removes its tags through the update branch.",
+    "from": 0.9,
+    "to": 0.95,
+    "capped": false
+   },
+   {
+    "id": "T:error-handling.spec.ts:199",
+    "confidence": 0.95,
+    "reason": "A 403 on update now comes from the PUT path, so the error handling needs re-testing.",
+    "from": 0.9,
+    "to": 0.95,
+    "capped": false
+   },
+   {
+    "id": "T:error-handling.spec.ts:650",
+    "confidence": 0.95,
+    "reason": "Network failure on the update form now goes through the update observable.",
+    "from": 0.9,
     "to": 0.95,
     "capped": false
    },
    {
     "id": "RTE-a50b54",
-    "confidence": 0.75,
-    "reason": "The edit route's submit behaviour is what changed, though the route rendering itself is not.",
+    "confidence": 0.85,
+    "reason": "The /editor/:slug edit route is where the behaviour changed.",
     "from": 0.5,
-    "to": 0.75,
+    "to": 0.85,
+    "capped": false
+   },
+   {
+    "id": "el_931b9f6f4af9",
+    "confidence": 1.0,
+    "reason": "Publish on /editor/:p now triggers update instead of create.",
+    "from": 1.0,
+    "to": 1.0,
+    "capped": false
+   },
+   {
+    "id": "flow:/editor:POST /api/articles",
+    "confidence": 0.6,
+    "reason": "The create branch is unchanged apart from refactoring. It still needs a regression check.",
+    "from": 1.0,
+    "to": 0.6,
+    "capped": false
+   },
+   {
+    "id": "T:articles.spec.ts:32",
+    "confidence": 0.6,
+    "reason": "Create path only. It is a regression check on the refactored shared code.",
+    "from": 0.9,
+    "to": 0.6,
+    "capped": false
+   },
+   {
+    "id": "T:error-handling.spec.ts:68",
+    "confidence": 0.5,
+    "reason": "Create-path error handling is unchanged.",
+    "from": 0.9,
+    "to": 0.5,
+    "capped": false
+   },
+   {
+    "id": "T:error-handling.spec.ts:622",
+    "confidence": 0.5,
+    "reason": "Create-path network failure is unchanged.",
+    "from": 0.9,
+    "to": 0.5,
+    "capped": false
+   },
+   {
+    "id": "RTE-9bb4d9",
+    "confidence": 0.4,
+    "reason": "The /editor new-article route is not affected by the change.",
+    "from": 0.5,
+    "to": 0.4,
     "capped": false
    },
    {
     "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
-    "confidence": 0.25,
-    "reason": "The editor is only used for setup (create an article). The create path is unchanged, and the DELETE action is not touched.",
+    "confidence": 0.2,
+    "reason": "Only uses the editor to create the article in setup. Delete is not changed.",
     "from": 1.0,
     "to": 0.5,
     "capped": true
    },
    {
-    "id": "flow:/editor:POST /api/articles",
-    "confidence": 0.6,
-    "reason": "The create branch is logically unchanged, but the code was restructured so a regression check is worthwhile.",
+    "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+    "confidence": 0.2,
+    "reason": "Only uses publish as setup. Favoriting is not changed.",
     "from": 1.0,
-    "to": 0.6,
+    "to": 0.5,
+    "capped": true
+   },
+   {
+    "id": "T:articles.spec.ts:288",
+    "confidence": 0.4,
+    "reason": "Checks author-only edit and delete visibility. The editor submit is not central.",
+    "from": 0.9,
+    "to": 0.4,
     "capped": false
    },
    {
-    "id": "el_056643d01480",
-    "confidence": 0.6,
-    "reason": "The new-article Publish button takes the unchanged create branch. It still needs a regression check because the shared submit code was refactored.",
-    "from": 1.0,
-    "to": 0.6,
-    "capped": false
+    "id": "T:articles.spec.ts:73",
+    "confidence": 0.25,
+    "reason": "Delete test. Publish is setup only.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
    },
    {
-    "id": "RTE-9bb4d9",
+    "id": "T:articles.spec.ts:99",
+    "confidence": 0.25,
+    "reason": "Delete test. Publish is setup only.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:articles.spec.ts:213",
     "confidence": 0.3,
-    "reason": "The new-article route is only affected through the unchanged create branch.",
-    "from": 0.5,
-    "to": 0.3,
-    "capped": false
+    "reason": "Preview display. Creation is setup only.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
    },
    {
-    "id": "SEL-5351ce",
-    "confidence": 0.85,
-    "reason": "Covers both Publish buttons, one of which has a changed branch.",
-    "from": 1.0,
-    "to": 0.85,
-    "capped": false
+    "id": "T:articles.spec.ts:144",
+    "confidence": 0.2,
+    "reason": "Unfavorite test. Publish is setup only.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
    },
    {
-    "id": "RT-a3d605",
-    "confidence": 0.8,
-    "reason": "A general requirement for the editor page. Edit mode is affected and create mode is a regression risk.",
-    "from": 1.0,
-    "to": 0.8,
-    "capped": false
+    "id": "T:articles.spec.ts:187",
+    "confidence": 0.2,
+    "reason": "Home feed view. Publish is setup only.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:null-fields.spec.ts:53",
+    "confidence": 0.15,
+    "reason": "Avatar display. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:null-fields.spec.ts:42",
+    "confidence": 0.15,
+    "reason": "Avatar display. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:url-navigation.spec.ts:206",
+    "confidence": 0.1,
+    "reason": "Feed pagination. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:url-navigation.spec.ts:111",
+    "confidence": 0.1,
+    "reason": "Pagination URL. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:url-navigation.spec.ts:182",
+    "confidence": 0.1,
+    "reason": "Tag pagination. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:url-navigation.spec.ts:137",
+    "confidence": 0.1,
+    "reason": "Pagination navigation. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:url-navigation.spec.ts:234",
+    "confidence": 0.1,
+    "reason": "Tag pagination. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:navigation.spec.ts:139",
+    "confidence": 0.1,
+    "reason": "Popular tags. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:navigation.spec.ts:63",
+    "confidence": 0.1,
+    "reason": "Tag filtering. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:navigation.spec.ts:183",
+    "confidence": 0.1,
+    "reason": "Navigation from author name. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:navigation.spec.ts:160",
+    "confidence": 0.1,
+    "reason": "Pagination. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:navigation.spec.ts:200",
+    "confidence": 0.1,
+    "reason": "Profile tab counts. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:navigation.spec.ts:109",
+    "confidence": 0.1,
+    "reason": "Feed switching. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:social.spec.ts:97",
+    "confidence": 0.15,
+    "reason": "Profile article list. Publish is setup only.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:social.spec.ts:45",
+    "confidence": 0.1,
+    "reason": "Own profile view. Not related to the editor submit change.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
    }
   ],
   "rejected": [],
   "retest_first": [
    "flow:/editor/:p:PUT /api/articles/:p:owner",
-   "el_931b9f6f4af9",
+   "T:articles.spec.ts:51",
    "API-0ba81e",
-   "flow:/editor:POST /api/articles",
-   "el_056643d01480",
-   "SEL-5351ce",
-   "RT-a3d605",
-   "RTE-a50b54"
+   "T:articles.spec.ts:235",
+   "T:error-handling.spec.ts:199",
+   "T:error-handling.spec.ts:650",
+   "el_931b9f6f4af9",
+   "RTE-a50b54",
+   "T:articles.spec.ts:32",
+   "flow:/editor:POST /api/articles"
   ],
   "tool_calls": 4,
   "finished": true,
@@ -291,84 +819,242 @@
     "tool": "inspect",
     "input": {
      "item_ids": [
-      "flow:/article/:p:DELETE /api/articles/:p:owner",
-      "flow:/editor/:p:PUT /api/articles/:p:owner",
-      "flow:/editor:POST /api/articles",
-      "el_056643d01480",
-      "el_931b9f6f4af9",
       "API-0ba81e",
+      "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "flow:/article/:p:DELETE /api/articles/:p:owner",
+      "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+      "flow:/editor:POST /api/articles",
+      "T:articles.spec.ts:51",
+      "T:articles.spec.ts:235",
+      "T:error-handling.spec.ts:199",
+      "T:error-handling.spec.ts:650",
+      "T:articles.spec.ts:32",
+      "T:error-handling.spec.ts:68",
+      "T:error-handling.spec.ts:622",
+      "T:articles.spec.ts:288",
+      "T:null-fields.spec.ts:53",
+      "T:null-fields.spec.ts:42",
+      "T:url-navigation.spec.ts:206",
+      "T:url-navigation.spec.ts:111",
+      "T:url-navigation.spec.ts:182",
+      "T:articles.spec.ts:73",
+      "T:articles.spec.ts:99",
+      "T:articles.spec.ts:213",
+      "T:navigation.spec.ts:139",
+      "T:social.spec.ts:97",
+      "T:navigation.spec.ts:63",
+      "T:url-navigation.spec.ts:137",
+      "T:navigation.spec.ts:183",
+      "T:navigation.spec.ts:160",
+      "T:navigation.spec.ts:200",
+      "T:navigation.spec.ts:109",
+      "T:articles.spec.ts:144",
+      "T:articles.spec.ts:187",
+      "T:social.spec.ts:45",
+      "T:url-navigation.spec.ts:234",
       "RTE-a50b54",
       "RTE-9bb4d9",
-      "SEL-5351ce",
-      "RT-a3d605"
+      "el_931b9f6f4af9"
      ]
     }
    },
    {
     "tool": "finish",
     "input": {
-     "behaviour_change": "submitForm now reads the route slug. On /editor/:slug it calls articleService.update, a PUT, and otherwise it calls create, a POST. Before, it always called create, so edits were sent as POSTs. The create path is unchanged.",
+     "behaviour_change": "submitForm now branches on the route slug. With a slug (/editor/:slug) it calls articleService.update, which sends PUT. Without one (/editor) it still calls create, which sends POST. Before this change, editing sent a create request, so the edit path is the one that changed. The create path is functionally unchanged apart from refactoring.",
      "adjustments": [
       {
        "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
        "confidence": 1.0,
-       "reason": "Exercises exactly the new slug-to-update branch, the core of the fix."
+       "reason": "Exercises exactly the new update branch."
+      },
+      {
+       "id": "API-0ba81e",
+       "confidence": 1.0,
+       "reason": "PUT /api/articles/:p is now issued from the editor; this is the fix itself."
+      },
+      {
+       "id": "T:articles.spec.ts:51",
+       "confidence": 1.0,
+       "reason": "Edits an existing article, which is the changed PUT branch."
+      },
+      {
+       "id": "T:articles.spec.ts:235",
+       "confidence": 0.95,
+       "reason": "Edits an article and removes its tags through the update branch."
+      },
+      {
+       "id": "T:error-handling.spec.ts:199",
+       "confidence": 0.95,
+       "reason": "A 403 on update now comes from the PUT path, so the error handling needs re-testing."
+      },
+      {
+       "id": "T:error-handling.spec.ts:650",
+       "confidence": 0.95,
+       "reason": "Network failure on the update form now goes through the update observable."
+      },
+      {
+       "id": "RTE-a50b54",
+       "confidence": 0.85,
+       "reason": "The /editor/:slug edit route is where the behaviour changed."
       },
       {
        "id": "el_931b9f6f4af9",
        "confidence": 1.0,
-       "reason": "The Publish button on /editor/:slug now takes the changed PUT branch."
-      },
-      {
-       "id": "API-0ba81e",
-       "confidence": 0.95,
-       "reason": "PUT /api/articles/:p is newly issued from the editor by this change."
-      },
-      {
-       "id": "RTE-a50b54",
-       "confidence": 0.75,
-       "reason": "The edit route's submit behaviour is what changed, though the route rendering itself is not."
-      },
-      {
-       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
-       "confidence": 0.25,
-       "reason": "The editor is only used for setup (create an article). The create path is unchanged, and the DELETE action is not touched."
+       "reason": "Publish on /editor/:p now triggers update instead of create."
       },
       {
        "id": "flow:/editor:POST /api/articles",
        "confidence": 0.6,
-       "reason": "The create branch is logically unchanged, but the code was restructured so a regression check is worthwhile."
+       "reason": "The create branch is unchanged apart from refactoring. It still needs a regression check."
       },
       {
-       "id": "el_056643d01480",
+       "id": "T:articles.spec.ts:32",
        "confidence": 0.6,
-       "reason": "The new-article Publish button takes the unchanged create branch. It still needs a regression check because the shared submit code was refactored."
+       "reason": "Create path only. It is a regression check on the refactored shared code."
+      },
+      {
+       "id": "T:error-handling.spec.ts:68",
+       "confidence": 0.5,
+       "reason": "Create-path error handling is unchanged."
+      },
+      {
+       "id": "T:error-handling.spec.ts:622",
+       "confidence": 0.5,
+       "reason": "Create-path network failure is unchanged."
       },
       {
        "id": "RTE-9bb4d9",
+       "confidence": 0.4,
+       "reason": "The /editor new-article route is not affected by the change."
+      },
+      {
+       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+       "confidence": 0.2,
+       "reason": "Only uses the editor to create the article in setup. Delete is not changed."
+      },
+      {
+       "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+       "confidence": 0.2,
+       "reason": "Only uses publish as setup. Favoriting is not changed."
+      },
+      {
+       "id": "T:articles.spec.ts:288",
+       "confidence": 0.4,
+       "reason": "Checks author-only edit and delete visibility. The editor submit is not central."
+      },
+      {
+       "id": "T:articles.spec.ts:73",
+       "confidence": 0.25,
+       "reason": "Delete test. Publish is setup only."
+      },
+      {
+       "id": "T:articles.spec.ts:99",
+       "confidence": 0.25,
+       "reason": "Delete test. Publish is setup only."
+      },
+      {
+       "id": "T:articles.spec.ts:213",
        "confidence": 0.3,
-       "reason": "The new-article route is only affected through the unchanged create branch."
+       "reason": "Preview display. Creation is setup only."
       },
       {
-       "id": "SEL-5351ce",
-       "confidence": 0.85,
-       "reason": "Covers both Publish buttons, one of which has a changed branch."
+       "id": "T:articles.spec.ts:144",
+       "confidence": 0.2,
+       "reason": "Unfavorite test. Publish is setup only."
       },
       {
-       "id": "RT-a3d605",
-       "confidence": 0.8,
-       "reason": "A general requirement for the editor page. Edit mode is affected and create mode is a regression risk."
+       "id": "T:articles.spec.ts:187",
+       "confidence": 0.2,
+       "reason": "Home feed view. Publish is setup only."
+      },
+      {
+       "id": "T:null-fields.spec.ts:53",
+       "confidence": 0.15,
+       "reason": "Avatar display. Not related to the editor submit change."
+      },
+      {
+       "id": "T:null-fields.spec.ts:42",
+       "confidence": 0.15,
+       "reason": "Avatar display. Not related to the editor submit change."
+      },
+      {
+       "id": "T:url-navigation.spec.ts:206",
+       "confidence": 0.1,
+       "reason": "Feed pagination. Not related to the editor submit change."
+      },
+      {
+       "id": "T:url-navigation.spec.ts:111",
+       "confidence": 0.1,
+       "reason": "Pagination URL. Not related to the editor submit change."
+      },
+      {
+       "id": "T:url-navigation.spec.ts:182",
+       "confidence": 0.1,
+       "reason": "Tag pagination. Not related to the editor submit change."
+      },
+      {
+       "id": "T:url-navigation.spec.ts:137",
+       "confidence": 0.1,
+       "reason": "Pagination navigation. Not related to the editor submit change."
+      },
+      {
+       "id": "T:url-navigation.spec.ts:234",
+       "confidence": 0.1,
+       "reason": "Tag pagination. Not related to the editor submit change."
+      },
+      {
+       "id": "T:navigation.spec.ts:139",
+       "confidence": 0.1,
+       "reason": "Popular tags. Not related to the editor submit change."
+      },
+      {
+       "id": "T:navigation.spec.ts:63",
+       "confidence": 0.1,
+       "reason": "Tag filtering. Not related to the editor submit change."
+      },
+      {
+       "id": "T:navigation.spec.ts:183",
+       "confidence": 0.1,
+       "reason": "Navigation from author name. Not related to the editor submit change."
+      },
+      {
+       "id": "T:navigation.spec.ts:160",
+       "confidence": 0.1,
+       "reason": "Pagination. Not related to the editor submit change."
+      },
+      {
+       "id": "T:navigation.spec.ts:200",
+       "confidence": 0.1,
+       "reason": "Profile tab counts. Not related to the editor submit change."
+      },
+      {
+       "id": "T:navigation.spec.ts:109",
+       "confidence": 0.1,
+       "reason": "Feed switching. Not related to the editor submit change."
+      },
+      {
+       "id": "T:social.spec.ts:97",
+       "confidence": 0.15,
+       "reason": "Profile article list. Publish is setup only."
+      },
+      {
+       "id": "T:social.spec.ts:45",
+       "confidence": 0.1,
+       "reason": "Own profile view. Not related to the editor submit change."
       }
      ],
      "retest_first": [
       "flow:/editor/:p:PUT /api/articles/:p:owner",
-      "el_931b9f6f4af9",
+      "T:articles.spec.ts:51",
       "API-0ba81e",
-      "flow:/editor:POST /api/articles",
-      "el_056643d01480",
-      "SEL-5351ce",
-      "RT-a3d605",
-      "RTE-a50b54"
+      "T:articles.spec.ts:235",
+      "T:error-handling.spec.ts:199",
+      "T:error-handling.spec.ts:650",
+      "el_931b9f6f4af9",
+      "RTE-a50b54",
+      "T:articles.spec.ts:32",
+      "flow:/editor:POST /api/articles"
      ]
     }
    }

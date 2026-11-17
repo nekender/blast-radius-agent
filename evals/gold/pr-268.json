@@ -39,6 +39,18 @@
     {
       "kind": "requirement",
       "label_contains": "Post Comment"
+    },
+    {
+      "kind": "test",
+      "label_contains": "Your Feed"
+    },
+    {
+      "kind": "test",
+      "label_contains": "should require login to post comment"
+    },
+    {
+      "kind": "test",
+      "label_contains": "should add a comment"
     }
   ],
   "acceptable": [
@@ -73,6 +85,9 @@
     },
     {
       "kind": "unmapped_code"
+    },
+    {
+      "kind": "test"
     }
   ],
   "must_not": [
@@ -91,6 +106,10 @@
     {
       "kind": "element",
       "where": "/profile"
+    },
+    {
+      "kind": "test",
+      "label_contains": "settings.spec"
     }
   ]
 }

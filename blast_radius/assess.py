@@ -29,7 +29,7 @@ the pages, controls, user flows and requirements connected to the changed code, 
 Connection is not the same as risk. Your job: work out what the change actually does to behaviour, then
 adjust confidences so the QA lead re-tests what matters first.
 
-Use the tools: read the diff, read the changed method, inspect the flows, controls and requirements you want
+Use the tools: read the diff, read the changed method, inspect the flows, tests, controls and requirements you want
 to adjust. Typical reasons to lower: the item only uses the changed code in a setup step, or the changed lines
 don't affect the branch it exercises. Typical reasons to raise: the item exercises exactly the changed branch.
 You can only adjust items you have inspected (inspect takes a list, so inspect everything you intend to adjust,
@@ -85,6 +85,10 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
         elif imp.kind == "requirement":
             r = graph.run("MATCH (q:Requirement {id: $id}) OPTIONAL MATCH (q)-[c:COVERED_BY]->(x) "
                           "RETURN q.statement AS statement, collect(coalesce(x.label, x.id)) AS covered_by", id=item_id)
+            extra = r[0] if r else {}
+        elif imp.kind == "test":
+            r = graph.run("MATCH (t:Test {id: $id}) OPTIONAL MATCH (t)-[u:USES]->(e:Element) "
+                          "RETURN t.label AS test, collect(DISTINCT u.selector)[..12] AS steps_on_controls", id=item_id)
             extra = r[0] if r else {}
         elif imp.kind == "element":
             r = graph.run("MATCH (e:Element {id: $id}) OPTIONAL MATCH (e)-[:CALLS]->(ep) OPTIONAL MATCH (t)-[:RENDERS]->(e) "
@@ -154,7 +158,7 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
         imp.why.append(f"assessment: {adj['reason']} ({old:.2f} -> {imp.confidence:.2f}{', capped' if clamped else ''})")
         applied.append({**adj, "from": old, "to": imp.confidence, "capped": clamped})
     order = {i: n for n, i in enumerate((result or {}).get("retest_first", [])) if i in ids}
-    kinds = {"requirement": 0, "flow": 1, "element": 2, "screen": 3, "unmapped_code": 4}
+    kinds = {"requirement": 0, "flow": 1, "test": 2, "element": 3, "screen": 4, "unmapped_code": 5}
     br.impacts.sort(key=lambda i: (kinds[i.kind], order.get(i.id, 99), -i.confidence))
     br.assessment = {"behaviour_change": (result or {}).get("behaviour_change", ""), "applied": applied,
                      "rejected": rejected, "retest_first": [i for i in order], "tool_calls": len(trace),

@@ -1,0 +1,42 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link " New Article"
+- listitem
+- link " Settings"
+- listitem
+- link "br-test-#c#"
+- img
+- text
+- 'heading "br-test: author controls check" [level=#]'
+- link
+- img
+- link "br-test-#c#"
+- text
+- link " Edit Article"
+- button " Delete Article"
+- paragraph
+- list
+- separator
+- link
+- img
+- link "br-test-#c#"
+- text
+- link " Edit Article"
+- button " Delete Article"
+- list
+- group
+- textbox "Write a comment..."
+- img
+- button "Post Comment"
+- list
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

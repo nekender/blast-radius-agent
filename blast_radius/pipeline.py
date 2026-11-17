@@ -1,6 +1,6 @@
 """The agent, as two LangGraph graphs.
 
-build:   crawl ─┬─> ingest_spec ─┬─> link ─> load_graph
+build:   crawl ─┬─> ingest_spec ─┬─> link + test suite ─> load_graph
                 └─> map_code ────┘
          (crawl is skipped when artifacts/crawl.json exists and --recrawl isn't set)
 
@@ -60,8 +60,12 @@ def n_link_and_load(s: BuildState) -> BuildState:
     methods = link.link_methods(cm, idx)
     req_links, gaps, review_req = link.link_requirements(reqs, cr, cm, idx)
     flows = link.discover_flows(cr, cm, idx)
+    from . import suite
+    tests = suite.parse_suite()
+    uses, tested, test_stats = suite.link_tests(tests, cr, reqs, req_links)
     g = Graph()
     g.load(cr, cm, reqs, code_ui, methods, req_links, gaps, flows)
+    g.load_tests(tests, uses, tested)
     g.close()
     covered = {l.src for l in req_links} - {g.requirement_id for g in gaps}
     summary = {
@@ -72,11 +76,13 @@ def n_link_and_load(s: BuildState) -> BuildState:
         "elements_linked_to_code": len({l.dst for l in code_ui if l.kind == "RENDERS"}),
         "flows_observed": sum(f.observed for f in flows), "flows_from_code_only": sum(not f.observed for f in flows),
         "needs_review": len(review_ui) + len(review_req),
+        **test_stats,
     }
     (SETTINGS.artifacts / "links.json").write_text(json.dumps({
         "summary": summary, "gaps": [g.model_dump() for g in gaps], "flows": [f.model_dump() for f in flows],
         "review": review_ui + review_req, "code_ui": [l.model_dump() for l in code_ui],
-        "requirement_links": [l.model_dump() for l in req_links]}, indent=1))
+        "requirement_links": [l.model_dump() for l in req_links],
+        "test_uses": [l.model_dump() for l in uses], "tested_by": [l.model_dump() for l in tested]}, indent=1))
     return {"summary": summary}
 
 
@@ -137,7 +143,7 @@ def n_write(s: ReasonState) -> ReasonState:
     facts = json.dumps(report._facts(s["blast"]), indent=1)
     if s.get("errors"):
         facts += f"\n\nFix these problems from your last draft: {s['errors']}"
-    w = llm.structured(report.SYSTEM, facts, report.Written, use_cache=s.get("use_cache", True), max_tokens=3000)
+    w = llm.structured(report.SYSTEM, facts, report.Written, use_cache=s.get("use_cache", True), max_tokens=8000)
     return {"written": w, "attempts": s.get("attempts", 0) + 1}
 
 

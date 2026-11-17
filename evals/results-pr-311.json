@@ -6,89 +6,107 @@
   "correct_runs": 5,
   "pass^k": true,
   "recall": 1.0,
-  "precision": 1.0,
+  "precision": 0.98,
   "missed": [],
-  "unexpected": [],
+  "unexpected": [
+   "Favorite your own published article"
+  ],
   "must_not_hits": [],
   "report_pass_rate": 1.0,
   "agent_top_flow_ok_rate": 1.0,
-  "agent_ungrounded_adjustments": 0
+  "agent_ungrounded_adjustments": 0,
+  "agent_top_test_ok_rate": 1.0
  },
  "runs": [
   {
    "recall": 1.0,
-   "precision": 1.0,
+   "precision": 0.98,
    "missed": [],
-   "unexpected": [],
+   "unexpected": [
+    "Favorite your own published article"
+   ],
    "must_not_hits": [],
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": true,
    "agent_tool_calls": 4,
+   "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "6a539cb8c4"
+   "hash": "c4df6f3801"
   },
   {
    "recall": 1.0,
-   "precision": 1.0,
+   "precision": 0.98,
    "missed": [],
-   "unexpected": [],
+   "unexpected": [
+    "Favorite your own published article"
+   ],
    "must_not_hits": [],
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": true,
    "agent_tool_calls": 4,
+   "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "6a539cb8c4"
+   "hash": "c4df6f3801"
   },
   {
    "recall": 1.0,
-   "precision": 1.0,
+   "precision": 0.98,
    "missed": [],
-   "unexpected": [],
+   "unexpected": [
+    "Favorite your own published article"
+   ],
    "must_not_hits": [],
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": true,
-   "agent_tool_calls": 4,
+   "agent_tool_calls": 5,
+   "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "6a539cb8c4"
+   "hash": "c4df6f3801"
   },
   {
    "recall": 1.0,
-   "precision": 1.0,
+   "precision": 0.98,
    "missed": [],
-   "unexpected": [],
+   "unexpected": [
+    "Favorite your own published article"
+   ],
    "must_not_hits": [],
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": true,
    "agent_tool_calls": 4,
+   "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "6a539cb8c4"
+   "hash": "c4df6f3801"
   },
   {
    "recall": 1.0,
-   "precision": 1.0,
+   "precision": 0.98,
    "missed": [],
-   "unexpected": [],
+   "unexpected": [
+    "Favorite your own published article"
+   ],
    "must_not_hits": [],
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": true,
    "agent_tool_calls": 4,
+   "agent_top_test_ok": true,
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "6a539cb8c4"
+   "hash": "c4df6f3801"
   }
  ]
 }

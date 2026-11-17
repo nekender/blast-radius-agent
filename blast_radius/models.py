@@ -42,6 +42,7 @@ class Screen(BaseModel):
     on_load_calls: list[ApiCall] = Field(default_factory=list)
     screenshot: str | None = None
     dom: str | None = None
+    a11y_states: list[str] = Field(default_factory=list)   # distinct accessibility-tree fingerprints seen on this screen
 
 
 class Transition(BaseModel):
@@ -184,7 +185,7 @@ class FlowNames(BaseModel):
 # ---------- Blast radius ----------
 
 class Impact(BaseModel):
-    kind: Literal["element", "screen", "flow", "requirement", "unmapped_code"]
+    kind: Literal["element", "screen", "flow", "requirement", "test", "unmapped_code"]
     id: str
     label: str
     confidence: float

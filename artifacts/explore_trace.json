@@ -10,14 +10,14 @@
   "The article page shows a Delete Article button only to the article's author. (pages /article/:p): in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:36) under condition 'canModify$ | async"
  ],
  "finish": {
-  "summary": "I created one article, \"br-test--author-controls-check\", and opened its page as the author. Both the \"Edit Article\" link and the \"Delete Article\" button showed, each twice on the page (top and bottom). The Edit link led to /editor/br-test--author-controls-check. The system's blocked-writes list now includes DELETE /api/articles/:p and PUT /api/articles/:p, so those calls were observed, but both were blocked and I never saw them succeed. I did not click Delete or submit the edit myself.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Posting a comment is blocked (POST /api/articles/:p/comments is on the blocked list), so there was no comment of mine to show them on. The article had no comments to start with, and I didn't check other articles."
+  "summary": "I created one article, \"br-test: author controls check\", at /article/br-test--author-controls-check. Its detail page showed the author-only \"Edit Article\" link and \"Delete Article\" button, each in two places on the page. The Edit link opens /editor/br-test--author-controls-check.\n\nThe system reported PUT /api/articles/:p and DELETE /api/articles/:p as blocked writes. I did not click Publish in the edit form or click Delete Article myself. The blocked entries appeared on their own as I loaded the article page and the edit page.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Those only render on a comment the current user wrote. Posting comments is blocked, so I couldn't create one. I didn't check whether the seeded articles already have comments by this test user, but they are other users' content, so the controls shouldn't show there."
  },
  "trace": [
   {
    "turn": 0,
    "tool": "observe",
    "input": {},
-   "output": "url: https://demo.realworld.show/\npage: /\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a> Your Feed -> /?feed=following\n6: <a> Global Feed -> /\n7: <a>  -> /profile/sarahchen\n8: <a> sarahchen -> /profile/sarahchen\n9: <button> 1\n10: <a> Introduction to Machine Learning for Developers Getting started with ML concepts -> /article/introduct"
+   "output": "url: https://demo.realworld.show/\npage: /\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a> Your Feed -> /?feed=following\n6: <a> Global Feed -> /\n7: <a>  -> /profile/sarahchen\n8: <a> sarahchen -> /profile/sarahchen\n9: <button> 1\n10: <a> Introduction to Machine Learning for Developers Getting started with ML concepts -> /article/in"
   },
   {
    "turn": 1,
@@ -25,7 +25,7 @@
    "input": {
     "path": "/editor"
    },
-   "output": "url: https://demo.realworld.show/editor\npage: /editor\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this article about?\n7: <textarea> Write your article (in markdown)\n8: <input> Enter tags\n9: <button> Publish Article\n10: <a>  -> /\n11: <a> RealWorld OSS Project -> https://github.com/gothinkster/real"
+   "output": "url: https://demo.realworld.show/editor\npage: /editor\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this article about?\n7: <textarea> Write your article (in markdown)\n8: <input> Enter tags\n9: <button> Publish Article\n10: <a> Conduit -> /\n11: <a> RealWorld OSS Project -> https://github.com/go"
   },
   {
    "turn": 2,
@@ -55,30 +55,53 @@
    "output": "filled Write your article (in markdown)"
   },
   {
-   "turn": 2,
+   "turn": 3,
    "tool": "click",
    "input": {
     "index": 9
    },
-   "output": "clicked 'Publish Article'\nurl: https://demo.realworld.show/article/br-test--author-controls-check\npage: /article/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['DELETE /api/articles/:p', 'POST /api/articles/:p/comments']\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a>  -> /profile/br-test-11c596\n6: <a> br-test-11c596 -> /profile/"
+   "output": "clicked 'Publish Article'\nurl: https://demo.realworld.show/editor\npage: /editor\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this article about?\n7: <textarea> Write your article (in markdown)\n8: <input> Enter tags\n9: <button> Publish Article\n10: <a> Conduit -> /\n11: <a> RealWorld OSS Projec"
   },
   {
-   "turn": 3,
+   "turn": 4,
+   "tool": "observe",
+   "input": {},
+   "output": "url: https://demo.realworld.show/editor\npage: /editor\nlogin state: authenticated\nyour test articles: none yet\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this article about?\n7: <textarea> Write your article (in markdown)\n8: <input> Enter tags\n9: <button> Publish Article\n10: <a> Conduit -> /\n11: <a> RealWorld OSS Project -> https://github.com/go"
+  },
+  {
+   "turn": 5,
+   "tool": "goto",
+   "input": {
+    "path": "/profile/br-test-11c596"
+   },
+   "output": "url: https://demo.realworld.show/profile/br-test-11c596\npage: /profile/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['POST /api/articles/:p/favorite']\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a> Edit Profile Settings -> /settings\n6: <a> My Posts -> /profile/br-test-11c596\n7: <a> Favorited Posts -> /profile/br-test-11c"
+  },
+  {
+   "turn": 6,
+   "tool": "goto",
+   "input": {
+    "path": "/article/br-test--author-controls-check"
+   },
+   "output": "url: https://demo.realworld.show/article/br-test--author-controls-check\npage: /article/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['DELETE /api/articles/:p', 'POST /api/articles/:p/comments', 'POST /api/articles/:p/favorite']\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <a>  -> /profile/br-test-11c596\n6: <a> br-test-11c5"
+  },
+  {
+   "turn": 7,
    "tool": "click",
    "input": {
     "index": 7
    },
-   "output": "clicked 'Edit Article'\nurl: https://demo.realworld.show/editor/br-test--author-controls-check\npage: /editor/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['DELETE /api/articles/:p', 'POST /api/articles/:p/comments', 'PUT /api/articles/:p']\nelements:\n0: <a>  -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input> Article Title\n6: <input> What's this ar"
+   "output": "clicked 'Edit Article'\nurl: https://demo.realworld.show/editor/br-test--author-controls-check\npage: /editor/:p\nlogin state: authenticated\nyour test articles: ['br-test--author-controls-check']\nwrites blocked so far: ['DELETE /api/articles/:p', 'POST /api/articles/:p/comments', 'POST /api/articles/:p/favorite', 'PUT /api/articles/:p']\nelements:\n0: <a> Conduit -> /\n1: <a> Home -> /\n2: <a> New Article -> /editor\n3: <a> Settings -> /settings\n4: <a> br-test-11c596 -> /profile/br-test-11c596\n5: <input"
   },
   {
-   "turn": 4,
+   "turn": 8,
    "tool": "finish",
    "input": {
-    "summary": "I created one article, \"br-test--author-controls-check\", and opened its page as the author. Both the \"Edit Article\" link and the \"Delete Article\" button showed, each twice on the page (top and bottom). The Edit link led to /editor/br-test--author-controls-check. The system's blocked-writes list now includes DELETE /api/articles/:p and PUT /api/articles/:p, so those calls were observed, but both were blocked and I never saw them succeed. I did not click Delete or submit the edit myself.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Posting a comment is blocked (POST /api/articles/:p/comments is on the blocked list), so there was no comment of mine to show them on. The article had no comments to start with, and I didn't check other articles."
+    "summary": "I created one article, \"br-test: author controls check\", at /article/br-test--author-controls-check. Its detail page showed the author-only \"Edit Article\" link and \"Delete Article\" button, each in two places on the page. The Edit link opens /editor/br-test--author-controls-check.\n\nThe system reported PUT /api/articles/:p and DELETE /api/articles/:p as blocked writes. I did not click Publish in the edit form or click Delete Article myself. The blocked entries appeared on their own as I loaded the article page and the edit page.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Those only render on a comment the current user wrote. Posting comments is blocked, so I couldn't create one. I didn't check whether the seeded articles already have comments by this test user, but they are other users' content, so the controls shouldn't show there."
    }
   }
  ],
  "recorded_owner_screens": [
+  "/profile/:p|owner",
   "/article/:p|owner",
   "/editor/:p|owner"
  ],
@@ -96,6 +119,7 @@
  "blocked_writes": [
   "DELETE /api/articles/:p",
   "POST /api/articles/:p/comments",
+  "POST /api/articles/:p/favorite",
   "PUT /api/articles/:p"
  ],
  "journey": [
@@ -128,6 +152,18 @@
    "label": "Publish Article",
    "url": "https://demo.realworld.show/editor",
    "css": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > button.btn.btn-lg"
+  },
+  {
+   "action": "goto",
+   "label": "/profile/br-test-11c596",
+   "url": "https://demo.realworld.show/editor",
+   "css": ""
+  },
+  {
+   "action": "goto",
+   "label": "/article/br-test--author-controls-check",
+   "url": "https://demo.realworld.show/profile/br-test-11c596",
+   "css": ""
   },
   {
    "action": "click",

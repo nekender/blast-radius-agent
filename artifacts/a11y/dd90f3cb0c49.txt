@@ -1,0 +1,32 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link " New Article"
+- listitem
+- link " Settings"
+- listitem
+- link "br-test-#c#"
+- img
+- text
+- img
+- heading [level=#]
+- paragraph
+- link
+- list
+- listitem
+- link "My Posts"
+- listitem
+- link "Favorited Posts"
+- text
+- navigation
+- list
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

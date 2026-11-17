@@ -212,8 +212,18 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
         add("flow", fl["id"], fl["name"], 0.7 if fl["observed"] else 0.6,
             [f"its final action calls {', '.join(fl['hit'])}, which the changed code calls"], observed=fl["observed"])
 
+    # Tests that act on at-risk controls: what to re-run.
+    for t in graph.tests_touching(sorted(at_risk_elements)):
+        best = max(t["via"], key=lambda v: impacts[("element", v["element"])].confidence * v["conf"])
+        conf = impacts[("element", best["element"])].confidence * best["conf"]
+        add("test", t["id"], t["label"], conf,
+            [f"acts on '{best['label']}', which this change puts at risk ({best['selector']})"])
+
     coverage_lost = []
-    for q in graph.requirements_touching(sorted(at_risk_elements), endpoints):
+    req_rows = graph.requirements_touching(sorted(at_risk_elements), endpoints)
+    tests_of = graph.tests_for_requirements([q["id"] for q in req_rows])
+    at_risk_tests = {k[1] for k in impacts if k[0] == "test"}
+    for q in req_rows:
         if q["at_risk"]:
             conf = max(i.confidence for k, i in impacts.items() if k[1] in q["at_risk"])
             add("requirement", q["id"], q["statement"], conf, [f"proven by changed UI: {len(q['at_risk'])} element(s)"])
@@ -221,12 +231,14 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
             add("requirement", q["id"], q["statement"], 0.6,
                 [f"expects {', '.join(q['eps'])}, which the changed code calls"
                  + (f"; UI evidence {q['gap']}: {q['gap_reason']}" if q["gap"] else "")], observed=bool(q["cov"]))
-        if q["only"]:
-            coverage_lost.append({"requirement": q["id"], "statement": q["statement"],
-                                  "why": "every element that proves it is changed by this PR"})
-        elif q["gap"] and q["eps"]:
-            coverage_lost.append({"requirement": q["id"], "statement": q["statement"],
-                                  "why": f"no UI coverage to re-check it with ({q['gap']}: {q['gap_reason']})"})
+        tests = tests_of.get(q["id"], [])
+        if not tests:
+            coverage_lost.append({"requirement": q["id"], "statement": q["statement"], "kind": "untested",
+                                  "why": "affected by this PR and no test in the suite checks it"})
+        elif set(tests) <= at_risk_tests:
+            coverage_lost.append({"requirement": q["id"], "statement": q["statement"], "kind": "tests_at_risk",
+                                  "why": f"all {len(tests)} test(s) that check it go through changed UI; until they "
+                                         "are re-run and pass, it has no trusted coverage"})
 
     # Page-level requirements (routes, prose behaviours) on pages the change touches, observed or code-only.
     pages = {i.label.split(" (")[0] for i in impacts.values() if i.kind == "screen"}
@@ -245,7 +257,7 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
                      for i in impacts.values() if i.observed and i.confidence < SETTINGS.link_review]
     needs_review += [{"item": u.get("unit", u["file"]), "why": u["why"], "confidence": 0.0} for u in unmapped]
 
-    order = {"requirement": 0, "flow": 1, "element": 2, "screen": 3, "unmapped_code": 4}
+    order = {"requirement": 0, "flow": 1, "test": 2, "element": 3, "screen": 4, "unmapped_code": 5}
     return BlastRadius(pr=number, title=pr["title"], url=pr["url"], changed=list(changed.values()),
                        impacts=sorted(impacts.values(), key=lambda i: (order[i.kind], -i.confidence, i.label)),
                        coverage_lost=coverage_lost, needs_review=needs_review)

@@ -1,0 +1,30 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link " New Article"
+- listitem
+- link " Settings"
+- listitem
+- link "br-test-#c#"
+- img
+- text
+- list
+- group
+- textbox "Article Title"
+- group
+- textbox
+- group
+- textbox
+- group
+- textbox "Enter tags"
+- button "Publish Article"
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

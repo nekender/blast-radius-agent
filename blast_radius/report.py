@@ -14,7 +14,7 @@ from . import llm
 from .config import SETTINGS
 from .models import BlastRadius
 
-KIND_TITLE = {"requirement": "Requirements affected", "flow": "User flows affected",
+KIND_TITLE = {"requirement": "Requirements affected", "flow": "User flows affected", "test": "Tests to re-run",
               "element": "Screens and controls at risk", "screen": "Pages", "unmapped_code": "Changes we could not see in the app"}
 
 
@@ -31,7 +31,7 @@ def template_report(br: BlastRadius) -> str:
               f"This change touches {len(els)} control(s) across {len({i.label for i in br.impacts if i.kind == 'screen'})} page(s), "
               f"{len(flows)} user flow(s) and {len(reqs)} requirement(s). "
               f"{len(br.needs_review)} item(s) need a person to check.", ""]
-    for kind in ("flow", "requirement", "element", "unmapped_code"):
+    for kind in ("flow", "test", "requirement", "element", "unmapped_code"):
         items = [i for i in br.impacts if i.kind == kind]
         if not items:
             continue
@@ -41,7 +41,7 @@ def template_report(br: BlastRadius) -> str:
             lines.append(f"| {_level(i.confidence)} ({i.confidence:.2f}) | {i.label}{seen} | {'; '.join(i.why)} |")
         lines.append("")
     if br.coverage_lost:
-        lines += ["## Requirements that lose their check", ""]
+        lines += ["## Requirements that lose test coverage", ""]
         lines += [f"- **{c['statement']}**: {c['why']}" for c in br.coverage_lost] + [""]
     if br.needs_review:
         lines += ["## Needs a person", ""]
@@ -86,6 +86,7 @@ SYSTEM = """You write a change-impact note for a QA lead who knows the product b
 You get facts about a pull request: what changed, which flows, pages, controls and requirements it affects,
 each with an id, a confidence and the evidence. Rules:
 - Plain product language: say "the Publish Article button on the editor page", not method or file names.
+- Tests are named by their test name; group tests that act on the same control in one bullet (cite all their ids).
 - Every bullet lists in refs the ids of the facts it is about. Use only ids from the facts.
 - Mention every fact with confidence >= 0.75. Say clearly which items were never seen in the running app; if every
   item was seen, don't write a section about it. Never write a section or bullet that has nothing to report.
@@ -137,7 +138,7 @@ def write(br: BlastRadius, use_cache: bool = True) -> tuple[str, dict]:
     errors: list[str] = []
     for attempt in range(2):
         p = prompt if not errors else f"{prompt}\n\nFix these problems from your last draft: {errors}"
-        w = llm.structured(SYSTEM, p, Written, use_cache=use_cache, max_tokens=3000)
+        w = llm.structured(SYSTEM, p, Written, use_cache=use_cache, max_tokens=8000)
         errors = verify(w, br)
         if not errors:
             return render(w, br), {"writer": "llm", "attempts": attempt + 1, "errors": []}

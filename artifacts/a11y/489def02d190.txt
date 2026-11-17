@@ -1,0 +1,27 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link "Sign in"
+- listitem
+- link "Sign up"
+- heading [level=#]
+- paragraph
+- link "Have an account?"
+- list
+- group
+- textbox "Username"
+- group
+- textbox "Email"
+- group
+- textbox "Password"
+- button "Sign up" [disabled]
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text

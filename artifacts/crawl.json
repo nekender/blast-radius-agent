@@ -9,7 +9,7 @@
         "https://demo.realworld.show/"
       ],
       "title": "Conduit",
-      "structure_hash": "1ea83dea99b2",
+      "structure_hash": "53d465cedfbc",
       "on_load_calls": [
         {
           "method": "GET",
@@ -23,7 +23,10 @@
         }
       ],
       "screenshot": "artifacts/screens/bf0858e78d7b.png",
-      "dom": "artifacts/dom/bf0858e78d7b.html"
+      "dom": "artifacts/dom/bf0858e78d7b.html",
+      "a11y_states": [
+        "53d465cedfbc"
+      ]
     },
     {
       "id": "/login|anon",
@@ -33,10 +36,13 @@
         "https://demo.realworld.show/login"
       ],
       "title": "Conduit",
-      "structure_hash": "d9519de549a9",
+      "structure_hash": "30d261956404",
       "on_load_calls": [],
       "screenshot": "artifacts/screens/cf4df942464e.png",
-      "dom": "artifacts/dom/cf4df942464e.html"
+      "dom": "artifacts/dom/cf4df942464e.html",
+      "a11y_states": [
+        "30d261956404"
+      ]
     },
     {
       "id": "/register|anon",
@@ -46,10 +52,13 @@
         "https://demo.realworld.show/register"
       ],
       "title": "Conduit",
-      "structure_hash": "9cdb22b34753",
+      "structure_hash": "ef88f5cb0278",
       "on_load_calls": [],
       "screenshot": "artifacts/screens/489def02d190.png",
-      "dom": "artifacts/dom/489def02d190.html"
+      "dom": "artifacts/dom/489def02d190.html",
+      "a11y_states": [
+        "ef88f5cb0278"
+      ]
     },
     {
       "id": "/profile/:p|anon",
@@ -60,7 +69,7 @@
         "https://demo.realworld.show/profile/mikewilson"
       ],
       "title": "Conduit",
-      "structure_hash": "7aff0ac95b43",
+      "structure_hash": "2293344f4821",
       "on_load_calls": [
         {
           "method": "GET",
@@ -74,7 +83,11 @@
         }
       ],
       "screenshot": "artifacts/screens/2227bcab53d8.png",
-      "dom": "artifacts/dom/2227bcab53d8.html"
+      "dom": "artifacts/dom/2227bcab53d8.html",
+      "a11y_states": [
+        "2293344f4821",
+        "0ee1cfec2068"
+      ]
     },
     {
       "id": "/article/:p|anon",
@@ -85,7 +98,7 @@
         "https://demo.realworld.show/article/building-scalable-apis-with-node-js"
       ],
       "title": "Conduit",
-      "structure_hash": "54f2720e8c3a",
+      "structure_hash": "f82716a6c080",
       "on_load_calls": [
         {
           "method": "GET",
@@ -99,7 +112,11 @@
         }
       ],
       "screenshot": "artifacts/screens/6ef51f30dbe7.png",
-      "dom": "artifacts/dom/6ef51f30dbe7.html"
+      "dom": "artifacts/dom/6ef51f30dbe7.html",
+      "a11y_states": [
+        "f82716a6c080",
+        "eabca3919f7d"
+      ]
     },
     {
       "id": "/tag/:p|anon",
@@ -110,7 +127,7 @@
         "https://demo.realworld.show/tag/api"
       ],
       "title": "Conduit",
-      "structure_hash": "564ac92f145f",
+      "structure_hash": "8232d99badb4",
       "on_load_calls": [
         {
           "method": "GET",
@@ -124,7 +141,10 @@
         }
       ],
       "screenshot": "artifacts/screens/ba475c80b7cd.png",
-      "dom": "artifacts/dom/ba475c80b7cd.html"
+      "dom": "artifacts/dom/ba475c80b7cd.html",
+      "a11y_states": [
+        "8232d99badb4"
+      ]
     },
     {
       "id": "/profile/:p/favorites|anon",
@@ -135,7 +155,7 @@
         "https://demo.realworld.show/profile/mikewilson/favorites"
       ],
       "title": "Conduit",
-      "structure_hash": "d092076fcd75",
+      "structure_hash": "fb1ef1e45ee2",
       "on_load_calls": [
         {
           "method": "GET",
@@ -149,7 +169,11 @@
         }
       ],
       "screenshot": "artifacts/screens/7636462bae7e.png",
-      "dom": "artifacts/dom/7636462bae7e.html"
+      "dom": "artifacts/dom/7636462bae7e.html",
+      "a11y_states": [
+        "fb1ef1e45ee2",
+        "950acb413104"
+      ]
     },
     {
       "id": "/|authed",
@@ -160,7 +184,7 @@
         "https://demo.realworld.show/?feed=following"
       ],
       "title": "Conduit",
-      "structure_hash": "3b7706d91d58",
+      "structure_hash": "6ca40be78d35",
       "on_load_calls": [
         {
           "method": "GET",
@@ -179,7 +203,11 @@
         }
       ],
       "screenshot": "artifacts/screens/afcc2725e855.png",
-      "dom": "artifacts/dom/afcc2725e855.html"
+      "dom": "artifacts/dom/afcc2725e855.html",
+      "a11y_states": [
+        "6ca40be78d35",
+        "a1c44ed83414"
+      ]
     },
     {
       "id": "/editor|authed",
@@ -189,7 +217,7 @@
         "https://demo.realworld.show/editor"
       ],
       "title": "Conduit",
-      "structure_hash": "11e9e6965665",
+      "structure_hash": "2ea0a87296b6",
       "on_load_calls": [
         {
           "method": "GET",
@@ -198,7 +226,10 @@
         }
       ],
       "screenshot": "artifacts/screens/9d0a6d53a854.png",
-      "dom": "artifacts/dom/9d0a6d53a854.html"
+      "dom": "artifacts/dom/9d0a6d53a854.html",
+      "a11y_states": [
+        "2ea0a87296b6"
+      ]
     },
     {
       "id": "/settings|authed",
@@ -208,7 +239,7 @@
         "https://demo.realworld.show/settings"
       ],
       "title": "Conduit",
-      "structure_hash": "7f3affa69bd2",
+      "structure_hash": "4d36d34b0b8b",
       "on_load_calls": [
         {
           "method": "GET",
@@ -217,7 +248,10 @@
         }
       ],
       "screenshot": "artifacts/screens/24d75eb3ded8.png",
-      "dom": "artifacts/dom/24d75eb3ded8.html"
+      "dom": "artifacts/dom/24d75eb3ded8.html",
+      "a11y_states": [
+        "4d36d34b0b8b"
+      ]
     },
     {
       "id": "/profile/:p|authed",
@@ -228,7 +262,7 @@
         "https://demo.realworld.show/profile/sarahchen"
       ],
       "title": "Conduit",
-      "structure_hash": "fc3038fb2ecd",
+      "structure_hash": "5ccbdb934367",
       "on_load_calls": [
         {
           "method": "GET",
@@ -247,7 +281,11 @@
         }
       ],
       "screenshot": "artifacts/screens/2b733b879196.png",
-      "dom": "artifacts/dom/2b733b879196.html"
+      "dom": "artifacts/dom/2b733b879196.html",
+      "a11y_states": [
+        "5ccbdb934367",
+        "7e2543022173"
+      ]
     },
     {
       "id": "/article/:p|authed",
@@ -258,7 +296,7 @@
         "https://demo.realworld.show/article/building-scalable-apis-with-node-js"
       ],
       "title": "Conduit",
-      "structure_hash": "0f6cfd37ab76",
+      "structure_hash": "b455e9430188",
       "on_load_calls": [
         {
           "method": "GET",
@@ -277,7 +315,11 @@
         }
       ],
       "screenshot": "artifacts/screens/9f2cadbc859e.png",
-      "dom": "artifacts/dom/9f2cadbc859e.html"
+      "dom": "artifacts/dom/9f2cadbc859e.html",
+      "a11y_states": [
+        "b455e9430188",
+        "5994a444ed4d"
+      ]
     },
     {
       "id": "/tag/:p|authed",
@@ -288,7 +330,7 @@
         "https://demo.realworld.show/tag/api"
       ],
       "title": "Conduit",
-      "structure_hash": "cc8e96d12232",
+      "structure_hash": "029354742ffa",
       "on_load_calls": [
         {
           "method": "GET",
@@ -307,7 +349,10 @@
         }
       ],
       "screenshot": "artifacts/screens/abe106a61eec.png",
-      "dom": "artifacts/dom/abe106a61eec.html"
+      "dom": "artifacts/dom/abe106a61eec.html",
+      "a11y_states": [
+        "029354742ffa"
+      ]
     },
     {
       "id": "/profile/:p/favorites|authed",
@@ -318,7 +363,7 @@
         "https://demo.realworld.show/profile/sarahchen/favorites"
       ],
       "title": "Conduit",
-      "structure_hash": "c7ae8c1a92c6",
+      "structure_hash": "5ccbdb934367",
       "on_load_calls": [
         {
           "method": "GET",
@@ -337,7 +382,43 @@
         }
       ],
       "screenshot": "artifacts/screens/dd90f3cb0c49.png",
-      "dom": "artifacts/dom/dd90f3cb0c49.html"
+      "dom": "artifacts/dom/dd90f3cb0c49.html",
+      "a11y_states": [
+        "5ccbdb934367",
+        "ee29189ee815"
+      ]
+    },
+    {
+      "id": "/profile/:p|owner",
+      "template": "/profile/:p",
+      "auth": "owner",
+      "sample_urls": [
+        "https://demo.realworld.show/profile/br-test-11c596"
+      ],
+      "title": "Conduit",
+      "structure_hash": "932f41a71085",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/profiles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/d28298690d36.png",
+      "dom": "artifacts/dom/d28298690d36.html",
+      "a11y_states": [
+        "932f41a71085"
+      ]
     },
     {
       "id": "/article/:p|owner",
@@ -347,7 +428,7 @@
         "https://demo.realworld.show/article/br-test--author-controls-check"
       ],
       "title": "Conduit",
-      "structure_hash": "5e3d8b37032b",
+      "structure_hash": "f49f54b920c4",
       "on_load_calls": [
         {
           "method": "GET",
@@ -366,7 +447,10 @@
         }
       ],
       "screenshot": "artifacts/screens/9f2f2326dd13.png",
-      "dom": "artifacts/dom/9f2f2326dd13.html"
+      "dom": "artifacts/dom/9f2f2326dd13.html",
+      "a11y_states": [
+        "f49f54b920c4"
+      ]
     },
     {
       "id": "/editor/:p|owner",
@@ -376,7 +460,7 @@
         "https://demo.realworld.show/editor/br-test--author-controls-check"
       ],
       "title": "Conduit",
-      "structure_hash": "11e9e6965665",
+      "structure_hash": "2ea0a87296b6",
       "on_load_calls": [
         {
           "method": "GET",
@@ -390,7 +474,10 @@
         }
       ],
       "screenshot": "artifacts/screens/496d3ce12e46.png",
-      "dom": "artifacts/dom/496d3ce12e46.html"
+      "dom": "artifacts/dom/496d3ce12e46.html",
+      "a11y_states": [
+        "2ea0a87296b6"
+      ]
     }
   ],
   "elements": [
@@ -398,7 +485,7 @@
       "id": "el_bd86a80a5e75",
       "screen_id": "/|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -413,11 +500,11 @@
       "triggers": []
     },
     {
-      "id": "el_c65c9995ea4b",
+      "id": "el_2c29854f726a",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -433,7 +520,7 @@
       "id": "el_e011fdb53f17",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -450,7 +537,7 @@
       "id": "el_b5cd94ee6c51",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -467,7 +554,7 @@
       "id": "el_af84a249e891",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -482,11 +569,11 @@
       "triggers": []
     },
     {
-      "id": "el_a60b8dcf94f5",
+      "id": "el_8dba4d10402c",
       "screen_id": "/|anon",
       "tag": "h1",
-      "role": null,
-      "label": "",
+      "role": "heading",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -502,7 +589,7 @@
       "id": "el_0a336e79b71e",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Angular frontend",
       "name_attr": null,
       "placeholder": null,
@@ -517,7 +604,7 @@
       "id": "el_b226d54debf0",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Global Feed",
       "name_attr": null,
       "placeholder": null,
@@ -535,7 +622,7 @@
       "id": "el_672be6471bd0",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. ''",
       "name_attr": null,
       "placeholder": null,
@@ -550,7 +637,7 @@
       "id": "el_c6f7a488d017",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. 'sarahchen'",
       "name_attr": null,
       "placeholder": null,
@@ -567,7 +654,7 @@
       "id": "el_20de6d8f5927",
       "screen_id": "/|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "4 items, e.g. '1'",
       "name_attr": null,
       "placeholder": null,
@@ -586,7 +673,7 @@
       "id": "el_cbcfa0541ebf",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
       "name_attr": null,
       "placeholder": null,
@@ -603,7 +690,7 @@
       "id": "el_681260f358ca",
       "screen_id": "/|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
       "name_attr": null,
       "placeholder": null,
@@ -618,7 +705,7 @@
       "id": "el_612cf866aee0",
       "screen_id": "/|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -635,7 +722,7 @@
       "id": "el_5451cb290e1e",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "15 items, e.g. 'ai'",
       "name_attr": null,
       "placeholder": null,
@@ -653,7 +740,7 @@
       "id": "el_c06311b2e7f1",
       "screen_id": "/|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -668,7 +755,7 @@
       "id": "el_1f71bd1fe43d",
       "screen_id": "/login|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -683,11 +770,11 @@
       "triggers": []
     },
     {
-      "id": "el_35266b0db859",
+      "id": "el_b46d9a90ac19",
       "screen_id": "/login|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -703,7 +790,7 @@
       "id": "el_1d508157d1c8",
       "screen_id": "/login|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -720,7 +807,7 @@
       "id": "el_b53dcc5b4a3f",
       "screen_id": "/login|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -738,7 +825,7 @@
       "id": "el_7e96df2c22fc",
       "screen_id": "/login|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -756,7 +843,7 @@
       "id": "el_4fa89edf0723",
       "screen_id": "/login|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -773,7 +860,7 @@
       "id": "el_34e17ec8099b",
       "screen_id": "/login|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Need an account?",
       "name_attr": null,
       "placeholder": null,
@@ -788,7 +875,7 @@
       "id": "el_8250af3f35be",
       "screen_id": "/login|anon",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Email",
       "name_attr": "email",
       "placeholder": "Email",
@@ -806,7 +893,7 @@
       "id": "el_3b73ea91b49c",
       "screen_id": "/login|anon",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Password",
       "name_attr": "password",
       "placeholder": "Password",
@@ -824,7 +911,7 @@
       "id": "el_d415bb435393",
       "screen_id": "/login|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -850,7 +937,7 @@
       "id": "el_c60a9dc273e4",
       "screen_id": "/login|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -865,7 +952,7 @@
       "id": "el_374bb97d678a",
       "screen_id": "/register|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -880,11 +967,11 @@
       "triggers": []
     },
     {
-      "id": "el_f4688566e4ca",
+      "id": "el_681684f8680d",
       "screen_id": "/register|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -900,7 +987,7 @@
       "id": "el_f4334dd3c81a",
       "screen_id": "/register|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -917,7 +1004,7 @@
       "id": "el_ad86568233f5",
       "screen_id": "/register|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -934,7 +1021,7 @@
       "id": "el_3d12203c1fa0",
       "screen_id": "/register|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -953,7 +1040,7 @@
       "id": "el_4de0ec205bac",
       "screen_id": "/register|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -970,7 +1057,7 @@
       "id": "el_e3941f56c571",
       "screen_id": "/register|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Have an account?",
       "name_attr": null,
       "placeholder": null,
@@ -985,7 +1072,7 @@
       "id": "el_f496a94929ca",
       "screen_id": "/register|anon",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Username",
       "name_attr": "username",
       "placeholder": "Username",
@@ -1003,7 +1090,7 @@
       "id": "el_dcf51989a886",
       "screen_id": "/register|anon",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Email",
       "name_attr": "email",
       "placeholder": "Email",
@@ -1021,7 +1108,7 @@
       "id": "el_715b74747dd5",
       "screen_id": "/register|anon",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Password",
       "name_attr": "password",
       "placeholder": "Password",
@@ -1039,7 +1126,7 @@
       "id": "el_6cd8d0a56640",
       "screen_id": "/register|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -1065,7 +1152,7 @@
       "id": "el_4c3dad74f9ca",
       "screen_id": "/register|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -1080,7 +1167,7 @@
       "id": "el_dc67bc3f7481",
       "screen_id": "/profile/:p|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -1095,11 +1182,11 @@
       "triggers": []
     },
     {
-      "id": "el_d8387ea839d9",
+      "id": "el_ee1dbd4098cf",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -1115,7 +1202,7 @@
       "id": "el_cec10b65831c",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -1132,7 +1219,7 @@
       "id": "el_afddd678e88e",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -1149,7 +1236,7 @@
       "id": "el_1ca14dff4f8c",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -1167,7 +1254,7 @@
       "id": "el_ab80cc79a7a2",
       "screen_id": "/profile/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -1187,7 +1274,7 @@
       "id": "el_f65b14d359db",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "My Posts",
       "name_attr": null,
       "placeholder": null,
@@ -1205,7 +1292,7 @@
       "id": "el_cf02682eb6ec",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Favorited Posts",
       "name_attr": null,
       "placeholder": null,
@@ -1222,7 +1309,7 @@
       "id": "el_3970703ffd92",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -1237,7 +1324,7 @@
       "id": "el_0263cb6a2008",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -1254,7 +1341,7 @@
       "id": "el_5e5a212a56c0",
       "screen_id": "/profile/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -1271,7 +1358,7 @@
       "id": "el_4a2fd9e27aa4",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
       "name_attr": null,
       "placeholder": null,
@@ -1288,7 +1375,7 @@
       "id": "el_fe15a3a84a94",
       "screen_id": "/profile/:p|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Introduction to Machine Learning for Developers",
       "name_attr": null,
       "placeholder": null,
@@ -1303,7 +1390,7 @@
       "id": "el_fda877200541",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -1318,7 +1405,7 @@
       "id": "el_503571f1b821",
       "screen_id": "/article/:p|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -1333,11 +1420,11 @@
       "triggers": []
     },
     {
-      "id": "el_729dab919e95",
+      "id": "el_488481fa963b",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -1353,7 +1440,7 @@
       "id": "el_57fd1d3dbcec",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -1370,7 +1457,7 @@
       "id": "el_3d0ff24ebf99",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -1387,7 +1474,7 @@
       "id": "el_7c024e05b31c",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -1405,7 +1492,7 @@
       "id": "el_32d73cdc0cd5",
       "screen_id": "/article/:p|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Introduction to Machine Learning for Developers",
       "name_attr": null,
       "placeholder": null,
@@ -1420,7 +1507,7 @@
       "id": "el_8d6a99fc8065",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -1435,7 +1522,7 @@
       "id": "el_3675e1e075ec",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -1452,7 +1539,7 @@
       "id": "el_c41ac3c1b1f0",
       "screen_id": "/article/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -1472,7 +1559,7 @@
       "id": "el_1a1570744ccb",
       "screen_id": "/article/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Favorite Article (1)",
       "name_attr": null,
       "placeholder": null,
@@ -1491,7 +1578,7 @@
       "id": "el_33873dcad7cf",
       "screen_id": "/article/:p|anon",
       "tag": "h2",
-      "role": null,
+      "role": "heading",
       "label": "3 items, e.g. 'Understanding the Basics'",
       "name_attr": null,
       "placeholder": null,
@@ -1506,7 +1593,7 @@
       "id": "el_e164b6e2063d",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sign up",
       "name_attr": null,
       "placeholder": null,
@@ -1521,7 +1608,7 @@
       "id": "el_4f5d18d8a39a",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. ''",
       "name_attr": null,
       "placeholder": null,
@@ -1538,7 +1625,7 @@
       "id": "el_861c297a37b2",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -1553,7 +1640,7 @@
       "id": "el_d50390d2a1f9",
       "screen_id": "/profile/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -1573,7 +1660,7 @@
       "id": "el_078ac619851b",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -1590,7 +1677,7 @@
       "id": "el_ef3f09fab769",
       "screen_id": "/profile/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Building Scalable APIs with Node.js Architectural patterns and best practices fo",
       "name_attr": null,
       "placeholder": null,
@@ -1607,7 +1694,7 @@
       "id": "el_6dbc9cd7f699",
       "screen_id": "/profile/:p|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Building Scalable APIs with Node.js",
       "name_attr": null,
       "placeholder": null,
@@ -1622,7 +1709,7 @@
       "id": "el_df4ee64b7232",
       "screen_id": "/article/:p|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Building Scalable APIs with Node.js",
       "name_attr": null,
       "placeholder": null,
@@ -1637,7 +1724,7 @@
       "id": "el_d258e8045d3e",
       "screen_id": "/article/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -1654,7 +1741,7 @@
       "id": "el_9b687797ee97",
       "screen_id": "/article/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -1674,7 +1761,7 @@
       "id": "el_3c70f4647024",
       "screen_id": "/tag/:p|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -1689,11 +1776,11 @@
       "triggers": []
     },
     {
-      "id": "el_132f96a91c69",
+      "id": "el_8ca0ebf05dcb",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -1709,7 +1796,7 @@
       "id": "el_246afe29190b",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -1726,7 +1813,7 @@
       "id": "el_6a7a36b2ced0",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -1743,7 +1830,7 @@
       "id": "el_0915d6ff7fcc",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -1758,11 +1845,11 @@
       "triggers": []
     },
     {
-      "id": "el_248dc057f729",
+      "id": "el_f50e5f2c615a",
       "screen_id": "/tag/:p|anon",
       "tag": "h1",
-      "role": null,
-      "label": "",
+      "role": "heading",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -1778,7 +1865,7 @@
       "id": "el_f1f342963de7",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Angular frontend",
       "name_attr": null,
       "placeholder": null,
@@ -1793,7 +1880,7 @@
       "id": "el_470f28772fa0",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Global Feed",
       "name_attr": null,
       "placeholder": null,
@@ -1810,7 +1897,7 @@
       "id": "el_f67e53668f3a",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "generic",
       "label": "ai",
       "name_attr": null,
       "placeholder": null,
@@ -1828,7 +1915,7 @@
       "id": "el_c5a6711e1fa3",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -1843,7 +1930,7 @@
       "id": "el_0c000893253e",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -1860,7 +1947,7 @@
       "id": "el_1e39545348db",
       "screen_id": "/tag/:p|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -1877,7 +1964,7 @@
       "id": "el_606574821224",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
       "name_attr": null,
       "placeholder": null,
@@ -1894,7 +1981,7 @@
       "id": "el_94a078d9b0d7",
       "screen_id": "/tag/:p|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Introduction to Machine Learning for Developers",
       "name_attr": null,
       "placeholder": null,
@@ -1909,7 +1996,7 @@
       "id": "el_8e0977b48646",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "15 items, e.g. 'ai'",
       "name_attr": null,
       "placeholder": null,
@@ -1927,7 +2014,7 @@
       "id": "el_1d5eb3a89787",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -1942,7 +2029,7 @@
       "id": "el_e2e934681415",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "generic",
       "label": "api",
       "name_attr": null,
       "placeholder": null,
@@ -1960,7 +2047,7 @@
       "id": "el_392347c814de",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -1977,7 +2064,7 @@
       "id": "el_13765deb7d8a",
       "screen_id": "/tag/:p|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Building Scalable APIs with Node.js Architectural patterns and best practices fo",
       "name_attr": null,
       "placeholder": null,
@@ -1994,7 +2081,7 @@
       "id": "el_d52a48f6d8f8",
       "screen_id": "/tag/:p|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Building Scalable APIs with Node.js",
       "name_attr": null,
       "placeholder": null,
@@ -2009,7 +2096,7 @@
       "id": "el_51c37331c40e",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -2024,11 +2111,11 @@
       "triggers": []
     },
     {
-      "id": "el_88036b6f8413",
+      "id": "el_4403bf99cdcb",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2044,7 +2131,7 @@
       "id": "el_5e1cff2250c6",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -2061,7 +2148,7 @@
       "id": "el_c842662e5bfc",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign in",
       "name_attr": null,
       "placeholder": null,
@@ -2078,7 +2165,7 @@
       "id": "el_ab92627dfd42",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Sign up",
       "name_attr": null,
       "placeholder": null,
@@ -2096,7 +2183,7 @@
       "id": "el_0644ff2c8eb9",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -2116,7 +2203,7 @@
       "id": "el_561ee1e2b107",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "My Posts",
       "name_attr": null,
       "placeholder": null,
@@ -2133,7 +2220,7 @@
       "id": "el_3d2a8b43934f",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Favorited Posts",
       "name_attr": null,
       "placeholder": null,
@@ -2151,7 +2238,7 @@
       "id": "el_8fb5864cfcf2",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -2166,7 +2253,7 @@
       "id": "el_582ed7e206f4",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "2 items, e.g. 'janesmith'",
       "name_attr": null,
       "placeholder": null,
@@ -2183,7 +2270,7 @@
       "id": "el_16783371be3f",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "2",
       "name_attr": null,
       "placeholder": null,
@@ -2202,7 +2289,7 @@
       "id": "el_00239ad2be5f",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "2 items, e.g. 'React Hooks: Best Practices and Common P'",
       "name_attr": null,
       "placeholder": null,
@@ -2219,7 +2306,7 @@
       "id": "el_2cee1b139803",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "React Hooks: Best Practices and Common Pitfalls",
       "name_attr": null,
       "placeholder": null,
@@ -2234,7 +2321,7 @@
       "id": "el_9c4a46a9bc0c",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -2251,7 +2338,7 @@
       "id": "el_cec0878bc0f6",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -2266,7 +2353,7 @@
       "id": "el_ad49cbc1d38f",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -2286,7 +2373,7 @@
       "id": "el_83ba841c5bab",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "johndoe",
       "name_attr": null,
       "placeholder": null,
@@ -2303,7 +2390,7 @@
       "id": "el_c66feae7dc3f",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "How to Learn JavaScript Efficiently A comprehensive guide to mastering JavaScrip",
       "name_attr": null,
       "placeholder": null,
@@ -2320,7 +2407,7 @@
       "id": "el_d2ddd1c1a25f",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "How to Learn JavaScript Efficiently",
       "name_attr": null,
       "placeholder": null,
@@ -2335,7 +2422,7 @@
       "id": "el_4c7caa6c011b",
       "screen_id": "/|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -2350,11 +2437,11 @@
       "triggers": []
     },
     {
-      "id": "el_b2e336ac0ea8",
+      "id": "el_c4f9209776c6",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2370,7 +2457,7 @@
       "id": "el_25c08f35cf2b",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -2388,7 +2475,7 @@
       "id": "el_587d884e4eb6",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -2405,7 +2492,7 @@
       "id": "el_d551e930806b",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -2422,7 +2509,7 @@
       "id": "el_050761e95fe8",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -2439,7 +2526,7 @@
       "id": "el_465be0127f05",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Your Feed",
       "name_attr": null,
       "placeholder": null,
@@ -2456,7 +2543,7 @@
       "id": "el_17a1842d5b11",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Global Feed",
       "name_attr": null,
       "placeholder": null,
@@ -2474,7 +2561,7 @@
       "id": "el_1338d656820a",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. ''",
       "name_attr": null,
       "placeholder": null,
@@ -2489,7 +2576,7 @@
       "id": "el_c686285d7102",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. 'sarahchen'",
       "name_attr": null,
       "placeholder": null,
@@ -2506,7 +2593,7 @@
       "id": "el_11f7987bd7c2",
       "screen_id": "/|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "4 items, e.g. '1'",
       "name_attr": null,
       "placeholder": null,
@@ -2531,7 +2618,7 @@
       "id": "el_415559798453",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
       "name_attr": null,
       "placeholder": null,
@@ -2548,7 +2635,7 @@
       "id": "el_f2c8fbe5d7b5",
       "screen_id": "/|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
       "name_attr": null,
       "placeholder": null,
@@ -2563,7 +2650,7 @@
       "id": "el_daebada0961f",
       "screen_id": "/|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -2580,7 +2667,7 @@
       "id": "el_9fdcef504ec6",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "15 items, e.g. 'ai'",
       "name_attr": null,
       "placeholder": null,
@@ -2598,7 +2685,7 @@
       "id": "el_e21a0667890c",
       "screen_id": "/|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -2613,7 +2700,7 @@
       "id": "el_8dc89fe19a18",
       "screen_id": "/editor|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -2628,11 +2715,11 @@
       "triggers": []
     },
     {
-      "id": "el_6e078d143155",
+      "id": "el_4ac1f5526e5e",
       "screen_id": "/editor|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2648,7 +2735,7 @@
       "id": "el_e8fb5bd930c6",
       "screen_id": "/editor|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -2665,7 +2752,7 @@
       "id": "el_940de4716d33",
       "screen_id": "/editor|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -2683,7 +2770,7 @@
       "id": "el_ebf9f16cf067",
       "screen_id": "/editor|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -2700,7 +2787,7 @@
       "id": "el_5268f2d9e42f",
       "screen_id": "/editor|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -2717,7 +2804,7 @@
       "id": "el_eae4e55fa8a7",
       "screen_id": "/editor|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Article Title",
       "name_attr": "title",
       "placeholder": "Article Title",
@@ -2735,7 +2822,7 @@
       "id": "el_f3bf44beec50",
       "screen_id": "/editor|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "What's this article about?",
       "name_attr": "description",
       "placeholder": "What's this article about?",
@@ -2752,7 +2839,7 @@
       "id": "el_4b49dcb882be",
       "screen_id": "/editor|authed",
       "tag": "textarea",
-      "role": null,
+      "role": "textbox",
       "label": "Write your article (in markdown)",
       "name_attr": "body",
       "placeholder": "Write your article (in markdown)",
@@ -2769,7 +2856,7 @@
       "id": "el_1057898a8492",
       "screen_id": "/editor|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Enter tags",
       "name_attr": null,
       "placeholder": "Enter tags",
@@ -2786,7 +2873,7 @@
       "id": "el_056643d01480",
       "screen_id": "/editor|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Publish Article",
       "name_attr": null,
       "placeholder": null,
@@ -2812,7 +2899,7 @@
       "id": "el_f2dfb5169de6",
       "screen_id": "/editor|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -2827,7 +2914,7 @@
       "id": "el_587254ccdd9a",
       "screen_id": "/settings|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -2842,11 +2929,11 @@
       "triggers": []
     },
     {
-      "id": "el_acaf1c5332f0",
+      "id": "el_7266b79ca8bf",
       "screen_id": "/settings|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2862,7 +2949,7 @@
       "id": "el_e3f44371c968",
       "screen_id": "/settings|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -2879,7 +2966,7 @@
       "id": "el_0ddb9b552e6d",
       "screen_id": "/settings|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -2896,7 +2983,7 @@
       "id": "el_996c1c66fbae",
       "screen_id": "/settings|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -2914,7 +3001,7 @@
       "id": "el_d47cef0a4844",
       "screen_id": "/settings|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -2931,7 +3018,7 @@
       "id": "el_a81d01e027c6",
       "screen_id": "/settings|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Your Settings",
       "name_attr": null,
       "placeholder": null,
@@ -2948,7 +3035,7 @@
       "id": "el_eb615e678d9c",
       "screen_id": "/settings|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "URL of profile picture",
       "name_attr": "image",
       "placeholder": "URL of profile picture",
@@ -2965,7 +3052,7 @@
       "id": "el_fd908ea90215",
       "screen_id": "/settings|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Username",
       "name_attr": "username",
       "placeholder": "Username",
@@ -2983,7 +3070,7 @@
       "id": "el_a0f98101cb5f",
       "screen_id": "/settings|authed",
       "tag": "textarea",
-      "role": null,
+      "role": "textbox",
       "label": "Short bio about you",
       "name_attr": "bio",
       "placeholder": "Short bio about you",
@@ -3001,7 +3088,7 @@
       "id": "el_5523d1de819b",
       "screen_id": "/settings|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Email",
       "name_attr": "email",
       "placeholder": "Email",
@@ -3019,7 +3106,7 @@
       "id": "el_e069478759f6",
       "screen_id": "/settings|authed",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "New Password",
       "name_attr": "password",
       "placeholder": "New Password",
@@ -3037,7 +3124,7 @@
       "id": "el_8d88c0ad93f1",
       "screen_id": "/settings|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Update Settings",
       "name_attr": null,
       "placeholder": null,
@@ -3063,7 +3150,7 @@
       "id": "el_9a6ef2375678",
       "screen_id": "/settings|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Or click here to logout.",
       "name_attr": null,
       "placeholder": null,
@@ -3075,24 +3162,13 @@
       ],
       "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > button.btn.btn-outline-danger",
       "repeated": false,
-      "triggers": [
-        {
-          "method": "GET",
-          "path": "/api/articles",
-          "blocked": false
-        },
-        {
-          "method": "GET",
-          "path": "/api/tags",
-          "blocked": false
-        }
-      ]
+      "triggers": []
     },
     {
       "id": "el_91903cb57ed6",
       "screen_id": "/settings|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -3107,7 +3183,7 @@
       "id": "el_eb9d0edeca4c",
       "screen_id": "/profile/:p|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -3122,11 +3198,11 @@
       "triggers": []
     },
     {
-      "id": "el_895ab71cfbcf",
+      "id": "el_86d7ba2fb61d",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3142,7 +3218,7 @@
       "id": "el_64944d40009c",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -3159,7 +3235,7 @@
       "id": "el_1e8eacc86598",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -3176,7 +3252,7 @@
       "id": "el_17ce48741a16",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -3193,7 +3269,7 @@
       "id": "el_3c9a46522faf",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -3211,7 +3287,7 @@
       "id": "el_2f4e31694d1e",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Edit Profile Settings",
       "name_attr": null,
       "placeholder": null,
@@ -3231,7 +3307,7 @@
       "id": "el_060fc9eef1a2",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "My Posts",
       "name_attr": null,
       "placeholder": null,
@@ -3249,7 +3325,7 @@
       "id": "el_e9e7b266ecc6",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Favorited Posts",
       "name_attr": null,
       "placeholder": null,
@@ -3266,7 +3342,7 @@
       "id": "el_41a9759c3318",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -3281,7 +3357,7 @@
       "id": "el_7b1e302c71be",
       "screen_id": "/profile/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -3301,7 +3377,7 @@
       "id": "el_da11b1ddadf0",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -3316,7 +3392,7 @@
       "id": "el_4506d7de980e",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -3333,7 +3409,7 @@
       "id": "el_9685cd760fda",
       "screen_id": "/profile/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -3352,7 +3428,7 @@
       "id": "el_3ea47feca757",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
       "name_attr": null,
       "placeholder": null,
@@ -3369,7 +3445,7 @@
       "id": "el_951817e44d8c",
       "screen_id": "/profile/:p|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Introduction to Machine Learning for Developers",
       "name_attr": null,
       "placeholder": null,
@@ -3384,7 +3460,7 @@
       "id": "el_c215259db510",
       "screen_id": "/article/:p|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -3399,11 +3475,11 @@
       "triggers": []
     },
     {
-      "id": "el_c3f9bd237c0f",
+      "id": "el_c67dc32b853c",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3419,7 +3495,7 @@
       "id": "el_22b314ac4d0e",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -3436,7 +3512,7 @@
       "id": "el_b1e300f69967",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -3453,7 +3529,7 @@
       "id": "el_081e6cd4a92c",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -3470,7 +3546,7 @@
       "id": "el_58dd0ad2ec9d",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -3487,7 +3563,7 @@
       "id": "el_322e816d6c72",
       "screen_id": "/article/:p|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Introduction to Machine Learning for Developers",
       "name_attr": null,
       "placeholder": null,
@@ -3502,7 +3578,7 @@
       "id": "el_f301248c7c6f",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -3517,7 +3593,7 @@
       "id": "el_d506da1dd69c",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -3534,7 +3610,7 @@
       "id": "el_b560b77b7f88",
       "screen_id": "/article/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -3560,7 +3636,7 @@
       "id": "el_b07a9f77d06c",
       "screen_id": "/article/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Favorite Article (1)",
       "name_attr": null,
       "placeholder": null,
@@ -3585,7 +3661,7 @@
       "id": "el_ba6161a63cfb",
       "screen_id": "/article/:p|authed",
       "tag": "h2",
-      "role": null,
+      "role": "heading",
       "label": "3 items, e.g. 'Understanding the Basics'",
       "name_attr": null,
       "placeholder": null,
@@ -3600,7 +3676,7 @@
       "id": "el_7f49f4cd56bb",
       "screen_id": "/article/:p|authed",
       "tag": "textarea",
-      "role": null,
+      "role": "textbox",
       "label": "Write a comment...",
       "name_attr": null,
       "placeholder": "Write a comment...",
@@ -3617,7 +3693,7 @@
       "id": "el_6ba838f0fdb4",
       "screen_id": "/article/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Post Comment",
       "name_attr": null,
       "placeholder": null,
@@ -3642,7 +3718,7 @@
       "id": "el_26906f65e3e4",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "4 items, e.g. ''",
       "name_attr": null,
       "placeholder": null,
@@ -3659,7 +3735,7 @@
       "id": "el_96ddab48da62",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -3674,7 +3750,7 @@
       "id": "el_b6fc585edab6",
       "screen_id": "/article/:p|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Building Scalable APIs with Node.js",
       "name_attr": null,
       "placeholder": null,
@@ -3689,7 +3765,7 @@
       "id": "el_130ac4eda2b6",
       "screen_id": "/article/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -3706,7 +3782,7 @@
       "id": "el_80d6328a2be9",
       "screen_id": "/article/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -3726,7 +3802,7 @@
       "id": "el_cd4c8f02b6d6",
       "screen_id": "/tag/:p|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -3741,11 +3817,11 @@
       "triggers": []
     },
     {
-      "id": "el_6384ac4560c6",
+      "id": "el_61de0d2130ad",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3761,7 +3837,7 @@
       "id": "el_31a40f2a73e3",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -3778,7 +3854,7 @@
       "id": "el_b7ef5dec1dd3",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -3795,7 +3871,7 @@
       "id": "el_c70088a057b1",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -3812,7 +3888,7 @@
       "id": "el_cdc67af9bced",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -3829,7 +3905,7 @@
       "id": "el_283996f698ff",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Your Feed",
       "name_attr": null,
       "placeholder": null,
@@ -3846,7 +3922,7 @@
       "id": "el_8907f2f9fe8b",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "generic",
       "label": "ai",
       "name_attr": null,
       "placeholder": null,
@@ -3864,7 +3940,7 @@
       "id": "el_8440e72bce63",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -3879,7 +3955,7 @@
       "id": "el_cf555fea6b6c",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -3896,7 +3972,7 @@
       "id": "el_2fb1a8398925",
       "screen_id": "/tag/:p|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -3913,7 +3989,7 @@
       "id": "el_da4fed5cb611",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
       "name_attr": null,
       "placeholder": null,
@@ -3930,7 +4006,7 @@
       "id": "el_b03152ddfd2b",
       "screen_id": "/tag/:p|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Introduction to Machine Learning for Developers",
       "name_attr": null,
       "placeholder": null,
@@ -3945,7 +4021,7 @@
       "id": "el_2df08830f015",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "15 items, e.g. 'ai'",
       "name_attr": null,
       "placeholder": null,
@@ -3963,7 +4039,7 @@
       "id": "el_8a4e75bf578d",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -3978,7 +4054,7 @@
       "id": "el_f66431bc3a85",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "generic",
       "label": "api",
       "name_attr": null,
       "placeholder": null,
@@ -3996,7 +4072,7 @@
       "id": "el_4ea885e36b9e",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "mikewilson",
       "name_attr": null,
       "placeholder": null,
@@ -4013,7 +4089,7 @@
       "id": "el_a4db6e743cf6",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Building Scalable APIs with Node.js Architectural patterns and best practices fo",
       "name_attr": null,
       "placeholder": null,
@@ -4030,7 +4106,7 @@
       "id": "el_d20fdaaccc7a",
       "screen_id": "/tag/:p|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "Building Scalable APIs with Node.js",
       "name_attr": null,
       "placeholder": null,
@@ -4045,7 +4121,7 @@
       "id": "el_8d4ac4d557d3",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -4060,11 +4136,11 @@
       "triggers": []
     },
     {
-      "id": "el_4013a9680fee",
+      "id": "el_c4985f35c4ae",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -4080,7 +4156,7 @@
       "id": "el_d0850825bd17",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -4097,7 +4173,7 @@
       "id": "el_9a3db0787b73",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -4114,7 +4190,7 @@
       "id": "el_57a659e7c525",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -4131,7 +4207,7 @@
       "id": "el_c4bcfd8415b8",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -4149,7 +4225,7 @@
       "id": "el_b501606c4fdb",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Edit Profile Settings",
       "name_attr": null,
       "placeholder": null,
@@ -4169,7 +4245,7 @@
       "id": "el_24fe17615d66",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "My Posts",
       "name_attr": null,
       "placeholder": null,
@@ -4186,7 +4262,7 @@
       "id": "el_ac53c1401c9b",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Favorited Posts",
       "name_attr": null,
       "placeholder": null,
@@ -4204,7 +4280,7 @@
       "id": "el_42cb0cebc817",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -4219,7 +4295,7 @@
       "id": "el_8390e0de257c",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Follow sarahchen",
       "name_attr": null,
       "placeholder": null,
@@ -4239,7 +4315,7 @@
       "id": "el_b26541ace3a9",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -4254,7 +4330,7 @@
       "id": "el_d840cbbf66a1",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "2 items, e.g. 'janesmith'",
       "name_attr": null,
       "placeholder": null,
@@ -4271,7 +4347,7 @@
       "id": "el_eeb01ab74c3a",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "2",
       "name_attr": null,
       "placeholder": null,
@@ -4290,7 +4366,7 @@
       "id": "el_e12da09dff63",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "2 items, e.g. 'React Hooks: Best Practices and Common P'",
       "name_attr": null,
       "placeholder": null,
@@ -4307,7 +4383,7 @@
       "id": "el_2efd7c404f21",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "React Hooks: Best Practices and Common Pitfalls",
       "name_attr": null,
       "placeholder": null,
@@ -4322,7 +4398,7 @@
       "id": "el_ab9deecffd84",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "1",
       "name_attr": null,
       "placeholder": null,
@@ -4336,10 +4412,10 @@
       "triggers": []
     },
     {
-      "id": "el_d9acf2acd91a",
-      "screen_id": "/article/:p|owner",
+      "id": "el_ccf963e30b57",
+      "screen_id": "/profile/:p|owner",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -4354,11 +4430,274 @@
       "triggers": []
     },
     {
-      "id": "el_d33061956451",
+      "id": "el_f35976e7128e",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "Conduit",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d072ac9b1415",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_dffae6d20c31",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b04515665ffa",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_a794c5c39ce3",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "br-test-11c596",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_156955a28dd7",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "Edit Profile Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-secondary",
+        "action-btn"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > a.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_454ebb3716ea",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "My Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4f31bcfbe31e",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "Favorited Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p/favorites",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b0ac2d1f76bc",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0793cb88e7d7",
+      "screen_id": "/profile/:p|owner",
+      "tag": "button",
+      "role": "button",
+      "label": "0",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > app-favorite-button.pull-xs-right > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/articles/:p/favorite",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_c5dadea9c1bb",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "br-test: author controls check Automated test Read more...",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5b58852cff11",
+      "screen_id": "/profile/:p|owner",
+      "tag": "h1",
+      "role": "heading",
+      "label": "br-test: author controls check",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_032eb2005684",
+      "screen_id": "/profile/:p|owner",
+      "tag": "button",
+      "role": "button",
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5bb396e95a8e",
+      "screen_id": "/profile/:p|owner",
+      "tag": "a",
+      "role": "link",
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d9acf2acd91a",
+      "screen_id": "/article/:p|owner",
+      "tag": "nav",
+      "role": "navigation",
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_2d1eb631c3e0",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -4374,7 +4713,7 @@
       "id": "el_575fc7c52364",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -4391,7 +4730,7 @@
       "id": "el_0484c6c68336",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -4408,7 +4747,7 @@
       "id": "el_e51181c55ef1",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -4425,7 +4764,7 @@
       "id": "el_6b92479c477c",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -4442,7 +4781,7 @@
       "id": "el_6d0e2bfef95e",
       "screen_id": "/article/:p|owner",
       "tag": "h1",
-      "role": null,
+      "role": "heading",
       "label": "br-test: author controls check",
       "name_attr": null,
       "placeholder": null,
@@ -4457,7 +4796,7 @@
       "id": "el_71175ad54716",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -4472,7 +4811,7 @@
       "id": "el_ef3d586ff807",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Edit Article",
       "name_attr": null,
       "placeholder": null,
@@ -4491,7 +4830,7 @@
       "id": "el_437499e639b6",
       "screen_id": "/article/:p|owner",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Delete Article",
       "name_attr": null,
       "placeholder": null,
@@ -4516,7 +4855,7 @@
       "id": "el_bdbafbad864f",
       "screen_id": "/article/:p|owner",
       "tag": "textarea",
-      "role": null,
+      "role": "textbox",
       "label": "Write a comment...",
       "name_attr": null,
       "placeholder": "Write a comment...",
@@ -4533,7 +4872,7 @@
       "id": "el_59787cd73034",
       "screen_id": "/article/:p|owner",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Post Comment",
       "name_attr": null,
       "placeholder": null,
@@ -4558,7 +4897,7 @@
       "id": "el_95ffcf68f3eb",
       "screen_id": "/article/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -4573,7 +4912,7 @@
       "id": "el_f6ea7c5f38fc",
       "screen_id": "/editor/:p|owner",
       "tag": "nav",
-      "role": null,
+      "role": "navigation",
       "label": "",
       "name_attr": null,
       "placeholder": null,
@@ -4588,11 +4927,11 @@
       "triggers": []
     },
     {
-      "id": "el_1bbf478e762e",
+      "id": "el_00cdd41a1800",
       "screen_id": "/editor/:p|owner",
       "tag": "a",
-      "role": null,
-      "label": "",
+      "role": "link",
+      "label": "Conduit",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -4608,7 +4947,7 @@
       "id": "el_c69b7e6213c3",
       "screen_id": "/editor/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Home",
       "name_attr": null,
       "placeholder": null,
@@ -4625,7 +4964,7 @@
       "id": "el_fb8caea0dcb7",
       "screen_id": "/editor/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "New Article",
       "name_attr": null,
       "placeholder": null,
@@ -4643,7 +4982,7 @@
       "id": "el_d2c003fec35e",
       "screen_id": "/editor/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "Settings",
       "name_attr": null,
       "placeholder": null,
@@ -4660,7 +4999,7 @@
       "id": "el_37b34e1a0b87",
       "screen_id": "/editor/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
@@ -4677,7 +5016,7 @@
       "id": "el_fc37ba7b4b70",
       "screen_id": "/editor/:p|owner",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Article Title",
       "name_attr": "title",
       "placeholder": "Article Title",
@@ -4695,7 +5034,7 @@
       "id": "el_b9c375f43aa5",
       "screen_id": "/editor/:p|owner",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "What's this article about?",
       "name_attr": "description",
       "placeholder": "What's this article about?",
@@ -4712,7 +5051,7 @@
       "id": "el_77695bcb047e",
       "screen_id": "/editor/:p|owner",
       "tag": "textarea",
-      "role": null,
+      "role": "textbox",
       "label": "Write your article (in markdown)",
       "name_attr": "body",
       "placeholder": "Write your article (in markdown)",
@@ -4729,7 +5068,7 @@
       "id": "el_47be39b5fdee",
       "screen_id": "/editor/:p|owner",
       "tag": "input",
-      "role": null,
+      "role": "textbox",
       "label": "Enter tags",
       "name_attr": null,
       "placeholder": "Enter tags",
@@ -4746,7 +5085,7 @@
       "id": "el_931b9f6f4af9",
       "screen_id": "/editor/:p|owner",
       "tag": "button",
-      "role": null,
+      "role": "button",
       "label": "Publish Article",
       "name_attr": null,
       "placeholder": null,
@@ -4772,7 +5111,7 @@
       "id": "el_bb1a3ef4de48",
       "screen_id": "/editor/:p|owner",
       "tag": "a",
-      "role": null,
+      "role": "link",
       "label": "RealWorld OSS Project",
       "name_attr": null,
       "placeholder": null,
@@ -4787,7 +5126,7 @@
   "transitions": [
     {
       "from_screen": "/|anon",
-      "element_id": "el_c65c9995ea4b",
+      "element_id": "el_2c29854f726a",
       "to_template": "/"
     },
     {
@@ -4832,7 +5171,7 @@
     },
     {
       "from_screen": "/|anon",
-      "element_id": "el_c65c9995ea4b",
+      "element_id": "el_2c29854f726a",
       "to_template": "/"
     },
     {
@@ -4842,7 +5181,7 @@
     },
     {
       "from_screen": "/login|anon",
-      "element_id": "el_35266b0db859",
+      "element_id": "el_b46d9a90ac19",
       "to_template": "/"
     },
     {
@@ -4867,12 +5206,12 @@
     },
     {
       "from_screen": "/login|anon",
-      "element_id": "el_35266b0db859",
+      "element_id": "el_b46d9a90ac19",
       "to_template": "/"
     },
     {
       "from_screen": "/register|anon",
-      "element_id": "el_f4688566e4ca",
+      "element_id": "el_681684f8680d",
       "to_template": "/"
     },
     {
@@ -4897,12 +5236,12 @@
     },
     {
       "from_screen": "/register|anon",
-      "element_id": "el_f4688566e4ca",
+      "element_id": "el_681684f8680d",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p|anon",
-      "element_id": "el_d8387ea839d9",
+      "element_id": "el_ee1dbd4098cf",
       "to_template": "/"
     },
     {
@@ -4947,7 +5286,7 @@
     },
     {
       "from_screen": "/profile/:p|anon",
-      "element_id": "el_d8387ea839d9",
+      "element_id": "el_ee1dbd4098cf",
       "to_template": "/"
     },
     {
@@ -4956,13 +5295,8 @@
       "to_template": "/login"
     },
     {
-      "from_screen": "/profile/:p|anon",
-      "element_id": "el_5e5a212a56c0",
-      "to_template": "/register"
-    },
-    {
       "from_screen": "/article/:p|anon",
-      "element_id": "el_729dab919e95",
+      "element_id": "el_488481fa963b",
       "to_template": "/"
     },
     {
@@ -5017,7 +5351,7 @@
     },
     {
       "from_screen": "/article/:p|anon",
-      "element_id": "el_729dab919e95",
+      "element_id": "el_488481fa963b",
       "to_template": "/"
     },
     {
@@ -5042,7 +5376,7 @@
     },
     {
       "from_screen": "/profile/:p|anon",
-      "element_id": "el_d8387ea839d9",
+      "element_id": "el_ee1dbd4098cf",
       "to_template": "/"
     },
     {
@@ -5087,12 +5421,12 @@
     },
     {
       "from_screen": "/profile/:p|anon",
-      "element_id": "el_d8387ea839d9",
+      "element_id": "el_ee1dbd4098cf",
       "to_template": "/"
     },
     {
       "from_screen": "/article/:p|anon",
-      "element_id": "el_729dab919e95",
+      "element_id": "el_488481fa963b",
       "to_template": "/"
     },
     {
@@ -5147,12 +5481,12 @@
     },
     {
       "from_screen": "/article/:p|anon",
-      "element_id": "el_729dab919e95",
+      "element_id": "el_488481fa963b",
       "to_template": "/"
     },
     {
       "from_screen": "/tag/:p|anon",
-      "element_id": "el_132f96a91c69",
+      "element_id": "el_8ca0ebf05dcb",
       "to_template": "/"
     },
     {
@@ -5197,17 +5531,12 @@
     },
     {
       "from_screen": "/tag/:p|anon",
-      "element_id": "el_132f96a91c69",
+      "element_id": "el_8ca0ebf05dcb",
       "to_template": "/"
     },
     {
       "from_screen": "/tag/:p|anon",
-      "element_id": "el_1e39545348db",
-      "to_template": "/register"
-    },
-    {
-      "from_screen": "/tag/:p|anon",
-      "element_id": "el_132f96a91c69",
+      "element_id": "el_8ca0ebf05dcb",
       "to_template": "/"
     },
     {
@@ -5252,12 +5581,12 @@
     },
     {
       "from_screen": "/tag/:p|anon",
-      "element_id": "el_132f96a91c69",
+      "element_id": "el_8ca0ebf05dcb",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
-      "element_id": "el_88036b6f8413",
+      "element_id": "el_4403bf99cdcb",
       "to_template": "/"
     },
     {
@@ -5302,13 +5631,8 @@
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
-      "element_id": "el_88036b6f8413",
+      "element_id": "el_4403bf99cdcb",
       "to_template": "/"
-    },
-    {
-      "from_screen": "/profile/:p/favorites|anon",
-      "element_id": "el_0644ff2c8eb9",
-      "to_template": "/login"
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
@@ -5317,7 +5641,7 @@
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
-      "element_id": "el_88036b6f8413",
+      "element_id": "el_4403bf99cdcb",
       "to_template": "/"
     },
     {
@@ -5362,12 +5686,12 @@
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
-      "element_id": "el_88036b6f8413",
+      "element_id": "el_4403bf99cdcb",
       "to_template": "/"
     },
     {
       "from_screen": "/|authed",
-      "element_id": "el_b2e336ac0ea8",
+      "element_id": "el_c4f9209776c6",
       "to_template": "/"
     },
     {
@@ -5422,12 +5746,12 @@
     },
     {
       "from_screen": "/|authed",
-      "element_id": "el_b2e336ac0ea8",
+      "element_id": "el_c4f9209776c6",
       "to_template": "/"
     },
     {
       "from_screen": "/editor|authed",
-      "element_id": "el_6e078d143155",
+      "element_id": "el_4ac1f5526e5e",
       "to_template": "/"
     },
     {
@@ -5452,12 +5776,12 @@
     },
     {
       "from_screen": "/editor|authed",
-      "element_id": "el_6e078d143155",
+      "element_id": "el_4ac1f5526e5e",
       "to_template": "/"
     },
     {
       "from_screen": "/settings|authed",
-      "element_id": "el_acaf1c5332f0",
+      "element_id": "el_7266b79ca8bf",
       "to_template": "/"
     },
     {
@@ -5482,17 +5806,12 @@
     },
     {
       "from_screen": "/settings|authed",
-      "element_id": "el_acaf1c5332f0",
-      "to_template": "/"
-    },
-    {
-      "from_screen": "/settings|authed",
-      "element_id": "el_9a6ef2375678",
+      "element_id": "el_7266b79ca8bf",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_895ab71cfbcf",
+      "element_id": "el_86d7ba2fb61d",
       "to_template": "/"
     },
     {
@@ -5532,12 +5851,12 @@
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_895ab71cfbcf",
+      "element_id": "el_86d7ba2fb61d",
       "to_template": "/"
     },
     {
       "from_screen": "/|authed",
-      "element_id": "el_b2e336ac0ea8",
+      "element_id": "el_c4f9209776c6",
       "to_template": "/"
     },
     {
@@ -5582,12 +5901,12 @@
     },
     {
       "from_screen": "/|authed",
-      "element_id": "el_b2e336ac0ea8",
+      "element_id": "el_c4f9209776c6",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_895ab71cfbcf",
+      "element_id": "el_86d7ba2fb61d",
       "to_template": "/"
     },
     {
@@ -5637,12 +5956,12 @@
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_895ab71cfbcf",
+      "element_id": "el_86d7ba2fb61d",
       "to_template": "/"
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_c3f9bd237c0f",
+      "element_id": "el_c67dc32b853c",
       "to_template": "/"
     },
     {
@@ -5692,12 +6011,12 @@
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_c3f9bd237c0f",
+      "element_id": "el_c67dc32b853c",
       "to_template": "/"
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_c3f9bd237c0f",
+      "element_id": "el_c67dc32b853c",
       "to_template": "/"
     },
     {
@@ -5747,12 +6066,12 @@
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_c3f9bd237c0f",
+      "element_id": "el_c67dc32b853c",
       "to_template": "/"
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_6384ac4560c6",
+      "element_id": "el_61de0d2130ad",
       "to_template": "/"
     },
     {
@@ -5802,12 +6121,12 @@
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_6384ac4560c6",
+      "element_id": "el_61de0d2130ad",
       "to_template": "/"
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_6384ac4560c6",
+      "element_id": "el_61de0d2130ad",
       "to_template": "/"
     },
     {
@@ -5857,12 +6176,12 @@
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_6384ac4560c6",
+      "element_id": "el_61de0d2130ad",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_4013a9680fee",
+      "element_id": "el_c4985f35c4ae",
       "to_template": "/"
     },
     {
@@ -5902,12 +6221,12 @@
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_4013a9680fee",
+      "element_id": "el_c4985f35c4ae",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_4013a9680fee",
+      "element_id": "el_c4985f35c4ae",
       "to_template": "/"
     },
     {
@@ -5957,12 +6276,72 @@
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_4013a9680fee",
+      "element_id": "el_c4985f35c4ae",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_f35976e7128e",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_d072ac9b1415",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_dffae6d20c31",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_b04515665ffa",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_a794c5c39ce3",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_156955a28dd7",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_454ebb3716ea",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_4f31bcfbe31e",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_b0ac2d1f76bc",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_a794c5c39ce3",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_c5dadea9c1bb",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p|owner",
+      "element_id": "el_f35976e7128e",
       "to_template": "/"
     },
     {
       "from_screen": "/article/:p|owner",
-      "element_id": "el_d33061956451",
+      "element_id": "el_2d1eb631c3e0",
       "to_template": "/"
     },
     {
@@ -6017,12 +6396,12 @@
     },
     {
       "from_screen": "/article/:p|owner",
-      "element_id": "el_d33061956451",
+      "element_id": "el_2d1eb631c3e0",
       "to_template": "/"
     },
     {
       "from_screen": "/editor/:p|owner",
-      "element_id": "el_1bbf478e762e",
+      "element_id": "el_00cdd41a1800",
       "to_template": "/"
     },
     {
@@ -6047,7 +6426,7 @@
     },
     {
       "from_screen": "/editor/:p|owner",
-      "element_id": "el_1bbf478e762e",
+      "element_id": "el_00cdd41a1800",
       "to_template": "/"
     }
   ],
@@ -6086,13 +6465,25 @@
           "label": "Publish Article"
         },
         {
+          "screen": "/editor|authed",
+          "element": null,
+          "action": "goto",
+          "label": "/profile/br-test-11c596"
+        },
+        {
+          "screen": "/profile/:p|owner",
+          "element": null,
+          "action": "goto",
+          "label": "/article/br-test--author-controls-check"
+        },
+        {
           "screen": "/article/:p|owner",
           "element": "el_ef3d586ff807",
           "action": "click",
           "label": "Edit Article"
         }
       ],
-      "summary": "I created one article, \"br-test--author-controls-check\", and opened its page as the author. Both the \"Edit Article\" link and the \"Delete Article\" button showed, each twice on the page (top and bottom). The Edit link led to /editor/br-test--author-controls-check. The system's blocked-writes list now includes DELETE /api/articles/:p and PUT /api/articles/:p, so those calls were observed, but both were blocked and I never saw them succeed. I did not click Delete or submit the edit myself.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Posting a comment is blocked (POST /api/articles/:p/comments is on the blocked list), so there was no comment of mine to show them on. The article had no comments to start with, and I didn't check other articles."
+      "summary": "I created one article, \"br-test: author controls check\", at /article/br-test--author-controls-check. Its detail page showed the author-only \"Edit Article\" link and \"Delete Article\" button, each in two places on the page. The Edit link opens /editor/br-test--author-controls-check.\n\nThe system reported PUT /api/articles/:p and DELETE /api/articles/:p as blocked writes. I did not click Publish in the edit form or click Delete Article myself. The blocked entries appeared on their own as I loaded the article page and the edit page.\n\nNot reached: the comment delete controls (span.mod-options and i.ion-trash-a) and DELETE /api/articles/:p/comments/:p. Those only render on a comment the current user wrote. Posting comments is blocked, so I couldn't create one. I didn't check whether the seeded articles already have comments by this test user, but they are other users' content, so the controls shouldn't show there."
     }
   ]
 }

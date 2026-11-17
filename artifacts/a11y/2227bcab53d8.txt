@@ -1,0 +1,40 @@
+- navigation
+- link "Conduit"
+- img
+- list
+- listitem
+- link "Home"
+- listitem
+- link "Sign in"
+- listitem
+- link "Sign up"
+- img
+- heading [level=#]
+- paragraph
+- button " Follow sarahchen"
+- list
+- listitem
+- link "My Posts"
+- listitem
+- link "Favorited Posts"
+- link
+- img
+- link "sarahchen"
+- text
+- button " #"
+- link
+- heading [level=#]
+- paragraph
+- text
+- list
+- listitem
+- navigation
+- list
+- listitem
+- button "#"
+- contentinfo
+- link "Conduit"
+- img
+- text
+- link
+- text
