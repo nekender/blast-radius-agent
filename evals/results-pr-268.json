@@ -13,12 +13,12 @@
   "report_pass_rate": 1.0,
   "agent_top_flow_ok_rate": null,
   "agent_ungrounded_adjustments": 0,
-  "usd_per_run_mean": 0.1881,
-  "usd_per_run_max": 0.2096,
-  "seconds_per_run_median": 42.6,
-  "seconds_per_run_max": 49.4,
-  "tokens_per_run_mean": 70532,
-  "usd_for_this_eval": 0.5643,
+  "usd_per_run_mean": 0.2751,
+  "usd_per_run_max": 0.3053,
+  "seconds_per_run_median": 65.1,
+  "seconds_per_run_max": 67.3,
+  "tokens_per_run_mean": 99776,
+  "usd_for_this_eval": 0.8252,
   "agent_top_test_ok_rate": null
  },
  "runs": [
@@ -31,14 +31,14 @@
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": null,
-   "agent_tool_calls": 4,
+   "agent_tool_calls": 10,
    "report_ok": true,
    "report_errors": [],
-   "usd": 0.1964,
-   "seconds": 42.6,
-   "tokens": 75235,
+   "usd": 0.3053,
+   "seconds": 67.3,
+   "tokens": 108974,
    "correct": true,
-   "hash": "078a9c485e"
+   "hash": "976ed4393f"
   },
   {
    "recall": 1.0,
@@ -49,14 +49,14 @@
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": null,
-   "agent_tool_calls": 4,
+   "agent_tool_calls": 6,
    "report_ok": true,
    "report_errors": [],
-   "usd": 0.2096,
-   "seconds": 49.4,
-   "tokens": 76763,
+   "usd": 0.2162,
+   "seconds": 48.0,
+   "tokens": 79411,
    "correct": true,
-   "hash": "078a9c485e"
+   "hash": "976ed4393f"
   },
   {
    "recall": 1.0,
@@ -67,14 +67,14 @@
    "agent_finished": true,
    "agent_ungrounded": 0,
    "agent_top_flow_ok": null,
-   "agent_tool_calls": 5,
+   "agent_tool_calls": 10,
    "report_ok": true,
    "report_errors": [],
-   "usd": 0.1583,
-   "seconds": 34.4,
-   "tokens": 59598,
+   "usd": 0.3037,
+   "seconds": 65.1,
+   "tokens": 110943,
    "correct": true,
-   "hash": "078a9c485e"
+   "hash": "976ed4393f"
   }
  ]
 }

@@ -153,10 +153,10 @@ class Graph:
         for kind, labs in labels.items():
             rows = [{"id": i.id, "conf": i.confidence, "why": i.why, "observed": i.observed}
                     for i in br.impacts if i.kind == kind]
-            self.run("""UNWIND $rows AS r MATCH (p:PullRequest {id: $id})
-                        MATCH (x {id: r.id}) WHERE any(l IN labels(x) WHERE l IN $labs)
-                        MERGE (p)-[e:PUTS_AT_RISK]->(x) SET e.confidence = r.conf, e.why = r.why, e.observed = r.observed""",
-                     id=pid, rows=rows, labs=labs)
+            for lab in labs:   # labelled MATCH uses the id constraint's index
+                self.run(f"""UNWIND $rows AS r MATCH (p:PullRequest {{id: $id}}) MATCH (x:{lab} {{id: r.id}})
+                             MERGE (p)-[e:PUTS_AT_RISK]->(x) SET e.confidence = r.conf, e.why = r.why, e.observed = r.observed""",
+                         id=pid, rows=rows)
         self.run("""UNWIND $rows AS r MATCH (p:PullRequest {id: $id}) MATCH (q:Requirement {id: r.req})
                     MERGE (p)-[e:LOSES_COVERAGE]->(q) SET e.why = r.why""",
                  id=pid, rows=[{"req": c["requirement"], "why": c["why"]} for c in br.coverage_lost])
@@ -174,6 +174,18 @@ class Graph:
                    e.id AS element, e.label AS label, r.confidence AS r_conf, r.method AS r_method, r.evidence AS r_evidence,
                    s.id AS screen, s.template AS template, s.auth AS auth
         """, mids=method_ids)
+
+    def impacted_from_templates(self, template_ids: list[str]) -> list[dict]:
+        """Same shape as impacted_ui, starting from changed template elements (markup-only changes)."""
+        return self.run("""
+            UNWIND $tids AS tid
+            MATCH (t:TemplateElement {id: tid})
+            OPTIONAL MATCH (t)-[r:RENDERS]->(e:Element)<-[:HAS]-(s:Screen)
+            RETURN 'tel:' + t.id AS method, t.id AS template_element, t.text AS t_text, t.tag AS t_tag,
+                   t.conditions AS conditions, 'its markup changed' AS why, 1.0 AS a_conf,
+                   e.id AS element, e.label AS label, r.confidence AS r_conf, r.method AS r_method, r.evidence AS r_evidence,
+                   s.id AS screen, s.template AS template, s.auth AS auth
+        """, tids=template_ids)
 
     def endpoints_of(self, method_ids: list[str]) -> list[dict]:
         return self.run("""
@@ -206,7 +218,8 @@ class Graph:
 
     def requirements_touching(self, element_ids: list[str], endpoints: list[str]) -> list[dict]:
         """Requirements proven by an at-risk element, or expecting an endpoint the change reaches.
-        `only` = true when every piece of UI evidence for the requirement is at risk: its coverage is lost."""
+        `only` = true when every piece of UI evidence for the requirement is at risk (reported as context; "coverage
+        lost" in the blast radius is decided on tests: see blast.py)."""
         return self.run("""
             MATCH (q:Requirement)
             OPTIONAL MATCH (q)-[c:COVERED_BY]->(x) WHERE c.confidence >= $min_conf

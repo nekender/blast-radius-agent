@@ -36,3 +36,19 @@ def test_methods_and_template_bindings():
     els = parse_template('@if (isAuthor) {\n<button (click)="save()">Save</button>\n}', "A", "a.html")
     btn = next(e for e in els if e.tag == "button")
     assert btn.handlers == ["save"] and btn.text == "Save" and "@if:isAuthor" in btn.identifiers
+
+
+def test_multiline_method_signature_and_brace_in_return_type():
+    ts = ("class E {\n  intercept(\n    req: Req,\n    next: H\n  ): Observable<Ev<any>> {\n    return 1;\n  }\n"
+          "  query(c: X): Observable<{ a: B[]; n: number }> {\n    return 2;\n  }\n}\n")
+    ms = {m.name: (m.start, m.end) for m in parse_methods(ts)}
+    assert ms == {"intercept": (2, 7), "query": (8, 10)}
+
+
+def test_scope_classification():
+    from blast_radius.blast import classify
+    assert classify("package.json", "+ x")["scope"] == "global"
+    assert classify("src/app/core/interceptors/error.interceptor.ts", "+ return next(req);")["scope"] == "global"
+    assert classify("src/app/x.service.spec.ts", "+ it()")["scope"] == "none"
+    assert classify("src/app/app.routes.ts", "-import { A } from './a';")["scope"] == "none"
+    assert classify("src/app/editor.component.ts", "+ this.save();") is None

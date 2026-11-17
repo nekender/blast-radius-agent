@@ -9,8 +9,8 @@ proposes confidence adjustments with reasons.
   code enforces   it can only adjust impacts that exist; it must have inspected an item (via a tool) before
                   adjusting it; changes are bounded (floor 0.3, at most 0.5 per assessment, capped not
                   vetoed; only observed items may go above 0.9); nothing is ever removed, so the deterministic result stays the safety floor
-  code checks     adjustments to items never inspected are sent back once ("inspect these, resubmit");
-                  whatever is still ungrounded after that is rejected
+  code checks     adjustments to items never inspected are rejected; if there are 3 or more, the agent is
+                  sent back once first ("inspect these, resubmit"), since a retry costs a full re-run
   code records    the full tool trace, every applied and rejected adjustment, with the reason
 """
 from __future__ import annotations
@@ -36,9 +36,13 @@ You can only adjust items you have inspected (inspect takes a list, so inspect e
 in one or two calls). Never remove anything. Then call finish."""
 
 
+RETRY_IF_UNGROUNDED = 3
+INSPECT_CAP = 40   # inspect shows at most this many per call; only those count as inspected
+
+
 def _inspected(trace: list[dict], ids: set[str]) -> set[str]:
     """What the agent actually looked at, read from its trace: the single source for the grounding check."""
-    return {i for t in trace if t["tool"] == "inspect" for i in t["input"].get("item_ids", [])} & ids
+    return {i for t in trace if t["tool"] == "inspect" for i in t["input"].get("item_ids", [])[:INSPECT_CAP]} & ids
 
 
 def _facts(br: BlastRadius) -> list[dict]:
@@ -54,7 +58,7 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
     key = hashlib.sha256(json.dumps([SETTINGS.model, SYSTEM, pr["files"], _facts(br)], sort_keys=True).encode()).hexdigest()
     cache = SETTINGS.cache_dir / "assess" / f"{key}.json"
     inspected: set[str] = set()
-    ids = {i.id for i in br.impacts}
+    ids = {i.id for i in br.impacts if i.kind != "screen"}   # the agent only sees (and may only adjust) these
 
     def read_diff() -> str:
         return "\n\n".join(f"--- {f['path']}\n{f['patch']}" for f in pr["files"])
@@ -72,7 +76,7 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
         return json.dumps(_facts(br), indent=0)
 
     def inspect(item_ids: list[str]) -> str:
-        return "\n\n".join(f"[{i}]\n{_inspect_one(i)}" for i in item_ids[:40])
+        return "\n\n".join(f"[{i}]\n{_inspect_one(i)}" for i in item_ids[:INSPECT_CAP])
 
     def _inspect_one(item_id: str) -> str:
         if item_id not in ids:
@@ -123,15 +127,24 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
         prompt = (f"PR #{br.pr}: {br.title}\nChanged code units: {[c['unit'] for c in br.changed]}\n\n"
                   f"Impact list:\n{impacts()}")
         ledger_start = len(llm.LEDGER)
-        result, trace = llm.agent_loop(SYSTEM, prompt, tools, "finish", max_turns=max_turns)
+        try:
+            result, trace = llm.agent_loop(SYSTEM, prompt, tools, "finish", max_turns=max_turns)
+        except Exception as e:  # noqa: BLE001 - the deterministic blast radius stands on its own
+            br.assessment = {"skipped": f"assessment agent failed: {e.__class__.__name__}: {str(e)[:200]}"}
+            return br
         inspected = _inspected(trace, ids)
         # Verifier feedback, once: adjustments to items it never inspected are sent back to inspect and resubmit.
+        # A retry re-runs the whole assessment (about double the cost), so it's only worth it when the agent
+        # skipped several items; one or two stray adjustments are simply rejected below and reported.
         ungrounded = sorted({a["id"] for a in (result or {}).get("adjustments", []) if a["id"] in ids} - inspected)
-        if ungrounded:
+        if len(ungrounded) >= RETRY_IF_UNGROUNDED:
             retry = (f"{prompt}\n\nYour previous assessment was:\n{json.dumps(result)}\n\nThese adjustments were "
                      f"rejected because you never inspected the items: {ungrounded}. Inspect them, then call finish again "
                      f"with the complete assessment (all adjustments, not only these).")
-            result2, trace2 = llm.agent_loop(SYSTEM, retry, tools, "finish", max_turns=max_turns)
+            try:
+                result2, trace2 = llm.agent_loop(SYSTEM, retry, tools, "finish", max_turns=max_turns)
+            except Exception:  # noqa: BLE001 - keep the first answer; the guard below rejects what's ungrounded
+                result2, trace2 = None, []
             trace += [{"turn": "retry", "tool": "verifier", "input": {"ungrounded": ungrounded}}] + trace2
             result = result2 or result
             inspected = _inspected(trace, ids)
@@ -140,24 +153,26 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
 
     applied, rejected = [], []
     for adj in (result or {}).get("adjustments", []):
-        imp = next((i for i in br.impacts if i.id == adj["id"]), None)
+        imp = next((i for i in br.impacts if i.id == adj["id"] and i.kind != "screen"), None)
         why = None
         if imp is None:
             why = "not an impact id"
         elif adj["id"] not in inspected:
             why = "adjusted without inspecting it"
         else:
-            new = max(0.3, min(1.0, float(adj["confidence"])))
+            new = max(min(0.3, imp.confidence), min(1.0, float(adj["confidence"])))
             if new > 0.9 and not imp.observed:
                 why = "an unobserved item can't go above 0.9"
         if why:
             rejected.append({**adj, "rejected_because": why})
             continue
         old = imp.confidence
+        if imp.base_confidence is None:
+            imp.base_confidence = old
         clamped = abs(new - old) > 0.5      # one assessment moves an item at most 0.5: bounded, not vetoed
         if clamped:
             new = old + 0.5 if new > old else old - 0.5
-        imp.confidence = round(max(0.3, new), 2)
+        imp.confidence = round(max(min(0.3, old), new), 2)   # the floor never lifts an item that was already lower
         imp.why.append(f"assessment: {adj['reason']} ({old:.2f} -> {imp.confidence:.2f}{', capped' if clamped else ''})")
         applied.append({**adj, "from": old, "to": imp.confidence, "capped": clamped})
     order = {i: n for n, i in enumerate((result or {}).get("retest_first", [])) if i in ids}

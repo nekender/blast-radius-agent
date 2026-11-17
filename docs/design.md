@@ -38,10 +38,10 @@ that close the gaps the deterministic parts leave. **Where I scoped down:** code
 only), one app, and write-gated states beyond article ownership. Section 5 defends each cut.
 
 **Evals:** on two hand-labelled PRs, the deterministic stages give byte-identical output across runs, recall is 1.0,
-every LLM report passed verification, and the assessment agent put the right journey first in every run with no
-ungrounded adjustments. Section 4 explains why that is weaker evidence than it looks.
+every LLM report passed verification, and the assessment agent put the right journey and the right test first in
+every run; the few adjustments it tried without inspecting the item were rejected by the guard. Section 4 explains why that is weaker evidence than it looks.
 
-**Cost:** about **$0.10 and 35 seconds per PR** on Claude Sonnet 5.5 (graph traversal free and under a second; the
+**Cost:** about **$0.12 and 36 seconds per PR** for a small PR (#311), $0.28 for a larger one (#268), on Claude Sonnet 5.5 (graph traversal free and under a second; the
 assessment agent and the report are the spend), $0.07 for a from-scratch graph build, $0.07 per exploration run.
 Every report states its own cost.
 
@@ -287,6 +287,13 @@ coincidental text match can't fake.
 4. **Connected is not the same as at risk.** The assessment agent re-ranks by what the change does, bounded and
    grounded as in section 1, and never removes an item.
 
+**Changes the mapping can't speak for** get an explicit scope note instead of an empty report. A dependency or
+build file (`package.json`, lockfiles, `angular.json`, `tsconfig`) or app-wide runtime code (bootstrap, HTTP
+interceptors, global styles) gets "can affect any screen; run the full suite" at the top of the report. Unit tests,
+docs and CI get "no runtime change". A diff that only touches imports or comments says so. A routes file that changes
+puts every route it defines at medium confidence. Before this, an Angular core bump was reported as "nothing
+affected", which is the worst possible answer.
+
 **When does it stop and ask a human?** It doesn't stop mid-run; it hands over. Every run finishes, and anything
 uncertain goes to "Needs a person" with the reason. The person who can answer ("does the edit page still save?") is the
 QA lead reading the report. Where a hard stop belongs is the merge: block when a high-confidence item is unobserved or
@@ -311,10 +318,10 @@ create or change anything outside its policy, whatever it decides.
 
 | PR | Runs | Deterministic identical | Recall | Precision | Agent's top journey / top test right | Ungrounded adjustments | Report checks | pass^k |
 |---|---|---|---|---|---|---|---|---|
-| #311 (editor save) | 5 | yes | 1.0 | 0.98 | 5/5 · 5/5 | 0 | 5/5 | yes |
-| #268 (editor + login directive) | 3 | yes | 1.0 | 1.0 | n/a | 0 | 3/3 | yes |
+| #311 (editor save) | 5 | yes | 1.0 | 0.97 | 5/5 · 5/5 | 2 tried, both rejected | 5/5 | yes |
+| #268 (editor + login directive) | 3 | yes | 1.0 | 1.0 | n/a | 0 (after resubmit) | 3/3 | yes |
 
-#311's precision is 0.98 because the second exploration run found a new owner journey ("Favorite your own
+#311's precision is 0.97 because the second exploration run found a new owner journey ("Favorite your own
 published article") that only uses the editor as a setup step. It isn't in the gold set; the assessment agent
 lowered it to 0.5. I left the gold set as it was rather than relabel after seeing the output.
 
@@ -322,8 +329,25 @@ Gold sets now include tests: #311 must list "should edit an existing article" an
 #268 must list the "Your Feed", "add a comment" and "require login to post comment" tests.
 
 **What the evals caught while building:** the agent first adjusted items it hadn't inspected (4 on #311, 11–15 on
-#268). The guard rejected them, so outputs stayed correct, but it was a discipline problem: batching `inspect` and
-one verifier round-trip took it to 0.
+#268). The guard rejected them, so outputs stayed correct, but it was a discipline problem. Batching `inspect` cut it
+sharply. A resubmit round fixes the rest but re-runs the whole assessment (about double the cost), so it only fires
+when 3 or more adjustments are ungrounded; one or two strays are just rejected and counted.
+
+**What an independent review caught that the evals didn't.** I had a second agent read the whole codebase cold
+and ran the system on 9 more real PRs of different shapes. It found real bugs the eval set couldn't, because both
+gold PRs change `.ts` files only:
+- every template line number was off (an attribute name clashed with Python's `HTMLParser` internals), so a
+  **markup-only PR mapped to nothing**;
+- a `don't` in a comment made a method swallow the next one; `{{ }}` interpolation ended `@if` blocks early;
+  methods with multi-line signatures weren't recognised;
+- a dependency bump was reported as "nothing affected" (now a scope warning, above);
+- guardrail edges: the confidence floor could *lift* an item the agent meant to lower; `inspect` counted more ids
+  than it showed; a double click could create a second test article before the policy flag was set.
+
+All are fixed, with 6 regression tests (17 tests total), and the scenario PRs (dependency-only, unit-test-only,
+imports-only, deleted file, interceptor, markup-only, renamed path, unmerged) now give a sensible report or a clear
+scope note. The lesson for the eval set is the first item in section 6: **gold PRs must cover the shapes of change,
+not just two examples of one shape.**
 
 **Why this is weaker than it looks:**
 - **Two PRs, labelled by me, #311 while I was building.** #268 was held out and *failed* first (it missed the renamed
@@ -351,13 +375,19 @@ its own cost; the numbers below are from the eval runs (agent and report fresh e
 | Crawl | when the app changes | 0 | $0 | ~5 min (browser) |
 | Build (spec prose + LLM judge + flow names) | after a crawl | 4 | $0.066 from scratch, $0 cached | ~30 s from scratch, ~1 s cached |
 | Exploration agent | when there are owner-state gaps | 8 turns, 15 tool calls | $0.065 | ~100 s (mostly browser) |
-| **PR #311** (5 runs) | per PR | 4 typical | **mean $0.12, median $0.095, max $0.215** | median 35 s, max 54 s |
-| **PR #268** (3 runs) | per PR | 4–5 | mean $0.19, max $0.21 | median 43 s, max 49 s |
+| **PR #311** (5 runs) | per PR | 4–6 | **mean $0.12, max $0.15** | median 36 s, max 41 s |
+| **PR #268** (3 runs) | per PR | 6–10 | mean $0.28, max $0.31 | median 65 s, max 67 s |
 
-Per PR, the graph traversal is under a second and free; the money is in the assessment agent (~$0.065–0.08) and the
-report (~$0.035–0.09, larger PRs have more to write). The tail run on #311 ($0.215, 10 tool calls) is the verifier
-round-trip: the agent adjusted items it hadn't inspected, was sent back, and resubmitted. Grounding costs about one
-extra assessment when it triggers, which is what I'd want to pay for it. The whole eval (8 runs) cost $1.16.
+Per PR, the graph traversal is under a second and free; the money is in the assessment agent (~$0.06–0.08 on #311)
+and the report (~$0.04). #268 costs more because it has more to assess and write (44 tests, 25 requirements), and
+the agent tends to skip 3 or more items there, so the resubmit round fires: grounding costs about one extra
+assessment when it triggers. The whole eval (8 runs) cost $1.42.
+
+**Two cost bugs the measurement caught.** After the review fixes, cost per PR rose from $0.12 to $0.19 with
+identical correctness. The ledger's per-stage split showed why: (1) the report writer now had to mention items the
+agent had ranked down, wasn't told which, and was being sent back to rewrite (two calls instead of one); the facts
+now mark them `must_mention`. (2) Single stray adjustments were triggering a full re-assessment; that's now reserved
+for 3 or more. Both changes brought it back to $0.12 with the same eval results.
 
 **Levers I haven't pulled, cheapest first:** prompt caching on the agent's system prompt and tools (each turn resends
 them, so most of its input tokens are a repeated prefix); the Batch API for eval runs (half price, not latency
@@ -392,7 +422,7 @@ show quality holds before it's switched on.
 ## 6. With another week, in order
 
 1. **An independent eval oracle** (2 days). RealWorld's Playwright suite at each PR's parent and merge commits, outcome
-   changes as labels, 20 PRs. This replaces "labelled by the person who built it", and gives data to calibrate the
+   changes as labels, 20 PRs chosen to cover the shapes of change (logic, markup-only, routes, dependency, rename). This replaces "labelled by the person who built it", and gives data to calibrate the
    confidence weights and to measure both agents properly.
 2. **Generate tests for the gaps** (2 days). The 10 untested requirements and the at-risk journeys with no test
    already have observed steps and selectors in the graph, which is most of a Playwright test. Generate them, run

@@ -83,6 +83,13 @@ def n_link_and_load(s: BuildState) -> BuildState:
     g = Graph()
     g.load(cr, cm, reqs, code_ui, methods, req_links, gaps, flows)
     g.load_tests(tests, uses, tested)
+    # A rebuild recreates every node, so re-attach the PRs analysed so far (from reports/*.json): the PR history
+    # in the graph survives a rebuild. An item that no longer exists simply gets no edge.
+    for f in sorted(SETTINGS.reports_dir.glob("pr-*.json")):
+        try:
+            g.save_blast(BlastRadius.model_validate_json(f.read_text()))
+        except Exception:  # noqa: BLE001 - a report from an older schema: skip it
+            pass
     g.close()
     covered = {l.src for l in req_links} - {g.requirement_id for g in gaps}
     summary = {
@@ -167,7 +174,10 @@ def n_write(s: ReasonState) -> ReasonState:
     facts = json.dumps(report._facts(s["blast"]), indent=1)
     if s.get("errors"):
         facts += f"\n\nFix these problems from your last draft: {s['errors']}"
-    w = llm.structured(report.SYSTEM, facts, report.Written, use_cache=s.get("use_cache", True), max_tokens=8000)
+    try:
+        w = llm.structured(report.SYSTEM, facts, report.Written, use_cache=s.get("use_cache", True), max_tokens=8000)
+    except Exception as e:  # noqa: BLE001 - API error or two invalid answers: fall through to the template report
+        return {"written": None, "errors": [f"report writer failed: {e.__class__.__name__}"], "attempts": 2}
     return {"written": w, "attempts": s.get("attempts", 0) + 1}
 
 

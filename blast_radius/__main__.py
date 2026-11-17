@@ -25,8 +25,42 @@ def main() -> None:
     p.add_argument("--no-cache", action="store_true", help="call the LLM fresh instead of using cached answers")
     e = sub.add_parser("eval")
     e.add_argument("number", type=int)
-    e.add_argument("--runs", type=int, default=5)
+    e.add_argument("--runs", type=lambda v: max(1, int(v)), default=5, help="at least 1")
     args = ap.parse_args()
+    try:
+        run(args)
+    except Exception as e:  # noqa: BLE001 - turn the common setup mistakes into one actionable line
+        hint = _hint(e)
+        if hint is None:
+            raise
+        raise SystemExit(f"error: {hint}") from None
+
+
+def _hint(e: Exception) -> str | None:
+    import subprocess
+    name = type(e).__name__
+    if name in ("ServiceUnavailable", "AuthError"):
+        return f"can't reach Neo4j at {SETTINGS.neo4j_uri} ({e.__class__.__name__}). Start it with `docker compose up -d`."
+    if name == "HTTPStatusError":
+        code = e.response.status_code
+        if code == 404:
+            return f"GitHub has no PR at {e.request.url}. Check the number and BR_REPO."
+        if code in (403, 429):
+            return "GitHub rate limit hit (60 requests/hour without a token). Set GITHUB_TOKEN in .env."
+        return f"GitHub returned {code} for {e.request.url}."
+    if isinstance(e, FileNotFoundError) and "evals/gold" in str(e):
+        return f"no gold set for this PR ({e.filename}). Gold sets exist for: " + \
+            ", ".join(p.stem for p in (SETTINGS.data.parent / "evals" / "gold").glob("*.json"))
+    if isinstance(e, FileNotFoundError) and "artifacts" in str(e):
+        return f"{e.filename} is missing. Run `python -m blast_radius build` first."
+    if isinstance(e, subprocess.CalledProcessError) and "git" in str(e.cmd):
+        if not SETTINGS.repo_dir.exists():
+            return f"the app's repo isn't cloned. Run: git clone https://github.com/{SETTINGS.repo} data/repo"
+        return f"git failed: {' '.join(map(str, e.cmd))}: {(e.stderr or '').strip()[:200]}"
+    return None
+
+
+def run(args) -> None:
 
     if args.cmd == "build":
         from .pipeline import build_graph

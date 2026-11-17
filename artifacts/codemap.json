@@ -507,30 +507,17 @@
         {
           "name": "ngOnChanges",
           "start": 79,
-          "end": 134,
+          "end": 99,
           "calls_self": [
-            "page",
             "runQuery"
           ],
           "calls_service": [
-            "articlesService.query",
-            "loading.set",
-            "page.set",
-            "pageChange.emit",
-            "results.set",
-            "totalPages.set"
+            "page.set"
           ],
           "reads": [
-            "articlesService",
-            "destroyRef",
-            "limit",
-            "loading",
             "page",
-            "pageChange",
             "query",
-            "results",
-            "runQuery",
-            "totalPages"
+            "runQuery"
           ]
         },
         {
@@ -614,7 +601,7 @@
       "methods": [
         {
           "name": "articleInput",
-          "start": 39,
+          "start": 38,
           "end": 41,
           "calls_self": [],
           "calls_service": [
@@ -1015,7 +1002,7 @@
         {
           "name": "query",
           "start": 12,
-          "end": 54,
+          "end": 25,
           "calls_self": [],
           "calls_service": [],
           "reads": [
@@ -1674,10 +1661,10 @@
       "parent": null
     },
     {
-      "id": "src/app/core/auth/auth.component.html:4:div",
+      "id": "src/app/core/auth/auth.component.html:2:div",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -1694,10 +1681,10 @@
       "parent": "src/app/core/auth/auth.component.html:1:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:7:div",
+      "id": "src/app/core/auth/auth.component.html:3:div",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -1710,13 +1697,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:4:div"
+      "parent": "src/app/core/auth/auth.component.html:2:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:10:div",
+      "id": "src/app/core/auth/auth.component.html:4:div",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -1731,13 +1718,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:7:div"
+      "parent": "src/app/core/auth/auth.component.html:3:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:13:h1",
+      "id": "src/app/core/auth/auth.component.html:5:h1",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 13,
+      "line": 5,
       "tag": "h1",
       "text": "",
       "name_attr": null,
@@ -1752,13 +1739,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:10:div"
+      "parent": "src/app/core/auth/auth.component.html:4:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:14:p",
+      "id": "src/app/core/auth/auth.component.html:6:p",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 14,
+      "line": 6,
       "tag": "p",
       "text": "",
       "name_attr": null,
@@ -1771,13 +1758,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:10:div"
+      "parent": "src/app/core/auth/auth.component.html:4:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:20:a",
+      "id": "src/app/core/auth/auth.component.html:8:a",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 20,
+      "line": 8,
       "tag": "a",
       "text": "Have an account?",
       "name_attr": null,
@@ -1791,13 +1778,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:14:p"
+      "parent": "src/app/core/auth/auth.component.html:6:p"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:24:a",
+      "id": "src/app/core/auth/auth.component.html:12:a",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 24,
+      "line": 12,
       "tag": "a",
       "text": "Need an account?",
       "name_attr": null,
@@ -1811,13 +1798,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:14:p"
+      "parent": "src/app/core/auth/auth.component.html:6:p"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:23:app-list-errors",
+      "id": "src/app/core/auth/auth.component.html:15:app-list-errors",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 23,
+      "line": 15,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -1832,13 +1819,13 @@
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/core/auth/auth.component.html:10:div"
+      "parent": "src/app/core/auth/auth.component.html:4:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:24:form",
+      "id": "src/app/core/auth/auth.component.html:16:form",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 24,
+      "line": 16,
       "tag": "form",
       "text": "",
       "name_attr": null,
@@ -1856,13 +1843,13 @@
         "ngsubmit"
       ],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:10:div"
+      "parent": "src/app/core/auth/auth.component.html:4:div"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:27:fieldset",
+      "id": "src/app/core/auth/auth.component.html:17:fieldset",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 27,
+      "line": 17,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -1877,13 +1864,13 @@
         "disabled"
       ],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:24:form"
+      "parent": "src/app/core/auth/auth.component.html:16:form"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:30:fieldset",
+      "id": "src/app/core/auth/auth.component.html:18:fieldset",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 30,
+      "line": 18,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -1896,13 +1883,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:27:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:17:fieldset"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:36:input",
+      "id": "src/app/core/auth/auth.component.html:20:input",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 36,
+      "line": 20,
       "tag": "input",
       "text": "",
       "name_attr": "username",
@@ -1920,13 +1907,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:30:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:18:fieldset"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:41:fieldset",
+      "id": "src/app/core/auth/auth.component.html:29:fieldset",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 41,
+      "line": 29,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -1939,13 +1926,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:27:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:17:fieldset"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:44:input",
+      "id": "src/app/core/auth/auth.component.html:30:input",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 44,
+      "line": 30,
       "tag": "input",
       "text": "",
       "name_attr": "email",
@@ -1961,13 +1948,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:41:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:29:fieldset"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:50:fieldset",
+      "id": "src/app/core/auth/auth.component.html:38:fieldset",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 50,
+      "line": 38,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -1980,13 +1967,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:27:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:17:fieldset"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:53:input",
+      "id": "src/app/core/auth/auth.component.html:39:input",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 53,
+      "line": 39,
       "tag": "input",
       "text": "",
       "name_attr": "password",
@@ -2002,13 +1989,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:50:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:38:fieldset"
     },
     {
-      "id": "src/app/core/auth/auth.component.html:59:button",
+      "id": "src/app/core/auth/auth.component.html:47:button",
       "component": "AuthComponent",
       "file": "src/app/core/auth/auth.component.html",
-      "line": 59,
+      "line": 47,
       "tag": "button",
       "text": "",
       "name_attr": null,
@@ -2030,7 +2017,7 @@
         "disabled"
       ],
       "child_selector": null,
-      "parent": "src/app/core/auth/auth.component.html:27:fieldset"
+      "parent": "src/app/core/auth/auth.component.html:17:fieldset"
     },
     {
       "id": "src/app/core/layout/footer.component.html:1:footer",
@@ -2050,10 +2037,10 @@
       "parent": null
     },
     {
-      "id": "src/app/core/layout/footer.component.html:4:div",
+      "id": "src/app/core/layout/footer.component.html:2:div",
       "component": "FooterComponent",
       "file": "src/app/core/layout/footer.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -2069,10 +2056,10 @@
       "parent": "src/app/core/layout/footer.component.html:1:footer"
     },
     {
-      "id": "src/app/core/layout/footer.component.html:7:a",
+      "id": "src/app/core/layout/footer.component.html:3:a",
       "component": "FooterComponent",
       "file": "src/app/core/layout/footer.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -2085,13 +2072,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/footer.component.html:4:div"
+      "parent": "src/app/core/layout/footer.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/footer.component.html:43:img",
+      "id": "src/app/core/layout/footer.component.html:3:img",
       "component": "FooterComponent",
       "file": "src/app/core/layout/footer.component.html",
-      "line": 43,
+      "line": 3,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -2104,13 +2091,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/footer.component.html:7:a"
+      "parent": "src/app/core/layout/footer.component.html:3:a"
     },
     {
-      "id": "src/app/core/layout/footer.component.html:8:span",
+      "id": "src/app/core/layout/footer.component.html:4:span",
       "component": "FooterComponent",
       "file": "src/app/core/layout/footer.component.html",
-      "line": 8,
+      "line": 4,
       "tag": "span",
       "text": "© . An interactive learning project from . Code licensed under MIT.",
       "name_attr": null,
@@ -2126,13 +2113,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/footer.component.html:4:div"
+      "parent": "src/app/core/layout/footer.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/footer.component.html:12:a",
+      "id": "src/app/core/layout/footer.component.html:6:a",
       "component": "FooterComponent",
       "file": "src/app/core/layout/footer.component.html",
-      "line": 12,
+      "line": 6,
       "tag": "a",
       "text": "RealWorld OSS Project",
       "name_attr": null,
@@ -2143,7 +2130,7 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/footer.component.html:8:span"
+      "parent": "src/app/core/layout/footer.component.html:4:span"
     },
     {
       "id": "src/app/core/layout/header.component.html:1:nav",
@@ -2166,10 +2153,10 @@
       "parent": null
     },
     {
-      "id": "src/app/core/layout/header.component.html:4:div",
+      "id": "src/app/core/layout/header.component.html:2:div",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -2185,10 +2172,10 @@
       "parent": "src/app/core/layout/header.component.html:1:nav"
     },
     {
-      "id": "src/app/core/layout/header.component.html:7:a",
+      "id": "src/app/core/layout/header.component.html:3:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -2201,13 +2188,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:4:div"
+      "parent": "src/app/core/layout/header.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/header.component.html:46:img",
+      "id": "src/app/core/layout/header.component.html:3:img",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 46,
+      "line": 3,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -2220,13 +2207,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:7:a"
+      "parent": "src/app/core/layout/header.component.html:3:a"
     },
     {
-      "id": "src/app/core/layout/header.component.html:16:ul",
+      "id": "src/app/core/layout/header.component.html:8:ul",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 16,
+      "line": 8,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -2244,13 +2231,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:4:div"
+      "parent": "src/app/core/layout/header.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/header.component.html:19:li",
+      "id": "src/app/core/layout/header.component.html:9:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 19,
+      "line": 9,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2266,13 +2253,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:16:ul"
+      "parent": "src/app/core/layout/header.component.html:8:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:22:a",
+      "id": "src/app/core/layout/header.component.html:10:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 22,
+      "line": 10,
       "tag": "a",
       "text": "Home",
       "name_attr": null,
@@ -2288,13 +2275,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:19:li"
+      "parent": "src/app/core/layout/header.component.html:9:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:23:li",
+      "id": "src/app/core/layout/header.component.html:13:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 23,
+      "line": 13,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2310,13 +2297,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:16:ul"
+      "parent": "src/app/core/layout/header.component.html:8:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:26:a",
+      "id": "src/app/core/layout/header.component.html:14:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 26,
+      "line": 14,
       "tag": "a",
       "text": "Sign in",
       "name_attr": null,
@@ -2334,13 +2321,13 @@
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:23:li"
+      "parent": "src/app/core/layout/header.component.html:13:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:27:li",
+      "id": "src/app/core/layout/header.component.html:17:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 27,
+      "line": 17,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2356,13 +2343,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:16:ul"
+      "parent": "src/app/core/layout/header.component.html:8:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:30:a",
+      "id": "src/app/core/layout/header.component.html:18:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 30,
+      "line": 18,
       "tag": "a",
       "text": "Sign up",
       "name_attr": null,
@@ -2381,13 +2368,13 @@
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:27:li"
+      "parent": "src/app/core/layout/header.component.html:17:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:33:ul",
+      "id": "src/app/core/layout/header.component.html:25:ul",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 33,
+      "line": 25,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -2405,13 +2392,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:4:div"
+      "parent": "src/app/core/layout/header.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/header.component.html:36:li",
+      "id": "src/app/core/layout/header.component.html:26:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 36,
+      "line": 26,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2427,13 +2414,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:33:ul"
+      "parent": "src/app/core/layout/header.component.html:25:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:39:a",
+      "id": "src/app/core/layout/header.component.html:27:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 39,
+      "line": 27,
       "tag": "a",
       "text": "Home",
       "name_attr": null,
@@ -2453,13 +2440,13 @@
         "routerlinkactiveoptions"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:36:li"
+      "parent": "src/app/core/layout/header.component.html:26:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:42:li",
+      "id": "src/app/core/layout/header.component.html:32:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 42,
+      "line": 32,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2475,13 +2462,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:33:ul"
+      "parent": "src/app/core/layout/header.component.html:25:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:45:a",
+      "id": "src/app/core/layout/header.component.html:33:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 45,
+      "line": 33,
       "tag": "a",
       "text": "New Article",
       "name_attr": null,
@@ -2499,13 +2486,13 @@
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:42:li"
+      "parent": "src/app/core/layout/header.component.html:32:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:48:i",
+      "id": "src/app/core/layout/header.component.html:34:i",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 48,
+      "line": 34,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -2521,13 +2508,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:45:a"
+      "parent": "src/app/core/layout/header.component.html:33:a"
     },
     {
-      "id": "src/app/core/layout/header.component.html:48:li",
+      "id": "src/app/core/layout/header.component.html:38:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 48,
+      "line": 38,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2543,13 +2530,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:33:ul"
+      "parent": "src/app/core/layout/header.component.html:25:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:51:a",
+      "id": "src/app/core/layout/header.component.html:39:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 51,
+      "line": 39,
       "tag": "a",
       "text": "Settings",
       "name_attr": null,
@@ -2567,13 +2554,13 @@
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:48:li"
+      "parent": "src/app/core/layout/header.component.html:38:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:54:i",
+      "id": "src/app/core/layout/header.component.html:40:i",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 54,
+      "line": 40,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -2589,13 +2576,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:51:a"
+      "parent": "src/app/core/layout/header.component.html:39:a"
     },
     {
-      "id": "src/app/core/layout/header.component.html:57:li",
+      "id": "src/app/core/layout/header.component.html:45:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 57,
+      "line": 45,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2612,13 +2599,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:33:ul"
+      "parent": "src/app/core/layout/header.component.html:25:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:60:a",
+      "id": "src/app/core/layout/header.component.html:46:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 60,
+      "line": 46,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -2640,13 +2627,13 @@
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:57:li"
+      "parent": "src/app/core/layout/header.component.html:45:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:63:img",
+      "id": "src/app/core/layout/header.component.html:47:img",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 63,
+      "line": 47,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -2666,13 +2653,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:60:a"
+      "parent": "src/app/core/layout/header.component.html:46:a"
     },
     {
-      "id": "src/app/core/layout/header.component.html:65:ul",
+      "id": "src/app/core/layout/header.component.html:57:ul",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 65,
+      "line": 57,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -2685,17 +2672,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:4:div"
+      "parent": "src/app/core/layout/header.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/header.component.html:68:li",
+      "id": "src/app/core/layout/header.component.html:58:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 68,
+      "line": 58,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2706,17 +2694,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:65:ul"
+      "parent": "src/app/core/layout/header.component.html:57:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:71:a",
+      "id": "src/app/core/layout/header.component.html:59:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 71,
+      "line": 59,
       "tag": "a",
       "text": "Home",
       "name_attr": null,
@@ -2728,6 +2717,7 @@
       "handlers": [],
       "identifiers": [
         "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState",
         "exact"
       ],
       "directives": [
@@ -2735,13 +2725,13 @@
         "routerlinkactiveoptions"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:68:li"
+      "parent": "src/app/core/layout/header.component.html:58:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:74:li",
+      "id": "src/app/core/layout/header.component.html:64:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 74,
+      "line": 64,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2752,17 +2742,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:65:ul"
+      "parent": "src/app/core/layout/header.component.html:57:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:77:a",
+      "id": "src/app/core/layout/header.component.html:65:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 77,
+      "line": 65,
       "tag": "a",
       "text": "New Article",
       "name_attr": null,
@@ -2773,19 +2764,20 @@
       "router_link": "/editor",
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:74:li"
+      "parent": "src/app/core/layout/header.component.html:64:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:80:i",
+      "id": "src/app/core/layout/header.component.html:66:i",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 80,
+      "line": 66,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -2796,17 +2788,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:77:a"
+      "parent": "src/app/core/layout/header.component.html:65:a"
     },
     {
-      "id": "src/app/core/layout/header.component.html:80:li",
+      "id": "src/app/core/layout/header.component.html:70:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 80,
+      "line": 70,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2817,17 +2810,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:65:ul"
+      "parent": "src/app/core/layout/header.component.html:57:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:83:a",
+      "id": "src/app/core/layout/header.component.html:71:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 83,
+      "line": 71,
       "tag": "a",
       "text": "Settings",
       "name_attr": null,
@@ -2838,19 +2832,20 @@
       "router_link": "/settings",
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [
         "routerlinkactive"
       ],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:80:li"
+      "parent": "src/app/core/layout/header.component.html:70:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:86:i",
+      "id": "src/app/core/layout/header.component.html:72:i",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 86,
+      "line": 72,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -2861,17 +2856,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:83:a"
+      "parent": "src/app/core/layout/header.component.html:71:a"
     },
     {
-      "id": "src/app/core/layout/header.component.html:86:li",
+      "id": "src/app/core/layout/header.component.html:76:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 86,
+      "line": 76,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2882,17 +2878,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:65:ul"
+      "parent": "src/app/core/layout/header.component.html:57:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:89:span",
+      "id": "src/app/core/layout/header.component.html:77:span",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 89,
+      "line": 77,
       "tag": "span",
       "text": "Connecting...",
       "name_attr": null,
@@ -2903,17 +2900,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:86:li"
+      "parent": "src/app/core/layout/header.component.html:76:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:92:i",
+      "id": "src/app/core/layout/header.component.html:78:i",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 92,
+      "line": 78,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -2924,17 +2922,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'unavailable'"
+        "@if:authState === 'unavailable'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:89:span"
+      "parent": "src/app/core/layout/header.component.html:77:span"
     },
     {
-      "id": "src/app/core/layout/header.component.html:94:ul",
+      "id": "src/app/core/layout/header.component.html:86:ul",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 94,
+      "line": 86,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -2947,17 +2946,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'loading'"
+        "@if:authState === 'loading'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:4:div"
+      "parent": "src/app/core/layout/header.component.html:2:div"
     },
     {
-      "id": "src/app/core/layout/header.component.html:97:li",
+      "id": "src/app/core/layout/header.component.html:87:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 97,
+      "line": 87,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -2968,17 +2968,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'loading'"
+        "@if:authState === 'loading'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:94:ul"
+      "parent": "src/app/core/layout/header.component.html:86:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:100:a",
+      "id": "src/app/core/layout/header.component.html:88:a",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 100,
+      "line": 88,
       "tag": "a",
       "text": "Home",
       "name_attr": null,
@@ -2989,17 +2990,18 @@
       "router_link": "/",
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'loading'"
+        "@if:authState === 'loading'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:97:li"
+      "parent": "src/app/core/layout/header.component.html:87:li"
     },
     {
-      "id": "src/app/core/layout/header.component.html:100:li",
+      "id": "src/app/core/layout/header.component.html:90:li",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 100,
+      "line": 90,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -3010,17 +3012,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'loading'"
+        "@if:authState === 'loading'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:94:ul"
+      "parent": "src/app/core/layout/header.component.html:86:ul"
     },
     {
-      "id": "src/app/core/layout/header.component.html:103:span",
+      "id": "src/app/core/layout/header.component.html:91:span",
       "component": "HeaderComponent",
       "file": "src/app/core/layout/header.component.html",
-      "line": 103,
+      "line": 91,
       "tag": "span",
       "text": "Loading...",
       "name_attr": null,
@@ -3031,17 +3034,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:authState === 'loading'"
+        "@if:authState === 'loading'",
+        "@if:authState$ | async; as authState"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/core/layout/header.component.html:100:li"
+      "parent": "src/app/core/layout/header.component.html:90:li"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:9:div",
+      "id": "src/app/features/article/components/article-comment.component.ts:14:div",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 9,
+      "line": 14,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3059,10 +3063,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:12:div",
+      "id": "src/app/features/article/components/article-comment.component.ts:15:div",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 12,
+      "line": 15,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3077,13 +3081,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:9:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:14:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:15:p",
+      "id": "src/app/features/article/components/article-comment.component.ts:16:p",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 15,
+      "line": 16,
       "tag": "p",
       "text": "",
       "name_attr": null,
@@ -3100,13 +3104,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:12:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:15:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:17:div",
+      "id": "src/app/features/article/components/article-comment.component.ts:20:div",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 17,
+      "line": 20,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3116,16 +3120,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:comment"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:9:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:14:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:20:a",
+      "id": "src/app/features/article/components/article-comment.component.ts:21:a",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 20,
+      "line": 21,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -3136,6 +3142,7 @@
       "router_link": "/profile/:p",
       "handlers": [],
       "identifiers": [
+        "@if:comment",
         "author",
         "comment",
         "profile",
@@ -3143,13 +3150,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:17:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:20:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:23:img",
+      "id": "src/app/features/article/components/article-comment.component.ts:22:img",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 23,
+      "line": 22,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -3160,6 +3167,7 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:comment",
         "author",
         "comment",
         "defaultImage",
@@ -3167,13 +3175,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:20:a"
+      "parent": "src/app/features/article/components/article-comment.component.ts:21:a"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:24:a",
+      "id": "src/app/features/article/components/article-comment.component.ts:25:a",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 24,
+      "line": 25,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -3184,6 +3192,7 @@
       "router_link": "/profile/:p",
       "handlers": [],
       "identifiers": [
+        "@if:comment",
         "author",
         "comment",
         "profile",
@@ -3191,13 +3200,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:17:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:20:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:27:span",
+      "id": "src/app/features/article/components/article-comment.component.ts:28:span",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 27,
+      "line": 28,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -3208,19 +3217,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:comment",
         "comment",
         "createdAt",
         "longDate"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:17:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:20:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:33:span",
+      "id": "src/app/features/article/components/article-comment.component.ts:32:span",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 33,
+      "line": 32,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -3231,17 +3241,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:canModify$ | async"
+        "@if:canModify$ | async",
+        "@if:comment"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:17:div"
+      "parent": "src/app/features/article/components/article-comment.component.ts:20:div"
     },
     {
-      "id": "src/app/features/article/components/article-comment.component.ts:36:i",
+      "id": "src/app/features/article/components/article-comment.component.ts:33:i",
       "component": "ArticleCommentComponent",
       "file": "src/app/features/article/components/article-comment.component.ts",
-      "line": 36,
+      "line": 33,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -3254,19 +3265,20 @@
         "emit"
       ],
       "identifiers": [
-        "@if:canModify$ | async"
+        "@if:canModify$ | async",
+        "@if:comment"
       ],
       "directives": [
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-comment.component.ts:33:span"
+      "parent": "src/app/features/article/components/article-comment.component.ts:32:span"
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:9:div",
+      "id": "src/app/features/article/components/article-list.component.ts:26:div",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 9,
+      "line": 26,
       "tag": "div",
       "text": "Loading articles...",
       "name_attr": null,
@@ -3284,10 +3296,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:16:app-article-preview",
+      "id": "src/app/features/article/components/article-list.component.ts:31:app-article-preview",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 16,
+      "line": 31,
       "tag": "app-article-preview",
       "text": "",
       "name_attr": null,
@@ -3306,10 +3318,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:18:div",
+      "id": "src/app/features/article/components/article-list.component.ts:33:div",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 18,
+      "line": 33,
       "tag": "div",
       "text": "Your feed is empty. Follow some users to see their articles here, or check out t",
       "name_attr": null,
@@ -3320,16 +3332,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:loading() === LoadingState.LOADED"
+      ],
       "directives": [],
       "child_selector": null,
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:25:a",
+      "id": "src/app/features/article/components/article-list.component.ts:36:a",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 25,
+      "line": 36,
       "tag": "a",
       "text": "Global Feed",
       "name_attr": null,
@@ -3338,17 +3352,18 @@
       "router_link": "/",
       "handlers": [],
       "identifiers": [
-        "@if:isFollowingFeed"
+        "@if:isFollowingFeed",
+        "@if:loading() === LoadingState.LOADED"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-list.component.ts:18:div"
+      "parent": "src/app/features/article/components/article-list.component.ts:33:div"
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:26:nav",
+      "id": "src/app/features/article/components/article-list.component.ts:43:nav",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 26,
+      "line": 43,
       "tag": "nav",
       "text": "",
       "name_attr": null,
@@ -3356,16 +3371,18 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:loading() === LoadingState.LOADED"
+      ],
       "directives": [],
       "child_selector": null,
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:29:ul",
+      "id": "src/app/features/article/components/article-list.component.ts:44:ul",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 29,
+      "line": 44,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -3376,18 +3393,19 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:loading() === LoadingState.LOADED",
         "pageNumber",
         "totalPages"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-list.component.ts:26:nav"
+      "parent": "src/app/features/article/components/article-list.component.ts:43:nav"
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:35:li",
+      "id": "src/app/features/article/components/article-list.component.ts:46:li",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 35,
+      "line": 46,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -3398,6 +3416,7 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:loading() === LoadingState.LOADED",
         "active",
         "page",
         "pageNumber"
@@ -3406,13 +3425,13 @@
         "ngclass"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-list.component.ts:29:ul"
+      "parent": "src/app/features/article/components/article-list.component.ts:44:ul"
     },
     {
-      "id": "src/app/features/article/components/article-list.component.ts:38:button",
+      "id": "src/app/features/article/components/article-list.component.ts:47:button",
       "component": "ArticleListComponent",
       "file": "src/app/features/article/components/article-list.component.ts",
-      "line": 38,
+      "line": 47,
       "tag": "button",
       "text": "",
       "name_attr": null,
@@ -3425,19 +3444,20 @@
         "setPageTo"
       ],
       "identifiers": [
+        "@if:loading() === LoadingState.LOADED",
         "pageNumber"
       ],
       "directives": [
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-list.component.ts:35:li"
+      "parent": "src/app/features/article/components/article-list.component.ts:46:li"
     },
     {
-      "id": "src/app/features/article/components/article-meta.component.ts:6:div",
+      "id": "src/app/features/article/components/article-meta.component.ts:10:div",
       "component": "ArticleMetaComponent",
       "file": "src/app/features/article/components/article-meta.component.ts",
-      "line": 6,
+      "line": 10,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3453,10 +3473,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-meta.component.ts:9:a",
+      "id": "src/app/features/article/components/article-meta.component.ts:11:a",
       "component": "ArticleMetaComponent",
       "file": "src/app/features/article/components/article-meta.component.ts",
-      "line": 9,
+      "line": 11,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -3472,7 +3492,7 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-meta.component.ts:6:div"
+      "parent": "src/app/features/article/components/article-meta.component.ts:10:div"
     },
     {
       "id": "src/app/features/article/components/article-meta.component.ts:12:img",
@@ -3494,13 +3514,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-meta.component.ts:9:a"
+      "parent": "src/app/features/article/components/article-meta.component.ts:11:a"
     },
     {
-      "id": "src/app/features/article/components/article-meta.component.ts:13:div",
+      "id": "src/app/features/article/components/article-meta.component.ts:15:div",
       "component": "ArticleMetaComponent",
       "file": "src/app/features/article/components/article-meta.component.ts",
-      "line": 13,
+      "line": 15,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3513,7 +3533,7 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-meta.component.ts:6:div"
+      "parent": "src/app/features/article/components/article-meta.component.ts:10:div"
     },
     {
       "id": "src/app/features/article/components/article-meta.component.ts:16:a",
@@ -3537,7 +3557,7 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-meta.component.ts:13:div"
+      "parent": "src/app/features/article/components/article-meta.component.ts:15:div"
     },
     {
       "id": "src/app/features/article/components/article-meta.component.ts:19:span",
@@ -3560,13 +3580,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-meta.component.ts:13:div"
+      "parent": "src/app/features/article/components/article-meta.component.ts:15:div"
     },
     {
-      "id": "src/app/features/article/components/article-meta.component.ts:22:ng-content",
+      "id": "src/app/features/article/components/article-meta.component.ts:24:ng-content",
       "component": "ArticleMetaComponent",
       "file": "src/app/features/article/components/article-meta.component.ts",
-      "line": 22,
+      "line": 24,
       "tag": "ng-content",
       "text": "",
       "name_attr": null,
@@ -3577,13 +3597,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": "ng-content",
-      "parent": "src/app/features/article/components/article-meta.component.ts:6:div"
+      "parent": "src/app/features/article/components/article-meta.component.ts:10:div"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:6:div",
+      "id": "src/app/features/article/components/article-preview.component.ts:11:div",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 6,
+      "line": 11,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3599,10 +3619,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:9:app-article-meta",
+      "id": "src/app/features/article/components/article-preview.component.ts:12:app-article-meta",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 9,
+      "line": 12,
       "tag": "app-article-meta",
       "text": "",
       "name_attr": null,
@@ -3617,13 +3637,13 @@
         "article"
       ],
       "child_selector": "app-article-meta",
-      "parent": "src/app/features/article/components/article-preview.component.ts:6:div"
+      "parent": "src/app/features/article/components/article-preview.component.ts:11:div"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:12:app-favorite-button",
+      "id": "src/app/features/article/components/article-preview.component.ts:13:app-favorite-button",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 12,
+      "line": 13,
       "tag": "app-favorite-button",
       "text": "",
       "name_attr": null,
@@ -3644,13 +3664,13 @@
         "toggle"
       ],
       "child_selector": "app-favorite-button",
-      "parent": "src/app/features/article/components/article-preview.component.ts:9:app-article-meta"
+      "parent": "src/app/features/article/components/article-preview.component.ts:12:app-article-meta"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:15:a",
+      "id": "src/app/features/article/components/article-preview.component.ts:18:a",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 15,
+      "line": 18,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -3666,13 +3686,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-preview.component.ts:6:div"
+      "parent": "src/app/features/article/components/article-preview.component.ts:11:div"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:18:h1",
+      "id": "src/app/features/article/components/article-preview.component.ts:19:h1",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 18,
+      "line": 19,
       "tag": "h1",
       "text": "",
       "name_attr": null,
@@ -3686,13 +3706,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-preview.component.ts:15:a"
+      "parent": "src/app/features/article/components/article-preview.component.ts:18:a"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:19:p",
+      "id": "src/app/features/article/components/article-preview.component.ts:20:p",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 19,
+      "line": 20,
       "tag": "p",
       "text": "",
       "name_attr": null,
@@ -3706,13 +3726,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-preview.component.ts:15:a"
+      "parent": "src/app/features/article/components/article-preview.component.ts:18:a"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:20:span",
+      "id": "src/app/features/article/components/article-preview.component.ts:21:span",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 20,
+      "line": 21,
       "tag": "span",
       "text": "Read more...",
       "name_attr": null,
@@ -3723,13 +3743,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-preview.component.ts:15:a"
+      "parent": "src/app/features/article/components/article-preview.component.ts:18:a"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:21:ul",
+      "id": "src/app/features/article/components/article-preview.component.ts:22:ul",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 21,
+      "line": 22,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -3745,13 +3765,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-preview.component.ts:15:a"
+      "parent": "src/app/features/article/components/article-preview.component.ts:18:a"
     },
     {
-      "id": "src/app/features/article/components/article-preview.component.ts:27:li",
+      "id": "src/app/features/article/components/article-preview.component.ts:24:li",
       "component": "ArticlePreviewComponent",
       "file": "src/app/features/article/components/article-preview.component.ts",
-      "line": 27,
+      "line": 24,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -3768,13 +3788,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/article-preview.component.ts:21:ul"
+      "parent": "src/app/features/article/components/article-preview.component.ts:22:ul"
     },
     {
-      "id": "src/app/features/article/components/favorite-button.component.ts:6:button",
+      "id": "src/app/features/article/components/favorite-button.component.ts:22:button",
       "component": "FavoriteButtonComponent",
       "file": "src/app/features/article/components/favorite-button.component.ts",
-      "line": 6,
+      "line": 22,
       "tag": "button",
       "text": "",
       "name_attr": null,
@@ -3804,10 +3824,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/components/favorite-button.component.ts:17:i",
+      "id": "src/app/features/article/components/favorite-button.component.ts:31:i",
       "component": "FavoriteButtonComponent",
       "file": "src/app/features/article/components/favorite-button.component.ts",
-      "line": 17,
+      "line": 31,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -3820,13 +3840,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/components/favorite-button.component.ts:6:button"
+      "parent": "src/app/features/article/components/favorite-button.component.ts:22:button"
     },
     {
-      "id": "src/app/features/article/components/favorite-button.component.ts:43:ng-content",
+      "id": "src/app/features/article/components/favorite-button.component.ts:31:ng-content",
       "component": "FavoriteButtonComponent",
       "file": "src/app/features/article/components/favorite-button.component.ts",
-      "line": 43,
+      "line": 31,
       "tag": "ng-content",
       "text": "",
       "name_attr": null,
@@ -3837,7 +3857,7 @@
       "identifiers": [],
       "directives": [],
       "child_selector": "ng-content",
-      "parent": "src/app/features/article/components/favorite-button.component.ts:6:button"
+      "parent": "src/app/features/article/components/favorite-button.component.ts:22:button"
     },
     {
       "id": "src/app/features/article/pages/article/article.component.html:1:div",
@@ -3859,10 +3879,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:7:div",
+      "id": "src/app/features/article/pages/article/article.component.html:3:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3880,10 +3900,10 @@
       "parent": "src/app/features/article/pages/article/article.component.html:1:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:10:div",
+      "id": "src/app/features/article/pages/article/article.component.html:4:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3898,13 +3918,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:7:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:3:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:13:div",
+      "id": "src/app/features/article/pages/article/article.component.html:5:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 13,
+      "line": 5,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3919,13 +3939,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:10:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:4:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:16:app-list-errors",
+      "id": "src/app/features/article/pages/article/article.component.html:6:app-list-errors",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 16,
+      "line": 6,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -3941,13 +3961,13 @@
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/features/article/pages/article/article.component.html:13:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:5:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:16:div",
+      "id": "src/app/features/article/pages/article/article.component.html:12:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 16,
+      "line": 12,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3965,10 +3985,10 @@
       "parent": "src/app/features/article/pages/article/article.component.html:1:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:19:div",
+      "id": "src/app/features/article/pages/article/article.component.html:13:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 19,
+      "line": 13,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -3983,13 +4003,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:16:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:12:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:22:h1",
+      "id": "src/app/features/article/pages/article/article.component.html:14:h1",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 22,
+      "line": 14,
       "tag": "h1",
       "text": "",
       "name_attr": null,
@@ -4004,13 +4024,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:19:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:13:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:24:app-article-meta",
+      "id": "src/app/features/article/pages/article/article.component.html:16:app-article-meta",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 24,
+      "line": 16,
       "tag": "app-article-meta",
       "text": "",
       "name_attr": null,
@@ -4019,19 +4039,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "a"
       ],
       "directives": [
         "article"
       ],
       "child_selector": "app-article-meta",
-      "parent": "src/app/features/article/pages/article/article.component.html:19:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:13:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:30:span",
+      "id": "src/app/features/article/pages/article/article.component.html:18:span",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 30,
+      "line": 18,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -4040,17 +4061,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:24:app-article-meta"
+      "parent": "src/app/features/article/pages/article/article.component.html:16:app-article-meta"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:33:a",
+      "id": "src/app/features/article/pages/article/article.component.html:19:a",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 33,
+      "line": 19,
       "tag": "a",
       "text": "Edit Article",
       "name_attr": null,
@@ -4063,6 +4085,7 @@
       "router_link": "/editor/:p",
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()",
         "a",
         "editor",
@@ -4070,13 +4093,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:30:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:18:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:36:i",
+      "id": "src/app/features/article/pages/article/article.component.html:20:i",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 36,
+      "line": 20,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -4087,17 +4110,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:33:a"
+      "parent": "src/app/features/article/pages/article/article.component.html:19:a"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:37:button",
+      "id": "src/app/features/article/pages/article/article.component.html:23:button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 37,
+      "line": 23,
       "tag": "button",
       "text": "Delete Article",
       "name_attr": null,
@@ -4112,6 +4136,7 @@
         "deleteArticle"
       ],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()",
         "disabled",
         "isDeleting"
@@ -4121,13 +4146,13 @@
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:30:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:18:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:44:i",
+      "id": "src/app/features/article/pages/article/article.component.html:28:i",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 44,
+      "line": 28,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -4138,17 +4163,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:37:button"
+      "parent": "src/app/features/article/pages/article/article.component.html:23:button"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:44:span",
+      "id": "src/app/features/article/pages/article/article.component.html:32:span",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 44,
+      "line": 32,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -4156,16 +4182,19 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:24:app-article-meta"
+      "parent": "src/app/features/article/pages/article/article.component.html:16:app-article-meta"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:47:app-follow-button",
+      "id": "src/app/features/article/pages/article/article.component.html:33:app-follow-button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 47,
+      "line": 33,
       "tag": "app-follow-button",
       "text": "",
       "name_attr": null,
@@ -4176,6 +4205,8 @@
         "toggleFollowing"
       ],
       "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()",
         "a",
         "author"
       ],
@@ -4184,13 +4215,13 @@
         "toggle"
       ],
       "child_selector": "app-follow-button",
-      "parent": "src/app/features/article/pages/article/article.component.html:44:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:32:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:49:app-favorite-button",
+      "id": "src/app/features/article/pages/article/article.component.html:35:app-favorite-button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 49,
+      "line": 35,
       "tag": "app-favorite-button",
       "text": "Article",
       "name_attr": null,
@@ -4201,6 +4232,8 @@
         "onToggleFavorite"
       ],
       "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()",
         "Favorite",
         "Unfavorite",
         "a",
@@ -4211,13 +4244,13 @@
         "toggle"
       ],
       "child_selector": "app-favorite-button",
-      "parent": "src/app/features/article/pages/article/article.component.html:44:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:32:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:53:span",
+      "id": "src/app/features/article/pages/article/article.component.html:37:span",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 53,
+      "line": 37,
       "tag": "span",
       "text": "( )",
       "name_attr": null,
@@ -4228,18 +4261,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()",
         "a",
         "favoritesCount"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:49:app-favorite-button"
+      "parent": "src/app/features/article/pages/article/article.component.html:35:app-favorite-button"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:49:div",
+      "id": "src/app/features/article/pages/article/article.component.html:45:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 49,
+      "line": 45,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4250,16 +4285,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
       "parent": "src/app/features/article/pages/article/article.component.html:1:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:52:div",
+      "id": "src/app/features/article/pages/article/article.component.html:46:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 52,
+      "line": 46,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4270,16 +4307,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:49:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:45:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:55:div",
+      "id": "src/app/features/article/pages/article/article.component.html:47:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 55,
+      "line": 47,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4289,16 +4328,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:52:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:46:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:58:div",
+      "id": "src/app/features/article/pages/article/article.component.html:48:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 58,
+      "line": 48,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4307,6 +4348,7 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "a",
         "body",
         "markdown"
@@ -4315,13 +4357,13 @@
         "innerhtml"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:55:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:47:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:60:ul",
+      "id": "src/app/features/article/pages/article/article.component.html:50:ul",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 60,
+      "line": 50,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -4332,19 +4374,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "a",
         "tag",
         "tagList"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:55:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:47:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:66:li",
+      "id": "src/app/features/article/pages/article/article.component.html:52:li",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 66,
+      "line": 52,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -4357,17 +4400,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "tag"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:60:ul"
+      "parent": "src/app/features/article/pages/article/article.component.html:50:ul"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:66:hr",
+      "id": "src/app/features/article/pages/article/article.component.html:60:hr",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 66,
+      "line": 60,
       "tag": "hr",
       "text": "",
       "name_attr": null,
@@ -4375,16 +4419,18 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:49:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:45:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:68:div",
+      "id": "src/app/features/article/pages/article/article.component.html:62:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 68,
+      "line": 62,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4394,16 +4440,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:49:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:45:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:71:app-article-meta",
+      "id": "src/app/features/article/pages/article/article.component.html:63:app-article-meta",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 71,
+      "line": 63,
       "tag": "app-article-meta",
       "text": "",
       "name_attr": null,
@@ -4412,19 +4460,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "a"
       ],
       "directives": [
         "article"
       ],
       "child_selector": "app-article-meta",
-      "parent": "src/app/features/article/pages/article/article.component.html:68:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:62:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:77:span",
+      "id": "src/app/features/article/pages/article/article.component.html:65:span",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 77,
+      "line": 65,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -4433,17 +4482,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:71:app-article-meta"
+      "parent": "src/app/features/article/pages/article/article.component.html:63:app-article-meta"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:80:a",
+      "id": "src/app/features/article/pages/article/article.component.html:66:a",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 80,
+      "line": 66,
       "tag": "a",
       "text": "Edit Article",
       "name_attr": null,
@@ -4456,6 +4506,7 @@
       "router_link": "/editor/:p",
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()",
         "a",
         "editor",
@@ -4463,13 +4514,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:77:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:65:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:83:i",
+      "id": "src/app/features/article/pages/article/article.component.html:67:i",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 83,
+      "line": 67,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -4480,17 +4531,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:80:a"
+      "parent": "src/app/features/article/pages/article/article.component.html:66:a"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:84:button",
+      "id": "src/app/features/article/pages/article/article.component.html:70:button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 84,
+      "line": 70,
       "tag": "button",
       "text": "Delete Article",
       "name_attr": null,
@@ -4505,6 +4557,7 @@
         "deleteArticle"
       ],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()",
         "disabled",
         "isDeleting"
@@ -4514,13 +4567,13 @@
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:77:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:65:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:91:i",
+      "id": "src/app/features/article/pages/article/article.component.html:75:i",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 91,
+      "line": 75,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -4531,17 +4584,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "@if:canModify()"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:84:button"
+      "parent": "src/app/features/article/pages/article/article.component.html:70:button"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:91:span",
+      "id": "src/app/features/article/pages/article/article.component.html:79:span",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 91,
+      "line": 79,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -4549,16 +4603,19 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:71:app-article-meta"
+      "parent": "src/app/features/article/pages/article/article.component.html:63:app-article-meta"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:94:app-follow-button",
+      "id": "src/app/features/article/pages/article/article.component.html:80:app-follow-button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 94,
+      "line": 80,
       "tag": "app-follow-button",
       "text": "",
       "name_attr": null,
@@ -4569,6 +4626,8 @@
         "toggleFollowing"
       ],
       "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()",
         "a",
         "author"
       ],
@@ -4577,13 +4636,13 @@
         "toggle"
       ],
       "child_selector": "app-follow-button",
-      "parent": "src/app/features/article/pages/article/article.component.html:91:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:79:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:96:app-favorite-button",
+      "id": "src/app/features/article/pages/article/article.component.html:82:app-favorite-button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 96,
+      "line": 82,
       "tag": "app-favorite-button",
       "text": "Article",
       "name_attr": null,
@@ -4594,6 +4653,8 @@
         "onToggleFavorite"
       ],
       "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()",
         "Favorite",
         "Unfavorite",
         "a",
@@ -4604,13 +4665,13 @@
         "toggle"
       ],
       "child_selector": "app-favorite-button",
-      "parent": "src/app/features/article/pages/article/article.component.html:91:span"
+      "parent": "src/app/features/article/pages/article/article.component.html:79:span"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:100:span",
+      "id": "src/app/features/article/pages/article/article.component.html:84:span",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 100,
+      "line": 84,
       "tag": "span",
       "text": "( )",
       "name_attr": null,
@@ -4621,18 +4682,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
+        "@if:not canModify()",
         "a",
         "favoritesCount"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:96:app-favorite-button"
+      "parent": "src/app/features/article/pages/article/article.component.html:82:app-favorite-button"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:97:div",
+      "id": "src/app/features/article/pages/article/article.component.html:91:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 97,
+      "line": 91,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4642,16 +4705,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:49:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:45:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:100:div",
+      "id": "src/app/features/article/pages/article/article.component.html:92:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 100,
+      "line": 92,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4664,18 +4729,19 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "comment",
         "comments"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:97:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:91:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:103:div",
+      "id": "src/app/features/article/pages/article/article.component.html:93:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 103,
+      "line": 93,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4683,18 +4749,20 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [
         "ifauthenticated"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:100:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:92:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:106:app-list-errors",
+      "id": "src/app/features/article/pages/article/article.component.html:94:app-list-errors",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 106,
+      "line": 94,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -4703,19 +4771,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "commentFormErrors"
       ],
       "directives": [
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/features/article/pages/article/article.component.html:103:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:93:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:107:form",
+      "id": "src/app/features/article/pages/article/article.component.html:95:form",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 107,
+      "line": 95,
       "tag": "form",
       "text": "",
       "name_attr": null,
@@ -4728,18 +4797,20 @@
       "handlers": [
         "addComment"
       ],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [
         "ngsubmit"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:103:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:93:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:110:fieldset",
+      "id": "src/app/features/article/pages/article/article.component.html:96:fieldset",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 110,
+      "line": 96,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -4748,19 +4819,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "isSubmitting"
       ],
       "directives": [
         "disabled"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:107:form"
+      "parent": "src/app/features/article/pages/article/article.component.html:95:form"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:113:div",
+      "id": "src/app/features/article/pages/article/article.component.html:97:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 113,
+      "line": 97,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4770,16 +4842,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:110:fieldset"
+      "parent": "src/app/features/article/pages/article/article.component.html:96:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:116:textarea",
+      "id": "src/app/features/article/pages/article/article.component.html:98:textarea",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 116,
+      "line": 98,
       "tag": "textarea",
       "text": "",
       "name_attr": null,
@@ -4790,19 +4864,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "commentControl"
       ],
       "directives": [
         "formcontrol"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:113:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:97:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:121:div",
+      "id": "src/app/features/article/pages/article/article.component.html:105:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 121,
+      "line": 105,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -4812,16 +4887,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:110:fieldset"
+      "parent": "src/app/features/article/pages/article/article.component.html:96:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:124:img",
+      "id": "src/app/features/article/pages/article/article.component.html:106:img",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 124,
+      "line": 106,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -4832,19 +4909,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "currentUser",
         "defaultImage",
         "image"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:121:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:105:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:125:button",
+      "id": "src/app/features/article/pages/article/article.component.html:107:button",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 125,
+      "line": 107,
       "tag": "button",
       "text": "Post Comment",
       "name_attr": null,
@@ -4856,16 +4934,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:121:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:105:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:123:div",
+      "id": "src/app/features/article/pages/article/article.component.html:113:div",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 123,
+      "line": 113,
       "tag": "div",
       "text": "or to add comments on this article.",
       "name_attr": null,
@@ -4873,18 +4953,20 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:article(); as a"
+      ],
       "directives": [
         "ifauthenticated"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:100:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:92:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:126:a",
+      "id": "src/app/features/article/pages/article/article.component.html:114:a",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 126,
+      "line": 114,
       "tag": "a",
       "text": "Sign in",
       "name_attr": null,
@@ -4893,17 +4975,18 @@
       "router_link": "/login",
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "login"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:123:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:113:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:170:a",
+      "id": "src/app/features/article/pages/article/article.component.html:114:a",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 170,
+      "line": 114,
       "tag": "a",
       "text": "sign up",
       "name_attr": null,
@@ -4912,17 +4995,18 @@
       "router_link": "/register",
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "register"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/article/article.component.html:123:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:113:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:128:app-list-errors",
+      "id": "src/app/features/article/pages/article/article.component.html:118:app-list-errors",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 128,
+      "line": 118,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -4931,19 +5015,20 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:article(); as a",
         "deleteCommentErrors"
       ],
       "directives": [
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/features/article/pages/article/article.component.html:100:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:92:div"
     },
     {
-      "id": "src/app/features/article/pages/article/article.component.html:133:app-article-comment",
+      "id": "src/app/features/article/pages/article/article.component.html:121:app-article-comment",
       "component": "ArticleComponent",
       "file": "src/app/features/article/pages/article/article.component.html",
-      "line": 133,
+      "line": 121,
       "tag": "app-article-comment",
       "text": "",
       "name_attr": null,
@@ -4954,6 +5039,7 @@
         "deleteComment"
       ],
       "identifiers": [
+        "@if:article(); as a",
         "comment"
       ],
       "directives": [
@@ -4961,7 +5047,7 @@
         "delete"
       ],
       "child_selector": "app-article-comment",
-      "parent": "src/app/features/article/pages/article/article.component.html:100:div"
+      "parent": "src/app/features/article/pages/article/article.component.html:92:div"
     },
     {
       "id": "src/app/features/article/pages/editor/editor.component.html:1:div",
@@ -4983,10 +5069,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:4:div",
+      "id": "src/app/features/article/pages/editor/editor.component.html:2:div",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5003,10 +5089,10 @@
       "parent": "src/app/features/article/pages/editor/editor.component.html:1:div"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:7:div",
+      "id": "src/app/features/article/pages/editor/editor.component.html:3:div",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5019,13 +5105,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:4:div"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:2:div"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:10:div",
+      "id": "src/app/features/article/pages/editor/editor.component.html:4:div",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5040,13 +5126,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:7:div"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:3:div"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:13:app-list-errors",
+      "id": "src/app/features/article/pages/editor/editor.component.html:5:app-list-errors",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 13,
+      "line": 5,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -5061,13 +5147,13 @@
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/features/article/pages/editor/editor.component.html:10:div"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:4:div"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:15:form",
+      "id": "src/app/features/article/pages/editor/editor.component.html:7:form",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 15,
+      "line": 7,
       "tag": "form",
       "text": "",
       "name_attr": null,
@@ -5082,13 +5168,13 @@
         "formgroup"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:10:div"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:4:div"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:18:fieldset",
+      "id": "src/app/features/article/pages/editor/editor.component.html:8:fieldset",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 18,
+      "line": 8,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -5103,13 +5189,13 @@
         "disabled"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:15:form"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:7:form"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:21:fieldset",
+      "id": "src/app/features/article/pages/editor/editor.component.html:9:fieldset",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 21,
+      "line": 9,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -5122,13 +5208,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:18:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:8:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:24:input",
+      "id": "src/app/features/article/pages/editor/editor.component.html:10:input",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 24,
+      "line": 10,
       "tag": "input",
       "text": "",
       "name_attr": "title",
@@ -5144,13 +5230,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:21:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:9:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:31:fieldset",
+      "id": "src/app/features/article/pages/editor/editor.component.html:19:fieldset",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 31,
+      "line": 19,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -5163,13 +5249,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:18:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:8:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:34:input",
+      "id": "src/app/features/article/pages/editor/editor.component.html:20:input",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 34,
+      "line": 20,
       "tag": "input",
       "text": "",
       "name_attr": "description",
@@ -5184,13 +5270,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:31:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:19:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:41:fieldset",
+      "id": "src/app/features/article/pages/editor/editor.component.html:29:fieldset",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 41,
+      "line": 29,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -5203,13 +5289,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:18:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:8:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:44:textarea",
+      "id": "src/app/features/article/pages/editor/editor.component.html:30:textarea",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 44,
+      "line": 30,
       "tag": "textarea",
       "text": "",
       "name_attr": "body",
@@ -5224,13 +5310,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:41:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:29:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:52:fieldset",
+      "id": "src/app/features/article/pages/editor/editor.component.html:40:fieldset",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 52,
+      "line": 40,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -5243,13 +5329,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:18:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:8:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:55:input",
+      "id": "src/app/features/article/pages/editor/editor.component.html:41:input",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 55,
+      "line": 41,
       "tag": "input",
       "text": "",
       "name_attr": null,
@@ -5269,13 +5355,13 @@
         "keyup.enter"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:52:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:40:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:62:div",
+      "id": "src/app/features/article/pages/editor/editor.component.html:48:div",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 62,
+      "line": 48,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5291,13 +5377,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:52:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:40:fieldset"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:68:span",
+      "id": "src/app/features/article/pages/editor/editor.component.html:50:span",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 68,
+      "line": 50,
       "tag": "span",
       "text": "",
       "name_attr": null,
@@ -5313,13 +5399,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:62:div"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:48:div"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:71:i",
+      "id": "src/app/features/article/pages/editor/editor.component.html:51:i",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 71,
+      "line": 51,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -5336,13 +5422,13 @@
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:68:span"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:50:span"
     },
     {
-      "id": "src/app/features/article/pages/editor/editor.component.html:70:button",
+      "id": "src/app/features/article/pages/editor/editor.component.html:58:button",
       "component": "EditorComponent",
       "file": "src/app/features/article/pages/editor/editor.component.html",
-      "line": 70,
+      "line": 58,
       "tag": "button",
       "text": "Publish Article",
       "name_attr": null,
@@ -5362,7 +5448,7 @@
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/editor/editor.component.html:18:fieldset"
+      "parent": "src/app/features/article/pages/editor/editor.component.html:8:fieldset"
     },
     {
       "id": "src/app/features/article/pages/home/home.component.html:1:div",
@@ -5384,10 +5470,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:4:div",
+      "id": "src/app/features/article/pages/home/home.component.html:2:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5405,10 +5491,10 @@
       "parent": "src/app/features/article/pages/home/home.component.html:1:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:7:div",
+      "id": "src/app/features/article/pages/home/home.component.html:3:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5421,13 +5507,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:4:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:2:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:10:h1",
+      "id": "src/app/features/article/pages/home/home.component.html:4:h1",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "h1",
       "text": "",
       "name_attr": null,
@@ -5440,13 +5526,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:7:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:3:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:32:img",
+      "id": "src/app/features/article/pages/home/home.component.html:4:img",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 32,
+      "line": 4,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -5459,13 +5545,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:10:h1"
+      "parent": "src/app/features/article/pages/home/home.component.html:4:h1"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:11:p",
+      "id": "src/app/features/article/pages/home/home.component.html:5:p",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 11,
+      "line": 5,
       "tag": "p",
       "text": "This is the demo from the project. This demo is connected to a demo backend that",
       "name_attr": null,
@@ -5476,13 +5562,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:7:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:3:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:15:a",
+      "id": "src/app/features/article/pages/home/home.component.html:7:a",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 15,
+      "line": 7,
       "tag": "a",
       "text": "Angular frontend",
       "name_attr": null,
@@ -5493,13 +5579,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:11:p"
+      "parent": "src/app/features/article/pages/home/home.component.html:5:p"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:16:a",
+      "id": "src/app/features/article/pages/home/home.component.html:8:a",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 16,
+      "line": 8,
       "tag": "a",
       "text": "Realworld",
       "name_attr": null,
@@ -5510,13 +5596,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:11:p"
+      "parent": "src/app/features/article/pages/home/home.component.html:5:p"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:92:br",
+      "id": "src/app/features/article/pages/home/home.component.html:8:br",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 92,
+      "line": 8,
       "tag": "br",
       "text": "",
       "name_attr": null,
@@ -5527,13 +5613,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:11:p"
+      "parent": "src/app/features/article/pages/home/home.component.html:5:p"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:16:div",
+      "id": "src/app/features/article/pages/home/home.component.html:14:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 16,
+      "line": 14,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5550,10 +5636,10 @@
       "parent": "src/app/features/article/pages/home/home.component.html:1:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:19:div",
+      "id": "src/app/features/article/pages/home/home.component.html:15:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 19,
+      "line": 15,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5566,13 +5652,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:16:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:14:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:22:div",
+      "id": "src/app/features/article/pages/home/home.component.html:16:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 22,
+      "line": 16,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5585,13 +5671,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:19:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:15:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:25:div",
+      "id": "src/app/features/article/pages/home/home.component.html:17:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 25,
+      "line": 17,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5604,13 +5690,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:22:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:16:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:28:ul",
+      "id": "src/app/features/article/pages/home/home.component.html:18:ul",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 28,
+      "line": 18,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -5625,13 +5711,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:25:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:17:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:31:li",
+      "id": "src/app/features/article/pages/home/home.component.html:19:li",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 31,
+      "line": 19,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -5646,13 +5732,13 @@
         "ifauthenticated"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:28:ul"
+      "parent": "src/app/features/article/pages/home/home.component.html:18:ul"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:34:a",
+      "id": "src/app/features/article/pages/home/home.component.html:20:a",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 34,
+      "line": 20,
       "tag": "a",
       "text": "Your Feed",
       "name_attr": null,
@@ -5674,13 +5760,13 @@
         "queryparams"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:31:li"
+      "parent": "src/app/features/article/pages/home/home.component.html:19:li"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:41:li",
+      "id": "src/app/features/article/pages/home/home.component.html:29:li",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 41,
+      "line": 29,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -5693,13 +5779,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:28:ul"
+      "parent": "src/app/features/article/pages/home/home.component.html:18:ul"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:44:a",
+      "id": "src/app/features/article/pages/home/home.component.html:30:a",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 44,
+      "line": 30,
       "tag": "a",
       "text": "Global Feed",
       "name_attr": null,
@@ -5721,13 +5807,13 @@
         "ngclass"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:41:li"
+      "parent": "src/app/features/article/pages/home/home.component.html:29:li"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:52:li",
+      "id": "src/app/features/article/pages/home/home.component.html:40:li",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 52,
+      "line": 40,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -5746,13 +5832,13 @@
         "hidden"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:28:ul"
+      "parent": "src/app/features/article/pages/home/home.component.html:18:ul"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:55:a",
+      "id": "src/app/features/article/pages/home/home.component.html:41:a",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 55,
+      "line": 41,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -5770,13 +5856,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:52:li"
+      "parent": "src/app/features/article/pages/home/home.component.html:40:li"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:83:i",
+      "id": "src/app/features/article/pages/home/home.component.html:41:i",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 83,
+      "line": 41,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -5789,13 +5875,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:55:a"
+      "parent": "src/app/features/article/pages/home/home.component.html:41:a"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:54:app-article-list",
+      "id": "src/app/features/article/pages/home/home.component.html:46:app-article-list",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 54,
+      "line": 46,
       "tag": "app-article-list",
       "text": "",
       "name_attr": null,
@@ -5818,13 +5904,13 @@
         "pagechange"
       ],
       "child_selector": "app-article-list",
-      "parent": "src/app/features/article/pages/home/home.component.html:22:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:16:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:61:div",
+      "id": "src/app/features/article/pages/home/home.component.html:55:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 61,
+      "line": 55,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5841,13 +5927,13 @@
         "rxlet"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:19:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:15:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:64:div",
+      "id": "src/app/features/article/pages/home/home.component.html:56:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 64,
+      "line": 56,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5860,13 +5946,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:61:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:55:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:67:p",
+      "id": "src/app/features/article/pages/home/home.component.html:57:p",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 67,
+      "line": 57,
       "tag": "p",
       "text": "Popular Tags",
       "name_attr": null,
@@ -5877,13 +5963,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:64:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:56:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:69:div",
+      "id": "src/app/features/article/pages/home/home.component.html:59:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 69,
+      "line": 59,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -5899,13 +5985,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:64:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:56:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:75:a",
+      "id": "src/app/features/article/pages/home/home.component.html:61:a",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 75,
+      "line": 61,
       "tag": "a",
       "text": "",
       "name_attr": null,
@@ -5921,13 +6007,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:69:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:59:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:77:div",
+      "id": "src/app/features/article/pages/home/home.component.html:67:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 77,
+      "line": 67,
       "tag": "div",
       "text": "Loading tags...",
       "name_attr": null,
@@ -5942,13 +6028,13 @@
         "hidden"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:64:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:56:div"
     },
     {
-      "id": "src/app/features/article/pages/home/home.component.html:79:div",
+      "id": "src/app/features/article/pages/home/home.component.html:69:div",
       "component": "HomeComponent",
       "file": "src/app/features/article/pages/home/home.component.html",
-      "line": 79,
+      "line": 69,
       "tag": "div",
       "text": "No tags are here... yet.",
       "name_attr": null,
@@ -5965,13 +6051,13 @@
         "hidden"
       ],
       "child_selector": null,
-      "parent": "src/app/features/article/pages/home/home.component.html:64:div"
+      "parent": "src/app/features/article/pages/home/home.component.html:56:div"
     },
     {
-      "id": "src/app/features/profile/components/follow-button.component.ts:6:button",
+      "id": "src/app/features/profile/components/follow-button.component.ts:23:button",
       "component": "FollowButtonComponent",
       "file": "src/app/features/profile/components/follow-button.component.ts",
-      "line": 6,
+      "line": 23,
       "tag": "button",
       "text": "",
       "name_attr": null,
@@ -6005,10 +6091,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/profile/components/follow-button.component.ts:17:i",
+      "id": "src/app/features/profile/components/follow-button.component.ts:32:i",
       "component": "FollowButtonComponent",
       "file": "src/app/features/profile/components/follow-button.component.ts",
-      "line": 17,
+      "line": 32,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -6021,13 +6107,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/components/follow-button.component.ts:6:button"
+      "parent": "src/app/features/profile/components/follow-button.component.ts:23:button"
     },
     {
-      "id": "src/app/features/profile/components/profile-articles.component.ts:6:app-article-list",
+      "id": "src/app/features/profile/components/profile-articles.component.ts:12:app-article-list",
       "component": "ProfileArticlesComponent",
       "file": "src/app/features/profile/components/profile-articles.component.ts",
-      "line": 6,
+      "line": 12,
       "tag": "app-article-list",
       "text": "",
       "name_attr": null,
@@ -6047,10 +6133,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/profile/components/profile-favorites.component.ts:6:app-article-list",
+      "id": "src/app/features/profile/components/profile-favorites.component.ts:12:app-article-list",
       "component": "ProfileFavoritesComponent",
       "file": "src/app/features/profile/components/profile-favorites.component.ts",
-      "line": 6,
+      "line": 12,
       "tag": "app-article-list",
       "text": "",
       "name_attr": null,
@@ -6089,10 +6175,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:7:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:3:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6110,10 +6196,10 @@
       "parent": "src/app/features/profile/pages/profile/profile.component.html:1:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:10:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:4:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6128,13 +6214,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:7:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:3:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:13:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:5:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 13,
+      "line": 5,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6151,13 +6237,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:10:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:4:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:16:app-list-errors",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:6:app-list-errors",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 16,
+      "line": 6,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -6173,13 +6259,13 @@
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:13:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:5:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:16:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:12:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 16,
+      "line": 12,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6197,10 +6283,10 @@
       "parent": "src/app/features/profile/pages/profile/profile.component.html:1:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:19:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:13:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 19,
+      "line": 13,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6215,13 +6301,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:16:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:12:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:22:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:14:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 22,
+      "line": 14,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6236,13 +6322,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:19:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:13:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:25:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:15:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 25,
+      "line": 15,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6259,13 +6345,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:22:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:14:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:28:img",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:16:img",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 28,
+      "line": 16,
       "tag": "img",
       "text": "",
       "name_attr": null,
@@ -6283,13 +6369,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:25:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:15:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:29:h4",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:17:h4",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 29,
+      "line": 17,
       "tag": "h4",
       "text": "",
       "name_attr": null,
@@ -6304,13 +6390,13 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:25:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:15:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:30:p",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:18:p",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 30,
+      "line": 18,
       "tag": "p",
       "text": "",
       "name_attr": null,
@@ -6319,18 +6405,19 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
+        "@if:profile(); as p",
         "bio",
         "p"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:25:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:15:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:34:app-follow-button",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:20:app-follow-button",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 34,
+      "line": 20,
       "tag": "app-follow-button",
       "text": "",
       "name_attr": null,
@@ -6342,6 +6429,7 @@
       ],
       "identifiers": [
         "@if:!isUser()",
+        "@if:profile(); as p",
         "p"
       ],
       "directives": [
@@ -6349,13 +6437,13 @@
         "toggle"
       ],
       "child_selector": "app-follow-button",
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:25:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:15:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:37:a",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:23:a",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 37,
+      "line": 23,
       "tag": "a",
       "text": "Edit Profile Settings",
       "name_attr": null,
@@ -6370,17 +6458,18 @@
       "handlers": [],
       "identifiers": [
         "@if:isUser()",
+        "@if:profile(); as p",
         "settings"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:25:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:15:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:40:i",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:24:i",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 40,
+      "line": 24,
       "tag": "i",
       "text": "",
       "name_attr": null,
@@ -6391,17 +6480,18 @@
       "router_link": null,
       "handlers": [],
       "identifiers": [
-        "@if:isUser()"
+        "@if:isUser()",
+        "@if:profile(); as p"
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:37:a"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:23:a"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:36:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:32:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 36,
+      "line": 32,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6411,16 +6501,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
       "parent": "src/app/features/profile/pages/profile/profile.component.html:1:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:39:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:33:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 39,
+      "line": 33,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6430,16 +6522,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:36:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:32:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:42:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:34:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 42,
+      "line": 34,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6451,16 +6545,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:39:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:33:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:45:div",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:35:div",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 45,
+      "line": 35,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6470,16 +6566,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:42:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:34:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:48:ul",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:36:ul",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 48,
+      "line": 36,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -6491,16 +6589,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:45:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:35:div"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:51:li",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:37:li",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 51,
+      "line": 37,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -6510,16 +6610,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:48:ul"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:36:ul"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:38:a",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 54,
+      "line": 38,
       "tag": "a",
       "text": "My Posts",
       "name_attr": null,
@@ -6530,6 +6632,7 @@
       "router_link": "/profile/:p",
       "handlers": [],
       "identifiers": [
+        "@if:profile(); as p",
         "exact",
         "p",
         "profile",
@@ -6540,13 +6643,13 @@
         "routerlinkactiveoptions"
       ],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:51:li"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:37:li"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:61:li",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:47:li",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 61,
+      "line": 47,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -6556,16 +6659,18 @@
       ],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:48:ul"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:36:ul"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:64:a",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:48:a",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 64,
+      "line": 48,
       "tag": "a",
       "text": "Favorited Posts",
       "name_attr": null,
@@ -6576,6 +6681,7 @@
       "router_link": "/profile/:p/favorites",
       "handlers": [],
       "identifiers": [
+        "@if:profile(); as p",
         "exact",
         "favorites",
         "p",
@@ -6587,13 +6693,13 @@
         "routerlinkactiveoptions"
       ],
       "child_selector": null,
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:61:li"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:47:li"
     },
     {
-      "id": "src/app/features/profile/pages/profile/profile.component.html:70:router-outlet",
+      "id": "src/app/features/profile/pages/profile/profile.component.html:60:router-outlet",
       "component": "ProfileComponent",
       "file": "src/app/features/profile/pages/profile/profile.component.html",
-      "line": 70,
+      "line": 60,
       "tag": "router-outlet",
       "text": "",
       "name_attr": null,
@@ -6601,10 +6707,12 @@
       "classes": [],
       "router_link": null,
       "handlers": [],
-      "identifiers": [],
+      "identifiers": [
+        "@if:profile(); as p"
+      ],
       "directives": [],
       "child_selector": "router-outlet",
-      "parent": "src/app/features/profile/pages/profile/profile.component.html:42:div"
+      "parent": "src/app/features/profile/pages/profile/profile.component.html:34:div"
     },
     {
       "id": "src/app/features/settings/settings.component.html:1:div",
@@ -6626,10 +6734,10 @@
       "parent": null
     },
     {
-      "id": "src/app/features/settings/settings.component.html:4:div",
+      "id": "src/app/features/settings/settings.component.html:2:div",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6646,10 +6754,10 @@
       "parent": "src/app/features/settings/settings.component.html:1:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:7:div",
+      "id": "src/app/features/settings/settings.component.html:3:div",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 7,
+      "line": 3,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6662,13 +6770,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:4:div"
+      "parent": "src/app/features/settings/settings.component.html:2:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:10:div",
+      "id": "src/app/features/settings/settings.component.html:4:div",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "div",
       "text": "",
       "name_attr": null,
@@ -6683,13 +6791,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:7:div"
+      "parent": "src/app/features/settings/settings.component.html:3:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:13:h1",
+      "id": "src/app/features/settings/settings.component.html:5:h1",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 13,
+      "line": 5,
       "tag": "h1",
       "text": "Your Settings",
       "name_attr": null,
@@ -6702,13 +6810,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:10:div"
+      "parent": "src/app/features/settings/settings.component.html:4:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:15:app-list-errors",
+      "id": "src/app/features/settings/settings.component.html:7:app-list-errors",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 15,
+      "line": 7,
       "tag": "app-list-errors",
       "text": "",
       "name_attr": null,
@@ -6723,13 +6831,13 @@
         "errors"
       ],
       "child_selector": "app-list-errors",
-      "parent": "src/app/features/settings/settings.component.html:10:div"
+      "parent": "src/app/features/settings/settings.component.html:4:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:17:form",
+      "id": "src/app/features/settings/settings.component.html:9:form",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 17,
+      "line": 9,
       "tag": "form",
       "text": "",
       "name_attr": null,
@@ -6747,13 +6855,13 @@
         "ngsubmit"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:10:div"
+      "parent": "src/app/features/settings/settings.component.html:4:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:20:fieldset",
+      "id": "src/app/features/settings/settings.component.html:10:fieldset",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 20,
+      "line": 10,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -6768,13 +6876,13 @@
         "disabled"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:17:form"
+      "parent": "src/app/features/settings/settings.component.html:9:form"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:23:fieldset",
+      "id": "src/app/features/settings/settings.component.html:11:fieldset",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 23,
+      "line": 11,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -6787,13 +6895,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:20:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:10:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:26:input",
+      "id": "src/app/features/settings/settings.component.html:12:input",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 26,
+      "line": 12,
       "tag": "input",
       "text": "",
       "name_attr": "image",
@@ -6808,13 +6916,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:23:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:11:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:33:fieldset",
+      "id": "src/app/features/settings/settings.component.html:21:fieldset",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 33,
+      "line": 21,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -6827,13 +6935,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:20:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:10:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:36:input",
+      "id": "src/app/features/settings/settings.component.html:22:input",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 36,
+      "line": 22,
       "tag": "input",
       "text": "",
       "name_attr": "username",
@@ -6849,13 +6957,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:33:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:21:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:43:fieldset",
+      "id": "src/app/features/settings/settings.component.html:31:fieldset",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 43,
+      "line": 31,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -6868,13 +6976,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:20:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:10:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:46:textarea",
+      "id": "src/app/features/settings/settings.component.html:32:textarea",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 46,
+      "line": 32,
       "tag": "textarea",
       "text": "",
       "name_attr": "bio",
@@ -6890,13 +6998,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:43:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:31:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:54:fieldset",
+      "id": "src/app/features/settings/settings.component.html:42:fieldset",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 54,
+      "line": 42,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -6909,13 +7017,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:20:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:10:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:57:input",
+      "id": "src/app/features/settings/settings.component.html:43:input",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 57,
+      "line": 43,
       "tag": "input",
       "text": "",
       "name_attr": "email",
@@ -6931,13 +7039,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:54:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:42:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:64:fieldset",
+      "id": "src/app/features/settings/settings.component.html:52:fieldset",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 64,
+      "line": 52,
       "tag": "fieldset",
       "text": "",
       "name_attr": null,
@@ -6950,13 +7058,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:20:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:10:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:67:input",
+      "id": "src/app/features/settings/settings.component.html:53:input",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 67,
+      "line": 53,
       "tag": "input",
       "text": "",
       "name_attr": "password",
@@ -6972,13 +7080,13 @@
         "formcontrolname"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:64:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:52:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:74:button",
+      "id": "src/app/features/settings/settings.component.html:62:button",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 74,
+      "line": 62,
       "tag": "button",
       "text": "Update Settings",
       "name_attr": null,
@@ -6994,13 +7102,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:20:fieldset"
+      "parent": "src/app/features/settings/settings.component.html:10:fieldset"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:75:hr",
+      "id": "src/app/features/settings/settings.component.html:67:hr",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 75,
+      "line": 67,
       "tag": "hr",
       "text": "",
       "name_attr": null,
@@ -7011,13 +7119,13 @@
       "identifiers": [],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:10:div"
+      "parent": "src/app/features/settings/settings.component.html:4:div"
     },
     {
-      "id": "src/app/features/settings/settings.component.html:77:button",
+      "id": "src/app/features/settings/settings.component.html:69:button",
       "component": "SettingsComponent",
       "file": "src/app/features/settings/settings.component.html",
-      "line": 77,
+      "line": 69,
       "tag": "button",
       "text": "Or click here to logout.",
       "name_attr": null,
@@ -7035,13 +7143,13 @@
         "click"
       ],
       "child_selector": null,
-      "parent": "src/app/features/settings/settings.component.html:10:div"
+      "parent": "src/app/features/settings/settings.component.html:4:div"
     },
     {
-      "id": "src/app/shared/components/list-errors.component.html:4:ul",
+      "id": "src/app/shared/components/list-errors.component.html:2:ul",
       "component": "ListErrorsComponent",
       "file": "src/app/shared/components/list-errors.component.html",
-      "line": 4,
+      "line": 2,
       "tag": "ul",
       "text": "",
       "name_attr": null,
@@ -7061,10 +7169,10 @@
       "parent": null
     },
     {
-      "id": "src/app/shared/components/list-errors.component.html:10:li",
+      "id": "src/app/shared/components/list-errors.component.html:4:li",
       "component": "ListErrorsComponent",
       "file": "src/app/shared/components/list-errors.component.html",
-      "line": 10,
+      "line": 4,
       "tag": "li",
       "text": "",
       "name_attr": null,
@@ -7078,7 +7186,7 @@
       ],
       "directives": [],
       "child_selector": null,
-      "parent": "src/app/shared/components/list-errors.component.html:4:ul"
+      "parent": "src/app/shared/components/list-errors.component.html:2:ul"
     }
   ],
   "layout_components": [

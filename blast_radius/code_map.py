@@ -53,6 +53,14 @@ def match_close(text: str, start: int, open_ch: str = "{", close_ch: str = "}") 
     i = start
     while i < len(text):
         c = text[i]
+        if text.startswith("//", i):          # line comment: an apostrophe in "don't" is not a string
+            nl = text.find("\n", i)
+            i = len(text) if nl < 0 else nl
+            continue
+        if text.startswith("/*", i):
+            end = text.find("*/", i + 2)
+            i = len(text) if end < 0 else end + 2
+            continue
         if c in "'\"`":  # skip string literals
             j = i + 1
             while j < len(text) and text[j] != c:
@@ -155,37 +163,68 @@ def parse_routes(commit: str, files: list[str], class_of: dict[str, str]) -> lis
 
 # ---------------- components / services ----------------
 
-def parse_methods(text: str) -> list[Method]:
-    lines = text.splitlines()
-    methods: list[Method] = []
-    offsets = [0]
-    for line in lines:
-        offsets.append(offsets[-1] + len(line) + 1)
-    for i, line in enumerate(lines):
-        m = METHOD_RE.match(line)
-        if not m or m.group(1) in KEYWORDS:
+ARROW_FIELD = re.compile(r"^  (?:(?:public|private|protected|readonly|static)\s+)*(\w+)\s*=\s*(?:async\s*)?"
+                         r"(?:\([^)]*\)|\w+)\s*(?::\s*[^=]+)?=>\s*\{", re.M)
+METHOD_START = re.compile(r"^  (?:@\w+\([^)]*\)\s*)?(?:(?:public|private|protected|async|static|override|get|set)\s+)*"
+                          r"(\w+)\s*(?:<[^>]*>)?\s*\(", re.M)
+
+
+def _body_brace(text: str, i: int) -> int | None:
+    """After a parameter list: skip an optional return type (which may contain '{' inside <...>, e.g.
+    Observable<{ user: User }>) and return the index of the body's '{'. None if a ';' or '=' comes first."""
+    angle = 0
+    while i < len(text):
+        if text.startswith("=>", i):
+            i += 2
             continue
-        open_idx = offsets[i] + line.rindex("{")
-        close_idx = match_close(text, open_idx)
-        end_line = text.count("\n", 0, close_idx) + 1
-        body = text[open_idx:close_idx]
-        methods.append(Method(
-            name=m.group(1), start=i + 1, end=end_line,
-            calls_self=sorted(set(re.findall(r"this\.(\w+)\s*\(", body))),
-            reads=sorted(set(re.findall(r"this\.(\w+)", body))),
-            calls_service=sorted({f"{a}.{b}" for a, b in re.findall(r"this\.(\w+)\s*\.\s*(\w+)\s*\(", body)}),
-        ))
+        c = text[i]
+        if c == "<":
+            angle += 1
+        elif c == ">":
+            angle -= 1
+        elif angle == 0 and c == "{":
+            return i
+        elif angle == 0 and c in ";=":
+            return None
+        i += 1
+    return None
+
+
+def parse_methods(text: str) -> list[Method]:
+    """Class methods, including signatures that span several lines:
+         intercept(
+           req: HttpRequest<any>,
+         ): Observable<HttpEvent<any>> {"""
+    methods: list[Method] = []
+    for m in METHOD_START.finditer(text):
+        name = m.group(1)
+        if name in KEYWORDS:
+            continue
+        close = match_close(text, m.end() - 1, "(", ")")
+        brace = _body_brace(text, close + 1)
+        if brace is None:
+            continue          # an overload, a call, or a field initialiser, not a method body
+        methods.append(_method(name, text, m.start(), brace, match_close(text, brace)))
+    for m in ARROW_FIELD.finditer(text):     # submit = () => { ... }: a method in all but syntax
+        if m.group(1) in KEYWORDS or any(x.name == m.group(1) for x in methods):
+            continue
+        brace = m.end() - 1
+        methods.append(_method(m.group(1), text, m.start(), brace, match_close(text, brace)))
     # constructor: treat like a lifecycle method
     if (m := re.search(r"^\s{2}constructor\s*\(", text, re.M)):
         open_idx = text.index("{", match_close(text, m.end() - 1, "(", ")"))
-        close_idx = match_close(text, open_idx)
-        body = text[open_idx:close_idx]
-        methods.append(Method(name="constructor", start=text.count("\n", 0, m.start()) + 1,
-                              end=text.count("\n", 0, close_idx) + 1,
-                              calls_self=sorted(set(re.findall(r"this\.(\w+)\s*\(", body))),
-                              reads=sorted(set(re.findall(r"this\.(\w+)", body))),
-                              calls_service=sorted({f"{a}.{b}" for a, b in re.findall(r"this\.(\w+)\s*\.\s*(\w+)\s*\(", body)})))
+        methods.append(_method("constructor", text, m.start(), open_idx, match_close(text, open_idx)))
     return methods
+
+
+def _method(name: str, text: str, start: int, brace: int, close_idx: int) -> Method:
+    body = text[brace:close_idx]
+    return Method(
+        name=name, start=text.count("\n", 0, start) + 1, end=text.count("\n", 0, close_idx) + 1,
+        calls_self=sorted(set(re.findall(r"this\.(\w+)\s*\(", body))),
+        reads=sorted(set(re.findall(r"this\.(\w+)", body))),
+        calls_service=sorted({f"{a}.{b}" for a, b in re.findall(r"this\.(\w+)\s*\.\s*(\w+)\s*\(", body)}),
+    )
 
 
 def _path_expr(expr: str) -> str:
@@ -242,13 +281,15 @@ class _TemplateParser(HTMLParser):
 
     def __init__(self, component: str, file: str, line_offset: int):
         super().__init__(convert_charrefs=True)
-        self.component, self.file, self.offset = component, file, line_offset
+        # NB: HTMLParser uses self.offset for its own column bookkeeping, so the line offset needs another name
+        self.component, self.file, self.line_offset = component, file, line_offset
         self.stack: list[TemplateElement] = []
         self.out: list[TemplateElement] = []
-        self.conditions: list[str] = []
+        self.conditions: list[str | None] = []
+        self._last_if: str | None = None
 
     def handle_starttag(self, tag, attrs):
-        line = self.getpos()[0] + self.offset
+        line = self.getpos()[0] + self.line_offset
         a = {k: (v or "") for k, v in attrs}
         handlers, idents, directives = [], set(), []
         router_link = a.get("routerlink") or None
@@ -271,8 +312,8 @@ class _TemplateParser(HTMLParser):
             child_selector=tag if "-" in tag else None,
             parent=self.stack[-1].id if self.stack else None,
         )
-        if self.conditions:
-            el.identifiers = sorted(set(el.identifiers) | {f"@if:{c}" for c in self.conditions})
+        if any(self.conditions):
+            el.identifiers = sorted(set(el.identifiers) | {f"@if:{c}" for c in self.conditions if c})
         self.out.append(el)
         if tag not in self.VOID:
             self.stack.append(el)
@@ -290,15 +331,26 @@ class _TemplateParser(HTMLParser):
 
     def handle_data(self, data):
         # Angular control flow lives in text nodes: track @if conditions so elements know their visibility rule.
-        for m in re.finditer(r"@if\s*\((.*?)\)\s*\{|@else\s*\{|\}", data):
+        # Every block opener (@if, @else, @for, @switch, @case, @defer, ...) pushes; its '}' pops. Interpolation
+        # braces ({{ x }}) are removed first so they can't pop anything.
+        flow = re.sub(r"\{\{.*?\}\}", " ", data, flags=re.S)
+        for m in re.finditer(r"@(if|else if|else|for|switch|case|default|defer|empty|placeholder|loading)\b\s*"
+                             r"(?:\((.*?)\))?\s*\{|\}", flow):
             tok = m.group(0)
-            if tok.startswith("@if"):
-                self.conditions.append(re.sub(r"\s+", " ", m.group(1))[:60])
-            elif tok.startswith("@else"):
+            if tok == "}":
                 if self.conditions:
-                    self.conditions[-1] = "not " + self.conditions[-1]
-            elif self.conditions:
-                self.conditions.pop()
+                    self.conditions.pop()
+            elif m.group(1) == "if":
+                self.conditions.append(re.sub(r"\s+", " ", m.group(2) or "")[:60])
+            elif m.group(1) in ("else", "else if"):
+                # the closing '}' of the @if already popped it; record the negation (and the new test, if any)
+                prev = self._last_if or ""
+                cond = f"not {prev}" + (f" and {re.sub(chr(92) + 's+', ' ', m.group(2))[:40]}" if m.group(2) else "")
+                self.conditions.append(cond[:60])
+            else:
+                self.conditions.append(None)      # a non-conditional block: still needs its '}' matched
+            if m.group(1) == "if":
+                self._last_if = self.conditions[-1]
         text = re.sub(r"\{\{.*?\}\}", " ", data, flags=re.S)
         text = re.sub(r"@(if|for|else|switch|case)\b[^{]*\{|\}", " ", text)
         text = re.sub(r"\s+", " ", text.replace(" ", " ")).strip()

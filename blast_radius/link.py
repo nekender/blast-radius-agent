@@ -249,7 +249,7 @@ def link_methods(cm: CodeMap, idx: Index) -> list[Link]:
                                 method="binding", evidence=why))
             for ep in idx.endpoints_of_method(comp, m.name):
                 out.append(Link(src=f"{comp.name}.{m.name}", dst=ep, kind="CALLS_API", confidence=1.0, method="static"))
-        if comp.kind == "directive":
+        if comp.kind == "directive" and comp.selector:
             # A structural directive decides whether its host element AND everything inside it is rendered.
             key = comp.selector.strip("[]").lower()
             children: dict[str, list[TemplateElement]] = defaultdict(list)
@@ -427,8 +427,11 @@ def link_requirements(reqs: list[Requirement], crawl: Crawl, cm: CodeMap, idx: I
         if not found and empty_evidence and llm.available() and relevant:
             cands = [e for s in relevant for e in by_screen[s.id] if e.label][:60]
             listing = "\n".join(f"{e.id} | {e.screen_id} | {e.tag} | {e.label}" for e in cands)
-            j = llm.structured(JUDGE, f"Requirement: {r.statement}\nPages: {r.pages}\n\nElements:\n{listing}",
-                               JudgeOut, use_cache=use_cache, max_tokens=800)
+            try:
+                j = llm.structured(JUDGE, f"Requirement: {r.statement}\nPages: {r.pages}\n\nElements:\n{listing}",
+                                   JudgeOut, use_cache=use_cache, max_tokens=800)
+            except Exception:  # noqa: BLE001 - no judge: the requirement stays a gap with a review note
+                j = JudgeOut(verdict="unclear", element_ids=[], confidence=0.0, reason="judge unavailable")
             valid = [i for i in j.element_ids if i in {e.id for e in cands}]   # never trust ids the model invented
             if j.verdict == "covered" and valid:
                 for i in valid:
@@ -615,7 +618,8 @@ def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index, use_cache: bool = True
                 continue
             inputs = [x.id for x in idx.tel_by_component[comp.name] if x.tag in ("input", "textarea")]
             flows[(r.template, eps[0])] = Flow(
-                id=f"flow:code:{r.template}:{t.handlers[0]}", name="", observed=False, requires_login=r.guarded,
+                id=f"flow:code:{r.template}:{t.handlers[0]}:{'|'.join(eps)}", name="", observed=False,
+                requires_login=r.guarded,
                 steps=(entry or (login if r.guarded else [])) + [f"route:{r.template}"] + inputs + [t.id],
                 action_element=t.id, calls=eps)
 
@@ -645,7 +649,10 @@ def _name_flows(flows: list[Flow], use_cache: bool) -> None:
         return
     listing = "\n\n".join(f"id: {f.id}\nfrom code: {not f.observed}\ncalls: {', '.join(f.calls)}\nsteps:\n- "
                           + "\n- ".join(f.narrative) for f in flows)
-    out = llm.structured(NAMER, listing, FlowNames, use_cache=use_cache, max_tokens=3000)
+    try:
+        out = llm.structured(NAMER, listing, FlowNames, use_cache=use_cache, max_tokens=3000)
+    except Exception:  # noqa: BLE001 - plain names stay
+        return
     # Check each name before trusting it: for a real flow id, short, and not shared with another flow.
     # A rejected name falls back to the plain one; the others still apply.
     counts = defaultdict(int)

@@ -415,6 +415,8 @@ class Crawler:
         self.screens = merged
         for e in self.elements.values():
             e.screen_id = rename.get(e.screen_id, e.screen_id)
+            if e.href_template and ":p" not in e.href_template:
+                e.href_template = self.templater.template(e.href_template)
         for t in self.transitions:
             t.from_screen = rename.get(t.from_screen, t.from_screen)
             if ":p" not in t.to_template:

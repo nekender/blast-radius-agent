@@ -245,7 +245,7 @@ def link_tests(tests: list[Test], crawl: Crawl, reqs: list[Requirement], req_lin
     for t in tests:
         for tpl in {st.page for st in t.steps if st.page}:
             for l in screen_reqs.get(tpl, []):
-                conf = 0.5 if l.method == "dom-class" else 0.6
+                conf = 0.5 if l.evidence.startswith("class ") else 0.6   # a page that merely carries a CSS class
                 if (l.src, t.id) not in tested or tested[(l.src, t.id)].confidence < conf:
                     tested[(l.src, t.id)] = Link(src=l.src, dst=t.id, kind="TESTED_BY", confidence=conf,
                                                  method="visits-page", evidence=f"test is on {tpl}, which {l.evidence}")

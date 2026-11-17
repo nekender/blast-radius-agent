@@ -27,6 +27,12 @@ def template_report(br: BlastRadius) -> str:
     reqs = [i for i in br.impacts if i.kind == "requirement"]
     flows = [i for i in br.impacts if i.kind == "flow"]
     els = [i for i in br.impacts if i.kind == "element"]
+    glob = [n for n in br.notes if n["scope"] == "global"]
+    if glob:
+        lines += ["> **Scope warning:** " + " ".join(f"`{n['file']}`: {n['message']}" for n in glob), ""]
+    quiet = [n for n in br.notes if n["scope"] == "none"]
+    if quiet and not br.impacts and not glob:
+        lines += ["> " + " ".join(f"`{n['file']}`: {n['message']}." for n in quiet), ""]
     lines += ["## In one line",
               f"This change touches {len(els)} control(s) across {len({i.label for i in br.impacts if i.kind == 'screen'})} page(s), "
               f"{len(flows)} user flow(s) and {len(reqs)} requirement(s). "
@@ -103,8 +109,10 @@ each with an id, a confidence and the evidence. Rules:
 - Plain product language: say "the Publish Article button on the editor page", not method or file names.
 - Tests are named by their test name; group tests that act on the same control in one bullet (cite all their ids).
 - Every bullet lists in refs the ids of the facts it is about. Use only ids from the facts.
-- Mention every fact with confidence >= 0.75. Say clearly which items were never seen in the running app; if every
+- Mention every fact marked must_mention (low-ranked ones can be grouped in one short bullet). Say clearly which items were never seen in the running app; if every
   item was seen, don't write a section about it. Never write a section or bullet that has nothing to report.
+- If file_scope_notes has a 'global' note, say plainly that the full suite should run; if every file is 'none'
+  scope, say there is no runtime change.
 - If what_the_change_does is given, open with it in plain words. Re-test items in the order of the impact list.
 - No numbers or claims that are not in the facts. Short sentences."""
 
@@ -112,16 +120,24 @@ each with an id, a confidence and the evidence. Rules:
 def _facts(br: BlastRadius) -> dict:
     return {"pr": br.pr, "title": br.title,
             "what_the_change_does": (br.assessment or {}).get("behaviour_change", ""),
+            "file_scope_notes": br.notes,
             "impacts": [{"id": i.id, "kind": i.kind, "label": i.label, "confidence": i.confidence,
-                         "observed_in_app": i.observed, "evidence": i.why} for i in br.impacts if i.kind != "screen"],
+                         "must_mention": _must(i), "observed_in_app": i.observed, "evidence": i.why}
+                        for i in br.impacts if i.kind != "screen"],
             "coverage_lost": br.coverage_lost, "needs_review": br.needs_review}
+
+
+def _must(i) -> bool:
+    """Judged on the traversal's confidence too, so the assessment agent can rank an item down but not out of the
+    report. The writer is told which items these are (must_mention), and the verifier checks the same rule."""
+    return i.kind != "screen" and max(i.confidence, i.base_confidence or 0) >= SETTINGS.link_accept
 
 
 def verify(w: Written, br: BlastRadius) -> list[str]:
     ids = {i.id for i in br.impacts}
     cited = {r for b in w.what_to_retest for r in b.refs} | {r for s in w.sections for b in s.bullets for r in b.refs}
     errors = [f"cited unknown id {r}" for r in sorted(cited - ids)]
-    must = {i.id for i in br.impacts if i.confidence >= SETTINGS.link_accept and i.kind != "screen"}
+    must = {i.id for i in br.impacts if _must(i)}
     errors += [f"high-confidence item not mentioned: {i}" for i in sorted(must - cited)]
     return errors
 
@@ -134,7 +150,9 @@ def render(w: Written, br: BlastRadius) -> str:
         unseen = any(not conf[r].observed for r in b.refs if r in conf)
         return f" *({'/'.join(levels)} confidence{', not seen in the app' if unseen else ''})*" if levels else ""
 
-    out = [f"# What PR #{br.pr} could break", "", f"**{br.title}** · [{br.url}]({br.url})", "", f"> {w.headline}", "",
+    glob = [n for n in br.notes if n["scope"] == "global"]
+    banner = (["> **Scope warning:** " + " ".join(f"`{n['file']}`: {n['message']}" for n in glob), ""] if glob else [])
+    out = [f"# What PR #{br.pr} could break", "", f"**{br.title}** · [{br.url}]({br.url})", "", *banner, f"> {w.headline}", "",
            "## Re-test first", ""]
     out += [f"{n}. {b.text}{tag(b)}" for n, b in enumerate(w.what_to_retest, 1)] + [""]
     for s in w.sections:
@@ -153,7 +171,10 @@ def write(br: BlastRadius, use_cache: bool = True) -> tuple[str, dict]:
     errors: list[str] = []
     for attempt in range(2):
         p = prompt if not errors else f"{prompt}\n\nFix these problems from your last draft: {errors}"
-        w = llm.structured(SYSTEM, p, Written, use_cache=use_cache, max_tokens=8000)
+        try:
+            w = llm.structured(SYSTEM, p, Written, use_cache=use_cache, max_tokens=8000)
+        except Exception as e:  # noqa: BLE001
+            return template_report(br), {"writer": "template-fallback", "errors": [f"{e.__class__.__name__}"]}
         errors = verify(w, br)
         if not errors:
             return render(w, br), {"writer": "llm", "attempts": attempt + 1, "errors": []}

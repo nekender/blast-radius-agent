@@ -12,6 +12,9 @@ def _br():
 
 def test_assessment_is_grounded_bounded_and_never_removes(monkeypatch, tmp_path):
     monkeypatch.setattr(llm, "available", lambda: True)
+    import dataclasses
+    monkeypatch.setattr(A, "SETTINGS", dataclasses.replace(A.SETTINGS, cache_dir=__import__("pathlib").Path(
+        __import__("tempfile").mkdtemp())))   # never write into the project's .cache
     result = {"behaviour_change": "x", "retest_first": ["b"], "adjustments": [
         {"id": "a", "confidence": 0.1, "reason": "setup step only"},       # inspected: capped at -0.5, floor 0.3
         {"id": "b", "confidence": 0.2, "reason": "never looked at it"},     # not inspected: rejected

@@ -7,12 +7,13 @@
    so moved or renamed files still resolve. Units that don't resolve are reported, not dropped.
 4. Traverse the graph (Neo4j): units -> template elements -> UI elements -> screens -> flows -> requirements.
 5. Score: confidence of a path = product of its edge confidences; an item keeps its best path.
-6. Anything below the accept threshold, or reachable only in code (never observed in the UI), goes to
+6. Anything below the review threshold, or reachable only in code (never observed in the UI), goes to
    "needs review" with the reason. The LLM only writes the prose afterwards (see report.py).
 """
 from __future__ import annotations
 
 import json
+import os
 import re
 from collections import defaultdict
 
@@ -31,12 +32,24 @@ def fetch_pr(number: int) -> dict:
     if cache.exists():
         return json.loads(cache.read_text())
     base = f"https://api.github.com/repos/{SETTINGS.repo}/pulls/{number}"
-    with httpx.Client(headers={"Accept": "application/vnd.github+json"}, timeout=30) as c:
+    headers = {"Accept": "application/vnd.github+json"}
+    if os.environ.get("GITHUB_TOKEN"):   # optional: lifts the 60 requests/hour anonymous limit
+        headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    with httpx.Client(headers=headers, timeout=30) as c:
         pr = c.get(base).raise_for_status().json()
-        files = c.get(f"{base}/files").raise_for_status().json()
+        files, page = [], 1
+        while True:          # the files endpoint is paginated
+            batch = c.get(f"{base}/files", params={"per_page": 100, "page": page}).raise_for_status().json()
+            files += batch
+            if len(batch) < 100:
+                break
+            page += 1
+    # An unmerged PR's merge_commit_sha is a temporary test merge that may not be fetchable: use its head instead.
+    after = pr["merge_commit_sha"] if pr.get("merged_at") else pr["head"]["sha"]
     data = {"number": number, "title": pr["title"], "url": pr["html_url"], "body": pr.get("body") or "",
-            "merge_commit": pr["merge_commit_sha"], "base": pr["base"]["sha"],
-            "files": [{"path": f["filename"], "status": f["status"], "patch": f.get("patch", "")} for f in files]}
+            "merge_commit": after, "merged": bool(pr.get("merged_at")), "base": pr["base"]["sha"],
+            "files": [{"path": f["filename"], "previous_path": f.get("previous_filename") or f["filename"],
+                       "status": f["status"], "patch": f.get("patch", "")} for f in files]}
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_text(json.dumps(data, indent=2))
     return data
@@ -50,6 +63,8 @@ def changed_lines(patch: str) -> tuple[set[int], set[int]]:
         if (m := HUNK.match(line)):
             o, n = int(m.group(1)), int(m.group(3))
             continue
+        if line.startswith("\\"):
+            continue                      # "\ No newline at end of file": not a line of either side
         if line.startswith("+"):
             new.add(n); n += 1
         elif line.startswith("-"):
@@ -70,12 +85,22 @@ def _ensure_commit(sha: str) -> str:
 def units_for(cm: CodeMap, path: str, lines: set[int]) -> list[dict]:
     """Code units touched by `lines` of `path` in code map `cm`."""
     out = []
+    # Template elements in this file (a .html template, or an inline template inside a .ts). A changed line belongs
+    # to the last element that starts at or before it (tags and their text often span several lines).
+    tels = sorted((t for t in cm.template_elements if t.file == path), key=lambda t: t.line)
+    span = (tels[0].line, tels[-1].line + 3) if tels else (0, -1)
+    in_template = {l for l in lines if span[0] <= l <= span[1]} if path.endswith(".ts") else set(lines)
+    hit = {}
+    for l in in_template:
+        before = [t for t in tels if t.line <= l]
+        if before:
+            hit[before[-1].id] = before[-1]
+    for t in hit.values():
+        out.append({"kind": "template", "component": t.component, "tag": t.tag, "text": t.text,
+                    "name_attr": t.name_attr, "handlers": t.handlers, "line": t.line})
     if path.endswith(".html"):
-        for t in cm.template_elements:
-            if t.file == path and t.line in lines:
-                out.append({"kind": "template", "component": t.component, "tag": t.tag, "text": t.text,
-                            "name_attr": t.name_attr, "handlers": t.handlers, "line": t.line})
         return out
+    lines = set(lines) - in_template
     for c in cm.components:
         if c.file != path:
             continue
@@ -135,21 +160,62 @@ def resolve(unit: dict, head: CodeMap, since: str | None = None) -> tuple[list[s
         return ([f"{comp.name}.{m.name}" for m in comp.methods], note) if note else ([], None)
     if unit["kind"] == "component":
         return [f"{comp.name}.{m.name}" for m in comp.methods], note
-    # template change: the methods bound to that element
-    return [f"{comp.name}.{h}" for h in unit.get("handlers", [])], note
+    # template change: the methods bound to that element, plus the element itself (as "tel:<id>"), so a change to
+    # a button's text, name or class reaches the UI even when no handler changed
+    ids = [f"{comp.name}.{h}" for h in unit.get("handlers", []) if any(m.name == h for m in comp.methods)]
+    for t in head.template_elements:
+        if t.component == comp.name and t.tag == unit["tag"] and (
+                (unit.get("name_attr") and t.name_attr == unit["name_attr"]) or (unit.get("text") and t.text == unit["text"])
+                or (unit.get("handlers") and t.handlers == unit["handlers"])):
+            ids.append(f"tel:{t.id}")
+    return ids, note
+
+
+GLOBAL_BUILD = re.compile(r"(^|/)(package(-lock)?\.json|yarn\.lock|pnpm-lock\.yaml|angular\.json|tsconfig[^/]*\.json|"
+                          r"\.browserslistrc|karma\.conf\.js|vite\.config\.\w+)$")
+GLOBAL_RUNTIME = re.compile(r"(^|/)(main\.ts|index\.html|styles?\.(s?css|less)|app\.config\.ts|polyfills\.ts)$|/interceptors/")
+NO_RUNTIME = re.compile(r"\.(md|txt)$|(^|/)(\.github/|\.gitignore|\.editorconfig|LICENSE|travis\.yml|\.prettier)|\.spec\.ts$|"
+                        r"(^|/)(e2e|tests?)/")
+IMPORT_OR_COMMENT = re.compile(r"^\s*(import\b.*|export\s+\*\s+from.*|\}?\s*from\s+['\"].*|//.*|/?\*.*|\*/|)$")
+
+
+def classify(path: str, patch: str) -> dict | None:
+    """Changes the method-level mapping can't speak for. Returns a scope note, or None for ordinary code."""
+    changed = [l[1:] for l in patch.splitlines() if l[:1] in "+-" and not l.startswith(("+++", "---"))]
+    if NO_RUNTIME.search(path):
+        what = "unit tests" if path.endswith(".spec.ts") else "docs, CI or repo config"
+        return {"file": path, "scope": "none", "message": f"{what} only: no change to what users run"}
+    if GLOBAL_BUILD.search(path):
+        return {"file": path, "scope": "global", "message": "dependency or build change: it can affect any screen, and "
+                "its blast radius can't be traced statically. Run the full suite."}
+    if changed and all(IMPORT_OR_COMMENT.match(l) for l in changed):
+        return {"file": path, "scope": "none", "message": "imports or comments only: no behaviour change"}
+    if GLOBAL_RUNTIME.search(path):
+        return {"file": path, "scope": "global", "message": "app-wide runtime code (bootstrap, interceptor or global "
+                "styles): it applies to every page or request. Run the full suite."}
+    if not patch:
+        return {"file": path, "scope": "unknown", "message": "no text diff (binary, renamed without changes, or too large)"}
+    return None
 
 
 def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
     pr = fetch_pr(number)
     after = code_map.build(_ensure_commit(pr["merge_commit"]))
-    before = code_map.build(pr["base"])
+    before = code_map.build(_ensure_commit(pr["base"]))
 
     changed: dict[str, dict] = {}
-    method_ids, unmapped = {}, []
+    method_ids, unmapped, notes, route_files = {}, [], [], []
     for f in pr["files"]:
-        new, old = changed_lines(f["patch"])
-        units = units_for(after, f["path"], new) + units_for(before, f["path"], old)
-        if not units:
+        note = classify(f["path"], f.get("patch", ""))
+        if note:
+            notes.append(note)
+            if note["scope"] != "global":
+                continue      # global files are still mapped below where possible, on top of the warning
+        if f["path"].endswith("routes.ts"):
+            route_files.append(f["path"])
+        new, old = changed_lines(f.get("patch", ""))
+        units = units_for(after, f["path"], new) + units_for(before, f.get("previous_path", f["path"]), old)
+        if not units and not note and not f["path"].endswith("routes.ts"):
             unmapped.append({"file": f["path"], "why": "no component, method or template element on the changed lines"})
         for u in units:
             u["file"] = f["path"]
@@ -177,7 +243,8 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
         elif why[0] not in cur.why:
             cur.why.append(why[0])
 
-    rows = graph.impacted_ui(list(method_ids))
+    rows = graph.impacted_ui([m for m in method_ids if not m.startswith("tel:")])
+    rows += graph.impacted_from_templates([m[4:] for m in method_ids if m.startswith("tel:")])
     at_risk_elements, at_risk_templates = set(), set()
     for r in rows:
         base = method_ids[r["method"]] * (r["a_conf"] or 1.0)
@@ -185,16 +252,26 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
         if r["element"]:
             conf = base * (r["r_conf"] or 0)
             at_risk_elements.add(r["element"])
+            what = "its markup changed" if r["method"].startswith("tel:") else f"{r['method']}() changed; {r['why']}"
             add("element", r["element"], f"'{r['label'] or r['t_tag']}' on {r['template']} ({r['auth']})", conf,
-                [f"{r['method']}() changed; {r['why']}; matched on screen by {r['r_evidence'] or r['r_method']}"])
+                [f"{what}; matched on screen by {r['r_evidence'] or r['r_method']}"])
             add("screen", r["screen"], f"{r['template']} ({r['auth']})", conf,
                 [f"contains '{r['label']}'"])
         elif r["t_text"] or r["t_tag"] in ("button", "a", "input", "textarea"):
             cond = f" (shown only when {r['conditions'][0]})" if r["conditions"] else ""
-            add("element", r["template_element"], f"'{r['t_text'] or r['t_tag']}' in code{cond}", base * 0.5,
+            text = r["t_text"] if re.sub(r"[\W_]+", "", r["t_text"] or "") else ""
+            name = f"'{text}'" if text else f"a <{r['t_tag']}> in {r['template_element'].split('/')[-1].split(':')[0]}"
+            add("element", r["template_element"], f"{name} in code{cond}", base * 0.5,
                 [f"{r['method']}() changed; {r['why']}; never seen in the crawl"], observed=False)
 
-    eps = graph.endpoints_of(list(method_ids))
+    # A routing file changed (beyond imports): every route it defines is at risk, at medium confidence.
+    for rf in route_files:
+        tpls = sorted({r.template for r in head.routes if r.file == rf})
+        for sc in graph.run("MATCH (s:Screen) WHERE s.template IN $t RETURN s.id AS id, s.template AS t, s.auth AS a",
+                            t=tpls):
+            add("screen", sc["id"], f"{sc['t']} ({sc['a']})", 0.5, [f"its route is defined in {rf}, which changed"])
+
+    eps = graph.endpoints_of([m for m in method_ids if not m.startswith("tel:")])
     endpoints = sorted({e["endpoint"] for e in eps})
     for e in eps:
         if not e["observed_by"]:
@@ -256,8 +333,15 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
     needs_review += [{"item": i.label, "why": f"low confidence ({i.confidence})", "confidence": i.confidence}
                      for i in impacts.values() if i.observed and i.confidence < SETTINGS.link_review]
     needs_review += [{"item": u.get("unit", u["file"]), "why": u["why"], "confidence": 0.0} for u in unmapped]
+    needs_review += [{"item": n["file"], "why": n["message"], "confidence": 0.0} for n in notes if n["scope"] != "none"]
+    seen, deduped = set(), []
+    for n in needs_review:
+        if (n["item"], n["why"]) not in seen:
+            seen.add((n["item"], n["why"]))
+            deduped.append(n)
+    needs_review = deduped
 
     order = {"requirement": 0, "flow": 1, "test": 2, "element": 3, "screen": 4, "unmapped_code": 5}
     return BlastRadius(pr=number, title=pr["title"], url=pr["url"], changed=list(changed.values()),
                        impacts=sorted(impacts.values(), key=lambda i: (order[i.kind], -i.confidence, i.label)),
-                       coverage_lost=coverage_lost, needs_review=needs_review)
+                       coverage_lost=coverage_lost, needs_review=needs_review, notes=notes)

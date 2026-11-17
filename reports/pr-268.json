@@ -92,12 +92,13 @@
    "kind": "requirement",
    "id": "RTE-9bb4d9",
    "label": "Route /editor shows New article",
-   "confidence": 0.95,
+   "confidence": 0.9,
    "why": [
     "describes /editor, a page this change affects",
-    "assessment: /editor with no slug is the path that was fixed. (0.50 -> 0.95)"
+    "assessment: The /editor new-article route is directly affected by the ngOnInit guard. (0.50 -> 0.90)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.5
   },
   {
    "kind": "requirement",
@@ -106,9 +107,10 @@
    "confidence": 0.8,
    "why": [
     "describes /editor/:p, a page this change affects",
-    "assessment: The edit route now sits behind the slug guard. Check that prefill and the author redirect still work. (0.50 -> 0.80)"
+    "assessment: The slug branch of ngOnInit is retained; check that prefill still works. (0.50 -> 0.80)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.5
   },
   {
    "kind": "requirement",
@@ -118,17 +120,8 @@
    "why": [
     "proven by changed UI: 10 element(s)"
    ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
-   "id": "API-0ba81e",
-   "label": "App calls PUT /api/articles/:p",
-   "confidence": 1.0,
-   "why": [
-    "proven by changed UI: 1 element(s)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -138,7 +131,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -148,7 +142,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -158,7 +153,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -168,7 +164,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -178,7 +175,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -188,7 +186,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -198,7 +197,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -208,7 +208,8 @@
    "why": [
     "proven by changed UI: 2 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -218,7 +219,8 @@
    "why": [
     "proven by changed UI: 1 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -228,7 +230,8 @@
    "why": [
     "proven by changed UI: 4 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -238,7 +241,20 @@
    "why": [
     "proven by changed UI: 1 element(s)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "requirement",
+   "id": "API-0ba81e",
+   "label": "App calls PUT /api/articles/:p",
+   "confidence": 0.6,
+   "why": [
+    "proven by changed UI: 1 element(s)",
+    "assessment: PUT itself is unchanged; it is only reached through the edit form. (1.00 -> 0.60)"
+   ],
+   "observed": true,
+   "base_confidence": 1.0
   },
   {
    "kind": "requirement",
@@ -248,7 +264,20 @@
    "why": [
     "expects GET /api/user, which the changed code calls"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "requirement",
+   "id": "API-7a6c73",
+   "label": "App calls GET /api/articles/:p",
+   "confidence": 0.5,
+   "why": [
+    "expects GET /api/articles/:p, which the changed code calls",
+    "assessment: The GET is now skipped on /editor without a slug, but the article page still calls it. (0.60 -> 0.50)"
+   ],
+   "observed": true,
+   "base_confidence": 0.6
   },
   {
    "kind": "requirement",
@@ -258,7 +287,8 @@
    "why": [
     "describes /article/:p, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -268,7 +298,8 @@
    "why": [
     "describes /, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -278,7 +309,8 @@
    "why": [
     "describes /, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -288,7 +320,8 @@
    "why": [
     "describes /, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -298,7 +331,8 @@
    "why": [
     "describes /article/:p, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -308,7 +342,8 @@
    "why": [
     "describes /tag/:p, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -318,7 +353,8 @@
    "why": [
     "describes /tag/:p, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -328,7 +364,8 @@
    "why": [
     "describes /article/:p, a page this change affects"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "requirement",
@@ -338,18 +375,8 @@
    "why": [
     "describes /, a page this change affects"
    ],
-   "observed": true
-  },
-  {
-   "kind": "requirement",
-   "id": "API-7a6c73",
-   "label": "App calls GET /api/articles/:p",
-   "confidence": 0.4,
-   "why": [
-    "expects GET /api/articles/:p, which the changed code calls",
-    "assessment: The new-article route no longer calls GET /articles/:p. The edit route still does, and the article page is unchanged. (0.60 -> 0.40)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "flow",
@@ -359,20 +386,23 @@
    "why": [
     "passes through changed UI (5 step(s))",
     "its final action calls POST /api/articles, which the changed code calls",
-    "assessment: Exercises the fixed new-article path: no slug, so no article fetch or author redirect. (1.00 -> 1.00)"
+    "assessment: Exercises the changed branch: new-article page with no slug now skips the fetch. (1.00 -> 1.00)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 1.0
   },
   {
    "kind": "flow",
    "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
    "label": "Edit your own published article",
-   "confidence": 1.0,
+   "confidence": 0.85,
    "why": [
     "passes through changed UI (9 step(s))",
-    "its final action calls PUT /api/articles/:p, which the changed code calls"
+    "its final action calls PUT /api/articles/:p, which the changed code calls",
+    "assessment: The slug branch is kept but now wrapped in a conditional. The edit flow must still prefill and save. It also begins by creating an article on /editor. (1.00 -> 0.85)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 1.0
   },
   {
    "kind": "flow",
@@ -382,7 +412,8 @@
    "why": [
     "passes through changed UI (2 step(s))"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "flow",
@@ -391,9 +422,10 @@
    "confidence": 0.5,
    "why": [
     "passes through changed UI (4 step(s))",
-    "assessment: Uses the editor only as setup to publish an article; the action under test is Delete. (1.00 -> 0.50, capped)"
+    "assessment: The editor is only used in setup to create the article. Delete is unaffected. (1.00 -> 0.50, capped)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 1.0
   },
   {
    "kind": "flow",
@@ -402,74 +434,58 @@
    "confidence": 0.5,
    "why": [
     "passes through changed UI (4 step(s))",
-    "assessment: Uses the editor only as setup; favoriting is not changed. (1.00 -> 0.50, capped)"
+    "assessment: The editor is only used in setup to create the article. Favorite is unaffected. (1.00 -> 0.50, capped)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 1.0
   },
   {
    "kind": "test",
    "id": "T:articles.spec.ts:32",
    "label": "should create a new article (articles.spec.ts:32)",
-   "confidence": 1.0,
+   "confidence": 0.95,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Creates an article on /editor, which is exactly the changed branch. (0.90 -> 1.00)"
+    "assessment: Creates a new article on /editor, exactly the fixed path. (0.90 -> 0.95)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.9
   },
   {
    "kind": "test",
    "id": "T:articles.spec.ts:51",
    "label": "should edit an existing article (articles.spec.ts:51)",
-   "confidence": 0.9,
+   "confidence": 0.85,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)",
-    "assessment: Covers both the create and edit paths of the editor. The edit branch must still prefill and work. (0.90 -> 0.90)"
+    "assessment: Edit flow should still prefill via the slug branch. (0.90 -> 0.85)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.9
   },
   {
    "kind": "test",
    "id": "T:error-handling.spec.ts:622",
    "label": "should show error message on create article form when network fails (error-handling.spec.ts:622)",
-   "confidence": 0.95,
+   "confidence": 0.8,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Create-article form on /editor, the changed no-slug path. (0.90 -> 0.95)"
+    "assessment: Create-form flow on /editor; it should still show an error on failure after the guard. (0.90 -> 0.80)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.9
   },
   {
    "kind": "test",
    "id": "T:comments.spec.ts:105",
    "label": "should require login to post comment (comments.spec.ts:105)",
-   "confidence": 0.7,
-   "why": [
-    "acts on 'Write a comment...', which this change puts at risk (locator 'textarea[placeholder=\"Write a comment...\"]' on any page)",
-    "assessment: Tests the anon vs authed comment form, which depends on the ShowAuthed directive. (0.57 -> 0.70)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:comments.spec.ts:31",
-   "label": "should add a comment to an article (comments.spec.ts:31)",
    "confidence": 0.65,
    "why": [
-    "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)",
-    "assessment: The comment form is rendered through ShowAuthed, which changed. (0.57 -> 0.65)"
+    "acts on 'Write a comment...', which this change puts at risk (locator 'textarea[placeholder=\"Write a comment...\"]' on any page)",
+    "assessment: Directly exercises authed/anon view rendering in the changed directive. (0.57 -> 0.65)"
    ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:null-fields.spec.ts:53",
-   "label": "newly registered user should show default avatar in comment section (null-fields.spec.ts:53)",
-   "confidence": 0.9,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.57
   },
   {
    "kind": "test",
@@ -479,17 +495,19 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
-   "id": "T:url-navigation.spec.ts:111",
-   "label": "pagination should update URL with ?page=N (url-navigation.spec.ts:111)",
+   "id": "T:url-navigation.spec.ts:206",
+   "label": "page should reset when switching feeds (url-navigation.spec.ts:206)",
    "confidence": 0.9,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -499,7 +517,19 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "test",
+   "id": "T:articles.spec.ts:73",
+   "label": "should delete an article (articles.spec.ts:73)",
+   "confidence": 0.9,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
+   ],
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -509,7 +539,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -519,7 +550,19 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "test",
+   "id": "T:social.spec.ts:97",
+   "label": "should display user articles on profile (social.spec.ts:97)",
+   "confidence": 0.9,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
+   ],
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -529,7 +572,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -539,7 +583,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -549,7 +594,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish\")' on /editor/:p)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -559,7 +605,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -569,7 +616,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -579,7 +627,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -589,7 +638,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -599,7 +649,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -609,7 +660,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -619,7 +671,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -629,17 +682,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:articles.spec.ts:144",
-   "label": "should unfavorite an article (articles.spec.ts:144)",
-   "confidence": 0.9,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor/:p)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -649,17 +693,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:social.spec.ts:45",
-   "label": "should view own profile (social.spec.ts:45)",
-   "confidence": 0.9,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -669,7 +704,8 @@
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -679,7 +715,8 @@
    "why": [
     "acts on 'Your Feed', which this change puts at risk (click '.nav-link:has-text(\"Your Feed\")' on /)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -689,7 +726,19 @@
    "why": [
     "acts on 'Your Feed', which this change puts at risk (locator 'a[href=\"/\"]' on /)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "test",
+   "id": "T:comments.spec.ts:31",
+   "label": "should add a comment to an article (comments.spec.ts:31)",
+   "confidence": 0.57,
+   "why": [
+    "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
+   ],
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -699,7 +748,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -709,7 +759,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -719,17 +770,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:social.spec.ts:115",
-   "label": "should display favorited articles on profile (social.spec.ts:115)",
-   "confidence": 0.57,
-   "why": [
-    "acts on 'Your Feed', which this change puts at risk (click 'a:has-text(\"Your Feed\")' on /)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -739,7 +781,8 @@
    "why": [
     "acts on 'Your Feed', which this change puts at risk (click 'a:has-text(\"Your Feed\")' on /)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -749,7 +792,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -759,7 +803,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -769,7 +814,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on /article/:p)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -779,7 +825,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on any page)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -789,7 +836,8 @@
    "why": [
     "acts on 'Post Comment', which this change puts at risk (click 'button:has-text(\"Post Comment\")' on /article/:p)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
@@ -799,29 +847,32 @@
    "why": [
     "acts on 'Your Feed', which this change puts at risk (locator '.nav-link:has-text(\"Your Feed\")' on /)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "test",
-   "id": "T:articles.spec.ts:73",
-   "label": "should delete an article (articles.spec.ts:73)",
-   "confidence": 0.45,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Creates an article as setup, then deletes it. Delete is not changed. (0.90 -> 0.45)"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:url-navigation.spec.ts:206",
-   "label": "page should reset when switching feeds (url-navigation.spec.ts:206)",
+   "id": "T:null-fields.spec.ts:53",
+   "label": "newly registered user should show default avatar in comment section (null-fields.spec.ts:53)",
    "confidence": 0.4,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Feed and page reset logic is not changed by this PR. (0.90 -> 0.40, capped)"
+    "assessment: The editor is only used for setup. The comment avatar is only loosely tied to the directive. (0.90 -> 0.40)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.9
+  },
+  {
+   "kind": "test",
+   "id": "T:url-navigation.spec.ts:111",
+   "label": "pagination should update URL with ?page=N (url-navigation.spec.ts:111)",
+   "confidence": 0.4,
+   "why": [
+    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
+    "assessment: Pagination is unrelated to the editor or the auth directive. (0.90 -> 0.40, capped)"
+   ],
+   "observed": true,
+   "base_confidence": 0.9
   },
   {
    "kind": "test",
@@ -830,31 +881,21 @@
    "confidence": 0.4,
    "why": [
     "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Popular tags display; only loosely connected to the changed code. (0.90 -> 0.40, capped)"
+    "assessment: Popular tags display has little to do with the changed code. (0.90 -> 0.40, capped)"
    ],
-   "observed": true
-  },
-  {
-   "kind": "test",
-   "id": "T:social.spec.ts:97",
-   "label": "should display user articles on profile (social.spec.ts:97)",
-   "confidence": 0.4,
-   "why": [
-    "acts on 'Publish Article', which this change puts at risk (click 'button:has-text(\"Publish Article\")' on /editor)",
-    "assessment: Uses article creation as setup for a profile check. (0.90 -> 0.40, capped)"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": 0.9
   },
   {
    "kind": "test",
    "id": "T:null-fields.spec.ts:152",
    "label": "author avatars should render on other user articles in feed (null-fields.spec.ts:152)",
-   "confidence": 0.3,
+   "confidence": 0.32,
    "why": [
-    "acts on 'Your Feed', which this change puts at risk (locator 'a.nav-link' on /)",
-    "assessment: Avatar rendering in the feed; not affected. (0.32 -> 0.30)"
+    "acts on 'Your Feed', which this change puts at risk (locator 'a.nav-link' on /)"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -865,7 +906,8 @@
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -876,7 +918,8 @@
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -888,7 +931,8 @@
     "EditorComponent.addTag() changed; bound to EditorComponent.addTag(); matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -900,7 +944,8 @@
     "EditorComponent.addTag() changed; bound to EditorComponent.addTag(); matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -913,7 +958,8 @@
     "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler; role button",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler; role button"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -926,7 +972,8 @@
     "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler; role button",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call PUT /api/articles/:p matches handler; role button"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -937,7 +984,8 @@
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -948,7 +996,8 @@
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -959,7 +1008,8 @@
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -970,7 +1020,8 @@
     "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page; role textbox",
     "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -978,11 +1029,12 @@
    "label": "'Post Comment' on /article/:p (authed)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -990,11 +1042,12 @@
    "label": "'Post Comment' on /article/:p (owner)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page; role button"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1002,11 +1055,12 @@
    "label": "'Write a comment...' on /article/:p (authed)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1014,11 +1068,12 @@
    "label": "'Write a comment...' on /article/:p (owner)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 93; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page; role textbox"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1026,11 +1081,12 @@
    "label": "'Your Feed' on / (authed)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1038,11 +1094,25 @@
    "label": "'Your Feed' on /tag/:p (authed)",
    "confidence": 0.63,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "element",
+   "id": "el_470f28772fa0",
+   "label": "'Global Feed' on /tag/:p (anon)",
+   "confidence": 0.6,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by link -> /; classes 100% overlap; inside .home-page; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by link -> /; classes 100% overlap; inside .home-page; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 19; matched on screen by link -> /; classes 100% overlap; inside .home-page; role link"
+   ],
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1050,11 +1120,12 @@
    "label": "'Angular frontend' on / (anon)",
    "confidence": 0.54,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by text='Angular frontend'; inside .home-page; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by text='Angular frontend'; inside .home-page; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by text='Angular frontend'; inside .home-page; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1062,11 +1133,12 @@
    "label": "'Angular frontend' on /tag/:p (anon)",
    "confidence": 0.54,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by text='Angular frontend'; inside .home-page; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by text='Angular frontend'; inside .home-page; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by text='Angular frontend'; inside .home-page; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1074,11 +1146,12 @@
    "label": "'Sign in' on /article/:p (anon)",
    "confidence": 0.5,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='Sign in'; link -> /login; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='Sign in'; link -> /login; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='Sign in'; link -> /login; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1086,11 +1159,12 @@
    "label": "'Sign up' on /article/:p (anon)",
    "confidence": 0.5,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='sign up'; link -> /register; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='sign up'; link -> /register; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='sign up'; link -> /register; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1098,11 +1172,12 @@
    "label": "'sign up' on /article/:p (anon)",
    "confidence": 0.5,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page; role link",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page; role link",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page; role link"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='sign up'; link -> /register; inside .article-page; role link",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='sign up'; link -> /register; inside .article-page; role link",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; matched on screen by text='sign up'; link -> /register; inside .article-page; role link"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1110,11 +1185,12 @@
    "label": "'Conduit' on / (anon)",
    "confidence": 0.35,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page; role heading",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page; role heading",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page; role heading"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by classes 100% overlap; inside .home-page; role heading",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by classes 100% overlap; inside .home-page; role heading",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by classes 100% overlap; inside .home-page; role heading"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
@@ -1122,47 +1198,51 @@
    "label": "'Conduit' on /tag/:p (anon)",
    "confidence": 0.35,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page; role heading",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page; role heading",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page; role heading"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by classes 100% overlap; inside .home-page; role heading",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by classes 100% overlap; inside .home-page; role heading",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; matched on screen by classes 100% overlap; inside .home-page; role heading"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "element",
-   "id": "src/app/features/article/pages/home/home.component.html:16:a",
+   "id": "src/app/features/article/pages/home/home.component.html:8:a",
    "label": "'Realworld' in code",
    "confidence": 0.32,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; never seen in the crawl",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; never seen in the crawl",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; never seen in the crawl"
    ],
-   "observed": false
+   "observed": false,
+   "base_confidence": null
   },
   {
    "kind": "element",
-   "id": "src/app/features/article/pages/home/home.component.html:11:p",
+   "id": "src/app/features/article/pages/home/home.component.html:5:p",
    "label": "'This is the demo from the project. This demo is connected to a demo backend that' in code",
    "confidence": 0.32,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; never seen in the crawl",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; never seen in the crawl",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 2; never seen in the crawl"
    ],
-   "observed": false
+   "observed": false,
+   "base_confidence": null
   },
   {
    "kind": "element",
-   "id": "src/app/features/article/pages/article/article.component.html:123:div",
-   "label": "'or to add comments on this article.' in code",
+   "id": "src/app/features/article/pages/article/article.component.html:113:div",
+   "label": "'or to add comments on this article.' in code (shown only when article(); as a)",
    "confidence": 0.32,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; never seen in the crawl",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; never seen in the crawl",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; never seen in the crawl"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; never seen in the crawl",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; never seen in the crawl",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 113; never seen in the crawl"
    ],
-   "observed": false
+   "observed": false,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1170,13 +1250,14 @@
    "label": "/editor (authed)",
    "confidence": 1.0,
    "why": [
-    "contains 'Enter tags'",
-    "contains 'What's this article about?'",
-    "contains 'Publish Article'",
     "contains 'Article Title'",
-    "contains 'Write your article (in markdown)'"
+    "contains 'What's this article about?'",
+    "contains 'Write your article (in markdown)'",
+    "contains 'Publish Article'",
+    "contains 'Enter tags'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1184,13 +1265,14 @@
    "label": "/editor/:p (owner)",
    "confidence": 1.0,
    "why": [
-    "contains 'Enter tags'",
-    "contains 'What's this article about?'",
-    "contains 'Publish Article'",
     "contains 'Article Title'",
-    "contains 'Write your article (in markdown)'"
+    "contains 'What's this article about?'",
+    "contains 'Write your article (in markdown)'",
+    "contains 'Publish Article'",
+    "contains 'Enter tags'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1200,7 +1282,8 @@
    "why": [
     "contains 'Your Feed'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1211,7 +1294,8 @@
     "contains 'Post Comment'",
     "contains 'Write a comment...'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1222,7 +1306,8 @@
     "contains 'Post Comment'",
     "contains 'Write a comment...'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1232,7 +1317,21 @@
    "why": [
     "contains 'Your Feed'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
+  },
+  {
+   "kind": "screen",
+   "id": "/tag/:p|anon",
+   "label": "/tag/:p (anon)",
+   "confidence": 0.6,
+   "why": [
+    "contains 'Global Feed'",
+    "contains 'Angular frontend'",
+    "contains 'Conduit'"
+   ],
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1243,18 +1342,8 @@
     "contains 'Angular frontend'",
     "contains 'Conduit'"
    ],
-   "observed": true
-  },
-  {
-   "kind": "screen",
-   "id": "/tag/:p|anon",
-   "label": "/tag/:p (anon)",
-   "confidence": 0.54,
-   "why": [
-    "contains 'Angular frontend'",
-    "contains 'Conduit'"
-   ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   },
   {
    "kind": "screen",
@@ -1263,10 +1352,11 @@
    "confidence": 0.5,
    "why": [
     "contains 'Sign in'",
-    "contains 'Sign up'",
-    "contains 'sign up'"
+    "contains 'sign up'",
+    "contains 'Sign up'"
    ],
-   "observed": true
+   "observed": true,
+   "base_confidence": null
   }
  ],
  "coverage_lost": [
@@ -1274,25 +1364,25 @@
    "requirement": "SEL-76191d",
    "statement": "Editor page has a 'title' field",
    "kind": "tests_at_risk",
-   "why": "all 26 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 24 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "SEL-d79ba1",
    "statement": "Editor page has a 'description' field",
    "kind": "tests_at_risk",
-   "why": "all 26 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 24 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "SEL-df1e1e",
    "statement": "Editor page has a 'body' field",
    "kind": "tests_at_risk",
-   "why": "all 26 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 24 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "SEL-d451db",
    "statement": "Editor page has a 'Enter tags' field",
    "kind": "tests_at_risk",
-   "why": "all 24 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 22 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "SEL-0d96dd",
@@ -1310,19 +1400,19 @@
    "requirement": "SEL-5351ce",
    "statement": "Editor: 'Publish Article' button",
    "kind": "tests_at_risk",
-   "why": "all 28 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 26 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "SEL-22d377",
    "statement": "Home feed toggle: 'Your Feed' a.nav-link",
    "kind": "tests_at_risk",
-   "why": "all 8 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 6 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "API-0ba81e",
    "statement": "App calls PUT /api/articles/:p",
    "kind": "tests_at_risk",
-   "why": "all 5 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
+   "why": "all 4 test(s) that check it go through changed UI; until they are re-run and pass, it has no trusted coverage"
   },
   {
    "requirement": "API-72914e",
@@ -1333,17 +1423,17 @@
  ],
  "needs_review": [
   {
+   "item": "'Realworld' in code",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.32
+  },
+  {
    "item": "'This is the demo from the project. This demo is connected to a demo backend that' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
   {
-   "item": "'or to add comments on this article.' in code",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.32
-  },
-  {
-   "item": "'Realworld' in code",
+   "item": "'or to add comments on this article.' in code (shown only when article(); as a)",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
@@ -1364,134 +1454,126 @@
   }
  ],
  "assessment": {
-  "behaviour_change": "EditorComponent.ngOnInit now loads the article and checks the author only when the route has a slug. Before, /editor (new article) called GET /api/articles/undefined and the author check, which broke the New Article page. ShowAuthedDirective now creates its view only once (it guards on authRef), so it no longer duplicates the embedded view on repeated auth emissions. authRef is never reset after clear(), so a logout followed by a login may not re-render the content. Re-test that.",
+  "behaviour_change": "EditorComponent.ngOnInit now loads the article and checks ownership only when the route has a slug. Before, /editor (new article) also called GET /api/articles/undefined. A ShowAuthedDirective change (the source shows it as IfAuthenticatedDirective) is meant to stop duplicate embedded views. It now creates the view only once, and authRef is never reset when the view is cleared. A logout followed by a login could therefore fail to re-render authed content.",
   "applied": [
-   {
-    "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
-    "confidence": 0.4,
-    "reason": "Uses the editor only as setup to publish an article; the action under test is Delete.",
-    "from": 1.0,
-    "to": 0.5,
-    "capped": true
-   },
-   {
-    "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
-    "confidence": 0.35,
-    "reason": "Uses the editor only as setup; favoriting is not changed.",
-    "from": 1.0,
-    "to": 0.5,
-    "capped": true
-   },
-   {
-    "id": "T:articles.spec.ts:73",
-    "confidence": 0.45,
-    "reason": "Creates an article as setup, then deletes it. Delete is not changed.",
-    "from": 0.9,
-    "to": 0.45,
-    "capped": false
-   },
-   {
-    "id": "T:social.spec.ts:97",
-    "confidence": 0.3,
-    "reason": "Uses article creation as setup for a profile check.",
-    "from": 0.9,
-    "to": 0.4,
-    "capped": true
-   },
-   {
-    "id": "T:navigation.spec.ts:139",
-    "confidence": 0.2,
-    "reason": "Popular tags display; only loosely connected to the changed code.",
-    "from": 0.9,
-    "to": 0.4,
-    "capped": true
-   },
-   {
-    "id": "T:url-navigation.spec.ts:206",
-    "confidence": 0.2,
-    "reason": "Feed and page reset logic is not changed by this PR.",
-    "from": 0.9,
-    "to": 0.4,
-    "capped": true
-   },
-   {
-    "id": "T:null-fields.spec.ts:152",
-    "confidence": 0.15,
-    "reason": "Avatar rendering in the feed; not affected.",
-    "from": 0.32,
-    "to": 0.3,
-    "capped": false
-   },
-   {
-    "id": "API-7a6c73",
-    "confidence": 0.4,
-    "reason": "The new-article route no longer calls GET /articles/:p. The edit route still does, and the article page is unchanged.",
-    "from": 0.6,
-    "to": 0.4,
-    "capped": false
-   },
    {
     "id": "flow:/editor:POST /api/articles",
     "confidence": 1.0,
-    "reason": "Exercises the fixed new-article path: no slug, so no article fetch or author redirect.",
+    "reason": "Exercises the changed branch: new-article page with no slug now skips the fetch.",
     "from": 1.0,
     "to": 1.0,
     "capped": false
    },
    {
     "id": "T:articles.spec.ts:32",
-    "confidence": 1.0,
-    "reason": "Creates an article on /editor, which is exactly the changed branch.",
-    "from": 0.9,
-    "to": 1.0,
-    "capped": false
-   },
-   {
-    "id": "T:error-handling.spec.ts:622",
     "confidence": 0.95,
-    "reason": "Create-article form on /editor, the changed no-slug path.",
+    "reason": "Creates a new article on /editor, exactly the fixed path.",
     "from": 0.9,
     "to": 0.95,
-    "capped": false
-   },
-   {
-    "id": "T:articles.spec.ts:51",
-    "confidence": 0.9,
-    "reason": "Covers both the create and edit paths of the editor. The edit branch must still prefill and work.",
-    "from": 0.9,
-    "to": 0.9,
     "capped": false
    },
    {
     "id": "RTE-9bb4d9",
-    "confidence": 0.95,
-    "reason": "/editor with no slug is the path that was fixed.",
+    "confidence": 0.9,
+    "reason": "The /editor new-article route is directly affected by the ngOnInit guard.",
     "from": 0.5,
-    "to": 0.95,
+    "to": 0.9,
+    "capped": false
+   },
+   {
+    "id": "T:error-handling.spec.ts:622",
+    "confidence": 0.8,
+    "reason": "Create-form flow on /editor; it should still show an error on failure after the guard.",
+    "from": 0.9,
+    "to": 0.8,
+    "capped": false
+   },
+   {
+    "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
+    "confidence": 0.85,
+    "reason": "The slug branch is kept but now wrapped in a conditional. The edit flow must still prefill and save. It also begins by creating an article on /editor.",
+    "from": 1.0,
+    "to": 0.85,
+    "capped": false
+   },
+   {
+    "id": "T:articles.spec.ts:51",
+    "confidence": 0.85,
+    "reason": "Edit flow should still prefill via the slug branch.",
+    "from": 0.9,
+    "to": 0.85,
     "capped": false
    },
    {
     "id": "RTE-a50b54",
     "confidence": 0.8,
-    "reason": "The edit route now sits behind the slug guard. Check that prefill and the author redirect still work.",
+    "reason": "The slug branch of ngOnInit is retained; check that prefill still works.",
     "from": 0.5,
     "to": 0.8,
     "capped": false
    },
    {
-    "id": "T:comments.spec.ts:105",
-    "confidence": 0.7,
-    "reason": "Tests the anon vs authed comment form, which depends on the ShowAuthed directive.",
-    "from": 0.57,
-    "to": 0.7,
+    "id": "API-0ba81e",
+    "confidence": 0.6,
+    "reason": "PUT itself is unchanged; it is only reached through the edit form.",
+    "from": 1.0,
+    "to": 0.6,
     "capped": false
    },
    {
-    "id": "T:comments.spec.ts:31",
+    "id": "API-7a6c73",
+    "confidence": 0.5,
+    "reason": "The GET is now skipped on /editor without a slug, but the article page still calls it.",
+    "from": 0.6,
+    "to": 0.5,
+    "capped": false
+   },
+   {
+    "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+    "confidence": 0.45,
+    "reason": "The editor is only used in setup to create the article. Delete is unaffected.",
+    "from": 1.0,
+    "to": 0.5,
+    "capped": true
+   },
+   {
+    "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+    "confidence": 0.4,
+    "reason": "The editor is only used in setup to create the article. Favorite is unaffected.",
+    "from": 1.0,
+    "to": 0.5,
+    "capped": true
+   },
+   {
+    "id": "T:comments.spec.ts:105",
     "confidence": 0.65,
-    "reason": "The comment form is rendered through ShowAuthed, which changed.",
+    "reason": "Directly exercises authed/anon view rendering in the changed directive.",
     "from": 0.57,
     "to": 0.65,
+    "capped": false
+   },
+   {
+    "id": "T:navigation.spec.ts:139",
+    "confidence": 0.3,
+    "reason": "Popular tags display has little to do with the changed code.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:url-navigation.spec.ts:111",
+    "confidence": 0.3,
+    "reason": "Pagination is unrelated to the editor or the auth directive.",
+    "from": 0.9,
+    "to": 0.4,
+    "capped": true
+   },
+   {
+    "id": "T:null-fields.spec.ts:53",
+    "confidence": 0.4,
+    "reason": "The editor is only used for setup. The comment avatar is only loosely tied to the directive.",
+    "from": 0.9,
+    "to": 0.4,
     "capped": false
    }
   ],
@@ -1504,10 +1586,9 @@
    "T:articles.spec.ts:51",
    "T:error-handling.spec.ts:622",
    "RTE-a50b54",
-   "T:comments.spec.ts:105",
-   "T:comments.spec.ts:31"
+   "T:comments.spec.ts:105"
   ],
-  "tool_calls": 3,
+  "tool_calls": 5,
   "finished": true,
   "trace": [
    {
@@ -1515,113 +1596,118 @@
     "input": {}
    },
    {
+    "tool": "method_source",
+    "input": {
+     "method_id": "EditorComponent.ngOnInit"
+    }
+   },
+   {
+    "tool": "method_source",
+    "input": {
+     "method_id": "ShowAuthedDirective.ngOnInit"
+    }
+   },
+   {
     "tool": "inspect",
     "input": {
      "item_ids": [
       "flow:/editor:POST /api/articles",
       "flow:/editor/:p:PUT /api/articles/:p:owner",
+      "API-0ba81e",
+      "API-7a6c73",
+      "T:articles.spec.ts:32",
+      "T:articles.spec.ts:51",
+      "T:error-handling.spec.ts:622",
+      "T:comments.spec.ts:105",
       "flow:/article/:p:DELETE /api/articles/:p:owner",
       "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
-      "T:articles.spec.ts:32",
-      "T:error-handling.spec.ts:622",
-      "T:articles.spec.ts:51",
-      "API-7a6c73",
-      "T:articles.spec.ts:73",
-      "T:social.spec.ts:97",
       "T:navigation.spec.ts:139",
-      "T:url-navigation.spec.ts:206",
-      "T:comments.spec.ts:105",
-      "T:comments.spec.ts:31",
+      "T:url-navigation.spec.ts:111",
       "RTE-9bb4d9",
       "RTE-a50b54",
-      "T:null-fields.spec.ts:152"
+      "T:null-fields.spec.ts:53"
      ]
     }
    },
    {
     "tool": "finish",
     "input": {
-     "behaviour_change": "EditorComponent.ngOnInit now loads the article and checks the author only when the route has a slug. Before, /editor (new article) called GET /api/articles/undefined and the author check, which broke the New Article page. ShowAuthedDirective now creates its view only once (it guards on authRef), so it no longer duplicates the embedded view on repeated auth emissions. authRef is never reset after clear(), so a logout followed by a login may not re-render the content. Re-test that.",
+     "behaviour_change": "EditorComponent.ngOnInit now loads the article and checks ownership only when the route has a slug. Before, /editor (new article) also called GET /api/articles/undefined. A ShowAuthedDirective change (the source shows it as IfAuthenticatedDirective) is meant to stop duplicate embedded views. It now creates the view only once, and authRef is never reset when the view is cleared. A logout followed by a login could therefore fail to re-render authed content.",
      "adjustments": [
-      {
-       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
-       "confidence": 0.4,
-       "reason": "Uses the editor only as setup to publish an article; the action under test is Delete."
-      },
-      {
-       "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
-       "confidence": 0.35,
-       "reason": "Uses the editor only as setup; favoriting is not changed."
-      },
-      {
-       "id": "T:articles.spec.ts:73",
-       "confidence": 0.45,
-       "reason": "Creates an article as setup, then deletes it. Delete is not changed."
-      },
-      {
-       "id": "T:social.spec.ts:97",
-       "confidence": 0.3,
-       "reason": "Uses article creation as setup for a profile check."
-      },
-      {
-       "id": "T:navigation.spec.ts:139",
-       "confidence": 0.2,
-       "reason": "Popular tags display; only loosely connected to the changed code."
-      },
-      {
-       "id": "T:url-navigation.spec.ts:206",
-       "confidence": 0.2,
-       "reason": "Feed and page reset logic is not changed by this PR."
-      },
-      {
-       "id": "T:null-fields.spec.ts:152",
-       "confidence": 0.15,
-       "reason": "Avatar rendering in the feed; not affected."
-      },
-      {
-       "id": "API-7a6c73",
-       "confidence": 0.4,
-       "reason": "The new-article route no longer calls GET /articles/:p. The edit route still does, and the article page is unchanged."
-      },
       {
        "id": "flow:/editor:POST /api/articles",
        "confidence": 1.0,
-       "reason": "Exercises the fixed new-article path: no slug, so no article fetch or author redirect."
+       "reason": "Exercises the changed branch: new-article page with no slug now skips the fetch."
       },
       {
        "id": "T:articles.spec.ts:32",
-       "confidence": 1.0,
-       "reason": "Creates an article on /editor, which is exactly the changed branch."
-      },
-      {
-       "id": "T:error-handling.spec.ts:622",
        "confidence": 0.95,
-       "reason": "Create-article form on /editor, the changed no-slug path."
-      },
-      {
-       "id": "T:articles.spec.ts:51",
-       "confidence": 0.9,
-       "reason": "Covers both the create and edit paths of the editor. The edit branch must still prefill and work."
+       "reason": "Creates a new article on /editor, exactly the fixed path."
       },
       {
        "id": "RTE-9bb4d9",
-       "confidence": 0.95,
-       "reason": "/editor with no slug is the path that was fixed."
+       "confidence": 0.9,
+       "reason": "The /editor new-article route is directly affected by the ngOnInit guard."
+      },
+      {
+       "id": "T:error-handling.spec.ts:622",
+       "confidence": 0.8,
+       "reason": "Create-form flow on /editor; it should still show an error on failure after the guard."
+      },
+      {
+       "id": "flow:/editor/:p:PUT /api/articles/:p:owner",
+       "confidence": 0.85,
+       "reason": "The slug branch is kept but now wrapped in a conditional. The edit flow must still prefill and save. It also begins by creating an article on /editor."
+      },
+      {
+       "id": "T:articles.spec.ts:51",
+       "confidence": 0.85,
+       "reason": "Edit flow should still prefill via the slug branch."
       },
       {
        "id": "RTE-a50b54",
        "confidence": 0.8,
-       "reason": "The edit route now sits behind the slug guard. Check that prefill and the author redirect still work."
+       "reason": "The slug branch of ngOnInit is retained; check that prefill still works."
+      },
+      {
+       "id": "API-0ba81e",
+       "confidence": 0.6,
+       "reason": "PUT itself is unchanged; it is only reached through the edit form."
+      },
+      {
+       "id": "API-7a6c73",
+       "confidence": 0.5,
+       "reason": "The GET is now skipped on /editor without a slug, but the article page still calls it."
+      },
+      {
+       "id": "flow:/article/:p:DELETE /api/articles/:p:owner",
+       "confidence": 0.45,
+       "reason": "The editor is only used in setup to create the article. Delete is unaffected."
+      },
+      {
+       "id": "flow:/profile/:p:POST /api/articles/:p/favorite:owner",
+       "confidence": 0.4,
+       "reason": "The editor is only used in setup to create the article. Favorite is unaffected."
       },
       {
        "id": "T:comments.spec.ts:105",
-       "confidence": 0.7,
-       "reason": "Tests the anon vs authed comment form, which depends on the ShowAuthed directive."
+       "confidence": 0.65,
+       "reason": "Directly exercises authed/anon view rendering in the changed directive."
       },
       {
-       "id": "T:comments.spec.ts:31",
-       "confidence": 0.65,
-       "reason": "The comment form is rendered through ShowAuthed, which changed."
+       "id": "T:navigation.spec.ts:139",
+       "confidence": 0.3,
+       "reason": "Popular tags display has little to do with the changed code."
+      },
+      {
+       "id": "T:url-navigation.spec.ts:111",
+       "confidence": 0.3,
+       "reason": "Pagination is unrelated to the editor or the auth directive."
+      },
+      {
+       "id": "T:null-fields.spec.ts:53",
+       "confidence": 0.4,
+       "reason": "The editor is only used for setup. The comment avatar is only loosely tied to the directive."
       }
      ],
      "retest_first": [
@@ -1632,8 +1718,7 @@
       "T:articles.spec.ts:51",
       "T:error-handling.spec.ts:622",
       "RTE-a50b54",
-      "T:comments.spec.ts:105",
-      "T:comments.spec.ts:31"
+      "T:comments.spec.ts:105"
      ]
     }
    }
@@ -1645,38 +1730,39 @@
    "total": {
     "calls": 4,
     "api_calls": 4,
-    "input_tokens": 53346,
-    "output_tokens": 6644,
-    "usd": 0.1731,
-    "usd_uncached": 0.1731,
-    "llm_seconds": 47.9
+    "input_tokens": 55053,
+    "output_tokens": 5380,
+    "usd": 0.1639,
+    "usd_uncached": 0.1639,
+    "llm_seconds": 37.3
    },
    "by_stage": {
     "assess": {
      "calls": 3,
      "api_calls": 3,
-     "input_tokens": 31568,
-     "output_tokens": 2030,
-     "usd": 0.0834,
-     "usd_uncached": 0.0834,
-     "llm_seconds": 15.8
+     "input_tokens": 32301,
+     "output_tokens": 1796,
+     "usd": 0.0826,
+     "usd_uncached": 0.0826,
+     "llm_seconds": 13.6
     },
     "report": {
      "calls": 1,
      "api_calls": 1,
-     "input_tokens": 21778,
-     "output_tokens": 4614,
-     "usd": 0.0897,
-     "usd_uncached": 0.0897,
-     "llm_seconds": 32.1
+     "input_tokens": 22752,
+     "output_tokens": 3584,
+     "usd": 0.0813,
+     "usd_uncached": 0.0813,
+     "llm_seconds": 23.7
     }
    }
   },
   "seconds_by_stage": {
    "traverse": 0.9,
-   "assess": 15.8,
-   "report": 32.1
+   "assess": 13.6,
+   "report": 23.7
   },
-  "seconds_total": 48.8
- }
+  "seconds_total": 38.2
+ },
+ "notes": []
 }

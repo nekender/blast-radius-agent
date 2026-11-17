@@ -191,6 +191,7 @@ class Impact(BaseModel):
     confidence: float
     why: list[str]                 # evidence chain, human-readable
     observed: bool = True
+    base_confidence: float | None = None   # the traversal's confidence, before any assessment adjustment
 
 
 class BlastRadius(BaseModel):
@@ -203,3 +204,4 @@ class BlastRadius(BaseModel):
     needs_review: list[dict]
     assessment: dict | None = None   # the assessment agent's behaviour summary, adjustments and trace
     cost: dict | None = None         # LLM tokens and dollars by stage, wall-clock seconds by stage
+    notes: list[dict] = Field(default_factory=list)   # per-file scope notes: global / none / unknown

@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 import secrets
 from urllib.parse import urlparse
 
@@ -28,7 +29,7 @@ from .config import SETTINGS
 from .crawl import EXTRACT_JS, Crawler, template_api
 from .models import ApiCall, Crawl, Screen, Transition
 
-API = "https://api.realworld.show/api"
+API = os.environ.get("BR_API_URL", "https://api.realworld.show/api")
 TEST_PREFIX = "br-test:"
 ALLOWED = {("POST", "/api/articles"), ("DELETE", "/api/articles/:p")}
 
@@ -59,6 +60,7 @@ class Explorer(Crawler):
         self.unreached = list(base.unreached)
         self.base = base
         self.created: list[str] = []          # slugs of articles this run created
+        self.create_used = False              # set BEFORE the request goes out: one create per run, even on double-clicks
         self.blocked: list[str] = []
         self.allow_writes = True
         self.journey: list[dict] = []
@@ -74,7 +76,9 @@ class Explorer(Crawler):
         if call.blocked and self.allow_writes and (call.method, call.path) in ALLOWED:
             if call.method == "POST":
                 body = json.loads(req.post_data or "{}").get("article", {})
-                allowed = str(body.get("title", "")).startswith(TEST_PREFIX) and not self.created
+                allowed = str(body.get("title", "")).startswith(TEST_PREFIX) and not self.create_used
+                if allowed:
+                    self.create_used = True
             else:
                 allowed = any(req.url.rstrip("/").endswith(f"/articles/{s}") for s in self.created)
         if allowed:
@@ -82,7 +86,10 @@ class Explorer(Crawler):
             self.calls.append(call)
             resp = await route.fetch()
             if call.method == "POST" and resp.ok:
-                self.created.append((await resp.json())["article"]["slug"])
+                try:
+                    self.created.append((await resp.json())["article"]["slug"])
+                except Exception:  # noqa: BLE001 - unknown slug: the title-prefix sweep in cleanup() still finds it
+                    self.created.append("?")
             await route.fulfill(response=resp)
             return
         self.calls.append(call)
@@ -104,10 +111,21 @@ class Explorer(Crawler):
             if slugs is None:
                 arts = c.get("/articles", params={"author": self.username, "limit": 50}).json().get("articles", [])
                 slugs = [a["slug"] for a in arts if a["title"].startswith(TEST_PREFIX)]
-            for s in slugs:
-                r = c.delete(f"/articles/{s}")
-                gone = c.get(f"/articles/{s}").status_code == 404
+            if "?" in slugs:   # a create whose slug we couldn't read: sweep by title prefix instead
+                arts = c.get("/articles", params={"author": self.username, "limit": 50}).json().get("articles", [])
+                slugs = [s for s in slugs if s != "?"] + [a["slug"] for a in arts if a["title"].startswith(TEST_PREFIX)]
+            for s in dict.fromkeys(slugs):
+                gone = False
+                for _ in range(2):   # delete, check it's really gone, retry once
+                    r = c.delete(f"/articles/{s}")
+                    gone = c.get(f"/articles/{s}").status_code == 404
+                    if gone:
+                        break
                 out.append({"slug": s, "delete_status": r.status_code, "verified_gone": gone})
+        leaked = [o["slug"] for o in out if not o["verified_gone"]]
+        if leaked:
+            print(f"WARNING: test article(s) still on the live app after cleanup: {leaked}. "
+                  f"They will be swept at the start of the next explore run.")
         return out
 
     # ----- recording an owner-state page (separate tab, all writes blocked) -----
@@ -191,7 +209,12 @@ class Explorer(Crawler):
             def sync(coro_fn):
                 # The agent loop is synchronous; tools run on the browser's event loop.
                 def run(**kw):
-                    return asyncio.run_coroutine_threadsafe(coro_fn(**kw), loop).result(timeout=90)
+                    fut = asyncio.run_coroutine_threadsafe(coro_fn(**kw), loop)
+                    try:
+                        return fut.result(timeout=90)
+                    except TimeoutError:
+                        fut.cancel()   # never let two browser actions overlap on the same page
+                        return "error: the action timed out and was cancelled"
                 return run
 
             tools = [
@@ -240,6 +263,8 @@ def explore(max_turns: int = 25) -> dict:
     with llm.stage("explore"):
         report = asyncio.run(ex.run_agent(goals, max_turns=max_turns))
     report["cost"] = {"llm": llm.summarize(), "seconds_total": round(time.monotonic() - t0, 1)}
+    (SETTINGS.artifacts / "explore_cost.json").write_text(json.dumps(
+        {"tool_calls": len(report["trace"]), **report["cost"], "deleted": report["deleted"]}, indent=1))
     ex._retemplate()
     merged = Crawl(app_url=base.app_url, screens=list(ex.screens.values()), elements=list(ex.elements.values()),
                    transitions=ex.transitions, unreached=ex.unreached, journeys=[_journey(ex, report)])

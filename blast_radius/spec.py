@@ -76,24 +76,26 @@ def from_selectors(md: str) -> list[Requirement]:
                 pages = [t for p in page.split(",") for t in _pages(p)]
                 name = re.search(r'name="([^"]+)"', sel)
                 ph = re.search(r'placeholder="([^"]+)"', sel)
+                if not (name or ph):
+                    continue
                 ev = Evidence(name_attrs=[name.group(1)] if name else [], placeholders=[ph.group(1)] if ph else [])
                 stmt = f"{page} page has a '{(name or ph).group(1)}' field"
                 reqs.append(Requirement(id=_rid("SEL", sel + page), statement=stmt, source=f"{src}#form-inputs",
                                         pages=pages, needs=_needs(pages, stmt), evidence=ev))
             elif len(row) == 3 and row[0].startswith("."):
-                cls, tag, purpose = row
+                cls, tag, purpose = row[:3]
                 stmt = f"{purpose} ({tag}{cls})"
                 reqs.append(Requirement(id=_rid("CLS", cls + purpose), statement=stmt, source=f"{src}#css-classes",
                                         pages=["*"], needs=_needs(["*"], cls), evidence=Evidence(classes=[cls.lstrip(".")])))
             elif heading in ("Buttons", "Headings & Links") and len(row) >= 3:
-                text, tag, ctx = row
+                text, tag, ctx = row[:3]
                 pages = _pages(ctx)
                 texts = [t.strip().strip("`") for t in text.split("/")]
                 stmt = f"{ctx}: '{text}' {tag}"
                 reqs.append(Requirement(id=_rid("SEL", stmt), statement=stmt, source=f"{src}#required-text",
                                         pages=pages, needs=_needs(pages, text), evidence=Evidence(texts=texts)))
             elif heading == "Pages" and len(row) >= 2:
-                route, page = row
+                route, page = row[:2]
                 tpl = re.sub(r":\w+", ":p", route.split("?")[0]) or "/"
                 stmt = f"Route {route} shows {page}"
                 reqs.append(Requirement(id=_rid("RTE", route), statement=stmt, source=f"{src}#routes", pages=[tpl],
@@ -132,24 +134,32 @@ def from_routing(routing_md: str, templates_md: str, use_cache: bool = True) -> 
     src = "docs/specifications/frontend/routing.md"
     bullets = [b.strip()[2:] for b in routing_md.splitlines() if b.strip().startswith("- ")]
     if not llm.available():
-        reqs, page = [], ["*"]
-        for line in routing_md.splitlines():
-            if line.startswith("- "):
-                urls = re.findall(r"`(/[^`]*)`", line)
-                page = [re.sub(r"article-slug-here|:\w+", ":p", u).rstrip("/") or "/" for u in urls] or ["*"]
-            if line.strip().startswith("- "):
-                text = line.strip()[2:]
-                reqs.append(Requirement(id=_rid("RT", text), statement=text, source=src, pages=page,
-                                        kind="behaviour", needs="owner" if "author" in text else "anon"))
-        return reqs
+        return from_routing_plain(routing_md)
     prompt = f"<routing_spec>\n{routing_md}\n</routing_spec>\n\n<templates_spec>\n{templates_md}\n</templates_spec>\n\n" \
              f"Write exactly one requirement per routing bullet ({len(bullets)} bullets), in order."
-    out = llm.structured(SYSTEM, prompt, SpecRequirements, use_cache=use_cache, max_tokens=6000)
+    try:
+        out = llm.structured(SYSTEM, prompt, SpecRequirements, use_cache=use_cache, max_tokens=6000)
+    except Exception:  # noqa: BLE001 - fall back to evidence-free behaviour requirements (they go to review)
+        return from_routing_plain(routing_md)
     for r in out.requirements:
         r.id = _rid("RT", r.statement)
         r.source = src
         r.pages = [re.sub(r":\w+", ":p", p) for p in r.pages]
     return out.requirements
+
+
+def from_routing_plain(routing_md: str) -> list[Requirement]:
+    src = "docs/specifications/frontend/routing.md"
+    reqs, page = [], ["*"]
+    for line in routing_md.splitlines():
+        if line.startswith("- "):
+            urls = re.findall(r"`(/[^`]*)`", line)
+            page = [re.sub(r"article-slug-here|:\w+", ":p", u).rstrip("/") or "/" for u in urls] or ["*"]
+        if line.strip().startswith("- "):
+            text = line.strip()[2:]
+            reqs.append(Requirement(id=_rid("RT", text), statement=text, source=src, pages=page,
+                                    kind="behaviour", needs="owner" if "author" in text else "anon"))
+    return reqs
 
 
 def ingest(use_cache: bool = True) -> list[Requirement]:
