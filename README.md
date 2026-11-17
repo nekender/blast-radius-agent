@@ -9,12 +9,12 @@ controls, user flows and requirements the change puts at risk, and how sure it i
 - **Spec:** the RealWorld [frontend spec](https://docs.realworld.show/specifications/frontend/routing/) and the
   [E2E selectors contract](https://github.com/realworld-apps/realworld/blob/main/specs/e2e/SELECTORS.md)
 - **Sample output:** [reports/pr-311.md](reports/pr-311.md) for PR [#311](https://github.com/realworld-apps/angular-realworld-example-app/pull/311)
-- **Design document:** [docs/design.md](docs/design.md)
+- **Design document:** [docs/design.md](docs/design.md) (PDF: [docs/design.pdf](docs/design.pdf))
 - `data/spec/` and `data/prs/` are cached copies of the public RealWorld spec (MIT) and GitHub PR data, so runs are reproducible offline.
 
 ## Run it
 
-Needs Python 3.12+, Docker, git.
+Needs Python 3.12+ (tested on 3.14), Docker, git. Ports 7474 and 7687 must be free for Neo4j.
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
@@ -31,7 +31,10 @@ git clone https://github.com/realworld-apps/angular-realworld-example-app data/r
 
 `build` without `--recrawl` reuses `artifacts/crawl.json`, so you can rebuild the graph in seconds.
 
-**Without an API key** everything still runs: the spec prose becomes "behaviour" requirements with no UI
+`pr <n>` also writes the result into Neo4j as a `PullRequest` node (see the Cypher below).
+`artifacts/screens/` holds a screenshot of every screen the crawler saw; `artifacts/dom/` the matching DOM snapshot.
+
+**Without an API key** everything still runs (tested from a fresh clone: 79 of 106 requirements covered instead of 92): the spec prose becomes "behaviour" requirements with no UI
 evidence (they go to review), and the report uses the deterministic template instead of LLM prose.
 The graph, the traversal and the confidence scores don't use the LLM at all.
 

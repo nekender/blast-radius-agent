@@ -11,7 +11,7 @@
   "elements_linked_to_code": 192,
   "flows_observed": 8,
   "flows_from_code_only": 1,
-  "needs_review": 17
+  "needs_review": 19
  },
  "gaps": [
   {
@@ -485,6 +485,16 @@
    "why": "two equally good code matches"
   },
   {
+   "element": "el_3970703ffd92",
+   "label": "",
+   "screen": "/profile/:p|anon",
+   "candidates": [
+    "src/app/features/profile/pages/profile/profile.component.html:54:a",
+    "src/app/features/article/components/article-meta.component.ts:9:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
    "element": "el_3d0ff24ebf99",
    "label": "Sign in",
    "screen": "/article/:p|anon",
@@ -551,6 +561,16 @@
    "candidates": [
     "src/app/features/profile/pages/profile/profile.component.html:37:a",
     "src/app/core/layout/header.component.html:51:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_da11b1ddadf0",
+   "label": "",
+   "screen": "/profile/:p|authed",
+   "candidates": [
+    "src/app/features/profile/pages/profile/profile.component.html:54:a",
+    "src/app/features/article/components/article-meta.component.ts:9:a"
    ],
    "why": "two equally good code matches"
   },
@@ -1048,19 +1068,19 @@
    "evidence": "text='Favorited Posts'; link -> /profile/:p/favorites; classes 100% overlap; inside .profile-page"
   },
   {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+   "dst": "el_3970703ffd92",
+   "kind": "RENDERS",
+   "confidence": 0.56,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; inside .profile-page"
+  },
+  {
    "src": "src/app/features/article/components/article-meta.component.ts:9:a",
    "dst": "el_3970703ffd92",
    "kind": "RENDERS",
-   "confidence": 0.7,
-   "method": "same-effect-tie",
-   "evidence": "link -> /profile/:p; inside .article-meta"
-  },
-  {
-   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
-   "dst": "el_3970703ffd92",
-   "kind": "RENDERS",
-   "confidence": 0.7,
-   "method": "same-effect-tie",
+   "confidence": 0.56,
+   "method": "ambiguous",
    "evidence": "link -> /profile/:p; inside .article-meta"
   },
   {
@@ -2088,19 +2108,19 @@
    "evidence": "classes 75% overlap; inside .btn"
   },
   {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+   "dst": "el_da11b1ddadf0",
+   "kind": "RENDERS",
+   "confidence": 0.56,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; inside .profile-page"
+  },
+  {
    "src": "src/app/features/article/components/article-meta.component.ts:9:a",
    "dst": "el_da11b1ddadf0",
    "kind": "RENDERS",
-   "confidence": 0.7,
-   "method": "same-effect-tie",
-   "evidence": "link -> /profile/:p; inside .article-meta"
-  },
-  {
-   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
-   "dst": "el_da11b1ddadf0",
-   "kind": "RENDERS",
-   "confidence": 0.7,
-   "method": "same-effect-tie",
+   "confidence": 0.56,
+   "method": "ambiguous",
    "evidence": "link -> /profile/:p; inside .article-meta"
   },
   {

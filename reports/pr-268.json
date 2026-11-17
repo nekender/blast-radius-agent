@@ -591,11 +591,11 @@
    "label": "/editor (authed)",
    "confidence": 1.0,
    "why": [
-    "contains 'Write your article (in markdown)'",
-    "contains 'What's this article about?'",
-    "contains 'Article Title'",
     "contains 'Enter tags'",
-    "contains 'Publish Article'"
+    "contains 'Publish Article'",
+    "contains 'What's this article about?'",
+    "contains 'Write your article (in markdown)'",
+    "contains 'Article Title'"
    ],
    "observed": true
   },
@@ -648,8 +648,8 @@
    "confidence": 0.5,
    "why": [
     "contains 'sign up'",
-    "contains 'Sign in'",
-    "contains 'Sign up'"
+    "contains 'Sign up'",
+    "contains 'Sign in'"
    ],
    "observed": true
   },
@@ -729,12 +729,12 @@
  ],
  "needs_review": [
   {
-   "item": "'Realworld' in code",
+   "item": "'or to add comments on this article.' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
   {
-   "item": "'or to add comments on this article.' in code",
+   "item": "'Realworld' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
@@ -759,12 +759,12 @@
    "confidence": 0.6
   },
   {
-   "item": "'h1' on / (anon)",
+   "item": "'h1' on /tag/:p (anon)",
    "why": "low confidence (0.32)",
    "confidence": 0.32
   },
   {
-   "item": "'h1' on /tag/:p (anon)",
+   "item": "'h1' on / (anon)",
    "why": "low confidence (0.32)",
    "confidence": 0.32
   }
