@@ -290,16 +290,6 @@
   },
   {
    "kind": "requirement",
-   "id": "RTE-a50b54",
-   "label": "Route /editor/:slug shows Edit article",
-   "confidence": 0.5,
-   "why": [
-    "describes /editor/:p, a page this change affects"
-   ],
-   "observed": false
-  },
-  {
-   "kind": "requirement",
    "id": "RTE-870845",
    "label": "Route /tag/:tag shows Filtered by tag",
    "confidence": 0.5,
@@ -340,8 +330,8 @@
   },
   {
    "kind": "flow",
-   "id": "flow:el_056643d01480",
-   "label": "Publish Article on /editor (POST /api/articles)",
+   "id": "flow:/editor:POST /api/articles",
+   "label": "Publish a new article",
    "confidence": 1.0,
    "why": [
     "passes through changed UI (5 step(s))",
@@ -351,28 +341,8 @@
   },
   {
    "kind": "flow",
-   "id": "flow:el_b07a9f77d06c",
-   "label": "Favorite Article (1) on /article/:p (POST /api/articles/:p/favorite)",
-   "confidence": 0.63,
-   "why": [
-    "passes through changed UI (1 step(s))"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "flow",
-   "id": "flow:el_b560b77b7f88",
-   "label": "Follow sarahchen on /article/:p (POST /api/profiles/:p/follow)",
-   "confidence": 0.63,
-   "why": [
-    "passes through changed UI (1 step(s))"
-   ],
-   "observed": true
-  },
-  {
-   "kind": "flow",
-   "id": "flow:el_6ba838f0fdb4",
-   "label": "Post Comment on /article/:p (POST /api/articles/:p/comments)",
+   "id": "flow:/article/:p:POST /api/articles/:p/comments",
+   "label": "Post a comment on an article",
    "confidence": 0.63,
    "why": [
     "passes through changed UI (2 step(s))"
@@ -381,21 +351,11 @@
   },
   {
    "kind": "flow",
-   "id": "flow:code:/editor/:p:submitForm:POST /api/articles",
-   "label": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "id": "flow:code:/editor/:p:submitForm",
+   "label": "Edit and republish an existing article",
    "confidence": 0.6,
    "why": [
-    "its final action calls POST /api/articles, which the changed code calls"
-   ],
-   "observed": false
-  },
-  {
-   "kind": "flow",
-   "id": "flow:code:/editor/:p:submitForm:PUT /api/articles/:p",
-   "label": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
-   "confidence": 0.6,
-   "why": [
-    "its final action calls PUT /api/articles/:p, which the changed code calls"
+    "its final action calls POST /api/articles, PUT /api/articles/:p, which the changed code calls"
    ],
    "observed": false
   },
@@ -531,13 +491,25 @@
   },
   {
    "kind": "element",
-   "id": "el_3d0ff24ebf99",
-   "label": "'Sign in' on /article/:p (anon)",
+   "id": "el_e164b6e2063d",
+   "label": "'sign up' on /article/:p (anon)",
    "confidence": 0.5,
    "why": [
-    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; inside .article-page",
-    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; inside .article-page",
-    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; inside .article-page"
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register; inside .article-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_3d0ff24ebf99",
+   "label": "'Sign in' on /article/:p (anon)",
+   "confidence": 0.48,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login"
    ],
    "observed": true
   },
@@ -619,11 +591,11 @@
    "label": "/editor (authed)",
    "confidence": 1.0,
    "why": [
-    "contains 'Publish Article'",
-    "contains 'What's this article about?'",
     "contains 'Write your article (in markdown)'",
+    "contains 'What's this article about?'",
+    "contains 'Article Title'",
     "contains 'Enter tags'",
-    "contains 'Article Title'"
+    "contains 'Publish Article'"
    ],
    "observed": true
   },
@@ -643,8 +615,8 @@
    "label": "/article/:p (authed)",
    "confidence": 0.63,
    "why": [
-    "contains 'Post Comment'",
-    "contains 'Write a comment...'"
+    "contains 'Write a comment...'",
+    "contains 'Post Comment'"
    ],
    "observed": true
   },
@@ -675,6 +647,7 @@
    "label": "/article/:p (anon)",
    "confidence": 0.5,
    "why": [
+    "contains 'sign up'",
     "contains 'Sign in'",
     "contains 'Sign up'"
    ],
@@ -756,12 +729,12 @@
  ],
  "needs_review": [
   {
-   "item": "'or to add comments on this article.' in code",
+   "item": "'Realworld' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
   {
-   "item": "'Realworld' in code",
+   "item": "'or to add comments on this article.' in code",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.32
   },
@@ -776,12 +749,7 @@
    "confidence": 0.42
   },
   {
-   "item": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.6
-  },
-  {
-   "item": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "item": "Edit and republish an existing article",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.6
   },
@@ -791,17 +759,12 @@
    "confidence": 0.6
   },
   {
-   "item": "Route /editor/:slug shows Edit article",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.5
-  },
-  {
-   "item": "'h1' on /tag/:p (anon)",
+   "item": "'h1' on / (anon)",
    "why": "low confidence (0.32)",
    "confidence": 0.32
   },
   {
-   "item": "'h1' on / (anon)",
+   "item": "'h1' on /tag/:p (anon)",
    "why": "low confidence (0.32)",
    "confidence": 0.32
   }

@@ -60,6 +60,11 @@ aborted: buttons are clicked in a "dry run" so we learn which API they call with
 MATCH (q:Requirement)-[:HAS_GAP]->(g:Gap {status:'absent'})-[:SEARCHED]->(s:Screen)
 RETURN q.statement, g.reason, collect(s.id);
 
+// What a PR puts at risk, straight from the graph (after `pr 311`)
+MATCH (p:PullRequest {number: 311})-[r:PUTS_AT_RISK]->(x)
+RETURN labels(x)[0] AS kind, coalesce(x.name, x.label, x.statement, x.id) AS item, r.confidence, r.observed
+ORDER BY r.confidence DESC;
+
 // From a changed method to the requirements it puts at risk
 MATCH (m:Method {id:'EditorComponent.submitForm'})-[:AFFECTS]->(:TemplateElement)-[r:RENDERS]->(e:Element)
       <-[c:COVERED_BY]-(q:Requirement)

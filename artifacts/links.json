@@ -1,17 +1,17 @@
 {
  "summary": {
   "screens": 14,
-  "elements": 206,
+  "elements": 227,
   "requirements": 106,
   "covered": 92,
   "absent": 0,
   "unknown": 14,
   "partial": 0,
-  "code_ui_links": 208,
-  "elements_linked_to_code": 171,
+  "code_ui_links": 230,
+  "elements_linked_to_code": 192,
   "flows_observed": 8,
-  "flows_from_code_only": 2,
-  "needs_review": 18
+  "flows_from_code_only": 1,
+  "needs_review": 17
  },
  "gaps": [
   {
@@ -123,25 +123,186 @@
  ],
  "flows": [
   {
-   "id": "flow:el_d415bb435393",
-   "name": "Sign in on /login (POST /api/users/login)",
+   "id": "flow:/article/:p:POST /api/profiles/:p/follow",
+   "name": "Follow an article's author",
+   "goal": "Verify that a logged-in user can open an article from the home list and follow its author, 'sarahchen', via the follow button.",
    "steps": [
     "/|anon",
-    "el_af84a249e891",
-    "/register|anon",
-    "el_e3941f56c571",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
+    "/|authed",
+    "el_415559798453",
+    "/article/:p|authed",
+    "el_b560b77b7f88"
+   ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click one of a list of a items (e.g. 'Introduction to Machine Learning for Dev')",
+    "on /article/:p (logged in)",
+    "click 'Follow sarahchen'"
+   ],
+   "action_element": "el_b560b77b7f88",
+   "calls": [
+    "POST /api/profiles/:p/follow"
+   ],
+   "requires_login": true,
+   "observed": true
+  },
+  {
+   "id": "flow:/article/:p:POST /api/articles/:p/favorite",
+   "name": "Favorite an article from its page",
+   "goal": "Verify that a logged-in user can open an article and mark it as a favorite using the 'Favorite Article' button.",
+   "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
+    "/|authed",
+    "el_415559798453",
+    "/article/:p|authed",
+    "el_b07a9f77d06c"
+   ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click one of a list of a items (e.g. 'Introduction to Machine Learning for Dev')",
+    "on /article/:p (logged in)",
+    "click 'Favorite Article (1)'"
+   ],
+   "action_element": "el_b07a9f77d06c",
+   "calls": [
+    "POST /api/articles/:p/favorite"
+   ],
+   "requires_login": true,
+   "observed": true
+  },
+  {
+   "id": "flow:/article/:p:POST /api/articles/:p/comments",
+   "name": "Post a comment on an article",
+   "goal": "Verify that a logged-in user can open an article, write a comment, and submit it with 'Post Comment'.",
+   "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
+    "/|authed",
+    "el_415559798453",
+    "/article/:p|authed",
+    "el_7f49f4cd56bb",
+    "el_6ba838f0fdb4"
+   ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click one of a list of a items (e.g. 'Introduction to Machine Learning for Dev')",
+    "on /article/:p (logged in)",
+    "fill 'Write a comment...'",
+    "click 'Post Comment'"
+   ],
+   "action_element": "el_6ba838f0fdb4",
+   "calls": [
+    "POST /api/articles/:p/comments"
+   ],
+   "requires_login": true,
+   "observed": true
+  },
+  {
+   "id": "flow:/editor:POST /api/articles",
+   "name": "Publish a new article",
+   "goal": "Verify that a logged-in user can open the editor from 'New Article', fill in title, description, body and tags, and publish the article.",
+   "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
+    "/|authed",
+    "el_587d884e4eb6",
+    "/editor|authed",
+    "el_eae4e55fa8a7",
+    "el_f3bf44beec50",
+    "el_4b49dcb882be",
+    "el_1057898a8492",
+    "el_056643d01480"
+   ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click 'New Article'",
+    "on /editor (logged in)",
+    "fill 'Article Title'",
+    "fill 'What's this article about?'",
+    "fill 'Write your article (in markdown)'",
+    "fill 'Enter tags'",
+    "click 'Publish Article'"
+   ],
+   "action_element": "el_056643d01480",
+   "calls": [
+    "POST /api/articles"
+   ],
+   "requires_login": true,
+   "observed": true
+  },
+  {
+   "id": "flow:/login:POST /api/users/login",
+   "name": "Sign in with email and password",
+   "goal": "Verify that a registered user can enter their email and password on the login page and sign in.",
+   "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
     "/login|anon",
     "el_8250af3f35be",
     "el_3b73ea91b49c",
     "el_d415bb435393"
    ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'"
+   ],
    "action_element": "el_d415bb435393",
-   "action_call": "POST /api/users/login",
+   "calls": [
+    "POST /api/users/login"
+   ],
+   "requires_login": false,
    "observed": true
   },
   {
-   "id": "flow:el_6cd8d0a56640",
-   "name": "Sign up on /register (POST /api/users)",
+   "id": "flow:/register:POST /api/users",
+   "name": "Create a new account",
+   "goal": "Verify that a new visitor can sign up by entering a username, email and password on the registration page.",
    "steps": [
     "/|anon",
     "el_af84a249e891",
@@ -151,46 +312,35 @@
     "el_715b74747dd5",
     "el_6cd8d0a56640"
    ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign up'",
+    "on /register (logged out)",
+    "fill 'Username'",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign up'"
+   ],
    "action_element": "el_6cd8d0a56640",
-   "action_call": "POST /api/users",
-   "observed": true
-  },
-  {
-   "id": "flow:el_11f7987bd7c2",
-   "name": "4 items, e.g. '1' on / (POST /api/articles/:p/favorite)",
-   "steps": [
-    "/|authed",
-    "el_11f7987bd7c2"
+   "calls": [
+    "POST /api/users"
    ],
-   "action_element": "el_11f7987bd7c2",
-   "action_call": "POST /api/articles/:p/favorite",
+   "requires_login": false,
    "observed": true
   },
   {
-   "id": "flow:el_056643d01480",
-   "name": "Publish Article on /editor (POST /api/articles)",
+   "id": "flow:/settings:PUT /api/user",
+   "name": "Update account settings",
+   "goal": "Verify that a logged-in user can change their profile picture, username, bio, email and password on the settings page and save with 'Update Settings'.",
    "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
     "/|authed",
-    "el_7ee59766e960",
-    "/editor|authed",
-    "el_eae4e55fa8a7",
-    "el_f3bf44beec50",
-    "el_4b49dcb882be",
-    "el_1057898a8492",
-    "el_056643d01480"
-   ],
-   "action_element": "el_056643d01480",
-   "action_call": "POST /api/articles",
-   "observed": true
-  },
-  {
-   "id": "flow:el_8d88c0ad93f1",
-   "name": "Update Settings on /settings (PUT /api/user)",
-   "steps": [
-    "/|authed",
-    "el_1338d656820a",
-    "/profile/:p|authed",
-    "el_2f4e31694d1e",
+    "el_d551e930806b",
     "/settings|authed",
     "el_eb615e678d9c",
     "el_fd908ea90215",
@@ -199,72 +349,107 @@
     "el_e069478759f6",
     "el_8d88c0ad93f1"
    ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click 'Settings'",
+    "on /settings (logged in)",
+    "fill 'URL of profile picture'",
+    "fill 'Username'",
+    "fill 'Short bio about you'",
+    "fill 'Email'",
+    "fill 'New Password'",
+    "click 'Update Settings'"
+   ],
    "action_element": "el_8d88c0ad93f1",
-   "action_call": "PUT /api/user",
+   "calls": [
+    "PUT /api/user"
+   ],
+   "requires_login": true,
    "observed": true
   },
   {
-   "id": "flow:el_b560b77b7f88",
-   "name": "Follow sarahchen on /article/:p (POST /api/profiles/:p/follow)",
+   "id": "flow:/:POST /api/articles/:p/favorite",
+   "name": "Favorite an article from the feed",
+   "goal": "Verify that a logged-in user can favorite an article directly from the home page list using its favorite button.",
    "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
+    "/|authed",
+    "el_11f7987bd7c2"
+   ],
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click one of a list of button items (e.g. '1')"
+   ],
+   "action_element": "el_11f7987bd7c2",
+   "calls": [
+    "POST /api/articles/:p/favorite"
+   ],
+   "requires_login": true,
+   "observed": true
+  },
+  {
+   "id": "flow:code:/editor/:p:submitForm",
+   "name": "Edit and republish an existing article",
+   "goal": "Verify that a logged-in user can open an article's editor via 'Edit Article' and submit changes; the editor steps were never seen in the running app and are known only from code.",
+   "steps": [
+    "/|anon",
+    "el_b5cd94ee6c51",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393",
     "/|authed",
     "el_415559798453",
     "/article/:p|authed",
-    "el_7f49f4cd56bb",
-    "el_b560b77b7f88"
-   ],
-   "action_element": "el_b560b77b7f88",
-   "action_call": "POST /api/profiles/:p/follow",
-   "observed": true
-  },
-  {
-   "id": "flow:el_b07a9f77d06c",
-   "name": "Favorite Article (1) on /article/:p (POST /api/articles/:p/favorite)",
-   "steps": [
-    "/|authed",
-    "el_415559798453",
-    "/article/:p|authed",
-    "el_7f49f4cd56bb",
-    "el_b07a9f77d06c"
-   ],
-   "action_element": "el_b07a9f77d06c",
-   "action_call": "POST /api/articles/:p/favorite",
-   "observed": true
-  },
-  {
-   "id": "flow:el_6ba838f0fdb4",
-   "name": "Post Comment on /article/:p (POST /api/articles/:p/comments)",
-   "steps": [
-    "/|authed",
-    "el_415559798453",
-    "/article/:p|authed",
-    "el_7f49f4cd56bb",
-    "el_6ba838f0fdb4"
-   ],
-   "action_element": "el_6ba838f0fdb4",
-   "action_call": "POST /api/articles/:p/comments",
-   "observed": true
-  },
-  {
-   "id": "flow:code:/editor/:p:submitForm:POST /api/articles",
-   "name": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
-   "steps": [
+    "src/app/features/article/pages/article/article.component.html:33:a",
     "route:/editor/:p",
+    "src/app/features/article/pages/editor/editor.component.html:24:input",
+    "src/app/features/article/pages/editor/editor.component.html:34:input",
+    "src/app/features/article/pages/editor/editor.component.html:44:textarea",
+    "src/app/features/article/pages/editor/editor.component.html:55:input",
     "src/app/features/article/pages/editor/editor.component.html:70:button"
    ],
-   "action_element": "src/app/features/article/pages/editor/editor.component.html:70:button",
-   "action_call": "POST /api/articles",
-   "observed": false
-  },
-  {
-   "id": "flow:code:/editor/:p:submitForm:PUT /api/articles/:p",
-   "name": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
-   "steps": [
-    "route:/editor/:p",
-    "src/app/features/article/pages/editor/editor.component.html:70:button"
+   "narrative": [
+    "on / (logged out)",
+    "click 'Sign in'",
+    "on /login (logged out)",
+    "fill 'Email'",
+    "fill 'Password'",
+    "click 'Sign in'",
+    "on / (logged in)",
+    "click one of a list of a items (e.g. 'Introduction to Machine Learning for Dev')",
+    "on /article/:p (logged in)",
+    "click 'Edit Article' (from code)",
+    "on /editor/:p (only known from code)",
+    "fill 'Article Title' (from code)",
+    "fill 'What's this article about?' (from code)",
+    "fill 'Write your article (in markdown)' (from code)",
+    "fill 'Enter tags' (from code)",
+    "click 'Publish Article' (from code)"
    ],
    "action_element": "src/app/features/article/pages/editor/editor.component.html:70:button",
-   "action_call": "PUT /api/articles/:p",
+   "calls": [
+    "POST /api/articles",
+    "PUT /api/articles/:p"
+   ],
+   "requires_login": true,
    "observed": false
   }
  ],
@@ -300,12 +485,12 @@
    "why": "two equally good code matches"
   },
   {
-   "element": "el_3970703ffd92",
-   "label": "",
-   "screen": "/profile/:p|anon",
+   "element": "el_3d0ff24ebf99",
+   "label": "Sign in",
+   "screen": "/article/:p|anon",
    "candidates": [
-    "src/app/features/profile/pages/profile/profile.component.html:54:a",
-    "src/app/features/article/components/article-meta.component.ts:9:a"
+    "src/app/core/layout/header.component.html:26:a",
+    "src/app/features/article/pages/article/article.component.html:126:a"
    ],
    "why": "two equally good code matches"
   },
@@ -320,12 +505,12 @@
    "why": "two equally good code matches"
   },
   {
-   "element": "el_3d0ff24ebf99",
-   "label": "Sign in",
+   "element": "el_e164b6e2063d",
+   "label": "sign up",
    "screen": "/article/:p|anon",
    "candidates": [
-    "src/app/core/layout/header.component.html:26:a",
-    "src/app/features/article/pages/article/article.component.html:126:a"
+    "src/app/core/layout/header.component.html:30:a",
+    "src/app/features/article/pages/article/article.component.html:170:a"
    ],
    "why": "two equally good code matches"
   },
@@ -366,16 +551,6 @@
    "candidates": [
     "src/app/features/profile/pages/profile/profile.component.html:37:a",
     "src/app/core/layout/header.component.html:51:a"
-   ],
-   "why": "two equally good code matches"
-  },
-  {
-   "element": "el_da11b1ddadf0",
-   "label": "",
-   "screen": "/profile/:p|authed",
-   "candidates": [
-    "src/app/features/profile/pages/profile/profile.component.html:54:a",
-    "src/app/features/article/components/article-meta.component.ts:9:a"
    ],
    "why": "two equally good code matches"
   },
@@ -455,6 +630,14 @@
    "confidence": 1.0,
    "method": "scored",
    "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_b5cd94ee6c51",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign in'; link -> /login; classes 100% overlap; inside .navbar; @if matches anon"
   },
   {
    "src": "src/app/core/layout/header.component.html:30:a",
@@ -697,6 +880,14 @@
    "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
   },
   {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_ad86568233f5",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign in'; link -> /login; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
    "src": "src/app/core/layout/header.component.html:30:a",
    "dst": "el_3d12203c1fa0",
    "kind": "RENDERS",
@@ -817,6 +1008,14 @@
    "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
   },
   {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_afddd678e88e",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign in'; link -> /login; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
    "src": "src/app/core/layout/header.component.html:30:a",
    "dst": "el_1ca14dff4f8c",
    "kind": "RENDERS",
@@ -849,19 +1048,19 @@
    "evidence": "text='Favorited Posts'; link -> /profile/:p/favorites; classes 100% overlap; inside .profile-page"
   },
   {
-   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
-   "dst": "el_3970703ffd92",
-   "kind": "RENDERS",
-   "confidence": 0.56,
-   "method": "ambiguous",
-   "evidence": "link -> /profile/:p; inside .profile-page"
-  },
-  {
    "src": "src/app/features/article/components/article-meta.component.ts:9:a",
    "dst": "el_3970703ffd92",
    "kind": "RENDERS",
-   "confidence": 0.56,
-   "method": "ambiguous",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_3970703ffd92",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
    "evidence": "link -> /profile/:p; inside .article-meta"
   },
   {
@@ -953,6 +1152,22 @@
    "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
   },
   {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_3d0ff24ebf99",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Sign in'; link -> /login; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/features/article/pages/article/article.component.html:126:a",
+   "dst": "el_3d0ff24ebf99",
+   "kind": "RENDERS",
+   "confidence": 0.76,
+   "method": "ambiguous",
+   "evidence": "text='Sign in'; link -> /login"
+  },
+  {
    "src": "src/app/core/layout/header.component.html:30:a",
    "dst": "el_7c024e05b31c",
    "kind": "RENDERS",
@@ -1001,20 +1216,20 @@
    "evidence": "classes 75% overlap; inside .btn"
   },
   {
-   "src": "src/app/core/layout/header.component.html:26:a",
-   "dst": "el_3d0ff24ebf99",
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_e164b6e2063d",
    "kind": "RENDERS",
    "confidence": 0.8,
    "method": "ambiguous",
-   "evidence": "text='Sign in'; link -> /login; @if matches anon"
+   "evidence": "text='Sign up'; link -> /register; @if matches anon"
   },
   {
-   "src": "src/app/features/article/pages/article/article.component.html:126:a",
-   "dst": "el_3d0ff24ebf99",
+   "src": "src/app/features/article/pages/article/article.component.html:170:a",
+   "dst": "el_e164b6e2063d",
    "kind": "RENDERS",
    "confidence": 0.8,
    "method": "ambiguous",
-   "evidence": "text='Sign in'; link -> /login; inside .article-page"
+   "evidence": "text='sign up'; link -> /register; inside .article-page"
   },
   {
    "src": "src/app/features/article/components/article-comment.component.ts:20:a",
@@ -1095,6 +1310,14 @@
    "confidence": 1.0,
    "method": "scored",
    "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_6a7a36b2ced0",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign in'; link -> /login; classes 100% overlap; inside .navbar; @if matches anon"
   },
   {
    "src": "src/app/core/layout/header.component.html:30:a",
@@ -1257,6 +1480,14 @@
    "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
   },
   {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_c842662e5bfc",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign in'; link -> /login; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
    "src": "src/app/core/layout/header.component.html:30:a",
    "dst": "el_ab92627dfd42",
    "kind": "RENDERS",
@@ -1378,11 +1609,27 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:45:a",
-   "dst": "el_7ee59766e960",
+   "dst": "el_587d884e4eb6",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='New Article'; link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_d551e930806b",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_050761e95fe8",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/features/article/pages/home/home.component.html:34:a",
@@ -1473,14 +1720,6 @@
    "evidence": "text='RealWorld OSS Project'"
   },
   {
-   "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_cfa2575b9358",
-   "kind": "RENDERS",
-   "confidence": 1.0,
-   "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
-  },
-  {
    "src": "/editor|authed",
    "dst": "EditorComponent",
    "kind": "SERVED_BY",
@@ -1514,11 +1753,11 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_ee2d5ef16b57",
+   "dst": "el_e8fb5bd930c6",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/core/layout/header.component.html:45:a",
@@ -1527,6 +1766,22 @@
    "confidence": 1.0,
    "method": "scored",
    "evidence": "text='New Article'; link -> /editor; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_ebf9f16cf067",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_5268f2d9e42f",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/features/article/pages/editor/editor.component.html:24:input",
@@ -1610,11 +1865,19 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_7b8735a77f0d",
+   "dst": "el_e3f44371c968",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_0ddb9b552e6d",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='New Article'; link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/core/layout/header.component.html:51:a",
@@ -1623,6 +1886,14 @@
    "confidence": 1.0,
    "method": "scored",
    "evidence": "text='Settings'; link -> /settings; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_d47cef0a4844",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/features/settings/settings.component.html:13:h1",
@@ -1738,15 +2009,31 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_ecb6304fb2c7",
+   "dst": "el_64944d40009c",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_1e8eacc86598",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='New Article'; link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_17ce48741a16",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/core/layout/header.component.html:60:a",
-   "dst": "el_e9f6378b8e69",
+   "dst": "el_3c9a46522faf",
    "kind": "RENDERS",
    "confidence": 0.95,
    "method": "scored",
@@ -1801,19 +2088,19 @@
    "evidence": "classes 75% overlap; inside .btn"
   },
   {
-   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
-   "dst": "el_da11b1ddadf0",
-   "kind": "RENDERS",
-   "confidence": 0.56,
-   "method": "ambiguous",
-   "evidence": "link -> /profile/:p; inside .profile-page"
-  },
-  {
    "src": "src/app/features/article/components/article-meta.component.ts:9:a",
    "dst": "el_da11b1ddadf0",
    "kind": "RENDERS",
-   "confidence": 0.56,
-   "method": "ambiguous",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_da11b1ddadf0",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
    "evidence": "link -> /profile/:p; inside .article-meta"
   },
   {
@@ -1866,11 +2153,35 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_1824747bd992",
+   "dst": "el_22b314ac4d0e",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_b1e300f69967",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='New Article'; link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_081e6cd4a92c",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_58dd0ad2ec9d",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/features/article/components/article-meta.component.ts:9:a",
@@ -2002,11 +2313,35 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_7f030d5bc8db",
+   "dst": "el_31a40f2a73e3",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_b7ef5dec1dd3",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='New Article'; link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_c70088a057b1",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_cdc67af9bced",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/features/article/pages/home/home.component.html:34:a",
@@ -2138,15 +2473,31 @@
   },
   {
    "src": "src/app/core/layout/header.component.html:39:a",
-   "dst": "el_c547994e34d0",
+   "dst": "el_d0850825bd17",
    "kind": "RENDERS",
    "confidence": 1.0,
    "method": "scored",
-   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_9a3db0787b73",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='New Article'; link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_57a659e7c525",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 100% overlap; inside .navbar; @if matches authed"
   },
   {
    "src": "src/app/core/layout/header.component.html:60:a",
-   "dst": "el_4d5c4cb04522",
+   "dst": "el_c4bcfd8415b8",
    "kind": "RENDERS",
    "confidence": 0.95,
    "method": "scored",
@@ -2564,6 +2915,14 @@
   },
   {
    "src": "CLS-f17fee",
+   "dst": "el_b5cd94ee6c51",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
    "dst": "el_af84a249e891",
    "kind": "COVERED_BY",
    "confidence": 0.4,
@@ -2612,6 +2971,14 @@
   },
   {
    "src": "CLS-f17fee",
+   "dst": "el_ad86568233f5",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
    "dst": "el_3d12203c1fa0",
    "kind": "COVERED_BY",
    "confidence": 0.4,
@@ -2621,6 +2988,14 @@
   {
    "src": "CLS-f17fee",
    "dst": "el_cec10b65831c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_afddd678e88e",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2660,6 +3035,14 @@
   },
   {
    "src": "CLS-f17fee",
+   "dst": "el_3d0ff24ebf99",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
    "dst": "el_7c024e05b31c",
    "kind": "COVERED_BY",
    "confidence": 0.4,
@@ -2669,6 +3052,14 @@
   {
    "src": "CLS-f17fee",
    "dst": "el_246afe29190b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_6a7a36b2ced0",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2716,6 +3107,14 @@
   },
   {
    "src": "CLS-f17fee",
+   "dst": "el_c842662e5bfc",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
    "dst": "el_ab92627dfd42",
    "kind": "COVERED_BY",
    "confidence": 0.4,
@@ -2748,7 +3147,23 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_7ee59766e960",
+   "dst": "el_587d884e4eb6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_d551e930806b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_050761e95fe8",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2772,15 +3187,7 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_cfa2575b9358",
-   "kind": "COVERED_BY",
-   "confidence": 0.4,
-   "method": "class-only",
-   "evidence": "class 'nav-link'"
-  },
-  {
-   "src": "CLS-f17fee",
-   "dst": "el_ee2d5ef16b57",
+   "dst": "el_e8fb5bd930c6",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2796,7 +3203,31 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_7b8735a77f0d",
+   "dst": "el_ebf9f16cf067",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_5268f2d9e42f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_e3f44371c968",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_0ddb9b552e6d",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2812,7 +3243,7 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_ecb6304fb2c7",
+   "dst": "el_d47cef0a4844",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2820,7 +3251,31 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_e9f6378b8e69",
+   "dst": "el_64944d40009c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_1e8eacc86598",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_17ce48741a16",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_3c9a46522faf",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2844,7 +3299,7 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_1824747bd992",
+   "dst": "el_22b314ac4d0e",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2852,7 +3307,55 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_7f030d5bc8db",
+   "dst": "el_b1e300f69967",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_081e6cd4a92c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_58dd0ad2ec9d",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_31a40f2a73e3",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_b7ef5dec1dd3",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_c70088a057b1",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_cdc67af9bced",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2884,7 +3387,7 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_c547994e34d0",
+   "dst": "el_d0850825bd17",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -2892,7 +3395,23 @@
   },
   {
    "src": "CLS-f17fee",
-   "dst": "el_4d5c4cb04522",
+   "dst": "el_9a3db0787b73",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_57a659e7c525",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_c4bcfd8415b8",
    "kind": "COVERED_BY",
    "confidence": 0.4,
    "method": "class-only",
@@ -3763,6 +4282,54 @@
    "evidence": "text 'Home'"
   },
   {
+   "src": "SEL-5ced84",
+   "dst": "el_e8fb5bd930c6",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_e3f44371c968",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_64944d40009c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_22b314ac4d0e",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_31a40f2a73e3",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_d0850825bd17",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
    "src": "RTE-42099b",
    "dst": "/|anon",
    "kind": "COVERED_BY",
@@ -3888,7 +4455,7 @@
    "kind": "COVERED_BY",
    "confidence": 1.0,
    "method": "route",
-   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7"
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-11c596"
   },
   {
    "src": "RTE-355556",
@@ -3904,7 +4471,7 @@
    "kind": "COVERED_BY",
    "confidence": 1.0,
    "method": "route",
-   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7/favorites"
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-11c596/favorites"
   },
   {
    "src": "RTE-8a2508",
@@ -4228,6 +4795,14 @@
   },
   {
    "src": "RT-977fab",
+   "dst": "el_ad86568233f5",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "RT-977fab",
    "dst": "el_3d12203c1fa0",
    "kind": "COVERED_BY",
    "confidence": 0.95,
@@ -4488,7 +5063,7 @@
    "kind": "COVERED_BY",
    "confidence": 1.0,
    "method": "route",
-   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7"
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-11c596"
   },
   {
    "src": "RT-50056b",
@@ -4496,7 +5071,7 @@
    "kind": "COVERED_BY",
    "confidence": 1.0,
    "method": "route",
-   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7/favorites"
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-11c596/favorites"
   },
   {
    "src": "RT-50056b",

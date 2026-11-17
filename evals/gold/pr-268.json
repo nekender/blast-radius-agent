@@ -3,23 +3,94 @@
   "labelled_by": "hand, from the PR diff and `git grep ifAuthenticated` at HEAD, before scoring (17 Nov 2026)",
   "note": "PR #268 changes the editor's article loading (ngOnInit) and the login-state directive (then ShowAuthedDirective, now IfAuthenticatedDirective after 3 renames). The directive decides whether 4 blocks render: the home banner (logged out), the 'Your Feed' tab (logged in), the comment form (logged in) and the 'sign in to comment' prompt (logged out).",
   "must": [
-    {"kind": "element", "label_contains": "Your Feed", "where": "/ (authed)"},
-    {"kind": "element", "label_contains": "Post Comment", "where": "/article/:p"},
-    {"kind": "element", "label_contains": "Sign in", "where": "/article/:p (anon)"},
-    {"kind": "element", "label_contains": "Angular frontend", "where": "/ (anon)"},
-    {"kind": "element", "label_contains": "Publish Article", "where": "/editor"},
-    {"kind": "flow", "label_contains": "Post Comment"},
-    {"kind": "requirement", "label_contains": "Your Feed"},
-    {"kind": "requirement", "label_contains": "Post Comment"}
+    {
+      "kind": "element",
+      "label_contains": "Your Feed",
+      "where": "/ (authed)"
+    },
+    {
+      "kind": "element",
+      "label_contains": "Post Comment",
+      "where": "/article/:p"
+    },
+    {
+      "kind": "element",
+      "label_contains": "Sign in",
+      "where": "/article/:p (anon)"
+    },
+    {
+      "kind": "element",
+      "label_contains": "Angular frontend",
+      "where": "/ (anon)"
+    },
+    {
+      "kind": "element",
+      "label_contains": "Publish Article",
+      "where": "/editor"
+    },
+    {
+      "kind": "flow",
+      "calls_contains": "POST /api/articles/:p/comments"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "Your Feed"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "Post Comment"
+    }
   ],
   "acceptable": [
-    {"kind": "element", "where": "/editor"}, {"kind": "element", "where": "/article/:p"},
-    {"kind": "element", "where": "/tag/:p"}, {"kind": "element", "where": "/ ("},
-    {"kind": "element", "label_contains": "in code"},
-    {"kind": "screen"}, {"kind": "flow"}, {"kind": "requirement"}, {"kind": "unmapped_code"}
+    {
+      "kind": "element",
+      "where": "/editor"
+    },
+    {
+      "kind": "element",
+      "where": "/article/:p"
+    },
+    {
+      "kind": "element",
+      "where": "/tag/:p"
+    },
+    {
+      "kind": "element",
+      "where": "/ ("
+    },
+    {
+      "kind": "element",
+      "label_contains": "in code"
+    },
+    {
+      "kind": "screen"
+    },
+    {
+      "kind": "flow"
+    },
+    {
+      "kind": "requirement"
+    },
+    {
+      "kind": "unmapped_code"
+    }
   ],
   "must_not": [
-    {"kind": "element", "where": "/settings"}, {"kind": "element", "where": "/login"},
-    {"kind": "element", "where": "/register"}, {"kind": "element", "where": "/profile"}
+    {
+      "kind": "element",
+      "where": "/settings"
+    },
+    {
+      "kind": "element",
+      "where": "/login"
+    },
+    {
+      "kind": "element",
+      "where": "/register"
+    },
+    {
+      "kind": "element",
+      "where": "/profile"
+    }
   ]
 }

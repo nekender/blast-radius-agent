@@ -74,19 +74,9 @@
    "observed": true
   },
   {
-   "kind": "requirement",
-   "id": "RTE-a50b54",
-   "label": "Route /editor/:slug shows Edit article",
-   "confidence": 0.5,
-   "why": [
-    "describes /editor/:p, a page this change affects"
-   ],
-   "observed": false
-  },
-  {
    "kind": "flow",
-   "id": "flow:el_056643d01480",
-   "label": "Publish Article on /editor (POST /api/articles)",
+   "id": "flow:/editor:POST /api/articles",
+   "label": "Publish a new article",
    "confidence": 1.0,
    "why": [
     "passes through changed UI (1 step(s))",
@@ -96,21 +86,11 @@
   },
   {
    "kind": "flow",
-   "id": "flow:code:/editor/:p:submitForm:POST /api/articles",
-   "label": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "id": "flow:code:/editor/:p:submitForm",
+   "label": "Edit and republish an existing article",
    "confidence": 0.6,
    "why": [
-    "its final action calls POST /api/articles, which the changed code calls"
-   ],
-   "observed": false
-  },
-  {
-   "kind": "flow",
-   "id": "flow:code:/editor/:p:submitForm:PUT /api/articles/:p",
-   "label": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
-   "confidence": 0.6,
-   "why": [
-    "its final action calls PUT /api/articles/:p, which the changed code calls"
+    "its final action calls POST /api/articles, PUT /api/articles/:p, which the changed code calls"
    ],
    "observed": false
   },
@@ -164,12 +144,7 @@
    "confidence": 0.7
   },
   {
-   "item": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.6
-  },
-  {
-   "item": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "item": "Edit and republish an existing article",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.6
   },
@@ -177,11 +152,6 @@
    "item": "App calls PUT /api/articles/:p",
    "why": "only seen in code, never observed in the running app",
    "confidence": 0.6
-  },
-  {
-   "item": "Route /editor/:slug shows Edit article",
-   "why": "only seen in code, never observed in the running app",
-   "confidence": 0.5
   }
  ]
 }

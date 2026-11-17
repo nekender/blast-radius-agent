@@ -224,7 +224,7 @@
       "template": "/profile/:p",
       "auth": "authed",
       "sample_urls": [
-        "https://demo.realworld.show/profile/br-test-255fb7",
+        "https://demo.realworld.show/profile/br-test-11c596",
         "https://demo.realworld.show/profile/sarahchen"
       ],
       "title": "Conduit",
@@ -314,7 +314,7 @@
       "template": "/profile/:p/favorites",
       "auth": "authed",
       "sample_urls": [
-        "https://demo.realworld.show/profile/br-test-255fb7/favorites",
+        "https://demo.realworld.show/profile/br-test-11c596/favorites",
         "https://demo.realworld.show/profile/sarahchen/favorites"
       ],
       "title": "Conduit",
@@ -390,6 +390,23 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b5cd94ee6c51",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
       "repeated": false,
       "triggers": []
     },
@@ -844,6 +861,23 @@
       "triggers": []
     },
     {
+      "id": "el_ad86568233f5",
+      "screen_id": "/register|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
       "id": "el_3d12203c1fa0",
       "screen_id": "/register|anon",
       "tag": "a",
@@ -1038,6 +1072,23 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_afddd678e88e",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
       "repeated": false,
       "triggers": []
     },
@@ -1263,6 +1314,23 @@
       "triggers": []
     },
     {
+      "id": "el_3d0ff24ebf99",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
       "id": "el_7c024e05b31c",
       "screen_id": "/article/:p|anon",
       "tag": "a",
@@ -1382,17 +1450,17 @@
       "triggers": []
     },
     {
-      "id": "el_3d0ff24ebf99",
+      "id": "el_e164b6e2063d",
       "screen_id": "/article/:p|anon",
       "tag": "a",
       "role": null,
-      "label": "Sign in",
+      "label": "sign up",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
-      "href_template": "/login",
+      "href_template": "/register",
       "classes": [],
-      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > div > a:nth-of-type(1)",
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > div > a:nth-of-type(2)",
       "repeated": false,
       "triggers": []
     },
@@ -1598,6 +1666,23 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_6a7a36b2ced0",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
       "repeated": false,
       "triggers": []
     },
@@ -1920,6 +2005,23 @@
       "triggers": []
     },
     {
+      "id": "el_c842662e5bfc",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
       "id": "el_ab92627dfd42",
       "screen_id": "/profile/:p/favorites|anon",
       "tag": "a",
@@ -2230,11 +2332,11 @@
       "triggers": []
     },
     {
-      "id": "el_7ee59766e960",
+      "id": "el_587d884e4eb6",
       "screen_id": "/|authed",
       "tag": "a",
       "role": null,
-      "label": "3 items, e.g. 'New Article'",
+      "label": "New Article",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2243,7 +2345,41 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d551e930806b",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_050761e95fe8",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link",
+      "repeated": false,
       "triggers": []
     },
     {
@@ -2456,11 +2592,11 @@
       "triggers": []
     },
     {
-      "id": "el_ee2d5ef16b57",
+      "id": "el_e8fb5bd930c6",
       "screen_id": "/editor|authed",
       "tag": "a",
       "role": null,
-      "label": "3 items, e.g. 'Home'",
+      "label": "Home",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2469,7 +2605,7 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
       "triggers": []
     },
     {
@@ -2487,6 +2623,40 @@
         "active"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ebf9f16cf067",
+      "screen_id": "/editor|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5268f2d9e42f",
+      "screen_id": "/editor|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link",
       "repeated": false,
       "triggers": []
     },
@@ -2636,11 +2806,11 @@
       "triggers": []
     },
     {
-      "id": "el_7b8735a77f0d",
+      "id": "el_e3f44371c968",
       "screen_id": "/settings|authed",
       "tag": "a",
       "role": null,
-      "label": "3 items, e.g. 'Home'",
+      "label": "Home",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2649,7 +2819,24 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0ddb9b552e6d",
+      "screen_id": "/settings|authed",
+      "tag": "a",
+      "role": null,
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
       "triggers": []
     },
     {
@@ -2667,6 +2854,23 @@
         "active"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d47cef0a4844",
+      "screen_id": "/settings|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link",
       "repeated": false,
       "triggers": []
     },
@@ -2882,11 +3086,11 @@
       "triggers": []
     },
     {
-      "id": "el_ecb6304fb2c7",
+      "id": "el_64944d40009c",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
       "role": null,
-      "label": "3 items, e.g. 'Home'",
+      "label": "Home",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2895,15 +3099,49 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
       "triggers": []
     },
     {
-      "id": "el_e9f6378b8e69",
+      "id": "el_1e8eacc86598",
       "screen_id": "/profile/:p|authed",
       "tag": "a",
       "role": null,
-      "label": "br-test-255fb7",
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_17ce48741a16",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3c9a46522faf",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -2984,23 +3222,6 @@
       "classes": [],
       "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
       "repeated": false,
-      "triggers": []
-    },
-    {
-      "id": "el_cfa2575b9358",
-      "screen_id": "/|authed",
-      "tag": "a",
-      "role": null,
-      "label": "4 items, e.g. 'Home'",
-      "name_attr": null,
-      "placeholder": null,
-      "input_type": null,
-      "href_template": "/",
-      "classes": [
-        "nav-link"
-      ],
-      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
       "triggers": []
     },
     {
@@ -3142,11 +3363,11 @@
       "triggers": []
     },
     {
-      "id": "el_1824747bd992",
+      "id": "el_22b314ac4d0e",
       "screen_id": "/article/:p|authed",
       "tag": "a",
       "role": null,
-      "label": "4 items, e.g. 'Home'",
+      "label": "Home",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3155,7 +3376,58 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b1e300f69967",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_081e6cd4a92c",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_58dd0ad2ec9d",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link",
+      "repeated": false,
       "triggers": []
     },
     {
@@ -3433,11 +3705,11 @@
       "triggers": []
     },
     {
-      "id": "el_7f030d5bc8db",
+      "id": "el_31a40f2a73e3",
       "screen_id": "/tag/:p|authed",
       "tag": "a",
       "role": null,
-      "label": "4 items, e.g. 'Home'",
+      "label": "Home",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3446,7 +3718,58 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b7ef5dec1dd3",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c70088a057b1",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cdc67af9bced",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link",
+      "repeated": false,
       "triggers": []
     },
     {
@@ -3701,11 +4024,11 @@
       "triggers": []
     },
     {
-      "id": "el_c547994e34d0",
+      "id": "el_d0850825bd17",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
       "role": null,
-      "label": "3 items, e.g. 'Home'",
+      "label": "Home",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3714,15 +4037,49 @@
         "nav-link"
       ],
       "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
-      "repeated": true,
+      "repeated": false,
       "triggers": []
     },
     {
-      "id": "el_4d5c4cb04522",
+      "id": "el_9a3db0787b73",
       "screen_id": "/profile/:p/favorites|authed",
       "tag": "a",
       "role": null,
-      "label": "br-test-255fb7",
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_57a659e7c525",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c4bcfd8415b8",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-11c596",
       "name_attr": null,
       "placeholder": null,
       "input_type": null,
@@ -3939,6 +4296,11 @@
     },
     {
       "from_screen": "/|anon",
+      "element_id": "el_b5cd94ee6c51",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/|anon",
       "element_id": "el_af84a249e891",
       "to_template": "/register"
     },
@@ -3974,18 +4336,8 @@
     },
     {
       "from_screen": "/|anon",
-      "element_id": "el_0a336e79b71e",
-      "to_template": "/realworld-apps/:p"
-    },
-    {
-      "from_screen": "/|anon",
       "element_id": "el_20de6d8f5927",
       "to_template": "/register"
-    },
-    {
-      "from_screen": "/|anon",
-      "element_id": "el_c06311b2e7f1",
-      "to_template": "/realworld-apps/realworld"
     },
     {
       "from_screen": "/login|anon",
@@ -4018,11 +4370,6 @@
       "to_template": "/"
     },
     {
-      "from_screen": "/login|anon",
-      "element_id": "el_c60a9dc273e4",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/register|anon",
       "element_id": "el_f4688566e4ca",
       "to_template": "/"
@@ -4031,6 +4378,11 @@
       "from_screen": "/register|anon",
       "element_id": "el_f4334dd3c81a",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_ad86568233f5",
+      "to_template": "/login"
     },
     {
       "from_screen": "/register|anon",
@@ -4048,11 +4400,6 @@
       "to_template": "/"
     },
     {
-      "from_screen": "/register|anon",
-      "element_id": "el_4c3dad74f9ca",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/profile/:p|anon",
       "element_id": "el_d8387ea839d9",
       "to_template": "/"
@@ -4061,6 +4408,11 @@
       "from_screen": "/profile/:p|anon",
       "element_id": "el_cec10b65831c",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_afddd678e88e",
+      "to_template": "/login"
     },
     {
       "from_screen": "/profile/:p|anon",
@@ -4108,11 +4460,6 @@
       "to_template": "/register"
     },
     {
-      "from_screen": "/profile/:p|anon",
-      "element_id": "el_fda877200541",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/article/:p|anon",
       "element_id": "el_729dab919e95",
       "to_template": "/"
@@ -4121,6 +4468,11 @@
       "from_screen": "/article/:p|anon",
       "element_id": "el_57fd1d3dbcec",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_3d0ff24ebf99",
+      "to_template": "/login"
     },
     {
       "from_screen": "/article/:p|anon",
@@ -4154,6 +4506,11 @@
     },
     {
       "from_screen": "/article/:p|anon",
+      "element_id": "el_e164b6e2063d",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/article/:p|anon",
       "element_id": "el_4f5d18d8a39a",
       "to_template": "/profile/:p"
     },
@@ -4161,6 +4518,11 @@
       "from_screen": "/article/:p|anon",
       "element_id": "el_729dab919e95",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_c41ac3c1b1f0",
+      "to_template": "/login"
     },
     {
       "from_screen": "/article/:p|anon",
@@ -4178,11 +4540,6 @@
       "to_template": "/register"
     },
     {
-      "from_screen": "/article/:p|anon",
-      "element_id": "el_861c297a37b2",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/profile/:p|anon",
       "element_id": "el_d8387ea839d9",
       "to_template": "/"
@@ -4191,6 +4548,11 @@
       "from_screen": "/profile/:p|anon",
       "element_id": "el_cec10b65831c",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_afddd678e88e",
+      "to_template": "/login"
     },
     {
       "from_screen": "/profile/:p|anon",
@@ -4239,6 +4601,11 @@
     },
     {
       "from_screen": "/article/:p|anon",
+      "element_id": "el_3d0ff24ebf99",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/article/:p|anon",
       "element_id": "el_7c024e05b31c",
       "to_template": "/register"
     },
@@ -4269,6 +4636,11 @@
     },
     {
       "from_screen": "/article/:p|anon",
+      "element_id": "el_e164b6e2063d",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/article/:p|anon",
       "element_id": "el_4f5d18d8a39a",
       "to_template": "/profile/:p"
     },
@@ -4286,6 +4658,11 @@
       "from_screen": "/tag/:p|anon",
       "element_id": "el_246afe29190b",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_6a7a36b2ced0",
+      "to_template": "/login"
     },
     {
       "from_screen": "/tag/:p|anon",
@@ -4324,18 +4701,8 @@
     },
     {
       "from_screen": "/tag/:p|anon",
-      "element_id": "el_f1f342963de7",
-      "to_template": "/realworld-apps/:p"
-    },
-    {
-      "from_screen": "/tag/:p|anon",
       "element_id": "el_1e39545348db",
       "to_template": "/register"
-    },
-    {
-      "from_screen": "/tag/:p|anon",
-      "element_id": "el_1d5eb3a89787",
-      "to_template": "/realworld-apps/realworld"
     },
     {
       "from_screen": "/tag/:p|anon",
@@ -4346,6 +4713,11 @@
       "from_screen": "/tag/:p|anon",
       "element_id": "el_246afe29190b",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_6a7a36b2ced0",
+      "to_template": "/login"
     },
     {
       "from_screen": "/tag/:p|anon",
@@ -4394,6 +4766,11 @@
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_c842662e5bfc",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
       "element_id": "el_ab92627dfd42",
       "to_template": "/register"
     },
@@ -4439,11 +4816,6 @@
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
-      "element_id": "el_cec0878bc0f6",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
-      "from_screen": "/profile/:p/favorites|anon",
       "element_id": "el_88036b6f8413",
       "to_template": "/"
     },
@@ -4451,6 +4823,11 @@
       "from_screen": "/profile/:p/favorites|anon",
       "element_id": "el_5e1cff2250c6",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_c842662e5bfc",
+      "to_template": "/login"
     },
     {
       "from_screen": "/profile/:p/favorites|anon",
@@ -4499,8 +4876,18 @@
     },
     {
       "from_screen": "/|authed",
-      "element_id": "el_7ee59766e960",
+      "element_id": "el_587d884e4eb6",
       "to_template": "/editor"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_d551e930806b",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_050761e95fe8",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/|authed",
@@ -4538,18 +4925,13 @@
       "to_template": "/"
     },
     {
-      "from_screen": "/|authed",
-      "element_id": "el_e21a0667890c",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/editor|authed",
       "element_id": "el_6e078d143155",
       "to_template": "/"
     },
     {
       "from_screen": "/editor|authed",
-      "element_id": "el_ee2d5ef16b57",
+      "element_id": "el_e8fb5bd930c6",
       "to_template": "/"
     },
     {
@@ -4559,13 +4941,18 @@
     },
     {
       "from_screen": "/editor|authed",
-      "element_id": "el_6e078d143155",
-      "to_template": "/"
+      "element_id": "el_ebf9f16cf067",
+      "to_template": "/settings"
     },
     {
       "from_screen": "/editor|authed",
-      "element_id": "el_f2dfb5169de6",
-      "to_template": "/realworld-apps/realworld"
+      "element_id": "el_5268f2d9e42f",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/editor|authed",
+      "element_id": "el_6e078d143155",
+      "to_template": "/"
     },
     {
       "from_screen": "/settings|authed",
@@ -4574,13 +4961,23 @@
     },
     {
       "from_screen": "/settings|authed",
-      "element_id": "el_7b8735a77f0d",
+      "element_id": "el_e3f44371c968",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_0ddb9b552e6d",
+      "to_template": "/editor"
     },
     {
       "from_screen": "/settings|authed",
       "element_id": "el_996c1c66fbae",
       "to_template": "/settings"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_d47cef0a4844",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/settings|authed",
@@ -4593,23 +4990,28 @@
       "to_template": "/"
     },
     {
-      "from_screen": "/settings|authed",
-      "element_id": "el_91903cb57ed6",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/profile/:p|authed",
       "element_id": "el_895ab71cfbcf",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_ecb6304fb2c7",
+      "element_id": "el_64944d40009c",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_e9f6378b8e69",
+      "element_id": "el_1e8eacc86598",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_17ce48741a16",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_3c9a46522faf",
       "to_template": "/profile/:p"
     },
     {
@@ -4633,19 +5035,29 @@
       "to_template": "/"
     },
     {
-      "from_screen": "/profile/:p|authed",
-      "element_id": "el_41a9759c3318",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
       "from_screen": "/|authed",
       "element_id": "el_b2e336ac0ea8",
       "to_template": "/"
     },
     {
       "from_screen": "/|authed",
-      "element_id": "el_cfa2575b9358",
+      "element_id": "el_25c08f35cf2b",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_587d884e4eb6",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_d551e930806b",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_050761e95fe8",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/|authed",
@@ -4679,8 +5091,23 @@
     },
     {
       "from_screen": "/profile/:p|authed",
-      "element_id": "el_ecb6304fb2c7",
+      "element_id": "el_64944d40009c",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_1e8eacc86598",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_17ce48741a16",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_3c9a46522faf",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/profile/:p|authed",
@@ -4719,8 +5146,23 @@
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_1824747bd992",
+      "element_id": "el_22b314ac4d0e",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_b1e300f69967",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_081e6cd4a92c",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_58dd0ad2ec9d",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/article/:p|authed",
@@ -4754,18 +5196,28 @@
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_96ddab48da62",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
-      "from_screen": "/article/:p|authed",
       "element_id": "el_c3f9bd237c0f",
       "to_template": "/"
     },
     {
       "from_screen": "/article/:p|authed",
-      "element_id": "el_1824747bd992",
+      "element_id": "el_22b314ac4d0e",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_b1e300f69967",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_081e6cd4a92c",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_58dd0ad2ec9d",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/article/:p|authed",
@@ -4804,8 +5256,23 @@
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_7f030d5bc8db",
+      "element_id": "el_31a40f2a73e3",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_b7ef5dec1dd3",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_c70088a057b1",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_cdc67af9bced",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/tag/:p|authed",
@@ -4839,18 +5306,28 @@
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_8a4e75bf578d",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
-      "from_screen": "/tag/:p|authed",
       "element_id": "el_6384ac4560c6",
       "to_template": "/"
     },
     {
       "from_screen": "/tag/:p|authed",
-      "element_id": "el_7f030d5bc8db",
+      "element_id": "el_31a40f2a73e3",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_b7ef5dec1dd3",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_c70088a057b1",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_cdc67af9bced",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/tag/:p|authed",
@@ -4889,12 +5366,22 @@
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_c547994e34d0",
+      "element_id": "el_d0850825bd17",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_4d5c4cb04522",
+      "element_id": "el_9a3db0787b73",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_57a659e7c525",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_c4bcfd8415b8",
       "to_template": "/profile/:p"
     },
     {
@@ -4919,18 +5406,28 @@
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_42cb0cebc817",
-      "to_template": "/realworld-apps/realworld"
-    },
-    {
-      "from_screen": "/profile/:p/favorites|authed",
       "element_id": "el_4013a9680fee",
       "to_template": "/"
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
-      "element_id": "el_c547994e34d0",
+      "element_id": "el_d0850825bd17",
       "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_9a3db0787b73",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_57a659e7c525",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_c4bcfd8415b8",
+      "to_template": "/profile/:p"
     },
     {
       "from_screen": "/profile/:p/favorites|authed",
@@ -4963,26 +5460,5 @@
       "to_template": "/"
     }
   ],
-  "unreached": [
-    {
-      "template": "/realworld-apps/:p",
-      "auth": "anon",
-      "reason": "linked but outside crawl budget"
-    },
-    {
-      "template": "/realworld-apps/realworld",
-      "auth": "anon",
-      "reason": "linked but outside crawl budget"
-    },
-    {
-      "template": "/realworld-apps/:p",
-      "auth": "authed",
-      "reason": "linked but outside crawl budget"
-    },
-    {
-      "template": "/realworld-apps/realworld",
-      "auth": "authed",
-      "reason": "linked but outside crawl budget"
-    }
-  ]
+  "unreached": []
 }

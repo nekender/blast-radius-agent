@@ -16,9 +16,9 @@ enumerated spec matters: you can only claim something is *absent* if you know wh
 | Layer | Source | What the graph holds today |
 |---|---|---|
 | Requirements | spec tables (parsed by code) + routing prose (LLM) | 106 requirements: 92 covered, 14 unknown, 5 flagged "partly present" |
-| UI | Playwright crawl, logged out and logged in, dry-run clicks | 14 screens, 206 elements, 10 flows (8 observed, 2 only in code) |
+| UI | Playwright crawl, logged out and logged in, dry-run clicks | 14 screens, 227 elements, 9 user journeys (8 observed, 1 stitched from code) |
 | Code | Angular-aware parse of the repo at any commit | 11 routes, every component method with line ranges, 24 service endpoints |
-| Code ↔ UI | scored matching + an independent API-call check | 171 of 206 elements linked to the template that renders them |
+| Code ↔ UI | scored matching + an independent API-call check | 192 of 227 elements linked to the template that renders them |
 
 **Sample output:** [`reports/pr-311.md`](../reports/pr-311.md). PR #311 changes how the editor saves an article. The
 report says: re-test publishing a new article (seen in the app, high confidence); re-test editing an existing article
@@ -73,12 +73,54 @@ here for named, typed stages and that loop; I didn't need its memory or agent-lo
 - **Dry-run clicks.** Every button is clicked with all non-GET API calls intercepted and aborted. We learn that
   *Publish Article* calls `POST /api/articles` without writing anything to a live public app. That observed call
   becomes an independent signal for the code link (stage 4) and for API requirements.
+- **Flows are journeys, not single clicks.** A flow is the shortest observed path from the home page to an action
+  that changes data, with the inputs in that action's form. Logged-in flows start with the observed sign-in journey,
+  so each one is complete from a cold start. When the crawl never reached the last page (editing an article needs an
+  article you own), the flow is **stitched from code**: it follows the crawl as far as it got, then the link in the
+  code that leads on (the author-only "Edit Article" link), and is marked as never observed. The LLM names flows
+  ("Publish a new article"); each name is checked (real flow id, short, not shared with another flow) and a plain
+  name is used if it fails.
+- **The crawler checks it is logged in, every page.** The public demo resets its data, which silently invalidated
+  the test account once and turned the "logged-in" pass into a second logged-out pass (coverage dropped from 92 to
+  67 requirements). Now the session is verified before the pass (saved token, then saved login, then a new account),
+  and every logged-in page is checked against the app's own auth state; a mismatch stops the crawl instead of
+  recording wrong data.
 - **State identity = route template + login state.** Templates are learned from URLs: a path position that takes
   several values (slugs, usernames, tags) becomes `:p`. Each template is visited at most twice. 500 articles become
   one screen, not 500. A structure hash is stored per screen for the next step (detecting two visually different
   states on one URL), which I didn't need for this app.
 
 ## 2. Graph schema, and why
+
+```mermaid
+flowchart TB
+  subgraph REQ[Requirements]
+    R[Requirement] -->|HAS_GAP| G[Gap]
+  end
+  subgraph UI[UI, from the crawl]
+    S[Screen] -->|HAS| E[Element]
+    E -->|NAVIGATES_TO| S
+    F[Flow] -->|STEP| E
+  end
+  subgraph CODE[Code]
+    FI[File] -->|DEFINES| C[Component]
+    C -->|HAS_METHOD| M[Method]
+    C -->|HAS_TEMPLATE| T[TemplateElement]
+    M -->|AFFECTS| T
+  end
+  R -->|COVERED_BY| E
+  G -->|SEARCHED| S
+  T -->|RENDERS| E
+  S -->|SERVED_BY| C
+  M -->|CALLS_API| EP((Endpoint))
+  E -->|CALLS| EP
+  R -->|EXPECTS_API| EP
+  PR[PullRequest] -->|CHANGES| M
+  PR -->|PUTS_AT_RISK| E
+  PR -->|LOSES_COVERAGE| R
+```
+
+The same schema as text, with edge properties:
 
 ```
 Requirements  (Requirement)-[:COVERED_BY {confidence, method, evidence}]->(Element | Screen)
@@ -92,6 +134,9 @@ Code          (File)-[:DEFINES]->(Component)-[:HAS_METHOD]->(Method)-[:CALLS_API
               (Method)-[:AFFECTS {why}]->(TemplateElement)
 Code ↔ UI     (TemplateElement)-[:RENDERS {confidence, method, evidence}]->(Element)
               (Screen)-[:SERVED_BY]->(Component)
+PRs           (PullRequest)-[:CHANGES]->(Method)
+              (PullRequest)-[:PUTS_AT_RISK {confidence, why, observed}]->(Element | Flow | Requirement | ...)
+              (PullRequest)-[:LOSES_COVERAGE {why}]->(Requirement)
 ```
 
 **Justified against the query I actually run.** The blast radius is one traversal:
@@ -113,6 +158,9 @@ Each schema choice exists because that query needs it:
    confidence = product of edge confidences; an item keeps its best path.
 4. **`Flow` points at both `Element` and `TemplateElement`,** so a flow known only from code (the edit-article flow,
    never reachable by the crawler) still joins the traversal.
+5. **Each analysed PR is written back** as a `PullRequest` node with `CHANGES`, `PUTS_AT_RISK` and
+   `LOSES_COVERAGE` edges. The reasoning then lives in the graph, not only in a report, so questions across PRs
+   ("which open PRs touch the sign-in flow?") are one query.
 
 ### Absence
 
@@ -149,6 +197,11 @@ gaps the absence model is for.
 Confidence is a number on every link and every impact, with two thresholds: **≥ 0.75 accept**, **0.45–0.75 keep
 but flag**, **< 0.45 drop or review**. Every number comes with the evidence that produced it, in words.
 
+**Be clear about what these numbers are:** the feature weights and both thresholds are **hand-set**, chosen by
+reading the links they produced on this app. They are ranking scores, not calibrated probabilities: "0.8" means
+"stronger evidence than 0.6", not "right 80% of the time". Calibrating them needs labelled links (section 6, item 2
+gives a source), then fitting the weights and checking that 0.8-confidence links are right about 80% of the time.
+
 **Where the numbers come from (code ↔ UI):** a crawled element is scored only against template elements of
 components actually rendered on that screen (route → page component → its children, plus the layout). Features:
 `name` attribute (+0.6), placeholder (+0.6), exact text (+0.5) or prefix (+0.3), routerLink = href (+0.4), tag,
@@ -171,12 +224,19 @@ independent channel that a coincidental text match can't fake.
 3. **Two template elements explain one UI element equally well.** If they're copies with the same effect (the same
    "Home" link in two `@if` branches of one component), both are linked: which one rendered doesn't change what a
    code change can break. If they differ (a header "Sign in" link vs the article page's "Sign in to comment"), both
-   are kept at 0.8× and the pair goes to review. That rule cut review items from 74 to 22 without hiding a real one.
+   are kept at 0.8× and the pair goes to review. That rule, the DOM-position signal and a crawler fix (nav links that
+   share markup are distinct controls) cut ties needing review from 74 to 10 without hiding a real one.
 
-**When does it stop and ask a human?** It never blocks. It always produces a report, and puts anything uncertain in
-a "Needs a person" section with the reason: never observed, low confidence, ambiguous link, unmapped code. The
-design choice is that a QA lead would rather get a report on time with honest gaps than wait. In a CI setting the
-same list could gate the merge (fail if a high-risk item is unobserved), which is a one-line policy, not a redesign.
+**When does it stop and ask a human? By design, it doesn't stop; it hands over.** Every run finishes and writes a
+report, and anything it isn't sure of goes in a "Needs a person" section with the reason: never observed in the
+app, below the accept threshold, an ambiguous code link, or code it couldn't map at all. I chose this over pausing
+mid-run because the person who can answer ("does the edit page still save?") is the QA lead reading the report, not
+someone watching the agent; a report with honest gaps on time beats a complete one that waits on a human.
+
+Where a stop *would* belong is the merge decision, not the analysis. The policy is one line on the output: block
+the merge when a high-confidence item is in "Needs a person", or when a requirement loses its only check. The
+LangGraph version is an `interrupt` before `save` on that condition, with the review list as the payload. I didn't
+build it because there's no merge pipeline here to block.
 
 ## 4. Eval approach
 
@@ -185,7 +245,8 @@ same list could gate the merge (fail if a high-risk item is unobserved), which i
 1. **Deterministic stages must not vary at all.** The eval hashes the full impact set (kind, id, confidence) per run.
    Any difference between runs is a bug, not noise. Result: identical hash across all runs for both PRs.
 2. **Correctness against a gold set.** `evals/gold/pr-<n>.json` holds hand-labelled `must`, `acceptable` and
-   `must_not` items (matched on kind + label + page, not on ids, so labels survive a rebuild).
+   `must_not` items, matched on kind + label + page (flows on the API call their last action makes, since their
+   names are LLM-written), never on ids, so labels survive a rebuild.
    - recall = share of `must` items found; precision = share of reported items that are `must` or `acceptable`.
    - any `must_not` hit (e.g. anything on `/settings` for an editor change) fails the run.
 3. **The LLM stage varies, so it's checked by rules, not by eye.** Each run regenerates the report with the cache

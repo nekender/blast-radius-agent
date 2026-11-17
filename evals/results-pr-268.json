@@ -22,7 +22,7 @@
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "cedd1be08c"
+   "hash": "ce08cd7c13"
   },
   {
    "recall": 1.0,
@@ -33,7 +33,7 @@
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "cedd1be08c"
+   "hash": "ce08cd7c13"
   },
   {
    "recall": 1.0,
@@ -44,7 +44,7 @@
    "report_ok": true,
    "report_errors": [],
    "correct": true,
-   "hash": "cedd1be08c"
+   "hash": "ce08cd7c13"
   }
  ]
 }

@@ -161,10 +161,23 @@ class Gap(BaseModel):
 class Flow(BaseModel):
     id: str
     name: str
-    steps: list[str]               # screen ids and element ids, in order
+    goal: str = ""
+    steps: list[str]               # screen ids, element ids and template element ids, in order
+    narrative: list[str] = Field(default_factory=list)   # the same steps in words: "click 'New Article'"
     action_element: str
-    action_call: str | None = None
-    observed: bool = True          # False: implied by the spec/code but never reached in the crawl
+    calls: list[str] = Field(default_factory=list)       # API calls the final action makes (or can make, from code)
+    requires_login: bool = False
+    observed: bool = True          # False: stitched from code because the crawl never reached its last screen
+
+
+class FlowName(BaseModel):
+    id: str
+    name: str                      # 3-8 words, imperative, product language
+    goal: str                      # one sentence: what the user achieves
+
+
+class FlowNames(BaseModel):
+    flows: list[FlowName]
 
 
 # ---------- Blast radius ----------

@@ -10,11 +10,11 @@
     },
     {
       "kind": "flow",
-      "label_contains": "POST /api/articles"
+      "calls_contains": "POST /api/articles"
     },
     {
       "kind": "flow",
-      "label_contains": "PUT /api/articles/:p"
+      "calls_contains": "PUT /api/articles/:p"
     },
     {
       "kind": "requirement",

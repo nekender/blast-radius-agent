@@ -22,7 +22,7 @@ from pydantic import BaseModel
 
 from . import llm
 from .config import ROOT, SETTINGS
-from .models import CodeMap, Component, Crawl, Element, Flow, Gap, Link, Requirement, TemplateElement
+from .models import CodeMap, Component, Crawl, Element, Flow, FlowNames, Gap, Link, Requirement, TemplateElement
 
 STATE_ORDER = {"anon": 0, "authed": 1, "owner": 2}
 WRITERS = {"set", "update", "patchValue", "reset", "setValue", "next"}
@@ -462,13 +462,47 @@ def link_requirements(reqs: list[Requirement], crawl: Crawl, cm: CodeMap, idx: I
 
 # ---------------- flows ----------------
 
-def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index) -> list[Flow]:
-    """A flow = the shortest click path from home to a screen, then that screen's inputs, then an action that writes."""
-    flows: list[Flow] = []
+AUTH_WORDS = {"anon": "logged out", "authed": "logged in", "owner": "as the owner"}
+
+
+def _describe(step: str, elements: dict[str, Element], screens: dict, tels: dict[str, TemplateElement]) -> str:
+    if step in screens:
+        s = screens[step]
+        return f"on {s.template} ({AUTH_WORDS[s.auth]})"
+    if step.startswith("route:"):
+        return f"on {step[6:]} (only known from code)"
+    if step in elements:
+        e = elements[step]
+        verb = "fill" if e.tag in ("input", "textarea") else "click"
+        if e.repeated:
+            example = re.search(r"e\.g\. '(.*)'$", e.label)
+            return f"{verb} one of a list of {e.tag} items" + (f" (e.g. '{example.group(1)}')" if example and example.group(1) else "")
+        return f"{verb} '{e.label or e.placeholder or e.name_attr or e.tag}'"
+    if step in tels:
+        t = tels[step]
+        verb = "fill" if t.tag in ("input", "textarea") else "click"
+        return f"{verb} '{t.text or t.placeholder or t.name_attr or t.tag}' (from code)"
+    return step
+
+
+def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index, use_cache: bool = True) -> list[Flow]:
+    """User flows = journeys that end in an action that changes data.
+
+    Observed: shortest click path from the home page to the action's screen, the screen's inputs, then the action.
+      Logged-in journeys start with the observed sign-in journey, so each one is complete from a cold start.
+    Stitched from code: when the crawl never reached the action's page (e.g. /editor/:slug, which needs an article
+      you own), the journey runs through the crawl as far as it got, then continues through the link in the code
+      that leads to that page (e.g. the article page's 'Edit Article' link, shown only to the author).
+    One flow per (page, API call). Names come from the LLM, checked; a plain name is used otherwise.
+    """
     by_screen: dict[str, list[Element]] = defaultdict(list)
     for e in crawl.elements:
         by_screen[e.screen_id].append(e)
     screens = {s.id: s for s in crawl.screens}
+    elements = {e.id: e for e in crawl.elements}
+    tels = {t.id: t for t in cm.template_elements}
+
+    paths: dict[str, dict[str, list[str]]] = {}
     for auth in ("anon", "authed"):
         start = f"/|{auth}"
         prev: dict[str, tuple[str, str] | None] = {start: None}
@@ -480,33 +514,106 @@ def discover_flows(crawl: Crawl, cm: CodeMap, idx: Index) -> list[Flow]:
                 if t.from_screen == cur and nxt in screens and nxt not in prev:
                     prev[nxt] = (cur, t.element_id)
                     q.append(nxt)
-        for sid, els in by_screen.items():
-            if not sid.endswith(f"|{auth}") or sid not in prev:
+        paths[auth] = {}
+        for sid in prev:
+            path, cur = [sid], sid
+            while prev.get(cur):
+                p, via = prev[cur]
+                path = [p, via] + path
+                cur = p
+            paths[auth][sid] = path
+
+    def action_steps(sid: str, el: Element) -> list[str]:
+        # Only the inputs in the same <form> as the action: the comment box isn't part of "Follow".
+        m = re.search(r"^(.*?\bform\b[^>]*)", el.css_path)
+        inputs = [e.id for e in by_screen[sid] if e.tag in ("input", "textarea") and not e.repeated
+                  and m and e.css_path.startswith(m.group(1))]
+        return paths[sid.split("|")[1]][sid] + inputs + [el.id]
+
+    flows: dict[tuple, Flow] = {}
+    login: list[str] = []
+    for sid, els in by_screen.items():
+        if sid not in paths[sid.split("|")[1]]:
+            continue
+        for el in els:
+            writes = [f"{c.method} {c.path}" for c in el.triggers if c.blocked]
+            if writes and writes[0] == "POST /api/users/login" and not login:
+                login = action_steps(sid, el)
+    for sid, els in sorted(by_screen.items()):
+        auth = sid.split("|")[1]
+        if sid not in paths[auth]:
+            continue
+        for el in els:
+            writes = [f"{c.method} {c.path}" for c in el.triggers if c.blocked]
+            if not writes:
                 continue
-            for el in els:
-                writes = [c for c in el.triggers if c.blocked]
-                if not writes:
-                    continue
-                path, cur = [], sid
-                while prev.get(cur):
-                    p, via = prev[cur]
-                    path = [p, via] + path
-                    cur = p
-                inputs = [e.id for e in els if e.tag in ("input", "textarea") and not e.repeated]
-                call = f"{writes[0].method} {writes[0].path}"
-                flows.append(Flow(id=f"flow:{el.id}", name=f"{el.label or el.tag} on {screens[sid].template} ({call})",
-                                  steps=path + [sid] + inputs + [el.id], action_element=el.id, action_call=call))
-    # Implied by code, never observed: routes the crawl never reached whose page has a writing handler.
+            key = (screens[sid].template, writes[0])
+            if key in flows:
+                continue
+            steps = (login if auth == "authed" else []) + action_steps(sid, el)
+            flows[key] = Flow(id=f"flow:{screens[sid].template}:{writes[0]}", name="", steps=steps,
+                              action_element=el.id, calls=writes, requires_login=auth == "authed")
+
+    # Stitched from code: pages never reached, whose components have handlers that write.
     reached = {s.template for s in crawl.screens}
     for r in cm.routes:
         if r.template in reached or not r.component:
             continue
         comp = idx.by_name[r.component]
+        entry: list[str] = []
+        for t in cm.template_elements:   # a link in the code that leads here, on a page the crawl did reach
+            if not t.router_link or "/" + t.router_link.strip("/") != r.template:
+                continue
+            for host in cm.routes:
+                sid = f"{host.template}|authed"
+                if t.component in idx.components_for_template(host.template) and sid in paths["authed"]:
+                    entry = login + paths["authed"][sid] + [t.id]
+                    break
+            if entry:
+                break
         for t in idx.tel_by_component[comp.name]:
-            for h in t.handlers:
-                eps = [e for e in idx.endpoints_of_method(comp, h) if not e.startswith("GET")]
-                for ep in eps:
-                    flows.append(Flow(id=f"flow:code:{r.template}:{h}:{ep}", observed=False,
-                                      name=f"'{t.text or t.tag}' on {r.template} ({ep}), from code, not observed",
-                                      steps=[f"route:{r.template}", t.id], action_element=t.id, action_call=ep))
-    return flows
+            eps = sorted({e for h in t.handlers for e in idx.endpoints_of_method(comp, h) if not e.startswith("GET")})
+            if not eps:
+                continue
+            inputs = [x.id for x in idx.tel_by_component[comp.name] if x.tag in ("input", "textarea")]
+            flows[(r.template, eps[0])] = Flow(
+                id=f"flow:code:{r.template}:{t.handlers[0]}", name="", observed=False, requires_login=r.guarded,
+                steps=(entry or (login if r.guarded else [])) + [f"route:{r.template}"] + inputs + [t.id],
+                action_element=t.id, calls=eps)
+
+    out = list(flows.values())
+    for f in out:
+        f.narrative = [_describe(s, elements, screens, tels) for s in f.steps]
+    _name_flows(out, use_cache)
+    return out
+
+
+NAMER = """You name user journeys in a web app for a QA lead. For each journey you get its steps and the API
+calls its last action makes. Return, for every id, a name (3-8 words, imperative, product language, e.g.
+"Publish a new article") and a one-sentence goal. If a journey is marked 'from code', its last steps were never
+seen in the running app: the name stays the same, the goal says so. Use only what the steps show."""
+
+
+def _plain_name(f: Flow) -> str:
+    last = f.narrative[-1] if f.narrative else f.action_element
+    page = next((n for n in reversed(f.narrative) if n.startswith("on ")), "")
+    return f"{last.replace(chr(39), '')} {page}".strip()
+
+
+def _name_flows(flows: list[Flow], use_cache: bool) -> None:
+    for f in flows:
+        f.name = _plain_name(f)
+    if not llm.available() or not flows:
+        return
+    listing = "\n\n".join(f"id: {f.id}\nfrom code: {not f.observed}\ncalls: {', '.join(f.calls)}\nsteps:\n- "
+                          + "\n- ".join(f.narrative) for f in flows)
+    out = llm.structured(NAMER, listing, FlowNames, use_cache=use_cache, max_tokens=3000)
+    # Check each name before trusting it: for a real flow id, short, and not shared with another flow.
+    # A rejected name falls back to the plain one; the others still apply.
+    counts = defaultdict(int)
+    for n in out.flows:
+        counts[n.name.lower()] += 1
+    names = {n.id: n for n in out.flows if counts[n.name.lower()] == 1 and len(n.name.split()) <= 10}
+    for f in flows:
+        if f.id in names:
+            f.name, f.goal = names[f.id].name, names[f.id].goal

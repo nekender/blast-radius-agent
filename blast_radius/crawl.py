@@ -116,25 +116,52 @@ class Crawler:
 
     # ----- account (the one write the crawler is allowed to make) -----
 
-    async def ensure_account(self, browser) -> str:
-        path = SETTINGS.state_dir / "account.json"
-        if path.exists():
-            return json.loads(path.read_text())["token"]
-        user = f"br-test-{secrets.token_hex(3)}"
-        account = {"username": user, "email": f"{user}@example.com", "password": secrets.token_urlsafe(12)}
+    async def _auth_state(self, browser, token: str) -> str:
+        ctx = await browser.new_context()
+        await ctx.add_init_script(f"localStorage.setItem('jwtToken', {json.dumps(token)});")
+        page = await ctx.new_page()
+        await page.goto(f"{self.app_url}/", wait_until="networkidle")
+        state = await page.evaluate("window.__conduit_debug__ ? window.__conduit_debug__.getAuthState() : 'unknown'")
+        await ctx.close()
+        return state
+
+    async def _submit(self, browser, path: str, fields: dict) -> str | None:
         ctx = await browser.new_context()
         page = await ctx.new_page()
-        await page.goto(f"{self.app_url}/register", wait_until="networkidle")
-        await page.fill('input[name="username"]', account["username"])
-        await page.fill('input[name="email"]', account["email"])
-        await page.fill('input[name="password"]', account["password"])
+        await page.goto(f"{self.app_url}{path}", wait_until="networkidle")
+        for name, value in fields.items():
+            await page.fill(f'input[name="{name}"]', value)
         await page.click('button[type="submit"]')
-        await page.wait_for_function("() => !!localStorage.getItem('jwtToken')", timeout=15000)
-        account["token"] = await page.evaluate("localStorage.getItem('jwtToken')")
+        try:
+            await page.wait_for_function("() => !!localStorage.getItem('jwtToken')", timeout=15000)
+            token = await page.evaluate("localStorage.getItem('jwtToken')")
+        except Exception:  # noqa: BLE001
+            token = None
         await ctx.close()
+        return token
+
+    async def ensure_account(self, browser) -> str:
+        """A working session for the logged-in pass. The demo backend resets its data from time to time,
+        so a saved token is checked first, then the saved login, and only then is a new account registered."""
+        path = SETTINGS.state_dir / "account.json"
+        account = json.loads(path.read_text()) if path.exists() else None
+        if account and await self._auth_state(browser, account["token"]) == "authenticated":
+            return account["token"]
+        if account:
+            token = await self._submit(browser, "/login", {"email": account["email"], "password": account["password"]})
+            if token:
+                account["token"] = token
+                path.write_text(json.dumps(account, indent=2))
+                return token
+        user = f"br-test-{secrets.token_hex(3)}"
+        account = {"username": user, "email": f"{user}@example.com", "password": secrets.token_urlsafe(12)}
+        token = await self._submit(browser, "/register", {k: account[k] for k in ("username", "email", "password")})
+        if not token:
+            raise RuntimeError("could not sign up a test account on the demo app")
+        account["token"] = token
         SETTINGS.state_dir.mkdir(exist_ok=True)
         path.write_text(json.dumps(account, indent=2))
-        return account["token"]
+        return token
 
     # ----- crawl -----
 
@@ -205,6 +232,10 @@ class Crawler:
             # Route guard or app redirect: the requested page is not reachable in this state.
             self.unreached.append({"template": tpl, "auth": auth, "reason": f"redirected to {landed}"})
             return []
+        if auth != "anon":
+            state = await page.evaluate("window.__conduit_debug__ ? window.__conduit_debug__.getAuthState() : 'unknown'")
+            if state != "authenticated":
+                raise RuntimeError(f"logged-in pass is not logged in on {url} (auth state: {state}); not recording it")
         on_load = [c for c in self.calls if not c.blocked]
         raw = await page.evaluate(EXTRACT_JS)
         links: list[str] = []
@@ -241,9 +272,16 @@ class Crawler:
     def _to_elements(self, raw: list[dict], screen_id: str) -> list[Element]:
         # Group by structure AND identity attributes: three inputs in identical fieldsets are three fields,
         # but twenty article cards with the same structure are one data-driven element.
+        # Links to fixed pages (Home, Sign in, Settings) are distinct controls even when their markup is identical;
+        # links to parameterised pages (/article/:p) are the same control repeated over data.
         groups: dict[tuple, list[dict]] = defaultdict(list)
         for r in raw:
-            groups[(NTH.sub("", r["css_path"]), r["name_attr"], r["placeholder"], r["tag"])].append(r)
+            target = None
+            if r["href"] and not r["href"].startswith(("mailto:", "javascript:", "#")):
+                u = urlparse(urljoin(self.app_url + "/", r["href"]))
+                target = self.templater.template(u.path or "/") if u.netloc == self.host else u.netloc
+            fixed = target if target and ":p" not in target else None
+            groups[(NTH.sub("", r["css_path"]), r["name_attr"], r["placeholder"], r["tag"], fixed)].append(r)
         out: list[Element] = []
         for (generic_path, *_), items in groups.items():
             first = items[0]

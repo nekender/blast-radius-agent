@@ -14,6 +14,9 @@ Schema (justified in docs/design.md against the blast-radius query):
                  (:Method)-[:CALLS_API]->(:Endpoint)
   Code <-> UI    (:TemplateElement)-[:RENDERS {confidence, method, evidence}]->(:Element)
                  (:Screen)-[:SERVED_BY]->(:Component)
+  PRs            (:PullRequest)-[:CHANGES]->(:Method)
+                 (:PullRequest)-[:PUTS_AT_RISK {confidence, why, observed}]->(:Element|:Flow|:Requirement|...)
+                 (:PullRequest)-[:LOSES_COVERAGE {why}]->(:Requirement)
 
 Absence is a node, not a missing edge: a Gap records that we looked (which screens, in which state) and
 why we think it's absent or unknown. "No COVERED_BY edge" alone can't tell "absent" from "never looked".
@@ -26,7 +29,7 @@ from .config import SETTINGS
 from .models import CodeMap, Crawl, Flow, Gap, Link, Requirement
 
 CONSTRAINTS = ["Requirement", "Screen", "Element", "Flow", "Gap", "File", "Component", "Method",
-               "TemplateElement", "Endpoint"]
+               "TemplateElement", "Endpoint", "PullRequest"]
 
 
 class Graph:
@@ -117,10 +120,37 @@ class Graph:
         self.edges("Gap", "SEARCHED", "Screen", [{"src": f"gap:{g.requirement_id}", "dst": s, "props": {}}
                                                 for g in gaps for s in g.searched_screens])
         # Flows
-        self.nodes("Flow", [{"id": f.id, "name": f.name, "observed": f.observed, "action_call": f.action_call} for f in flows])
+        self.nodes("Flow", [{"id": f.id, "name": f.name, "goal": f.goal, "observed": f.observed, "calls": f.calls,
+                             "narrative": f.narrative, "requires_login": f.requires_login} for f in flows])
         for target in ("Screen", "Element", "TemplateElement"):
             self.edges("Flow", "STEP", target, [{"src": f.id, "dst": s, "props": {"order": i}}
                                                 for f in flows for i, s in enumerate(f.steps)])
+
+    # ------------- write a PR's blast radius back -------------
+
+    def save_blast(self, br) -> None:
+        """(PullRequest)-[:CHANGES]->(Method), -[:PUTS_AT_RISK {confidence, why, observed}]->(item),
+        -[:LOSES_COVERAGE {why}]->(Requirement). The reasoning lives in the graph, not only in the report,
+        so "which open PRs touch the checkout flow?" is one query."""
+        pid = f"PR-{br.pr}"
+        self.run("MATCH (p:PullRequest {id: $id}) DETACH DELETE p", id=pid)
+        self.run("CREATE (p:PullRequest {id: $id, number: $n, title: $t, url: $u})", id=pid, n=br.pr, t=br.title, u=br.url)
+        self.run("""UNWIND $rows AS r MATCH (p:PullRequest {id: $id}) MATCH (m:Method {id: r.method})
+                    MERGE (p)-[e:CHANGES]->(m) SET e.unit = r.unit, e.file = r.file, e.lineage = r.lineage""",
+                 id=pid, rows=[{"method": m, "unit": c["unit"], "file": c["file"], "lineage": c.get("lineage")}
+                               for c in br.changed for m in c["resolved"]])
+        labels = {"element": ["Element", "TemplateElement"], "screen": ["Screen"], "flow": ["Flow"],
+                  "requirement": ["Requirement"], "unmapped_code": ["Endpoint"]}
+        for kind, labs in labels.items():
+            rows = [{"id": i.id, "conf": i.confidence, "why": i.why, "observed": i.observed}
+                    for i in br.impacts if i.kind == kind]
+            self.run("""UNWIND $rows AS r MATCH (p:PullRequest {id: $id})
+                        MATCH (x {id: r.id}) WHERE any(l IN labels(x) WHERE l IN $labs)
+                        MERGE (p)-[e:PUTS_AT_RISK]->(x) SET e.confidence = r.conf, e.why = r.why, e.observed = r.observed""",
+                     id=pid, rows=rows, labs=labs)
+        self.run("""UNWIND $rows AS r MATCH (p:PullRequest {id: $id}) MATCH (q:Requirement {id: r.req})
+                    MERGE (p)-[e:LOSES_COVERAGE]->(q) SET e.why = r.why""",
+                 id=pid, rows=[{"req": c["requirement"], "why": c["why"]} for c in br.coverage_lost])
 
     # ------------- the blast-radius queries -------------
 
@@ -147,7 +177,7 @@ class Graph:
     def flows_touching(self, ids: list[str]) -> list[dict]:
         return self.run("""
             MATCH (f:Flow)-[st:STEP]->(x) WHERE x.id IN $ids
-            RETURN f.id AS flow, f.name AS name, f.observed AS observed, f.action_call AS call, collect(x.id) AS via
+            RETURN f.id AS flow, f.name AS name, f.observed AS observed, f.calls AS calls, collect(x.id) AS via
         """, ids=ids)
 
     def requirements_touching(self, element_ids: list[str], endpoints: list[str]) -> list[dict]:

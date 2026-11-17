@@ -23,8 +23,14 @@ from blast_radius.graph import Graph
 from blast_radius.models import CodeMap
 
 
+FLOW_CALLS: dict[str, list[str]] = {}
+
+
 def _hit(item, m: dict) -> bool:
     if item.kind != m["kind"]:
+        return False
+    # Flows are identified by the API call their final action makes: their names are written by the LLM.
+    if "calls_contains" in m and not any(m["calls_contains"] == c for c in FLOW_CALLS.get(item.id, [])):
         return False
     if "label_contains" in m and m["label_contains"].lower() not in item.label.lower():
         return False
@@ -47,6 +53,8 @@ def score(br, gold: dict) -> dict:
 
 def run(number: int, runs: int) -> None:
     gold = json.loads((ROOT / "evals" / "gold" / f"pr-{number}.json").read_text())
+    links = json.loads((SETTINGS.artifacts / "links.json").read_text())
+    FLOW_CALLS.update({f["id"]: f["calls"] for f in links["flows"]})
     head = CodeMap.model_validate_json((SETTINGS.artifacts / "codemap.json").read_text())
     g = Graph()
     rows, hashes = [], set()

@@ -206,10 +206,11 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
         add("flow", fl["flow"], fl["name"], best if fl["observed"] else best * 0.8,
             [f"passes through changed UI ({len(fl['via'])} step(s))"], observed=fl["observed"])
     # Flows implied by code whose action calls an endpoint the change reaches
-    for fl in graph.run("MATCH (f:Flow) WHERE f.action_call IN $eps "
-                        "RETURN f.id AS id, f.name AS name, f.observed AS observed, f.action_call AS call", eps=endpoints):
+    for fl in graph.run("MATCH (f:Flow) WHERE any(c IN f.calls WHERE c IN $eps) "
+                        "RETURN f.id AS id, f.name AS name, f.observed AS observed, "
+                        "[c IN f.calls WHERE c IN $eps] AS hit", eps=endpoints):
         add("flow", fl["id"], fl["name"], 0.7 if fl["observed"] else 0.6,
-            [f"its final action calls {fl['call']}, which the changed code calls"], observed=fl["observed"])
+            [f"its final action calls {', '.join(fl['hit'])}, which the changed code calls"], observed=fl["observed"])
 
     coverage_lost = []
     for q in graph.requirements_touching(sorted(at_risk_elements), endpoints):

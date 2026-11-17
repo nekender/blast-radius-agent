@@ -4,7 +4,7 @@ build:   crawl ─┬─> ingest_spec ─┬─> link ─> load_graph
                 └─> map_code ────┘
          (crawl is skipped when artifacts/crawl.json exists and --recrawl isn't set)
 
-reason:  analyse_pr ─> write_report ─> verify ──ok──> save
+reason:  analyse_pr ─> write_report ─> verify ──ok──> save (report files + PullRequest node in Neo4j)
                             ^            │ errors, first time
                             └────────────┘
                                          │ errors again ─> template_report ─> save
@@ -154,6 +154,11 @@ def n_save(s: ReasonState) -> ReasonState:
     out.mkdir(exist_ok=True)
     (out / f"pr-{s['pr']}.md").write_text(s["markdown"])
     (out / f"pr-{s['pr']}.json").write_text(s["blast"].model_dump_json(indent=1))
+    g = Graph()
+    try:
+        g.save_blast(s["blast"])
+    finally:
+        g.close()
     return {}
 
 
