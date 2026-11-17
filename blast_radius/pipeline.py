@@ -23,7 +23,7 @@ import time
 
 from langgraph.graph import END, START, StateGraph
 
-from . import code_map, crawl as crawl_mod, link, llm, report, spec
+from . import code_map, crawl as crawl_mod, events, link, llm, report, spec
 from .config import SETTINGS
 from .graph import Graph
 from .models import BlastRadius, CodeMap, Crawl
@@ -33,8 +33,11 @@ def timed(name: str, fn):
     """Run a node inside an LLM cost stage and record its wall-clock seconds in state['timings']."""
     def run(s):
         t0 = time.monotonic()
+        node = getattr(fn, "__name__", name).removeprefix("n_")
+        events.emit("stage_start", stage=name, node=node)
         with llm.stage(name):
             out = fn(s) or {}
+        events.emit("stage_end", stage=name, node=node, seconds=round(time.monotonic() - t0, 2))
         # merged by the state's reducer; nodes that share a stage name (write, verify, render) add up
         return {**out, "timings": {name: round(s.get("timings", {}).get(name, 0) + time.monotonic() - t0, 1)}}
     return run
@@ -91,10 +94,14 @@ def n_link_and_load(s: BuildState) -> BuildState:
         except Exception:  # noqa: BLE001 - a report from an older schema: skip it
             pass
     g.close()
-    covered = {l.src for l in req_links} - {g.requirement_id for g in gaps}
+    # "covered" needs at least one link at or above the review threshold; a requirement whose only UI evidence is a
+    # shared CSS class (class-only links sit at 0.4) is counted separately as weak, not as covered
+    any_link = {l.src for l in req_links} - {g.requirement_id for g in gaps}
+    covered = {l.src for l in req_links if l.confidence >= SETTINGS.link_review} - {g.requirement_id for g in gaps}
+    weak = any_link - covered
     summary = {
         "screens": len(cr.screens), "elements": len(cr.elements), "requirements": len(reqs),
-        "covered": len(covered), "absent": sum(g.status == "absent" for g in gaps),
+        "covered": len(covered), "covered_weak_class_only": len(weak), "absent": sum(g.status == "absent" for g in gaps),
         "unknown": sum(g.status == "unknown" for g in gaps), "partial": sum(g.status == "partial" for g in gaps),
         "code_ui_links": sum(l.kind == "RENDERS" for l in code_ui),
         "elements_linked_to_code": len({l.dst for l in code_ui if l.kind == "RENDERS"}),
@@ -152,6 +159,11 @@ def n_analyse(s: ReasonState) -> ReasonState:
         br = analyse(s["pr"], head, g)
     finally:
         g.close()
+    from collections import Counter
+    events.emit("impacts", counts=dict(Counter(i.kind for i in br.impacts)),
+                top=[{"kind": i.kind, "label": i.label, "confidence": i.confidence, "observed": i.observed}
+                     for i in br.impacts if i.kind in ("flow", "requirement", "test")][:12],
+                changed=br.changed, notes=br.notes, coverage_lost=br.coverage_lost)
     return {"blast": br, "attempts": 0, "errors": []}
 
 
@@ -164,6 +176,9 @@ def n_assess(s: ReasonState) -> ReasonState:
         br = assess(s["blast"], fetch_pr(s["pr"]), head, g, use_cache=s.get("use_cache", True))
     finally:
         g.close()
+    a = br.assessment or {}
+    events.emit("assessment", behaviour_change=a.get("behaviour_change", ""), applied=a.get("applied", []),
+                rejected=a.get("rejected", []), skipped=a.get("skipped"))
     return {"blast": br}
 
 
@@ -177,14 +192,18 @@ def n_write(s: ReasonState) -> ReasonState:
     try:
         w = llm.structured(report.SYSTEM, facts, report.Written, use_cache=s.get("use_cache", True), max_tokens=8000)
     except Exception as e:  # noqa: BLE001 - API error or two invalid answers: fall through to the template report
-        return {"written": None, "errors": [f"report writer failed: {e.__class__.__name__}"], "attempts": 2}
+        msg = f"report writer failed: {e.__class__.__name__}: {str(e)[:200]}"
+        events.emit("fallback", stage="report", error=msg)   # visible, never silent
+        return {"written": None, "errors": [msg], "attempts": 2}
     return {"written": w, "attempts": s.get("attempts", 0) + 1}
 
 
 def n_verify(s: ReasonState) -> ReasonState:
     if s.get("written") is None:
         return {}
-    return {"errors": report.verify(s["written"], s["blast"])}
+    errors = report.verify(s["written"], s["blast"])
+    events.emit("verify", ok=not errors, errors=errors, attempt=s.get("attempts", 0))
+    return {"errors": errors}
 
 
 def route_after_verify(s: ReasonState) -> str:
@@ -219,6 +238,7 @@ def n_save(s: ReasonState) -> ReasonState:
         g.save_blast(s["blast"])
     finally:
         g.close()
+    events.emit("report", pr=s["pr"], markdown=s["markdown"], writer=s.get("writer"), cost=s["blast"].cost)
     return {}
 
 

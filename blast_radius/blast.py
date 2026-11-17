@@ -233,6 +233,9 @@ def analyse(number: int, head: CodeMap, graph: Graph) -> BlastRadius:
                 unmapped.append({"file": f["path"], "unit": label,
                                  "why": "no longer exists in the code the live app runs (renamed or removed)"})
 
+    from . import events
+    events.emit("diff", pr=number, title=pr["title"], files=[f["path"] for f in pr["files"]],
+                units=list(changed.values()), notes=notes, unmapped=unmapped)
     impacts: dict[tuple, Impact] = {}
 
     def add(kind, id_, label, conf, why, observed=True):

@@ -6,3 +6,5 @@ __pycache__/
 data/repo/
 data/worktrees/
 *.pyc
+web/node_modules/
+web/.vite/

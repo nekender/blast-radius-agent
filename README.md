@@ -19,6 +19,19 @@ The graph is the grounding; two LLM agents work on top of it, with guardrails in
 - **Design document:** [docs/design.md](docs/design.md) (PDF: [docs/design.pdf](docs/design.pdf))
 - `data/spec/` (including `data/spec/e2e/`) and `data/prs/` are cached copies of the public RealWorld spec (MIT) and GitHub PR data, so runs are reproducible offline.
 
+## See it live (UI)
+
+```bash
+.venv/bin/python -m blast_radius ui      # http://localhost:8700 (Neo4j running; the built UI is in web/dist)
+```
+
+Six views: **System** (architecture, graph stats, every screen the crawler saw), **Live run** (analyse a PR and watch
+the real pipeline stream: stages, each LLM call with tokens and cost, each agent tool call, the verifier's verdict),
+**Blast radius** (the PR's subgraph from Neo4j; click a node for its evidence), **Coverage** (requirements × UI ×
+tests), **Exploration agent** (replay with guardrails) and **Evals & cost**. Events come from the pipeline itself
+(`blast_radius/events.py`) over Server-Sent Events (`blast_radius/server.py`). Frontend: React + TypeScript + Vite +
+Tailwind + React Flow in `web/` (`npm install && npm run build` to rebuild; `npm run dev` for hot reload).
+
 ## Run it
 
 Needs Python 3.12+ (tested on 3.14), Docker, git. Ports 7474 and 7687 must be free for Neo4j.
@@ -47,7 +60,7 @@ git clone https://github.com/realworld-apps/angular-realworld-example-app data/r
 36 s on Claude Sonnet 5.5 (a larger one about $0.28); a from-scratch graph build about $0.07; an exploration run about $0.07. Details in
 `artifacts/build_cost.json`, `artifacts/explore_cost.json`, `evals/results-pr-*.json` and the design doc.
 
-**Without an API key** everything still runs (tested from a fresh clone: 79 of 106 requirements covered instead of 92): the spec prose becomes "behaviour" requirements with no UI
+**Without an API key** everything still runs (tested from a fresh clone: fewer requirements covered, because spec prose falls back to evidence-free requirements that go to review): the spec prose becomes "behaviour" requirements with no UI
 evidence (they go to review), and the report uses the deterministic template instead of LLM prose.
 The graph, the traversal and the confidence scores don't use the LLM at all.
 

@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-ink-950: #07090f;
+  --color-ink-900: #0b0f19;
+  --color-ink-850: #0f1422;
+  --color-ink-800: #141a2b;
+  --color-ink-700: #1d2538;
+  --color-ink-600: #2a3550;
+  --color-ink-400: #7a87a6;
+  --color-ink-300: #a3aec7;
+  --color-ink-100: #e6eaf3;
+  --color-brand: #7c9cff;
+  --color-brand-2: #a78bfa;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+  --color-cyan: #22d3ee;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 10% -10%, #1a2140 0%, transparent 60%),
+              radial-gradient(900px 500px at 110% 10%, #24183f 0%, transparent 55%),
+              var(--color-ink-950);
+  color: var(--color-ink-100);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(20,26,43,.85), rgba(15,20,34,.85));
+  border: 1px solid rgba(122,135,166,.14);
+  backdrop-filter: blur(8px);
+}
+.scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #2a3550; border-radius: 8px; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(124,156,255,.55) } 100% { box-shadow: 0 0 0 10px rgba(124,156,255,0) } }
+.pulse-ring { animation: pulse-ring 1.3s ease-out infinite; }
+@keyframes slide-in { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+.slide-in { animation: slide-in .28s ease-out both; }
+@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+.shimmer {
+  background: linear-gradient(90deg, rgba(124,156,255,.0) 0%, rgba(124,156,255,.25) 50%, rgba(124,156,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* report markdown */
+.md h1 { font-size: 1.35rem; font-weight: 700; margin: 0 0 .6rem; }
+.md h2 { font-size: 1rem; font-weight: 650; margin: 1.3rem 0 .5rem; color: #c7d2fe; }
+.md p { margin: .4rem 0; line-height: 1.6; color: var(--color-ink-300); }
+.md ul, .md ol { margin: .3rem 0 .6rem 1.2rem; color: var(--color-ink-300); }
+.md li { margin: .25rem 0; line-height: 1.55; }
+.md ul { list-style: disc; } .md ol { list-style: decimal; }
+.md blockquote { border-left: 3px solid var(--color-brand); padding: .4rem .9rem; margin: .7rem 0; background: rgba(124,156,255,.07); border-radius: 0 8px 8px 0; }
+.md blockquote p { color: var(--color-ink-100); }
+.md code { font-family: var(--font-mono); font-size: .82em; background: #1d2538; padding: .1rem .35rem; border-radius: 5px; }
+.md table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: .5rem 0; }
+.md th, .md td { border-bottom: 1px solid #1d2538; padding: .4rem .5rem; text-align: left; vertical-align: top; }
+.md th { color: var(--color-ink-400); font-weight: 600; }
+.md a { color: var(--color-brand); }
+.md strong { color: var(--color-ink-100); }
+.md em { color: var(--color-ink-400); }
+
+.react-flow__attribution { display: none; }
+
+.react-flow__controls { box-shadow: none !important; border-radius: 10px; overflow: hidden; border: 1px solid #2a3550; }
+.react-flow__controls-button { background: #141a2b !important; border-bottom: 1px solid #2a3550 !important; fill: #a3aec7 !important; }
+.react-flow__controls-button:hover { background: #1d2538 !important; }
+.react-flow__controls-button svg { fill: #a3aec7 !important; }

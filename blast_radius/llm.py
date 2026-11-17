@@ -18,6 +18,7 @@ from typing import TypeVar
 
 from pydantic import BaseModel, ValidationError
 
+from . import events
 from .config import SETTINGS
 
 T = TypeVar("T", bound=BaseModel)
@@ -63,6 +64,7 @@ def _record(u: dict, seconds: float, cached: bool, kind: str) -> None:
     LEDGER.append({"stage": _stage.get(), "kind": kind, "model": SETTINGS.model, "cached": cached,
                    "seconds": round(seconds, 2), **u, "usd": 0.0 if cached else round(dollars(u), 6),
                    "usd_uncached": round(dollars(u), 6)})
+    events.emit("llm_call", **LEDGER[-1])
 
 
 def summarize(entries: list[dict] | None = None) -> dict:
@@ -162,6 +164,7 @@ def agent_loop(system: str, prompt: str, tools: list[Tool], finish: str, *, max_
         _record(_usage(resp), time.monotonic() - t0, False, "agent_turn")
         messages.append({"role": "assistant", "content": resp.content})
         calls = [b for b in resp.content if b.type == "tool_use"]
+        events.emit("agent_turn", turn=turn, stage=_stage.get(), tools=[c.name for c in calls])
         if not calls:
             messages.append({"role": "user", "content": f"Use a tool. Call `{finish}` when you are done."})
             continue
@@ -169,6 +172,7 @@ def agent_loop(system: str, prompt: str, tools: list[Tool], finish: str, *, max_
         for c in calls:
             if c.name == finish:
                 trace.append({"turn": turn, "tool": c.name, "input": c.input})
+                events.emit("agent_step", stage=_stage.get(), turn=turn, tool=c.name, input=c.input, output="")
                 return c.input, trace
             try:
                 out = by_name[c.name].fn(**c.input) if c.name in by_name else f"error: no tool named {c.name}"
@@ -176,6 +180,7 @@ def agent_loop(system: str, prompt: str, tools: list[Tool], finish: str, *, max_
                 out = f"error: {e.__class__.__name__}: {e}"
             out = str(out)[:6000]
             trace.append({"turn": turn, "tool": c.name, "input": c.input, "output": out[:500]})
+            events.emit("agent_step", stage=_stage.get(), turn=turn, tool=c.name, input=c.input, output=out[:400])
             if on_step:
                 on_step(trace[-1])
             results.append({"type": "tool_result", "tool_use_id": c.id, "content": out})

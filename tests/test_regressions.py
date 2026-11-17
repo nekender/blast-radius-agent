@@ -51,3 +51,27 @@ def test_floor_never_lifts_and_inspect_cap_counts(monkeypatch):
     conf = {i.id: i.confidence for i in br.impacts}
     assert conf["f0"] == 0.2          # already below the 0.3 floor: neither lifted to it nor pushed further down
     assert conf["f44"] == 1.0         # only the first 40 ids of one inspect call count as inspected
+
+
+def test_helper_comment_with_apostrophe_does_not_leak_into_next_helper():
+    # deleteArticle's comment "Assumes we're already on the article page" once made its body run into
+    # favoriteArticle/unfavoriteArticle, inflating the suite from 884 to 1,254 steps
+    from blast_radius.config import SETTINGS
+    from blast_radius.suite import _functions, _steps
+    helpers = _functions((SETTINGS.spec_dir / "e2e" / "helpers" / "articles.ts").read_text())
+    steps, _ = _steps(helpers["deleteArticle"], helpers)
+    assert [s.selector for s in steps] == ['button:has-text("Delete Article")']
+
+
+def test_events_accept_payloads_with_a_kind_field():
+    # ledger entries carry "kind"; emit(kind, **entry) once raised TypeError inside every LLM call
+    import queue
+    from blast_radius import events
+    q = queue.Queue()
+    events.attach(q)
+    try:
+        events.emit("llm_call", kind="structured", usd=0.01)
+    finally:
+        events.detach()
+    e = q.get_nowait()
+    assert e["type"] == "llm_call" and e["kind"] == "structured"

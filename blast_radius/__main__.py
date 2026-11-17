@@ -4,6 +4,7 @@
   python -m blast_radius explore               LLM agent reaches owner-only pages (creates + deletes 1 test article)
   python -m blast_radius pr 311                blast-radius report -> reports/pr-311.md
   python -m blast_radius eval 311 --runs 10    run the PR analysis N times and score against evals/gold
+  python -m blast_radius ui                    live UI at http://localhost:8700
 """
 from __future__ import annotations
 
@@ -23,6 +24,8 @@ def main() -> None:
     p = sub.add_parser("pr")
     p.add_argument("number", type=int)
     p.add_argument("--no-cache", action="store_true", help="call the LLM fresh instead of using cached answers")
+    u = sub.add_parser("ui", help="live UI at http://localhost:8700")
+    u.add_argument("--port", type=int, default=8700)
     e = sub.add_parser("eval")
     e.add_argument("number", type=int)
     e.add_argument("--runs", type=lambda v: max(1, int(v)), default=5, help="at least 1")
@@ -77,6 +80,10 @@ def run(args) -> None:
         from .pipeline import reason_graph
         out = reason_graph().invoke({"pr": args.number, "use_cache": not args.no_cache})
         print(f"report: {SETTINGS.reports_dir / f'pr-{args.number}.md'}  (writer: {out['writer']})")
+    elif args.cmd == "ui":
+        from .server import serve
+        print(f"UI: http://localhost:{args.port}")
+        serve(args.port)
     elif args.cmd == "eval":
         from evals.run_eval import run
         run(args.number, args.runs)

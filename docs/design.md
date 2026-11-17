@@ -19,10 +19,10 @@ enumerated spec matters: you can only claim something is *absent* if you know wh
 
 | Layer | Source | What the graph holds today |
 |---|---|---|
-| Requirements | spec tables (code) + routing prose (LLM) | 106 requirements: 100 covered, 6 unknown (each with a reason) |
+| Requirements | spec tables (code) + routing prose (LLM) | 106 requirements: 90 covered with real evidence, 10 weak (a shared CSS class only, below the review line), 6 unknown (each with a reason) |
 | UI | Playwright crawl (logged out, logged in) + exploration agent (as a content owner) | 17 screens, 267 elements (each with its accessibility role and name), 11 user journeys, all observed; 7 screens show two distinct UI states on one route |
-| Tests | RealWorld's own Playwright E2E suite, parsed | 129 tests, 1,254 steps; 90 tests linked to the controls they use; 96 of 106 requirements tested, 10 untested |
-| Code | Angular-aware parse of the repo at any commit | 11 routes, every component method with line ranges, 24 service endpoints |
+| Tests | RealWorld's own Playwright E2E suite, parsed | 129 tests, 884 steps; 87 tests linked to the controls they use; 96 of 106 requirements tested, 10 untested |
+| Code | Angular-aware parse of the repo at any commit | 11 routes, every component method with line ranges, 18 service endpoints |
 | Code ↔ UI | scored matching + an independent API-call check | 229 of 267 elements linked to the template that renders them |
 
 **Sample output:** [`reports/pr-311.md`](../reports/pr-311.md). PR #311 changes how the editor saves an article. The
@@ -30,7 +30,7 @@ assessment agent read the diff and says what changed in behaviour: *editing an e
 one still sends POST.* The report ranks **"Edit your own published article"** first (observed in the running app,
 because the exploration agent created an article, opened it as its author and reached the edit page), then the create
 path as a regression check, and lowers journeys that only use the editor as a setup step. It lists the **tests to
-re-run**: 28 tests in the suite click the changed button; the edit tests come first, the create tests are regression
+re-run**: 26 tests in the suite click the changed button; the edit tests come first, the create tests are regression
 checks, and the ones that only publish an article as setup are ranked low.
 
 **Where I went deep:** the **code ↔ UI link**, **requirements ↔ UI including absence**, and **two guarded agents**
@@ -100,7 +100,8 @@ button sends `PUT /api/articles/:slug`.
 - **Honest finish.** It reported what it could not reach (the comment-delete controls need a posted comment, which the
   policy blocks), and those requirements stay *unknown* with that reason.
 
-Result: 8 requirements moved from unknown to covered (92 → 100), the edit and delete journeys became observed, and the
+Result: 8 requirements moved from unknown to covered (92 → 100, counting class-only matches; 90 under the stricter rule
+below), the edit and delete journeys became observed, and the
 "stitched from code" placeholder for the edit flow is no longer needed.
 
 ### 5b · The assessment agent
@@ -254,6 +255,12 @@ tab route, following and unfollowing (`POST`/`DELETE /api/profiles/:p/follow`), 
 the two JWT-storage behaviours. On the UI side, 142 of 207 controls are touched by no test (counted per login state,
 so a nav link appears up to three times). That list is what a Coverage agent would hand to Gen.
 
+**Weak coverage is counted separately.** A cold read of the numbers found that 10 "covered" requirements rested only on
+a shared CSS class (e.g. "Unfavorite (`.btn-primary`)"), at 0.4 confidence: below our own 0.45 review line. Counting
+them as covered contradicted the rule used everywhere else, so the build now reports 90 covered plus 10 weak, and the
+UI shows them as weak. The fix for real is checking the class on the right element (the Favorite button), not anywhere
+on the page.
+
 **Partial presence found real spec drift,** confirmed in the source: profile tabs say "My Posts / Favorited Posts"
 (spec: "My Articles / Favorited Articles"); the settings placeholder is "Username" (spec: "Your Name"); the home banner's
 tagline "A place to share your knowledge." is gone. A green test run wouldn't catch any of these.
@@ -283,7 +290,7 @@ coincidental text match can't fake.
    - Nothing matches → "Needs a person", with file and lines.
 3. **Two templates explain one element equally well.** Same-effect copies (one link in two `@if` branches) are both
    linked. Different components → both kept at 0.8× and sent to review. With DOM position and a crawler fix, ties
-   needing review went from 74 to 10.
+   needing review went from 74 to 8.
 4. **Connected is not the same as at risk.** The assessment agent re-ranks by what the change does, bounded and
    grounded as in section 1, and never removes an item.
 
@@ -354,9 +361,13 @@ not just two examples of one shape.**
   directive), which is why lineage exists. I'd want a second labeller.
 - **#268's `acceptable` list is broad**, so its precision says little. One item was added to #311's `acceptable` after
   the exploration agent found it (the delete journey), noted in the file.
-- **The test parser reads the suite statically.** 90 of 129 tests link to controls; of the other 39, 35 are
-  error-handling, API-failure, health and XSS tests that mostly mock the network or check page state, and about 4
+- **The test parser reads the suite statically.** 87 of 129 tests link to controls; of the other 42, 37 are
+  error-handling, API-failure, health and XSS tests that mostly mock the network or check page state, and about 5
   look like parser misses. Running the suite with Playwright tracing would give the true element list per test.
+  One more reason to want that: before the comment-aware brace fix, the parser counted 1,254 steps and 90 linked
+  tests. A helper's comment ("we're already on the article page") made its body run on into the next two helpers,
+  so every delete test also "used" the Favorite buttons. Fixing the parser exposed that the earlier metric was
+  inflated; the real count is 884 steps.
 - **The spec stage and the exploration agent aren't re-run per eval.** Their variance would show as different graphs;
   the next eval is N full builds compared on requirement sets and reached states.
 
@@ -379,7 +390,7 @@ its own cost; the numbers below are from the eval runs (agent and report fresh e
 | **PR #268** (3 runs) | per PR | 6–10 | mean $0.28, max $0.31 | median 65 s, max 67 s |
 
 Per PR, the graph traversal is under a second and free; the money is in the assessment agent (~$0.06–0.08 on #311)
-and the report (~$0.04). #268 costs more because it has more to assess and write (44 tests, 25 requirements), and
+and the report (~$0.04). #268 costs more because it has more to assess and write (41 tests, 25 requirements), and
 the agent tends to skip 3 or more items there, so the resubmit round fires: grounding costs about one extra
 assessment when it triggers. The whole eval (8 runs) cost $1.42.
 

@@ -131,6 +131,8 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
             result, trace = llm.agent_loop(SYSTEM, prompt, tools, "finish", max_turns=max_turns)
         except Exception as e:  # noqa: BLE001 - the deterministic blast radius stands on its own
             br.assessment = {"skipped": f"assessment agent failed: {e.__class__.__name__}: {str(e)[:200]}"}
+            from . import events
+            events.emit("fallback", stage="assess", error=br.assessment["skipped"])
             return br
         inspected = _inspected(trace, ids)
         # Verifier feedback, once: adjustments to items it never inspected are sent back to inspect and resubmit.
@@ -145,6 +147,8 @@ def assess(br: BlastRadius, pr: dict, head: CodeMap, graph: Graph, use_cache: bo
                 result2, trace2 = llm.agent_loop(SYSTEM, retry, tools, "finish", max_turns=max_turns)
             except Exception:  # noqa: BLE001 - keep the first answer; the guard below rejects what's ungrounded
                 result2, trace2 = None, []
+            from . import events
+            events.emit("grounding_retry", ungrounded=ungrounded)
             trace += [{"turn": "retry", "tool": "verifier", "input": {"ungrounded": ungrounded}}] + trace2
             result = result2 or result
             inspected = _inspected(trace, ids)
