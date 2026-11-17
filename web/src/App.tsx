@@ -23,7 +23,13 @@ export default function App() {
   const [tab, setTab] = useState<Tab>(TABS.some(t => t.key === initial) ? initial : 'system')
   const [pr, setPr] = useState(311)
   const { data: overview, reload } = useFetch<any>('/api/overview')
-  useEffect(() => { location.hash = tab }, [tab])
+  useEffect(() => { if (location.hash.slice(1) !== tab) location.hash = tab; document.querySelector('main')?.scrollTo({ top: 0 }) }, [tab])
+  useEffect(() => {
+    // follow the URL: back/forward buttons and pasted links switch views
+    const onHash = () => { const t = location.hash.slice(1) as Tab; if (TABS.some(x => x.key === t)) setTab(t) }
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
   const reports: number[] = overview?.reports?.length ? overview.reports : [311, 268]
 
   return (
