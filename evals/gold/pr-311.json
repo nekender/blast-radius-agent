@@ -1,0 +1,76 @@
+{
+  "pr": 311,
+  "labelled_by": "hand, from reading the diff and the running app (17 Nov 2026)",
+  "note": "PR #311 changes EditorComponent.submitForm so an existing article is saved with PUT /articles/:slug (update) instead of POST /articles (create). Publishing a new article and editing an existing one both go through this method.",
+  "must": [
+    {
+      "kind": "element",
+      "label_contains": "Publish Article",
+      "where": "/editor"
+    },
+    {
+      "kind": "flow",
+      "label_contains": "POST /api/articles"
+    },
+    {
+      "kind": "flow",
+      "label_contains": "PUT /api/articles/:p"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "Publish Article"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "PUT /api/articles/:p"
+    }
+  ],
+  "acceptable": [
+    {
+      "kind": "element",
+      "where": "/editor"
+    },
+    {
+      "kind": "screen",
+      "where": "/editor"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "Editor"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "/editor"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "edit"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "GET /api/articles/:p"
+    },
+    {
+      "kind": "unmapped_code"
+    }
+  ],
+  "must_not": [
+    {
+      "kind": "element",
+      "where": "/settings"
+    },
+    {
+      "kind": "element",
+      "where": "/login"
+    },
+    {
+      "kind": "element",
+      "where": "/register"
+    },
+    {
+      "kind": "requirement",
+      "label_contains": "comment"
+    }
+  ],
+  "spec_note": "The spec's API table lists /api/articles* as GET only, so there is no 'POST /api/articles' requirement to find. That's a gap in the spec, not in the system; it's called out in the design doc."
+}

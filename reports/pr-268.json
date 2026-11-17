@@ -1,0 +1,809 @@
+{
+ "pr": 268,
+ "title": "# New Article page fixes",
+ "url": "https://github.com/realworld-apps/angular-realworld-example-app/pull/268",
+ "changed": [
+  {
+   "file": "src/app/features/editor/editor.component.ts",
+   "unit": "EditorComponent.ngOnInit",
+   "lines": [
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64
+   ],
+   "resolved": [
+    "EditorComponent.ngOnInit"
+   ],
+   "lineage": null
+  },
+  {
+   "file": "src/app/features/editor/editor.component.ts",
+   "unit": "EditorComponent.component",
+   "lines": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "resolved": [
+    "EditorComponent.ngOnInit",
+    "EditorComponent.addTag",
+    "EditorComponent.removeTag",
+    "EditorComponent.submitForm",
+    "EditorComponent.constructor"
+   ],
+   "lineage": null
+  },
+  {
+   "file": "src/app/shared/show-authed.directive.ts",
+   "unit": "ShowAuthedDirective.ngOnInit",
+   "lines": [
+    29,
+    32,
+    33,
+    34,
+    35,
+    36
+   ],
+   "resolved": [
+    "IfAuthenticatedDirective.ngOnInit"
+   ],
+   "lineage": "followed renames: src/app/shared/show-authed.directive.ts -> src/app/shared/if-authenticated.directive.ts (renamed in df9d5dc, 34% similar) -> src/app/shared/directives/if-authenticated.directive.ts (renamed in 5a75c97, 95% similar) -> src/app/core/auth/if-authenticated.directive.ts (renamed in f218b2f, 95% similar)"
+  },
+  {
+   "file": "src/app/shared/show-authed.directive.ts",
+   "unit": "ShowAuthedDirective.component",
+   "lines": [
+    7,
+    24,
+    25
+   ],
+   "resolved": [
+    "IfAuthenticatedDirective.ngOnInit",
+    "IfAuthenticatedDirective.ifAuthenticated",
+    "IfAuthenticatedDirective.constructor"
+   ],
+   "lineage": "followed renames: src/app/shared/show-authed.directive.ts -> src/app/shared/if-authenticated.directive.ts (renamed in df9d5dc, 34% similar) -> src/app/shared/directives/if-authenticated.directive.ts (renamed in 5a75c97, 95% similar) -> src/app/core/auth/if-authenticated.directive.ts (renamed in f218b2f, 95% similar)"
+  }
+ ],
+ "impacts": [
+  {
+   "kind": "requirement",
+   "id": "RT-a3d605",
+   "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 5 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-d451db",
+   "label": "Editor page has a 'Enter tags' field",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-df1e1e",
+   "label": "Editor page has a 'body' field",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-d79ba1",
+   "label": "Editor page has a 'description' field",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-76191d",
+   "label": "Editor page has a 'title' field",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-5351ce",
+   "label": "Editor: 'Publish Article' button",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-72914e",
+   "label": "App calls POST /api/articles/:p/comments",
+   "confidence": 0.63,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-0d96dd",
+   "label": "Article detail page has a 'Write a comment...' field",
+   "confidence": 0.63,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-9e0d5c",
+   "label": "Article detail: 'Post Comment' button",
+   "confidence": 0.63,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-22d377",
+   "label": "Home feed toggle: 'Your Feed' a.nav-link",
+   "confidence": 0.63,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RT-91f4d5",
+   "label": "The home page shows a list of articles pulled from the Your Feed, Global Feed, or a selected tag.",
+   "confidence": 0.63,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-7a6c73",
+   "label": "App calls GET /api/articles/:p",
+   "confidence": 0.6,
+   "why": [
+    "expects GET /api/articles/:p, which the changed code calls"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-c87520",
+   "label": "App calls GET /api/user",
+   "confidence": 0.6,
+   "why": [
+    "expects GET /api/user, which the changed code calls"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-0ba81e",
+   "label": "App calls PUT /api/articles/:p",
+   "confidence": 0.6,
+   "why": [
+    "expects PUT /api/articles/:p, which the changed code calls; UI evidence unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "requirement",
+   "id": "RT-8d2a7d",
+   "label": "An article page is available at /article/article-slug-here.",
+   "confidence": 0.5,
+   "why": [
+    "describes /article/:p, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-42099b",
+   "label": "Route / shows Home / Global Feed",
+   "confidence": 0.5,
+   "why": [
+    "describes /, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-634532",
+   "label": "Route /?feed=following shows Your Feed",
+   "confidence": 0.5,
+   "why": [
+    "describes /, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-b97e16",
+   "label": "Route /?page=N shows Paginated feed",
+   "confidence": 0.5,
+   "why": [
+    "describes /, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-8a2508",
+   "label": "Route /article/:slug shows Article detail",
+   "confidence": 0.5,
+   "why": [
+    "describes /article/:p, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-9bb4d9",
+   "label": "Route /editor shows New article",
+   "confidence": 0.5,
+   "why": [
+    "describes /editor, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-a50b54",
+   "label": "Route /editor/:slug shows Edit article",
+   "confidence": 0.5,
+   "why": [
+    "describes /editor/:p, a page this change affects"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-870845",
+   "label": "Route /tag/:tag shows Filtered by tag",
+   "confidence": 0.5,
+   "why": [
+    "describes /tag/:p, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-7e86cd",
+   "label": "Route /tag/:tag?page=N shows Paginated tag view",
+   "confidence": 0.5,
+   "why": [
+    "describes /tag/:p, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RT-73bc40",
+   "label": "The article page renders the server's markdown on the client side.",
+   "confidence": 0.5,
+   "why": [
+    "describes /article/:p, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RT-1521bc",
+   "label": "The home page is available at the URL /.",
+   "confidence": 0.5,
+   "why": [
+    "describes /, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:el_056643d01480",
+   "label": "Publish Article on /editor (POST /api/articles)",
+   "confidence": 1.0,
+   "why": [
+    "passes through changed UI (5 step(s))",
+    "its final action calls POST /api/articles, which the changed code calls"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:el_b07a9f77d06c",
+   "label": "Favorite Article (1) on /article/:p (POST /api/articles/:p/favorite)",
+   "confidence": 0.63,
+   "why": [
+    "passes through changed UI (1 step(s))"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:el_b560b77b7f88",
+   "label": "Follow sarahchen on /article/:p (POST /api/profiles/:p/follow)",
+   "confidence": 0.63,
+   "why": [
+    "passes through changed UI (1 step(s))"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:el_6ba838f0fdb4",
+   "label": "Post Comment on /article/:p (POST /api/articles/:p/comments)",
+   "confidence": 0.63,
+   "why": [
+    "passes through changed UI (2 step(s))"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:code:/editor/:p:submitForm:POST /api/articles",
+   "label": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "confidence": 0.6,
+   "why": [
+    "its final action calls POST /api/articles, which the changed code calls"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "flow",
+   "id": "flow:code:/editor/:p:submitForm:PUT /api/articles/:p",
+   "label": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "confidence": 0.6,
+   "why": [
+    "its final action calls PUT /api/articles/:p, which the changed code calls"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "element",
+   "id": "el_eae4e55fa8a7",
+   "label": "'Article Title' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_1057898a8492",
+   "label": "'Enter tags' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.addTag() changed; bound to EditorComponent.addTag(); matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by placeholder='Enter tags'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_056643d01480",
+   "label": "'Publish Article' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler",
+    "EditorComponent.addTag() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler",
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_f3bf44beec50",
+   "label": "'What's this article about?' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_4b49dcb882be",
+   "label": "'Write your article (in markdown)' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.ngOnInit() changed; rendered after EditorComponent.ngOnInit() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page",
+    "EditorComponent.constructor() changed; rendered after EditorComponent.constructor() loads data; matched on screen by name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_6ba838f0fdb4",
+   "label": "'Post Comment' on /article/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by text='Post Comment'; classes 100% overlap; inside .article-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_7f49f4cd56bb",
+   "label": "'Write a comment...' on /article/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 103; matched on screen by placeholder='Write a comment...'; classes 100% overlap; inside .article-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_465be0127f05",
+   "label": "'Your Feed' on / (authed)",
+   "confidence": 0.63,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_283996f698ff",
+   "label": "'Your Feed' on /tag/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 31; matched on screen by text='Your Feed'; link -> /; classes 100% overlap; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_0a336e79b71e",
+   "label": "'Angular frontend' on / (anon)",
+   "confidence": 0.5,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_f1f342963de7",
+   "label": "'Angular frontend' on /tag/:p (anon)",
+   "confidence": 0.5,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by text='Angular frontend'; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_3d0ff24ebf99",
+   "label": "'Sign in' on /article/:p (anon)",
+   "confidence": 0.5,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; inside .article-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; inside .article-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='Sign in'; link -> /login; inside .article-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_7c024e05b31c",
+   "label": "'Sign up' on /article/:p (anon)",
+   "confidence": 0.48,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; matched on screen by text='sign up'; link -> /register"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "src/app/features/article/pages/home/home.component.html:16:a",
+   "label": "'Realworld' in code",
+   "confidence": 0.32,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "element",
+   "id": "src/app/features/article/pages/home/home.component.html:11:p",
+   "label": "'This is the demo from the project. This demo is connected to a demo backend that' in code",
+   "confidence": 0.32,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; never seen in the crawl"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "element",
+   "id": "el_a60b8dcf94f5",
+   "label": "'h1' on / (anon)",
+   "confidence": 0.32,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "el_248dc057f729",
+   "label": "'h1' on /tag/:p (anon)",
+   "confidence": 0.32,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on HomeComponent line 4; matched on screen by classes 100% overlap; inside .home-page"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "element",
+   "id": "src/app/features/article/pages/article/article.component.html:123:div",
+   "label": "'or to add comments on this article.' in code",
+   "confidence": 0.32,
+   "why": [
+    "IfAuthenticatedDirective.ngOnInit() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; never seen in the crawl",
+    "IfAuthenticatedDirective.ifAuthenticated() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; never seen in the crawl",
+    "IfAuthenticatedDirective.constructor() changed; shown or hidden by *ifAuthenticated on ArticleComponent line 123; never seen in the crawl"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "screen",
+   "id": "/editor|authed",
+   "label": "/editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "contains 'Publish Article'",
+    "contains 'What's this article about?'",
+    "contains 'Write your article (in markdown)'",
+    "contains 'Enter tags'",
+    "contains 'Article Title'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/|authed",
+   "label": "/ (authed)",
+   "confidence": 0.63,
+   "why": [
+    "contains 'Your Feed'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/article/:p|authed",
+   "label": "/article/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "contains 'Post Comment'",
+    "contains 'Write a comment...'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/tag/:p|authed",
+   "label": "/tag/:p (authed)",
+   "confidence": 0.63,
+   "why": [
+    "contains 'Your Feed'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/|anon",
+   "label": "/ (anon)",
+   "confidence": 0.5,
+   "why": [
+    "contains 'Angular frontend'",
+    "contains ''"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/article/:p|anon",
+   "label": "/article/:p (anon)",
+   "confidence": 0.5,
+   "why": [
+    "contains 'Sign in'",
+    "contains 'Sign up'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/tag/:p|anon",
+   "label": "/tag/:p (anon)",
+   "confidence": 0.5,
+   "why": [
+    "contains 'Angular frontend'",
+    "contains ''"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "unmapped_code",
+   "id": "PUT /api/articles/:p",
+   "label": "API call PUT /api/articles/:p",
+   "confidence": 0.42,
+   "why": [
+    "EditorComponent.submitForm() can call PUT /api/articles/:p, but no crawled button triggered it"
+   ],
+   "observed": false
+  }
+ ],
+ "coverage_lost": [
+  {
+   "requirement": "SEL-76191d",
+   "statement": "Editor page has a 'title' field",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-d79ba1",
+   "statement": "Editor page has a 'description' field",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-df1e1e",
+   "statement": "Editor page has a 'body' field",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-d451db",
+   "statement": "Editor page has a 'Enter tags' field",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-0d96dd",
+   "statement": "Article detail page has a 'Write a comment...' field",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-9e0d5c",
+   "statement": "Article detail: 'Post Comment' button",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-5351ce",
+   "statement": "Editor: 'Publish Article' button",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "SEL-22d377",
+   "statement": "Home feed toggle: 'Your Feed' a.nav-link",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "API-0ba81e",
+   "statement": "App calls PUT /api/articles/:p",
+   "why": "no UI coverage to re-check it with (unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state)"
+  },
+  {
+   "requirement": "API-72914e",
+   "statement": "App calls POST /api/articles/:p/comments",
+   "why": "every element that proves it is changed by this PR"
+  }
+ ],
+ "needs_review": [
+  {
+   "item": "'or to add comments on this article.' in code",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.32
+  },
+  {
+   "item": "'Realworld' in code",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.32
+  },
+  {
+   "item": "'This is the demo from the project. This demo is connected to a demo backend that' in code",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.32
+  },
+  {
+   "item": "API call PUT /api/articles/:p",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.42
+  },
+  {
+   "item": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.6
+  },
+  {
+   "item": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.6
+  },
+  {
+   "item": "App calls PUT /api/articles/:p",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.6
+  },
+  {
+   "item": "Route /editor/:slug shows Edit article",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.5
+  },
+  {
+   "item": "'h1' on /tag/:p (anon)",
+   "why": "low confidence (0.32)",
+   "confidence": 0.32
+  },
+  {
+   "item": "'h1' on / (anon)",
+   "why": "low confidence (0.32)",
+   "confidence": 0.32
+  }
+ ]
+}

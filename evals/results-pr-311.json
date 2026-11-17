@@ -1,0 +1,72 @@
+{
+ "summary": {
+  "pr": 311,
+  "runs": 5,
+  "deterministic_stage_identical": true,
+  "correct_runs": 5,
+  "pass^k": true,
+  "recall": 1.0,
+  "precision": 1.0,
+  "missed": [],
+  "unexpected": [],
+  "must_not_hits": [],
+  "report_pass_rate": 1.0
+ },
+ "runs": [
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "b9c55f0afc"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "b9c55f0afc"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "b9c55f0afc"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "b9c55f0afc"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "b9c55f0afc"
+  }
+ ]
+}

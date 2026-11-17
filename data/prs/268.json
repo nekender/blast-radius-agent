@@ -1,0 +1,20 @@
+{
+  "number": 268,
+  "title": "# New Article page fixes",
+  "url": "https://github.com/realworld-apps/angular-realworld-example-app/pull/268",
+  "body": "- On new article page, the auth menu appended an extra copy on the nav\r\n- Editor component, OnInit assumed a slug exists",
+  "merge_commit": "e28c8969aab9a27ece9873118b1ab7251f9ccb0c",
+  "base": "4b805d7c5844f01f6ae27f2e3253194c25a1550a",
+  "files": [
+    {
+      "path": "src/app/features/editor/editor.component.ts",
+      "status": "modified",
+      "patch": "@@ -1,18 +1,18 @@\n+import { NgForOf } from \"@angular/common\";\n import { Component, OnDestroy, OnInit } from \"@angular/core\";\n import {\n-  UntypedFormGroup,\n-  ReactiveFormsModule,\n-  FormGroup,\n   FormControl,\n+  FormGroup,\n+  ReactiveFormsModule,\n+  UntypedFormGroup,\n } from \"@angular/forms\";\n import { ActivatedRoute, Router } from \"@angular/router\";\n-import { ListErrorsComponent } from \"../../shared/list-errors.component\";\n-import { NgForOf } from \"@angular/common\";\n-import { ArticlesService } from \"../../core/services/articles.service\";\n-import { combineLatest, Subject } from \"rxjs\";\n+import { Subject, combineLatest } from \"rxjs\";\n import { takeUntil } from \"rxjs/operators\";\n-import { UserService } from \"../../core/services/user.service\";\n import { Errors } from \"../../core/models/errors.model\";\n+import { ArticlesService } from \"../../core/services/articles.service\";\n+import { UserService } from \"../../core/services/user.service\";\n+import { ListErrorsComponent } from \"../../shared/list-errors.component\";\n \n interface ArticleForm {\n   title: FormControl<string>;\n@@ -47,19 +47,21 @@ export class EditorComponent implements OnInit, OnDestroy {\n   ) {}\n \n   ngOnInit() {\n-    combineLatest([\n-      this.articleService.get(this.route.snapshot.params[\"slug\"]),\n-      this.userService.getCurrentUser(),\n-    ])\n-      .pipe(takeUntil(this.destroy$))\n-      .subscribe(([article, { user }]) => {\n-        if (user.username === article.author.username) {\n-          this.tagList = article.tagList;\n-          this.articleForm.patchValue(article);\n-        } else {\n-          void this.router.navigate([\"/\"]);\n-        }\n-      });\n+    if (this.route.snapshot.params[\"slug\"]) {\n+      combineLatest([\n+        this.articleService.get(this.route.snapshot.params[\"slug\"]),\n+        this.userService.getCurrentUser(),\n+      ])\n+        .pipe(takeUntil(this.destroy$))\n+        .subscribe(([article, { user }]) => {\n+          if (user.username === article.author.username) {\n+            this.tagList = article.tagList;\n+            this.articleForm.patchValue(article);\n+          } else {\n+            void this.router.navigate([\"/\"]);\n+          }\n+        });\n+    }\n   }\n \n   ngOnDestroy() {"
+    },
+    {
+      "path": "src/app/shared/show-authed.directive.ts",
+      "status": "modified",
+      "patch": "@@ -4,6 +4,7 @@ import {\n   OnInit,\n   TemplateRef,\n   ViewContainerRef,\n+  ViewRef,\n } from \"@angular/core\";\n import { UserService } from \"../core/services/user.service\";\n \n@@ -20,13 +21,19 @@ export class ShowAuthedDirective implements OnInit {\n \n   condition: boolean = false;\n \n+  authRef: ViewRef | undefined;\n+\n   ngOnInit() {\n     this.userService.isAuthenticated.subscribe((isAuthenticated: boolean) => {\n       if (\n         (isAuthenticated && this.condition) ||\n         (!isAuthenticated && !this.condition)\n       ) {\n-        this.viewContainer.createEmbeddedView(this.templateRef);\n+        if (!this.authRef) {\n+          this.authRef = this.viewContainer.createEmbeddedView(\n+            this.templateRef\n+          );\n+        }\n       } else {\n         this.viewContainer.clear();\n       }"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "number": 311,
+  "title": "fix: use PUT method for article updates in editor",
+  "url": "https://github.com/realworld-apps/angular-realworld-example-app/pull/311",
+  "body": "use PUT method for article updates in editor  \r\n  \r\n- Check editing existing article by slug parameter  \r\n- Call articleService.update() for edits, create() for new articles  \r\n- Ensures REST compliance: POST for creation, PUT for updates  ",
+  "merge_commit": "400bc37adb42113683a397211d4746972156645c",
+  "base": "c6aff3856a8d4ef4dc35e37f4564f40d5ff3c9a6",
+  "files": [
+    {
+      "path": "src/app/features/article/pages/editor/editor.component.ts",
+      "status": "modified",
+      "patch": "@@ -79,23 +79,25 @@ export default class EditorComponent implements OnInit {\n \n   submitForm(): void {\n     this.isSubmitting = true;\n-\n     // update any single tag\n     this.addTag();\n \n-    // post the changes\n-    this.articleService\n-      .create({\n-        ...this.articleForm.value,\n-        tagList: this.tagList,\n-      })\n-      .pipe(takeUntilDestroyed(this.destroyRef))\n-      .subscribe({\n-        next: (article) => this.router.navigate([\"/article/\", article.slug]),\n-        error: (err) => {\n-          this.errors = err;\n-          this.isSubmitting = false;\n-        },\n-      });\n+    const slug = this.route.snapshot.params[\"slug\"];\n+    const articleData = {\n+      ...this.articleForm.value,\n+      tagList: this.tagList,\n+    };\n+\n+    const observable = slug\n+      ? this.articleService.update({ ...articleData, slug })\n+      : this.articleService.create(articleData);\n+\n+    observable.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({\n+      next: (article) => this.router.navigate([\"/article/\", article.slug]),\n+      error: (err) => {\n+        this.errors = err;\n+        this.isSubmitting = false;\n+      },\n+    });\n   }\n }"
+    }
+  ]
+}

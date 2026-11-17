@@ -1,0 +1,10 @@
+.venv/
+.env
+.state/
+.cache/
+__pycache__/
+data/repo/
+data/worktrees/
+artifacts/screens/
+artifacts/dom/
+*.pyc

@@ -1,0 +1,4526 @@
+{
+ "summary": {
+  "screens": 14,
+  "elements": 206,
+  "requirements": 106,
+  "covered": 92,
+  "absent": 0,
+  "unknown": 14,
+  "partial": 0,
+  "code_ui_links": 208,
+  "elements_linked_to_code": 171,
+  "flows_observed": 8,
+  "flows_from_code_only": 2,
+  "needs_review": 18
+ },
+ "gaps": [
+  {
+   "requirement_id": "CLS-d7257e",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:33) under condition 'canModify$ | async', but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "CLS-8984a0",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:36) under condition 'canModify$ | async', but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "SEL-2bdb9d",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticleComponent (src/app/features/article/pages/article/article.component.html:37) under condition 'canModify()', but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "SEL-577f41",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticleComponent (src/app/features/article/pages/article/article.component.html:33) under condition 'canModify()', but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "RTE-a50b54",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "never reached /editor/:p as 'authed'"
+  },
+  {
+   "requirement_id": "API-0ba81e",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "API-8eaa1b",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "API-c5d699",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at CommentsService (src/app/features/article/services/comments.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "API-99819e",
+   "status": "unknown",
+   "searched_screens": [
+    "/|authed",
+    "/editor|authed",
+    "/settings|authed",
+    "/profile/:p|authed",
+    "/article/:p|authed",
+    "/tag/:p|authed",
+    "/profile/:p/favorites|authed"
+   ],
+   "reason": "in code at ArticlesService (src/app/features/article/services/articles.service.ts); the state that triggers it needs a prior write, which the dry-run crawl blocks"
+  },
+  {
+   "requirement_id": "API-ade7bd",
+   "status": "unknown",
+   "searched_screens": [
+    "/|authed",
+    "/editor|authed",
+    "/settings|authed",
+    "/profile/:p|authed",
+    "/article/:p|authed",
+    "/tag/:p|authed",
+    "/profile/:p/favorites|authed"
+   ],
+   "reason": "in code at ProfileService (src/app/features/profile/services/profile.service.ts); the state that triggers it needs a prior write, which the dry-run crawl blocks"
+  },
+  {
+   "requirement_id": "RT-a37437",
+   "status": "unknown",
+   "searched_screens": [
+    "/login|anon",
+    "/register|anon"
+   ],
+   "reason": "spec gives no checkable UI evidence (behaviour); needs a flow test or a human"
+  },
+  {
+   "requirement_id": "RT-c07f48",
+   "status": "unknown",
+   "searched_screens": [
+    "/login|anon",
+    "/register|anon"
+   ],
+   "reason": "spec gives no checkable UI evidence (behaviour); needs a flow test or a human"
+  },
+  {
+   "requirement_id": "RT-aaec7c",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:36) under condition 'canModify$ | async', but never shown in crawled states (anon, authed); needs 'owner' state"
+  },
+  {
+   "requirement_id": "RT-15c469",
+   "status": "unknown",
+   "searched_screens": [],
+   "reason": "in code at ArticleCommentComponent (src/app/features/article/components/article-comment.component.ts:33) under condition 'canModify$ | async', but never shown in crawled states (anon, authed); needs 'owner' state"
+  }
+ ],
+ "flows": [
+  {
+   "id": "flow:el_d415bb435393",
+   "name": "Sign in on /login (POST /api/users/login)",
+   "steps": [
+    "/|anon",
+    "el_af84a249e891",
+    "/register|anon",
+    "el_e3941f56c571",
+    "/login|anon",
+    "el_8250af3f35be",
+    "el_3b73ea91b49c",
+    "el_d415bb435393"
+   ],
+   "action_element": "el_d415bb435393",
+   "action_call": "POST /api/users/login",
+   "observed": true
+  },
+  {
+   "id": "flow:el_6cd8d0a56640",
+   "name": "Sign up on /register (POST /api/users)",
+   "steps": [
+    "/|anon",
+    "el_af84a249e891",
+    "/register|anon",
+    "el_f496a94929ca",
+    "el_dcf51989a886",
+    "el_715b74747dd5",
+    "el_6cd8d0a56640"
+   ],
+   "action_element": "el_6cd8d0a56640",
+   "action_call": "POST /api/users",
+   "observed": true
+  },
+  {
+   "id": "flow:el_11f7987bd7c2",
+   "name": "4 items, e.g. '1' on / (POST /api/articles/:p/favorite)",
+   "steps": [
+    "/|authed",
+    "el_11f7987bd7c2"
+   ],
+   "action_element": "el_11f7987bd7c2",
+   "action_call": "POST /api/articles/:p/favorite",
+   "observed": true
+  },
+  {
+   "id": "flow:el_056643d01480",
+   "name": "Publish Article on /editor (POST /api/articles)",
+   "steps": [
+    "/|authed",
+    "el_7ee59766e960",
+    "/editor|authed",
+    "el_eae4e55fa8a7",
+    "el_f3bf44beec50",
+    "el_4b49dcb882be",
+    "el_1057898a8492",
+    "el_056643d01480"
+   ],
+   "action_element": "el_056643d01480",
+   "action_call": "POST /api/articles",
+   "observed": true
+  },
+  {
+   "id": "flow:el_8d88c0ad93f1",
+   "name": "Update Settings on /settings (PUT /api/user)",
+   "steps": [
+    "/|authed",
+    "el_1338d656820a",
+    "/profile/:p|authed",
+    "el_2f4e31694d1e",
+    "/settings|authed",
+    "el_eb615e678d9c",
+    "el_fd908ea90215",
+    "el_a0f98101cb5f",
+    "el_5523d1de819b",
+    "el_e069478759f6",
+    "el_8d88c0ad93f1"
+   ],
+   "action_element": "el_8d88c0ad93f1",
+   "action_call": "PUT /api/user",
+   "observed": true
+  },
+  {
+   "id": "flow:el_b560b77b7f88",
+   "name": "Follow sarahchen on /article/:p (POST /api/profiles/:p/follow)",
+   "steps": [
+    "/|authed",
+    "el_415559798453",
+    "/article/:p|authed",
+    "el_7f49f4cd56bb",
+    "el_b560b77b7f88"
+   ],
+   "action_element": "el_b560b77b7f88",
+   "action_call": "POST /api/profiles/:p/follow",
+   "observed": true
+  },
+  {
+   "id": "flow:el_b07a9f77d06c",
+   "name": "Favorite Article (1) on /article/:p (POST /api/articles/:p/favorite)",
+   "steps": [
+    "/|authed",
+    "el_415559798453",
+    "/article/:p|authed",
+    "el_7f49f4cd56bb",
+    "el_b07a9f77d06c"
+   ],
+   "action_element": "el_b07a9f77d06c",
+   "action_call": "POST /api/articles/:p/favorite",
+   "observed": true
+  },
+  {
+   "id": "flow:el_6ba838f0fdb4",
+   "name": "Post Comment on /article/:p (POST /api/articles/:p/comments)",
+   "steps": [
+    "/|authed",
+    "el_415559798453",
+    "/article/:p|authed",
+    "el_7f49f4cd56bb",
+    "el_6ba838f0fdb4"
+   ],
+   "action_element": "el_6ba838f0fdb4",
+   "action_call": "POST /api/articles/:p/comments",
+   "observed": true
+  },
+  {
+   "id": "flow:code:/editor/:p:submitForm:POST /api/articles",
+   "name": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "steps": [
+    "route:/editor/:p",
+    "src/app/features/article/pages/editor/editor.component.html:70:button"
+   ],
+   "action_element": "src/app/features/article/pages/editor/editor.component.html:70:button",
+   "action_call": "POST /api/articles",
+   "observed": false
+  },
+  {
+   "id": "flow:code:/editor/:p:submitForm:PUT /api/articles/:p",
+   "name": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "steps": [
+    "route:/editor/:p",
+    "src/app/features/article/pages/editor/editor.component.html:70:button"
+   ],
+   "action_element": "src/app/features/article/pages/editor/editor.component.html:70:button",
+   "action_call": "PUT /api/articles/:p",
+   "observed": false
+  }
+ ],
+ "review": [
+  {
+   "element": "el_b226d54debf0",
+   "label": "Global Feed",
+   "screen": "/|anon",
+   "candidates": [
+    "src/app/features/article/pages/home/home.component.html:44:a",
+    "src/app/features/article/components/article-list.component.ts:25:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_d415bb435393",
+   "label": "Sign in",
+   "screen": "/login|anon",
+   "candidates": [
+    "src/app/core/layout/header.component.html:26:a",
+    "src/app/core/auth/auth.component.html:59:button"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_6cd8d0a56640",
+   "label": "Sign up",
+   "screen": "/register|anon",
+   "candidates": [
+    "src/app/core/layout/header.component.html:30:a",
+    "src/app/core/auth/auth.component.html:59:button"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_3970703ffd92",
+   "label": "",
+   "screen": "/profile/:p|anon",
+   "candidates": [
+    "src/app/features/profile/pages/profile/profile.component.html:54:a",
+    "src/app/features/article/components/article-meta.component.ts:9:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_7c024e05b31c",
+   "label": "Sign up",
+   "screen": "/article/:p|anon",
+   "candidates": [
+    "src/app/core/layout/header.component.html:30:a",
+    "src/app/features/article/pages/article/article.component.html:170:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_3d0ff24ebf99",
+   "label": "Sign in",
+   "screen": "/article/:p|anon",
+   "candidates": [
+    "src/app/core/layout/header.component.html:26:a",
+    "src/app/features/article/pages/article/article.component.html:126:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_470f28772fa0",
+   "label": "Global Feed",
+   "screen": "/tag/:p|anon",
+   "candidates": [
+    "src/app/features/article/pages/home/home.component.html:44:a",
+    "src/app/features/article/components/article-list.component.ts:25:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_561ee1e2b107",
+   "label": "My Posts",
+   "screen": "/profile/:p/favorites|anon",
+   "candidates": [
+    "src/app/core/layout/header.component.html:60:a",
+    "src/app/features/article/components/article-meta.component.ts:9:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_17a1842d5b11",
+   "label": "Global Feed",
+   "screen": "/|authed",
+   "candidates": [
+    "src/app/features/article/pages/home/home.component.html:44:a",
+    "src/app/features/article/components/article-list.component.ts:25:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_2f4e31694d1e",
+   "label": "Edit Profile Settings",
+   "screen": "/profile/:p|authed",
+   "candidates": [
+    "src/app/features/profile/pages/profile/profile.component.html:37:a",
+    "src/app/core/layout/header.component.html:51:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "element": "el_da11b1ddadf0",
+   "label": "",
+   "screen": "/profile/:p|authed",
+   "candidates": [
+    "src/app/features/profile/pages/profile/profile.component.html:54:a",
+    "src/app/features/article/components/article-meta.component.ts:9:a"
+   ],
+   "why": "two equally good code matches"
+  },
+  {
+   "requirement": "SEL-cf73b5",
+   "statement": "Profile, article meta: 'Follow` / `Unfollow' button",
+   "why": "partly present (1/2 pieces); missing text 'Unfollow'"
+  },
+  {
+   "requirement": "SEL-7505a2",
+   "statement": "Article detail: 'Favorite` / `Unfavorite' button",
+   "why": "partly present (1/2 pieces); missing text 'Unfavorite'"
+  },
+  {
+   "requirement": "RT-1521bc",
+   "statement": "The home page is available at the URL /.",
+   "why": "partly present (2/3 pieces); missing text 'A place to share your knowledge.'"
+  },
+  {
+   "requirement": "RT-a37437",
+   "statement": "Authentication uses JWT and the token is stored in localStorage.",
+   "why": "no UI evidence to check"
+  },
+  {
+   "requirement": "RT-c07f48",
+   "statement": "Authentication can be easily switched to session/cookie based.",
+   "why": "no UI evidence to check"
+  },
+  {
+   "requirement": "RT-08ae30",
+   "statement": "A settings page is available at /settings.",
+   "why": "partly present (8/9 pieces); missing placeholder 'Your Name'"
+  },
+  {
+   "requirement": "RT-291ba9",
+   "statement": "The profile page lists articles from the author's created articles or the author's favorited articles.",
+   "why": "partly present (2/4 pieces); missing text 'My Articles', text 'Favorited Articles'"
+  }
+ ],
+ "code_ui": [
+  {
+   "src": "/|anon",
+   "dst": "HomeComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route / in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_bd86a80a5e75",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_c65c9995ea4b",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_c65c9995ea4b",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_e011fdb53f17",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_af84a249e891",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign up'; link -> /register; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:10:h1",
+   "dst": "el_a60b8dcf94f5",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:15:a",
+   "dst": "el_0a336e79b71e",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "scored",
+   "evidence": "text='Angular frontend'; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:44:a",
+   "dst": "el_b226d54debf0",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Global Feed'; link -> /; classes 50% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-list.component.ts:25:a",
+   "dst": "el_b226d54debf0",
+   "kind": "RENDERS",
+   "confidence": 0.76,
+   "method": "ambiguous",
+   "evidence": "text='Global Feed'; link -> /"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_672be6471bd0",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_672be6471bd0",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_c6f7a488d017",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_cbcfa0541ebf",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:75:a",
+   "dst": "el_5451cb290e1e",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /tag/:p; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_c06311b2e7f1",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "/login|anon",
+   "dst": "AuthComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /login in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_1f71bd1fe43d",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_35266b0db859",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_35266b0db859",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_1d508157d1c8",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_b53dcc5b4a3f",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign in'; link -> /login; classes 50% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_7e96df2c22fc",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign up'; link -> /register; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:13:h1",
+   "dst": "el_4fa89edf0723",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:24:a",
+   "dst": "el_34e17ec8099b",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Need an account?'; link -> /register; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:44:input",
+   "dst": "el_8250af3f35be",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='email'; placeholder='Email'; classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:53:input",
+   "dst": "el_3b73ea91b49c",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='password'; placeholder='Password'; classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_d415bb435393",
+   "kind": "RENDERS",
+   "confidence": 0.44,
+   "method": "ambiguous",
+   "evidence": "text='Sign in'; @if matches anon"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:59:button",
+   "dst": "el_d415bb435393",
+   "kind": "RENDERS",
+   "confidence": 0.4,
+   "method": "ambiguous",
+   "evidence": "classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_c60a9dc273e4",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "/register|anon",
+   "dst": "AuthComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /register in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_374bb97d678a",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_f4688566e4ca",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_f4688566e4ca",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_f4334dd3c81a",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_3d12203c1fa0",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign up'; link -> /register; classes 67% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:13:h1",
+   "dst": "el_4de0ec205bac",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:20:a",
+   "dst": "el_e3941f56c571",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Have an account?'; link -> /login; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:36:input",
+   "dst": "el_f496a94929ca",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='username'; placeholder='Username'; classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:44:input",
+   "dst": "el_dcf51989a886",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='email'; placeholder='Email'; classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:53:input",
+   "dst": "el_715b74747dd5",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='password'; placeholder='Password'; classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_6cd8d0a56640",
+   "kind": "RENDERS",
+   "confidence": 0.44,
+   "method": "ambiguous",
+   "evidence": "text='Sign up'; @if matches anon"
+  },
+  {
+   "src": "src/app/core/auth/auth.component.html:59:button",
+   "dst": "el_6cd8d0a56640",
+   "kind": "RENDERS",
+   "confidence": 0.4,
+   "method": "ambiguous",
+   "evidence": "classes 100% overlap; inside .auth-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_4c3dad74f9ca",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "/profile/:p|anon",
+   "dst": "ProfileComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /profile/:p in src/app/features/profile/profile.routes.ts"
+  },
+  {
+   "src": "/profile/:p|anon",
+   "dst": "ProfileArticlesComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /profile/:p in src/app/features/profile/profile.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_dc67bc3f7481",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_d8387ea839d9",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_d8387ea839d9",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_cec10b65831c",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_1ca14dff4f8c",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign up'; link -> /register; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_ab80cc79a7a2",
+   "kind": "RENDERS",
+   "confidence": 0.45,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+   "dst": "el_f65b14d359db",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='My Posts'; link -> /profile/:p; classes 50% overlap; inside .profile-page"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:64:a",
+   "dst": "el_cf02682eb6ec",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Favorited Posts'; link -> /profile/:p/favorites; classes 100% overlap; inside .profile-page"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+   "dst": "el_3970703ffd92",
+   "kind": "RENDERS",
+   "confidence": 0.56,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; inside .profile-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_3970703ffd92",
+   "kind": "RENDERS",
+   "confidence": 0.56,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_0263cb6a2008",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_4a2fd9e27aa4",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_fda877200541",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_d50390d2a1f9",
+   "kind": "RENDERS",
+   "confidence": 0.45,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_078ac619851b",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_ef3f09fab769",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "/article/:p|anon",
+   "dst": "ArticleComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /article/:p in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_503571f1b821",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_729dab919e95",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_729dab919e95",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_57fd1d3dbcec",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_7c024e05b31c",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Sign up'; link -> /register; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/features/article/pages/article/article.component.html:170:a",
+   "dst": "el_7c024e05b31c",
+   "kind": "RENDERS",
+   "confidence": 0.76,
+   "method": "ambiguous",
+   "evidence": "text='sign up'; link -> /register"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_8d6a99fc8065",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_8d6a99fc8065",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_3675e1e075ec",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_c41ac3c1b1f0",
+   "kind": "RENDERS",
+   "confidence": 0.45,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:26:a",
+   "dst": "el_3d0ff24ebf99",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Sign in'; link -> /login; @if matches anon"
+  },
+  {
+   "src": "src/app/features/article/pages/article/article.component.html:126:a",
+   "dst": "el_3d0ff24ebf99",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Sign in'; link -> /login; inside .article-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-comment.component.ts:20:a",
+   "dst": "el_4f5d18d8a39a",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .card"
+  },
+  {
+   "src": "src/app/features/article/components/article-comment.component.ts:24:a",
+   "dst": "el_4f5d18d8a39a",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .card"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_861c297a37b2",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_d258e8045d3e",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_9b687797ee97",
+   "kind": "RENDERS",
+   "confidence": 0.45,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn"
+  },
+  {
+   "src": "/tag/:p|anon",
+   "dst": "HomeComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /tag/:p in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_3c70f4647024",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_132f96a91c69",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_132f96a91c69",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_246afe29190b",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_0915d6ff7fcc",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign up'; link -> /register; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:10:h1",
+   "dst": "el_248dc057f729",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:15:a",
+   "dst": "el_f1f342963de7",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "scored",
+   "evidence": "text='Angular frontend'; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:44:a",
+   "dst": "el_470f28772fa0",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Global Feed'; link -> /; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-list.component.ts:25:a",
+   "dst": "el_470f28772fa0",
+   "kind": "RENDERS",
+   "confidence": 0.76,
+   "method": "ambiguous",
+   "evidence": "text='Global Feed'; link -> /"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:55:a",
+   "dst": "el_f67e53668f3a",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_c5a6711e1fa3",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_c5a6711e1fa3",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_0c000893253e",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_606574821224",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:75:a",
+   "dst": "el_8e0977b48646",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /tag/:p; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_1d5eb3a89787",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:55:a",
+   "dst": "el_e2e934681415",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_392347c814de",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_13765deb7d8a",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "/profile/:p/favorites|anon",
+   "dst": "ProfileFavoritesComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /profile/:p/favorites in src/app/features/profile/profile.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_51c37331c40e",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_88036b6f8413",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_88036b6f8413",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:22:a",
+   "dst": "el_5e1cff2250c6",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:30:a",
+   "dst": "el_ab92627dfd42",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Sign up'; link -> /register; classes 100% overlap; inside .navbar; @if matches anon"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_561ee1e2b107",
+   "kind": "RENDERS",
+   "confidence": 0.4,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; classes 100% overlap; @if contradicts anon"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_561ee1e2b107",
+   "kind": "RENDERS",
+   "confidence": 0.36,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_8fb5864cfcf2",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_8fb5864cfcf2",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_582ed7e206f4",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_00239ad2be5f",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_cec0878bc0f6",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_83ba841c5bab",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_c66feae7dc3f",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "/|authed",
+   "dst": "HomeComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route / in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_4c7caa6c011b",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_b2e336ac0ea8",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_b2e336ac0ea8",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_25c08f35cf2b",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Home'; link -> /; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_7ee59766e960",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /editor; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:34:a",
+   "dst": "el_465be0127f05",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "same-effect-tie",
+   "evidence": "text='Your Feed'; link -> /; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:44:a",
+   "dst": "el_465be0127f05",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:44:a",
+   "dst": "el_17a1842d5b11",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Global Feed'; link -> /; classes 50% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-list.component.ts:25:a",
+   "dst": "el_17a1842d5b11",
+   "kind": "RENDERS",
+   "confidence": 0.76,
+   "method": "ambiguous",
+   "evidence": "text='Global Feed'; link -> /"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_1338d656820a",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_1338d656820a",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_c686285d7102",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/favorite-button.component.ts:6:button",
+   "dst": "el_11f7987bd7c2",
+   "kind": "RENDERS",
+   "confidence": 0.93,
+   "method": "scored",
+   "evidence": "classes 67% overlap; inside .btn; dry-run call POST /api/articles/:p/favorite matches handler"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_415559798453",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:75:a",
+   "dst": "el_9fdcef504ec6",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /tag/:p; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_e21a0667890c",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_cfa2575b9358",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "/editor|authed",
+   "dst": "EditorComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /editor in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_8dc89fe19a18",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_6e078d143155",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_6e078d143155",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_ee2d5ef16b57",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:45:a",
+   "dst": "el_940de4716d33",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='New Article'; link -> /editor; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/features/article/pages/editor/editor.component.html:24:input",
+   "dst": "el_eae4e55fa8a7",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='title'; placeholder='Article Title'; classes 100% overlap; inside .editor-page"
+  },
+  {
+   "src": "src/app/features/article/pages/editor/editor.component.html:34:input",
+   "dst": "el_f3bf44beec50",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='description'; placeholder='What's this article about?'; classes 100% overlap; inside .editor-page"
+  },
+  {
+   "src": "src/app/features/article/pages/editor/editor.component.html:44:textarea",
+   "dst": "el_4b49dcb882be",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='body'; placeholder='Write your article (in markdown)'; classes 100% overlap; inside .editor-page"
+  },
+  {
+   "src": "src/app/features/article/pages/editor/editor.component.html:55:input",
+   "dst": "el_1057898a8492",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "placeholder='Enter tags'; classes 100% overlap; inside .editor-page"
+  },
+  {
+   "src": "src/app/features/article/pages/editor/editor.component.html:70:button",
+   "dst": "el_056643d01480",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_f2dfb5169de6",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "/settings|authed",
+   "dst": "SettingsComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /settings in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_587254ccdd9a",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_acaf1c5332f0",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_acaf1c5332f0",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_7b8735a77f0d",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_996c1c66fbae",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Settings'; link -> /settings; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:13:h1",
+   "dst": "el_a81d01e027c6",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Your Settings'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:26:input",
+   "dst": "el_eb615e678d9c",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='image'; placeholder='URL of profile picture'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:36:input",
+   "dst": "el_fd908ea90215",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='username'; placeholder='Username'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:46:textarea",
+   "dst": "el_a0f98101cb5f",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='bio'; placeholder='Short bio about you'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:57:input",
+   "dst": "el_5523d1de819b",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='email'; placeholder='Email'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:67:input",
+   "dst": "el_e069478759f6",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "name='password'; placeholder='New Password'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:74:button",
+   "dst": "el_8d88c0ad93f1",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Update Settings'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/features/settings/settings.component.html:77:button",
+   "dst": "el_9a6ef2375678",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Or click here to logout.'; classes 100% overlap; inside .settings-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_91903cb57ed6",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "/profile/:p|authed",
+   "dst": "ProfileComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /profile/:p in src/app/features/profile/profile.routes.ts"
+  },
+  {
+   "src": "/profile/:p|authed",
+   "dst": "ProfileArticlesComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /profile/:p in src/app/features/profile/profile.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_eb9d0edeca4c",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_895ab71cfbcf",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_895ab71cfbcf",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_ecb6304fb2c7",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_e9f6378b8e69",
+   "kind": "RENDERS",
+   "confidence": 0.95,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:37:a",
+   "dst": "el_2f4e31694d1e",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "ambiguous",
+   "evidence": "text='Edit Profile Settings'; link -> /settings; classes 100% overlap; inside .profile-page"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_2f4e31694d1e",
+   "kind": "RENDERS",
+   "confidence": 0.72,
+   "method": "ambiguous",
+   "evidence": "text starts 'Settings'; link -> /settings; @if matches authed"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+   "dst": "el_060fc9eef1a2",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='My Posts'; link -> /profile/:p; classes 50% overlap; inside .profile-page"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:64:a",
+   "dst": "el_e9e7b266ecc6",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Favorited Posts'; link -> /profile/:p/favorites; classes 100% overlap; inside .profile-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_41a9759c3318",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_7b1e302c71be",
+   "kind": "RENDERS",
+   "confidence": 0.45,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn"
+  },
+  {
+   "src": "src/app/features/profile/pages/profile/profile.component.html:54:a",
+   "dst": "el_da11b1ddadf0",
+   "kind": "RENDERS",
+   "confidence": 0.56,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; inside .profile-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_da11b1ddadf0",
+   "kind": "RENDERS",
+   "confidence": 0.56,
+   "method": "ambiguous",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_4506d7de980e",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_3ea47feca757",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "/article/:p|authed",
+   "dst": "ArticleComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /article/:p in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_c215259db510",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_c3f9bd237c0f",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_c3f9bd237c0f",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_1824747bd992",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_f301248c7c6f",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_f301248c7c6f",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_d506da1dd69c",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_b560b77b7f88",
+   "kind": "RENDERS",
+   "confidence": 0.95,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn; dry-run call POST /api/profiles/:p/follow matches handler"
+  },
+  {
+   "src": "src/app/features/article/components/favorite-button.component.ts:6:button",
+   "dst": "el_b07a9f77d06c",
+   "kind": "RENDERS",
+   "confidence": 0.93,
+   "method": "scored",
+   "evidence": "classes 67% overlap; inside .btn; dry-run call POST /api/articles/:p/favorite matches handler"
+  },
+  {
+   "src": "src/app/features/article/pages/article/article.component.html:116:textarea",
+   "dst": "el_7f49f4cd56bb",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "placeholder='Write a comment...'; classes 100% overlap; inside .article-page"
+  },
+  {
+   "src": "src/app/features/article/pages/article/article.component.html:125:button",
+   "dst": "el_6ba838f0fdb4",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "text='Post Comment'; classes 100% overlap; inside .article-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-comment.component.ts:20:a",
+   "dst": "el_26906f65e3e4",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .card"
+  },
+  {
+   "src": "src/app/features/article/components/article-comment.component.ts:24:a",
+   "dst": "el_26906f65e3e4",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .card"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_96ddab48da62",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_130ac4eda2b6",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/profile/components/follow-button.component.ts:6:button",
+   "dst": "el_80d6328a2be9",
+   "kind": "RENDERS",
+   "confidence": 0.45,
+   "method": "scored",
+   "evidence": "classes 75% overlap; inside .btn"
+  },
+  {
+   "src": "/tag/:p|authed",
+   "dst": "HomeComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /tag/:p in src/app/app.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_cd4c8f02b6d6",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_6384ac4560c6",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_6384ac4560c6",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_7f030d5bc8db",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:34:a",
+   "dst": "el_283996f698ff",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "same-effect-tie",
+   "evidence": "text='Your Feed'; link -> /; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:44:a",
+   "dst": "el_283996f698ff",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:55:a",
+   "dst": "el_8907f2f9fe8b",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_8440e72bce63",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_8440e72bce63",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_cf555fea6b6c",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_da4fed5cb611",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:75:a",
+   "dst": "el_2df08830f015",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /tag/:p; classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_8a4e75bf578d",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/article/pages/home/home.component.html:55:a",
+   "dst": "el_f66431bc3a85",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .home-page"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_4ea885e36b9e",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_a4db6e743cf6",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  },
+  {
+   "src": "/profile/:p/favorites|authed",
+   "dst": "ProfileFavoritesComponent",
+   "kind": "SERVED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "route /profile/:p/favorites in src/app/features/profile/profile.routes.ts"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:1:nav",
+   "dst": "el_8d4ac4d557d3",
+   "kind": "RENDERS",
+   "confidence": 0.5,
+   "method": "scored",
+   "evidence": "classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:7:a",
+   "dst": "el_4013a9680fee",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_4013a9680fee",
+   "kind": "RENDERS",
+   "confidence": 0.85,
+   "method": "same-effect-tie",
+   "evidence": "link -> /; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:39:a",
+   "dst": "el_c547994e34d0",
+   "kind": "RENDERS",
+   "confidence": 1.0,
+   "method": "scored",
+   "evidence": "link -> /; classes 100% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_4d5c4cb04522",
+   "kind": "RENDERS",
+   "confidence": 0.95,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 50% overlap; inside .navbar; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:51:a",
+   "dst": "el_b501606c4fdb",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "text starts 'Settings'; link -> /settings; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/header.component.html:60:a",
+   "dst": "el_24fe17615d66",
+   "kind": "RENDERS",
+   "confidence": 0.8,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; @if matches authed"
+  },
+  {
+   "src": "src/app/core/layout/footer.component.html:12:a",
+   "dst": "el_42cb0cebc817",
+   "kind": "RENDERS",
+   "confidence": 0.65,
+   "method": "scored",
+   "evidence": "text='RealWorld OSS Project'"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:9:a",
+   "dst": "el_b26541ace3a9",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_b26541ace3a9",
+   "kind": "RENDERS",
+   "confidence": 0.7,
+   "method": "same-effect-tie",
+   "evidence": "link -> /profile/:p; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-meta.component.ts:16:a",
+   "dst": "el_d840cbbf66a1",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /profile/:p; classes 100% overlap; inside .article-meta"
+  },
+  {
+   "src": "src/app/features/article/components/article-preview.component.ts:15:a",
+   "dst": "el_e12da09dff63",
+   "kind": "RENDERS",
+   "confidence": 0.9,
+   "method": "scored",
+   "evidence": "link -> /article/:p; classes 100% overlap; inside .article-preview"
+  }
+ ],
+ "requirement_links": [
+  {
+   "src": "SEL-070639",
+   "dst": "el_f496a94929ca",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'username'"
+  },
+  {
+   "src": "SEL-070639",
+   "dst": "el_fd908ea90215",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'username'"
+  },
+  {
+   "src": "SEL-579da6",
+   "dst": "el_8250af3f35be",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'email'"
+  },
+  {
+   "src": "SEL-579da6",
+   "dst": "el_dcf51989a886",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'email'"
+  },
+  {
+   "src": "SEL-579da6",
+   "dst": "el_5523d1de819b",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'email'"
+  },
+  {
+   "src": "SEL-d10996",
+   "dst": "el_3b73ea91b49c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'password'"
+  },
+  {
+   "src": "SEL-d10996",
+   "dst": "el_715b74747dd5",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'password'"
+  },
+  {
+   "src": "SEL-d10996",
+   "dst": "el_e069478759f6",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'password'"
+  },
+  {
+   "src": "SEL-76191d",
+   "dst": "el_eae4e55fa8a7",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'title'"
+  },
+  {
+   "src": "SEL-d79ba1",
+   "dst": "el_f3bf44beec50",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'description'"
+  },
+  {
+   "src": "SEL-df1e1e",
+   "dst": "el_4b49dcb882be",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'body'"
+  },
+  {
+   "src": "SEL-850f9d",
+   "dst": "el_eb615e678d9c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'image'"
+  },
+  {
+   "src": "SEL-690641",
+   "dst": "el_a0f98101cb5f",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "name 'bio'"
+  },
+  {
+   "src": "SEL-d451db",
+   "dst": "el_1057898a8492",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Enter tags'"
+  },
+  {
+   "src": "SEL-0d96dd",
+   "dst": "el_7f49f4cd56bb",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Write a comment...'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_bd86a80a5e75",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_1f71bd1fe43d",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_374bb97d678a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_dc67bc3f7481",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_503571f1b821",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_3c70f4647024",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_51c37331c40e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_4c7caa6c011b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_8dc89fe19a18",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_587254ccdd9a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_eb9d0edeca4c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_c215259db510",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_cd4c8f02b6d6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-5cfde9",
+   "dst": "el_8d4ac4d557d3",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_c65c9995ea4b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_35266b0db859",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_f4688566e4ca",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_d8387ea839d9",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_729dab919e95",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_132f96a91c69",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_88036b6f8413",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_b2e336ac0ea8",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_6e078d143155",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_acaf1c5332f0",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_895ab71cfbcf",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_c3f9bd237c0f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_6384ac4560c6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-22f82c",
+   "dst": "el_4013a9680fee",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'navbar-brand'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_e011fdb53f17",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_af84a249e891",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_b226d54debf0",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_1d508157d1c8",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_b53dcc5b4a3f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_7e96df2c22fc",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_f4334dd3c81a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_3d12203c1fa0",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_cec10b65831c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_1ca14dff4f8c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_f65b14d359db",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_cf02682eb6ec",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_57fd1d3dbcec",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_7c024e05b31c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_246afe29190b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_0915d6ff7fcc",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_470f28772fa0",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_f67e53668f3a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_e2e934681415",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_5e1cff2250c6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_ab92627dfd42",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_561ee1e2b107",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_3d2a8b43934f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_25c08f35cf2b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_7ee59766e960",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_465be0127f05",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_17a1842d5b11",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_cfa2575b9358",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_ee2d5ef16b57",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_940de4716d33",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_7b8735a77f0d",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_996c1c66fbae",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_ecb6304fb2c7",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_e9f6378b8e69",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_060fc9eef1a2",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_e9e7b266ecc6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_1824747bd992",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_7f030d5bc8db",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_283996f698ff",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_8907f2f9fe8b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_f66431bc3a85",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_c547994e34d0",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_4d5c4cb04522",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_24fe17615d66",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-f17fee",
+   "dst": "el_ac53c1401c9b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'nav-link'"
+  },
+  {
+   "src": "CLS-c94ca2",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'banner' in page snapshot"
+  },
+  {
+   "src": "CLS-492f5d",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'container' in page snapshot"
+  },
+  {
+   "src": "CLS-1a629a",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'feed-toggle' in page snapshot"
+  },
+  {
+   "src": "CLS-d5f50c",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'article-preview' in page snapshot"
+  },
+  {
+   "src": "CLS-7de673",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'article-meta' in page snapshot"
+  },
+  {
+   "src": "CLS-d571da",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'article-content' in page snapshot"
+  },
+  {
+   "src": "CLS-1f104e",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'article-page' in page snapshot"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_cbcfa0541ebf",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_4a2fd9e27aa4",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_ef3f09fab769",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_606574821224",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_13765deb7d8a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_00239ad2be5f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_c66feae7dc3f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_415559798453",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_3ea47feca757",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_da4fed5cb611",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_a4db6e743cf6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-43dc40",
+   "dst": "el_e12da09dff63",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'preview-link'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_c6f7a488d017",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_0263cb6a2008",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_078ac619851b",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_3675e1e075ec",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_d258e8045d3e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_0c000893253e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_392347c814de",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_582ed7e206f4",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_83ba841c5bab",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_c686285d7102",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_4506d7de980e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_d506da1dd69c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_130ac4eda2b6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_cf555fea6b6c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_4ea885e36b9e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-77e3e1",
+   "dst": "el_d840cbbf66a1",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'author'"
+  },
+  {
+   "src": "CLS-c0f94d",
+   "dst": "/profile/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'empty-feed-message' in page snapshot"
+  },
+  {
+   "src": "CLS-55f9f1",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'sidebar' in page snapshot"
+  },
+  {
+   "src": "CLS-80f822",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'tag-list' in page snapshot"
+  },
+  {
+   "src": "CLS-047d3d",
+   "dst": "el_5451cb290e1e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-default'"
+  },
+  {
+   "src": "CLS-047d3d",
+   "dst": "el_8e0977b48646",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-default'"
+  },
+  {
+   "src": "CLS-047d3d",
+   "dst": "el_9fdcef504ec6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-default'"
+  },
+  {
+   "src": "CLS-047d3d",
+   "dst": "el_2df08830f015",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-default'"
+  },
+  {
+   "src": "CLS-791b20",
+   "dst": "el_5451cb290e1e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-pill'"
+  },
+  {
+   "src": "CLS-791b20",
+   "dst": "el_8e0977b48646",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-pill'"
+  },
+  {
+   "src": "CLS-791b20",
+   "dst": "el_9fdcef504ec6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-pill'"
+  },
+  {
+   "src": "CLS-791b20",
+   "dst": "el_2df08830f015",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-pill'"
+  },
+  {
+   "src": "CLS-596868",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'card' in page snapshot"
+  },
+  {
+   "src": "CLS-aa97c5",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'card-block' in page snapshot"
+  },
+  {
+   "src": "CLS-6f9b4e",
+   "dst": "/article/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'comment-form' in page snapshot"
+  },
+  {
+   "src": "CLS-0f9e98",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'comment-author-img' in page snapshot"
+  },
+  {
+   "src": "CLS-d06969",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'profile-page' in page snapshot"
+  },
+  {
+   "src": "CLS-7c9802",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'user-info' in page snapshot"
+  },
+  {
+   "src": "CLS-1eb910",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'user-img' in page snapshot"
+  },
+  {
+   "src": "CLS-904c92",
+   "dst": "/|authed",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'user-pic' in page snapshot"
+  },
+  {
+   "src": "CLS-edede1",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'pagination' in page snapshot"
+  },
+  {
+   "src": "CLS-123909",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'page-item' in page snapshot"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_20de6d8f5927",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_1a1570744ccb",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_16783371be3f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_11f7987bd7c2",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_9685cd760fda",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_b07a9f77d06c",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-72caf1",
+   "dst": "el_eeb01ab74c3a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-primary'"
+  },
+  {
+   "src": "CLS-66d943",
+   "dst": "el_d415bb435393",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-primary'"
+  },
+  {
+   "src": "CLS-66d943",
+   "dst": "el_6cd8d0a56640",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-primary'"
+  },
+  {
+   "src": "CLS-66d943",
+   "dst": "el_056643d01480",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-primary'"
+  },
+  {
+   "src": "CLS-66d943",
+   "dst": "el_8d88c0ad93f1",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-primary'"
+  },
+  {
+   "src": "CLS-66d943",
+   "dst": "el_6ba838f0fdb4",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-primary'"
+  },
+  {
+   "src": "CLS-6394e7",
+   "dst": "el_9a6ef2375678",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'btn-outline-danger'"
+  },
+  {
+   "src": "CLS-6c03bb",
+   "dst": "/login|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'error-messages' in page snapshot"
+  },
+  {
+   "src": "SEL-9e0d5c",
+   "dst": "el_6ba838f0fdb4",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Post Comment'"
+  },
+  {
+   "src": "SEL-5351ce",
+   "dst": "el_056643d01480",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Publish Article'"
+  },
+  {
+   "src": "SEL-5861f8",
+   "dst": "el_8d88c0ad93f1",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Update Settings'"
+  },
+  {
+   "src": "SEL-73ff6f",
+   "dst": "el_9a6ef2375678",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Or click here to logout'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_ab80cc79a7a2",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_d50390d2a1f9",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_c41ac3c1b1f0",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_9b687797ee97",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_7b1e302c71be",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_b560b77b7f88",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-cf73b5",
+   "dst": "el_80d6328a2be9",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Follow'"
+  },
+  {
+   "src": "SEL-7505a2",
+   "dst": "el_1a1570744ccb",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Favorite'"
+  },
+  {
+   "src": "SEL-7505a2",
+   "dst": "el_b07a9f77d06c",
+   "kind": "COVERED_BY",
+   "confidence": 0.47,
+   "method": "evidence",
+   "evidence": "text 'Favorite'"
+  },
+  {
+   "src": "SEL-50788e",
+   "dst": "el_1a1570744ccb",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Favorite Article'"
+  },
+  {
+   "src": "SEL-50788e",
+   "dst": "el_b07a9f77d06c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Favorite Article'"
+  },
+  {
+   "src": "SEL-4b5561",
+   "dst": "el_b53dcc5b4a3f",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "SEL-4b5561",
+   "dst": "el_4fa89edf0723",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "SEL-4b5561",
+   "dst": "el_d415bb435393",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "SEL-177d14",
+   "dst": "el_3d12203c1fa0",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "SEL-177d14",
+   "dst": "el_4de0ec205bac",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "SEL-177d14",
+   "dst": "el_6cd8d0a56640",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "SEL-ad861d",
+   "dst": "el_b226d54debf0",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Global Feed'"
+  },
+  {
+   "src": "SEL-ad861d",
+   "dst": "el_17a1842d5b11",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Global Feed'"
+  },
+  {
+   "src": "SEL-22d377",
+   "dst": "el_465be0127f05",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Your Feed'"
+  },
+  {
+   "src": "SEL-ffd00e",
+   "dst": "el_cf02682eb6ec",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Favorited'"
+  },
+  {
+   "src": "SEL-ffd00e",
+   "dst": "el_e9e7b266ecc6",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Favorited'"
+  },
+  {
+   "src": "SEL-a390e8",
+   "dst": "el_2f4e31694d1e",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Edit Profile Settings'"
+  },
+  {
+   "src": "SEL-a390e8",
+   "dst": "el_b501606c4fdb",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Edit Profile Settings'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_e011fdb53f17",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_1d508157d1c8",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_f4334dd3c81a",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_cec10b65831c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_57fd1d3dbcec",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_246afe29190b",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_5e1cff2250c6",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "SEL-5ced84",
+   "dst": "el_25c08f35cf2b",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Home'"
+  },
+  {
+   "src": "RTE-42099b",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RTE-42099b",
+   "dst": "/|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RTE-634532",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RTE-634532",
+   "dst": "/|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RTE-b97e16",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RTE-b97e16",
+   "dst": "/|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RTE-870845",
+   "dst": "/tag/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/tag/ai"
+  },
+  {
+   "src": "RTE-870845",
+   "dst": "/tag/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/tag/ai"
+  },
+  {
+   "src": "RTE-7e86cd",
+   "dst": "/tag/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/tag/ai"
+  },
+  {
+   "src": "RTE-7e86cd",
+   "dst": "/tag/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/tag/ai"
+  },
+  {
+   "src": "RTE-c42c80",
+   "dst": "/login|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/login"
+  },
+  {
+   "src": "RTE-5b402e",
+   "dst": "/register|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/register"
+  },
+  {
+   "src": "RTE-9bb4d9",
+   "dst": "/editor|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/editor"
+  },
+  {
+   "src": "RTE-fa4eaf",
+   "dst": "/settings|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/settings"
+  },
+  {
+   "src": "RTE-24a2a5",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/sarahchen"
+  },
+  {
+   "src": "RTE-24a2a5",
+   "dst": "/profile/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7"
+  },
+  {
+   "src": "RTE-355556",
+   "dst": "/profile/:p/favorites|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/sarahchen/favorites"
+  },
+  {
+   "src": "RTE-355556",
+   "dst": "/profile/:p/favorites|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7/favorites"
+  },
+  {
+   "src": "RTE-8a2508",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/article/introduction-to-machine-learning-for-developers"
+  },
+  {
+   "src": "RTE-8a2508",
+   "dst": "/article/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/article/introduction-to-machine-learning-for-developers"
+  },
+  {
+   "src": "API-f0238d",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "api 'GET /api/articles' in page snapshot"
+  },
+  {
+   "src": "API-f0238d",
+   "dst": "el_9a6ef2375678",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'GET /api/articles'"
+  },
+  {
+   "src": "API-7a6c73",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "api 'GET /api/articles/:p' in page snapshot"
+  },
+  {
+   "src": "API-754a6c",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "api 'GET /api/articles/:p/comments' in page snapshot"
+  },
+  {
+   "src": "API-72914e",
+   "dst": "el_6ba838f0fdb4",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'POST /api/articles/:p/comments'"
+  },
+  {
+   "src": "API-f0e4d4",
+   "dst": "el_11f7987bd7c2",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'POST /api/articles/:p/favorite'"
+  },
+  {
+   "src": "API-f0e4d4",
+   "dst": "el_b07a9f77d06c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'POST /api/articles/:p/favorite'"
+  },
+  {
+   "src": "API-5bd41f",
+   "dst": "el_6cd8d0a56640",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'POST /api/users'"
+  },
+  {
+   "src": "API-a4de8f",
+   "dst": "el_d415bb435393",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'POST /api/users/login'"
+  },
+  {
+   "src": "API-c87520",
+   "dst": "/|authed",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "api 'GET /api/user' in page snapshot"
+  },
+  {
+   "src": "API-bc9d7a",
+   "dst": "el_8d88c0ad93f1",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'PUT /api/user'"
+  },
+  {
+   "src": "API-be508c",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "api 'GET /api/profiles/:p' in page snapshot"
+  },
+  {
+   "src": "API-b8643a",
+   "dst": "el_b560b77b7f88",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'POST /api/profiles/:p/follow'"
+  },
+  {
+   "src": "API-83893a",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "api 'GET /api/tags' in page snapshot"
+  },
+  {
+   "src": "API-83893a",
+   "dst": "el_9a6ef2375678",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "api 'GET /api/tags'"
+  },
+  {
+   "src": "RT-1521bc",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RT-1521bc",
+   "dst": "/|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/"
+  },
+  {
+   "src": "RT-1521bc",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.6,
+   "method": "dom",
+   "evidence": "text 'conduit', class 'home-page' in page snapshot"
+  },
+  {
+   "src": "RT-4bf4c6",
+   "dst": "el_5451cb290e1e",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-pill', class 'tag-default'"
+  },
+  {
+   "src": "RT-4bf4c6",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "text 'Popular Tags', class 'sidebar', class 'tag-list' in page snapshot"
+  },
+  {
+   "src": "RT-4bf4c6",
+   "dst": "el_9fdcef504ec6",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'tag-pill', class 'tag-default'"
+  },
+  {
+   "src": "RT-91f4d5",
+   "dst": "el_b226d54debf0",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Global Feed'"
+  },
+  {
+   "src": "RT-91f4d5",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'feed-toggle', class 'article-preview' in page snapshot"
+  },
+  {
+   "src": "RT-91f4d5",
+   "dst": "el_465be0127f05",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Your Feed'"
+  },
+  {
+   "src": "RT-91f4d5",
+   "dst": "el_17a1842d5b11",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Global Feed'"
+  },
+  {
+   "src": "RT-bb2278",
+   "dst": "el_612cf866aee0",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'page-link'"
+  },
+  {
+   "src": "RT-bb2278",
+   "dst": "/|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'pagination', class 'page-item' in page snapshot"
+  },
+  {
+   "src": "RT-bb2278",
+   "dst": "el_daebada0961f",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'page-link'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "/login|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/login"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "/register|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/register"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_b53dcc5b4a3f",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_7e96df2c22fc",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_4fa89edf0723",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_34e17ec8099b",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Need an account?'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_8250af3f35be",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Email'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_3b73ea91b49c",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Password'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_d415bb435393",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign in'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "/login|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'auth-page' in page snapshot"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_3d12203c1fa0",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_4de0ec205bac",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_e3941f56c571",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Have an account?'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_f496a94929ca",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Username'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_dcf51989a886",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Email'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_715b74747dd5",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Password'"
+  },
+  {
+   "src": "RT-977fab",
+   "dst": "el_6cd8d0a56640",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Sign up'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "/settings|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/settings"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_a81d01e027c6",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "text 'Your Settings'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_eb615e678d9c",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "placeholder 'URL of profile picture'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_a0f98101cb5f",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "placeholder 'Short bio about you'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_5523d1de819b",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "placeholder 'Email'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_e069478759f6",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "placeholder 'New Password'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_8d88c0ad93f1",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "text 'Update Settings'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "el_9a6ef2375678",
+   "kind": "COVERED_BY",
+   "confidence": 0.84,
+   "method": "evidence",
+   "evidence": "text 'Or click here to logout.'"
+  },
+  {
+   "src": "RT-08ae30",
+   "dst": "/settings|authed",
+   "kind": "COVERED_BY",
+   "confidence": 0.8,
+   "method": "dom",
+   "evidence": "class 'settings-page' in page snapshot"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "/editor|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/editor"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "el_eae4e55fa8a7",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Article Title'"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "el_f3bf44beec50",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'What's this article about?'"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "el_4b49dcb882be",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Write your article (in markdown)'"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "el_1057898a8492",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "placeholder 'Enter tags'"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "el_056643d01480",
+   "kind": "COVERED_BY",
+   "confidence": 0.95,
+   "method": "evidence",
+   "evidence": "text 'Publish Article'"
+  },
+  {
+   "src": "RT-a3d605",
+   "dst": "/editor|authed",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'editor-page' in page snapshot"
+  },
+  {
+   "src": "RT-8d2a7d",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/article/introduction-to-machine-learning-for-developers"
+  },
+  {
+   "src": "RT-8d2a7d",
+   "dst": "/article/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/article/introduction-to-machine-learning-for-developers"
+  },
+  {
+   "src": "RT-8d2a7d",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'article-page', class 'article-content', class 'article-meta' in page snapshot"
+  },
+  {
+   "src": "RT-73bc40",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'article-content' in page snapshot"
+  },
+  {
+   "src": "RT-e04d74",
+   "dst": "el_4f5d18d8a39a",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'comment-author'"
+  },
+  {
+   "src": "RT-e04d74",
+   "dst": "/article/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'card', class 'card-text', class 'date-posted' in page snapshot"
+  },
+  {
+   "src": "RT-e04d74",
+   "dst": "el_26906f65e3e4",
+   "kind": "COVERED_BY",
+   "confidence": 0.4,
+   "method": "class-only",
+   "evidence": "class 'comment-author'"
+  },
+  {
+   "src": "RT-50056b",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/sarahchen"
+  },
+  {
+   "src": "RT-50056b",
+   "dst": "/profile/:p/favorites|anon",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/sarahchen/favorites"
+  },
+  {
+   "src": "RT-50056b",
+   "dst": "/profile/:p|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7"
+  },
+  {
+   "src": "RT-50056b",
+   "dst": "/profile/:p/favorites|authed",
+   "kind": "COVERED_BY",
+   "confidence": 1.0,
+   "method": "route",
+   "evidence": "crawled https://demo.realworld.show/profile/br-test-255fb7/favorites"
+  },
+  {
+   "src": "RT-50056b",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'profile-page' in page snapshot"
+  },
+  {
+   "src": "RT-ec049a",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.9,
+   "method": "dom",
+   "evidence": "class 'user-info', class 'user-img' in page snapshot"
+  },
+  {
+   "src": "RT-291ba9",
+   "dst": "/profile/:p|anon",
+   "kind": "COVERED_BY",
+   "confidence": 0.45,
+   "method": "dom",
+   "evidence": "class 'articles-toggle', class 'article-preview' in page snapshot"
+  }
+ ]
+}

@@ -1,0 +1,2060 @@
+[
+ {
+  "id": "SEL-070639",
+  "statement": "Register, Settings page has a 'username' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/register",
+   "/settings"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "username"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-579da6",
+  "statement": "Login, Register, Settings page has a 'email' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/login",
+   "/register",
+   "/settings"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "email"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-d10996",
+  "statement": "Login, Register, Settings page has a 'password' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/login",
+   "/register",
+   "/settings"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "password"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-76191d",
+  "statement": "Editor page has a 'title' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/editor",
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "title"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-d79ba1",
+  "statement": "Editor page has a 'description' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/editor",
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "description"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-df1e1e",
+  "statement": "Editor page has a 'body' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/editor",
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "body"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-850f9d",
+  "statement": "Settings page has a 'image' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/settings"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "image"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-690641",
+  "statement": "Settings page has a 'bio' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/settings"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [
+    "bio"
+   ],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-d451db",
+  "statement": "Editor page has a 'Enter tags' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/editor",
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [
+    "Enter tags"
+   ],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-0d96dd",
+  "statement": "Article detail page has a 'Write a comment...' field",
+  "source": "specs/e2e/SELECTORS.md#form-inputs",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [
+    "Write a comment..."
+   ],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-5cfde9",
+  "statement": "Main navigation bar (nav.navbar)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "navbar"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-22f82c",
+  "statement": "Logo / site name link (a.navbar-brand)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "navbar-brand"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-f17fee",
+  "statement": "Navigation tab links (a.nav-link)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "nav-link"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-c94ca2",
+  "statement": "Home page hero banner (div.banner)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "banner"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-492f5d",
+  "statement": "Page width container (div.container)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "container"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-1a629a",
+  "statement": "Global Feed / Your Feed tab bar (div.feed-toggle)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "feed-toggle"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-d5f50c",
+  "statement": "Article card in a feed list (div.article-preview)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "article-preview"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-7de673",
+  "statement": "Author avatar + name + date (div.article-meta)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "article-meta"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-d571da",
+  "statement": "Rendered article body (div.article-content)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "article-content"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-1f104e",
+  "statement": "Article detail page wrapper (div.article-page)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "article-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-43dc40",
+  "statement": "Clickable link wrapping the preview (a.preview-link)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "preview-link"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-77e3e1",
+  "statement": "Author name in article meta (a.author)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "author"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-c0f94d",
+  "statement": "\"No articles here\" placeholder (div.empty-feed-message)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "empty-feed-message"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-55f9f1",
+  "statement": "Home page sidebar (div.sidebar)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "sidebar"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-80f822",
+  "statement": "Container for tag pills (div.tag-list)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "tag-list"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-047d3d",
+  "statement": "Base tag class (span.tag-default)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "tag-default"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-791b20",
+  "statement": "Pill-shaped tag (span.tag-pill)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "tag-pill"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-596868",
+  "statement": "Comment card (also wraps `.comment-form`) (div.card)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "card"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-aa97c5",
+  "statement": "Comment text body (div.card-block)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "card-block"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-6f9b4e",
+  "statement": "Comment input form card (div.comment-form)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "comment-form"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-0f9e98",
+  "statement": "Commenter's avatar (img.comment-author-img)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "comment-author-img"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-d7257e",
+  "statement": "Delete button container (span.mod-options)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "mod-options"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-8984a0",
+  "statement": "Delete icon (inside `.mod-options`) (i.ion-trash-a)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "ion-trash-a"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-d06969",
+  "statement": "Profile page wrapper (div.profile-page)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "profile-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-7c9802",
+  "statement": "Username, bio, avatar section (div.user-info)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "user-info"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-1eb910",
+  "statement": "Large avatar on profile page (img.user-img)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "user-img"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-904c92",
+  "statement": "Small avatar in the navbar (img.user-pic)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "user-pic"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-edede1",
+  "statement": "Pagination container (nav/div.pagination)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "pagination"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-123909",
+  "statement": "Individual page button wrapper (li/div.page-item)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "page-item"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-72caf1",
+  "statement": "Favorite (not yet favorited) (button.btn-outline-primary)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "btn-outline-primary"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-66d943",
+  "statement": "Unfavorite (already favorited) (button.btn-primary)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "btn-primary"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-6394e7",
+  "statement": "Destructive action (logout) (button.btn-outline-danger)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "btn-outline-danger"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "CLS-6c03bb",
+  "statement": "Validation / API error list (ul.error-messages)",
+  "source": "specs/e2e/SELECTORS.md#css-classes",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "error-messages"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-9e0d5c",
+  "statement": "Article detail: 'Post Comment' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Post Comment"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-2bdb9d",
+  "statement": "Article detail: 'Delete Article' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Delete Article"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-5351ce",
+  "statement": "Editor: 'Publish Article' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/editor",
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Publish Article"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-5861f8",
+  "statement": "Settings: 'Update Settings' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/settings"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Update Settings"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-73ff6f",
+  "statement": "Settings: 'Or click here to logout' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/settings"
+  ],
+  "needs": "authed",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Or click here to logout"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-cf73b5",
+  "statement": "Profile, article meta: 'Follow` / `Unfollow' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/profile/:p",
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Follow",
+    "Unfollow"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-7505a2",
+  "statement": "Article detail: 'Favorite` / `Unfavorite' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Favorite",
+    "Unfavorite"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-50788e",
+  "statement": "Article detail (variant): 'Favorite Article' button",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Favorite Article"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-4b5561",
+  "statement": "Login page heading: 'Sign in' h1",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/login"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Sign in"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-177d14",
+  "statement": "Register page heading: 'Sign up' h1",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/register"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Sign up"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-ad861d",
+  "statement": "Home feed toggle: 'Global Feed' a.nav-link",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Global Feed"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-22d377",
+  "statement": "Home feed toggle: 'Your Feed' a.nav-link",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Your Feed"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-ffd00e",
+  "statement": "Profile tab: 'Favorited' a",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/profile/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Favorited"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-577f41",
+  "statement": "Article detail: 'Edit Article' a",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Edit Article"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-a390e8",
+  "statement": "Profile page: 'Edit Profile Settings' a",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "*"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Edit Profile Settings"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "SEL-5ced84",
+  "statement": "Navbar: 'Home' a.nav-link",
+  "source": "specs/e2e/SELECTORS.md#required-text",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Home"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-42099b",
+  "statement": "Route / shows Home / Global Feed",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-634532",
+  "statement": "Route /?feed=following shows Your Feed",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-b97e16",
+  "statement": "Route /?page=N shows Paginated feed",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-870845",
+  "statement": "Route /tag/:tag shows Filtered by tag",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/tag/:p"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-7e86cd",
+  "statement": "Route /tag/:tag?page=N shows Paginated tag view",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/tag/:p"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-c42c80",
+  "statement": "Route /login shows Login",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/login"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-5b402e",
+  "statement": "Route /register shows Register",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/register"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-9bb4d9",
+  "statement": "Route /editor shows New article",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/editor"
+  ],
+  "needs": "authed",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-a50b54",
+  "statement": "Route /editor/:slug shows Edit article",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-fa4eaf",
+  "statement": "Route /settings shows User settings",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/settings"
+  ],
+  "needs": "authed",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-24a2a5",
+  "statement": "Route /profile/:username shows User profile",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/profile/:p"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-355556",
+  "statement": "Route /profile/:username/favorites shows User's favorited articles",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/profile/:p/favorites"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RTE-8a2508",
+  "statement": "Route /article/:slug shows Article detail",
+  "source": "specs/e2e/SELECTORS.md#routes",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "API-f0238d",
+  "statement": "App calls GET /api/articles",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "GET /api/articles"
+   ]
+  }
+ },
+ {
+  "id": "API-7a6c73",
+  "statement": "App calls GET /api/articles/:p",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "GET /api/articles/:p"
+   ]
+  }
+ },
+ {
+  "id": "API-0ba81e",
+  "statement": "App calls PUT /api/articles/:p",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "owner",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "PUT /api/articles/:p"
+   ]
+  }
+ },
+ {
+  "id": "API-8eaa1b",
+  "statement": "App calls DELETE /api/articles/:p",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "owner",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "DELETE /api/articles/:p"
+   ]
+  }
+ },
+ {
+  "id": "API-754a6c",
+  "statement": "App calls GET /api/articles/:p/comments",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "GET /api/articles/:p/comments"
+   ]
+  }
+ },
+ {
+  "id": "API-72914e",
+  "statement": "App calls POST /api/articles/:p/comments",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "authed",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "POST /api/articles/:p/comments"
+   ]
+  }
+ },
+ {
+  "id": "API-c5d699",
+  "statement": "App calls DELETE /api/articles/:p/comments/:p",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "owner",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "DELETE /api/articles/:p/comments/:p"
+   ]
+  }
+ },
+ {
+  "id": "API-f0e4d4",
+  "statement": "App calls POST /api/articles/:p/favorite",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "authed",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "POST /api/articles/:p/favorite"
+   ]
+  }
+ },
+ {
+  "id": "API-99819e",
+  "statement": "App calls DELETE /api/articles/:p/favorite",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "authed",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "DELETE /api/articles/:p/favorite"
+   ]
+  }
+ },
+ {
+  "id": "API-5bd41f",
+  "statement": "App calls POST /api/users",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "POST /api/users"
+   ]
+  }
+ },
+ {
+  "id": "API-a4de8f",
+  "statement": "App calls POST /api/users/login",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "POST /api/users/login"
+   ]
+  }
+ },
+ {
+  "id": "API-c87520",
+  "statement": "App calls GET /api/user",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "GET /api/user"
+   ]
+  }
+ },
+ {
+  "id": "API-bc9d7a",
+  "statement": "App calls PUT /api/user",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "authed",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "PUT /api/user"
+   ]
+  }
+ },
+ {
+  "id": "API-be508c",
+  "statement": "App calls GET /api/profiles/:p",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "GET /api/profiles/:p"
+   ]
+  }
+ },
+ {
+  "id": "API-b8643a",
+  "statement": "App calls POST /api/profiles/:p/follow",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "authed",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "POST /api/profiles/:p/follow"
+   ]
+  }
+ },
+ {
+  "id": "API-ade7bd",
+  "statement": "App calls DELETE /api/profiles/:p/follow",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "authed",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "DELETE /api/profiles/:p/follow"
+   ]
+  }
+ },
+ {
+  "id": "API-83893a",
+  "statement": "App calls GET /api/tags",
+  "source": "specs/e2e/SELECTORS.md#api-endpoints",
+  "pages": [
+   "*"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": [
+    "GET /api/tags"
+   ]
+  }
+ },
+ {
+  "id": "RT-1521bc",
+  "statement": "The home page is available at the URL /.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [
+    "conduit",
+    "A place to share your knowledge."
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "home-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-4bf4c6",
+  "statement": "The home page shows a list of popular tags.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Popular Tags"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "sidebar",
+    "tag-list",
+    "tag-pill",
+    "tag-default"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-91f4d5",
+  "statement": "The home page shows a list of articles pulled from the Your Feed, Global Feed, or a selected tag.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Global Feed",
+    "Your Feed"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "feed-toggle",
+    "article-preview"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-bb2278",
+  "statement": "The home page shows pagination for the list of articles.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "pagination",
+    "page-item",
+    "page-link"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-977fab",
+  "statement": "Sign in and Sign up pages are available at /login and /register.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/login",
+   "/register"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [
+    "Sign in",
+    "Sign up",
+    "Need an account?",
+    "Have an account?"
+   ],
+   "name_attrs": [],
+   "placeholders": [
+    "Email",
+    "Password",
+    "Username"
+   ],
+   "classes": [
+    "auth-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-a37437",
+  "statement": "Authentication uses JWT and the token is stored in localStorage.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/login",
+   "/register"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-c07f48",
+  "statement": "Authentication can be easily switched to session/cookie based.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/login",
+   "/register"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-08ae30",
+  "statement": "A settings page is available at /settings.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/settings"
+  ],
+  "needs": "authed",
+  "kind": "route",
+  "evidence": {
+   "texts": [
+    "Your Settings",
+    "Update Settings",
+    "Or click here to logout."
+   ],
+   "name_attrs": [],
+   "placeholders": [
+    "URL of profile picture",
+    "Your Name",
+    "Short bio about you",
+    "Email",
+    "New Password"
+   ],
+   "classes": [
+    "settings-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-a3d605",
+  "statement": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/editor",
+   "/editor/:p"
+  ],
+  "needs": "authed",
+  "kind": "route",
+  "evidence": {
+   "texts": [
+    "Publish Article"
+   ],
+   "name_attrs": [],
+   "placeholders": [
+    "Article Title",
+    "What's this article about?",
+    "Write your article (in markdown)",
+    "Enter tags"
+   ],
+   "classes": [
+    "editor-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-8d2a7d",
+  "statement": "An article page is available at /article/article-slug-here.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "article-page",
+    "article-content",
+    "article-meta"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-aaec7c",
+  "statement": "The article page shows a Delete Article button only to the article's author.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "Delete Article"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "btn-outline-danger",
+    "ion-trash-a"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-73bc40",
+  "statement": "The article page renders the server's markdown on the client side.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "behaviour",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "article-content"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-e04d74",
+  "statement": "The article page has a comments section at the bottom of the page.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "card",
+    "card-text",
+    "comment-author",
+    "date-posted"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-15c469",
+  "statement": "Each comment shows a delete button only to the comment's author.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/article/:p"
+  ],
+  "needs": "owner",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "mod-options",
+    "ion-trash-a"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-50056b",
+  "statement": "A profile page is available at /profile/:username and /profile/:username/favorites.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/profile/:p",
+   "/profile/:p/favorites"
+  ],
+  "needs": "anon",
+  "kind": "route",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "profile-page"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-ec049a",
+  "statement": "The profile page shows basic user info.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/profile/:p",
+   "/profile/:p/favorites"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "user-info",
+    "user-img"
+   ],
+   "api": []
+  }
+ },
+ {
+  "id": "RT-291ba9",
+  "statement": "The profile page lists articles from the author's created articles or the author's favorited articles.",
+  "source": "docs/specifications/frontend/routing.md",
+  "pages": [
+   "/profile/:p",
+   "/profile/:p/favorites"
+  ],
+  "needs": "anon",
+  "kind": "element",
+  "evidence": {
+   "texts": [
+    "My Articles",
+    "Favorited Articles"
+   ],
+   "name_attrs": [],
+   "placeholders": [],
+   "classes": [
+    "articles-toggle",
+    "article-preview"
+   ],
+   "api": []
+  }
+ }
+]

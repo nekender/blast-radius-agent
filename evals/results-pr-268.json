@@ -1,0 +1,50 @@
+{
+ "summary": {
+  "pr": 268,
+  "runs": 3,
+  "deterministic_stage_identical": true,
+  "correct_runs": 3,
+  "pass^k": true,
+  "recall": 1.0,
+  "precision": 1.0,
+  "missed": [],
+  "unexpected": [],
+  "must_not_hits": [],
+  "report_pass_rate": 1.0
+ },
+ "runs": [
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "cedd1be08c"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "cedd1be08c"
+  },
+  {
+   "recall": 1.0,
+   "precision": 1.0,
+   "missed": [],
+   "unexpected": [],
+   "must_not_hits": [],
+   "report_ok": true,
+   "report_errors": [],
+   "correct": true,
+   "hash": "cedd1be08c"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+anthropic==2.9.0
+httpx==0.28.1
+langgraph==1.2.22
+neo4j==6.4.1
+playwright==1.65.2
+pydantic==2.14.3
+pytest==9.2.0

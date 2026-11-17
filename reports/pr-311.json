@@ -1,0 +1,187 @@
+{
+ "pr": 311,
+ "title": "fix: use PUT method for article updates in editor",
+ "url": "https://github.com/realworld-apps/angular-realworld-example-app/pull/311",
+ "changed": [
+  {
+   "file": "src/app/features/article/pages/editor/editor.component.ts",
+   "unit": "EditorComponent.submitForm",
+   "lines": [
+    82,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101
+   ],
+   "resolved": [
+    "EditorComponent.submitForm"
+   ],
+   "lineage": null
+  }
+ ],
+ "impacts": [
+  {
+   "kind": "requirement",
+   "id": "RT-a3d605",
+   "label": "An editor page for creating and editing articles is available at /editor and /editor/article-slug-here.",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "SEL-5351ce",
+   "label": "Editor: 'Publish Article' button",
+   "confidence": 1.0,
+   "why": [
+    "proven by changed UI: 1 element(s)"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "API-0ba81e",
+   "label": "App calls PUT /api/articles/:p",
+   "confidence": 0.6,
+   "why": [
+    "expects PUT /api/articles/:p, which the changed code calls; UI evidence unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-9bb4d9",
+   "label": "Route /editor shows New article",
+   "confidence": 0.5,
+   "why": [
+    "describes /editor, a page this change affects"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "requirement",
+   "id": "RTE-a50b54",
+   "label": "Route /editor/:slug shows Edit article",
+   "confidence": 0.5,
+   "why": [
+    "describes /editor/:p, a page this change affects"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "flow",
+   "id": "flow:el_056643d01480",
+   "label": "Publish Article on /editor (POST /api/articles)",
+   "confidence": 1.0,
+   "why": [
+    "passes through changed UI (1 step(s))",
+    "its final action calls POST /api/articles, which the changed code calls"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "flow",
+   "id": "flow:code:/editor/:p:submitForm:POST /api/articles",
+   "label": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "confidence": 0.6,
+   "why": [
+    "its final action calls POST /api/articles, which the changed code calls"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "flow",
+   "id": "flow:code:/editor/:p:submitForm:PUT /api/articles/:p",
+   "label": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "confidence": 0.6,
+   "why": [
+    "its final action calls PUT /api/articles/:p, which the changed code calls"
+   ],
+   "observed": false
+  },
+  {
+   "kind": "element",
+   "id": "el_056643d01480",
+   "label": "'Publish Article' on /editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "EditorComponent.submitForm() changed; bound to EditorComponent.submitForm(); matched on screen by text='Publish Article'; classes 100% overlap; inside .editor-page; dry-run call POST /api/articles matches handler"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "screen",
+   "id": "/editor|authed",
+   "label": "/editor (authed)",
+   "confidence": 1.0,
+   "why": [
+    "contains 'Publish Article'"
+   ],
+   "observed": true
+  },
+  {
+   "kind": "unmapped_code",
+   "id": "PUT /api/articles/:p",
+   "label": "API call PUT /api/articles/:p",
+   "confidence": 0.7,
+   "why": [
+    "EditorComponent.submitForm() can call PUT /api/articles/:p, but no crawled button triggered it"
+   ],
+   "observed": false
+  }
+ ],
+ "coverage_lost": [
+  {
+   "requirement": "SEL-5351ce",
+   "statement": "Editor: 'Publish Article' button",
+   "why": "every element that proves it is changed by this PR"
+  },
+  {
+   "requirement": "API-0ba81e",
+   "statement": "App calls PUT /api/articles/:p",
+   "why": "no UI coverage to re-check it with (unknown: in code at ArticlesService (src/app/features/article/services/articles.service.ts), but never shown in crawled states (anon, authed); needs 'owner' state)"
+  }
+ ],
+ "needs_review": [
+  {
+   "item": "API call PUT /api/articles/:p",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.7
+  },
+  {
+   "item": "'Publish Article' on /editor/:p (POST /api/articles), from code, not observed",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.6
+  },
+  {
+   "item": "'Publish Article' on /editor/:p (PUT /api/articles/:p), from code, not observed",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.6
+  },
+  {
+   "item": "App calls PUT /api/articles/:p",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.6
+  },
+  {
+   "item": "Route /editor/:slug shows Edit article",
+   "why": "only seen in code, never observed in the running app",
+   "confidence": 0.5
+  }
+ ]
+}

@@ -1,0 +1,4988 @@
+{
+  "app_url": "https://demo.realworld.show",
+  "screens": [
+    {
+      "id": "/|anon",
+      "template": "/",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/"
+      ],
+      "title": "Conduit",
+      "structure_hash": "1ea83dea99b2",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/bf0858e78d7b.png",
+      "dom": "artifacts/dom/bf0858e78d7b.html"
+    },
+    {
+      "id": "/login|anon",
+      "template": "/login",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/login"
+      ],
+      "title": "Conduit",
+      "structure_hash": "d9519de549a9",
+      "on_load_calls": [],
+      "screenshot": "artifacts/screens/cf4df942464e.png",
+      "dom": "artifacts/dom/cf4df942464e.html"
+    },
+    {
+      "id": "/register|anon",
+      "template": "/register",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/register"
+      ],
+      "title": "Conduit",
+      "structure_hash": "9cdb22b34753",
+      "on_load_calls": [],
+      "screenshot": "artifacts/screens/489def02d190.png",
+      "dom": "artifacts/dom/489def02d190.html"
+    },
+    {
+      "id": "/profile/:p|anon",
+      "template": "/profile/:p",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/profile/sarahchen",
+        "https://demo.realworld.show/profile/mikewilson"
+      ],
+      "title": "Conduit",
+      "structure_hash": "7aff0ac95b43",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/profiles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/2227bcab53d8.png",
+      "dom": "artifacts/dom/2227bcab53d8.html"
+    },
+    {
+      "id": "/article/:p|anon",
+      "template": "/article/:p",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/article/introduction-to-machine-learning-for-developers",
+        "https://demo.realworld.show/article/building-scalable-apis-with-node-js"
+      ],
+      "title": "Conduit",
+      "structure_hash": "54f2720e8c3a",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/articles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/:p/comments",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/6ef51f30dbe7.png",
+      "dom": "artifacts/dom/6ef51f30dbe7.html"
+    },
+    {
+      "id": "/tag/:p|anon",
+      "template": "/tag/:p",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/tag/ai",
+        "https://demo.realworld.show/tag/api"
+      ],
+      "title": "Conduit",
+      "structure_hash": "564ac92f145f",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/ba475c80b7cd.png",
+      "dom": "artifacts/dom/ba475c80b7cd.html"
+    },
+    {
+      "id": "/profile/:p/favorites|anon",
+      "template": "/profile/:p/favorites",
+      "auth": "anon",
+      "sample_urls": [
+        "https://demo.realworld.show/profile/sarahchen/favorites",
+        "https://demo.realworld.show/profile/mikewilson/favorites"
+      ],
+      "title": "Conduit",
+      "structure_hash": "d092076fcd75",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/profiles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/7636462bae7e.png",
+      "dom": "artifacts/dom/7636462bae7e.html"
+    },
+    {
+      "id": "/|authed",
+      "template": "/",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/",
+        "https://demo.realworld.show/?feed=following"
+      ],
+      "title": "Conduit",
+      "structure_hash": "3b7706d91d58",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/afcc2725e855.png",
+      "dom": "artifacts/dom/afcc2725e855.html"
+    },
+    {
+      "id": "/editor|authed",
+      "template": "/editor",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/editor"
+      ],
+      "title": "Conduit",
+      "structure_hash": "11e9e6965665",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/9d0a6d53a854.png",
+      "dom": "artifacts/dom/9d0a6d53a854.html"
+    },
+    {
+      "id": "/settings|authed",
+      "template": "/settings",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/settings"
+      ],
+      "title": "Conduit",
+      "structure_hash": "7f3affa69bd2",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/24d75eb3ded8.png",
+      "dom": "artifacts/dom/24d75eb3ded8.html"
+    },
+    {
+      "id": "/profile/:p|authed",
+      "template": "/profile/:p",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/profile/br-test-255fb7",
+        "https://demo.realworld.show/profile/sarahchen"
+      ],
+      "title": "Conduit",
+      "structure_hash": "fc3038fb2ecd",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/profiles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/2b733b879196.png",
+      "dom": "artifacts/dom/2b733b879196.html"
+    },
+    {
+      "id": "/article/:p|authed",
+      "template": "/article/:p",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/article/introduction-to-machine-learning-for-developers",
+        "https://demo.realworld.show/article/building-scalable-apis-with-node-js"
+      ],
+      "title": "Conduit",
+      "structure_hash": "0f6cfd37ab76",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles/:p/comments",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/9f2cadbc859e.png",
+      "dom": "artifacts/dom/9f2cadbc859e.html"
+    },
+    {
+      "id": "/tag/:p|authed",
+      "template": "/tag/:p",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/tag/ai",
+        "https://demo.realworld.show/tag/api"
+      ],
+      "title": "Conduit",
+      "structure_hash": "cc8e96d12232",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/abe106a61eec.png",
+      "dom": "artifacts/dom/abe106a61eec.html"
+    },
+    {
+      "id": "/profile/:p/favorites|authed",
+      "template": "/profile/:p/favorites",
+      "auth": "authed",
+      "sample_urls": [
+        "https://demo.realworld.show/profile/br-test-255fb7/favorites",
+        "https://demo.realworld.show/profile/sarahchen/favorites"
+      ],
+      "title": "Conduit",
+      "structure_hash": "c7ae8c1a92c6",
+      "on_load_calls": [
+        {
+          "method": "GET",
+          "path": "/api/user",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/profiles/:p",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        }
+      ],
+      "screenshot": "artifacts/screens/dd90f3cb0c49.png",
+      "dom": "artifacts/dom/dd90f3cb0c49.html"
+    }
+  ],
+  "elements": [
+    {
+      "id": "el_bd86a80a5e75",
+      "screen_id": "/|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c65c9995ea4b",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_e011fdb53f17",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_af84a249e891",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_a60b8dcf94f5",
+      "screen_id": "/|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "logo-font"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.banner:nth-of-type(1) > div.container > h1.logo-font",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0a336e79b71e",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Angular frontend",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.banner:nth-of-type(1) > div.container > p > a:nth-of-type(1)",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b226d54debf0",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Global Feed",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_672be6471bd0",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. ''",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_c6f7a488d017",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'sarahchen'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_20de6d8f5927",
+      "screen_id": "/|anon",
+      "tag": "button",
+      "role": null,
+      "label": "4 items, e.g. '1'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > app-favorite-button.pull-xs-right > button.btn.btn-sm",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_cbcfa0541ebf",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_681260f358ca",
+      "screen_id": "/|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link > h1",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_612cf866aee0",
+      "screen_id": "/|anon",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5451cb290e1e",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "15 items, e.g. 'ai'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/tag/:p",
+      "classes": [
+        "tag-default",
+        "tag-pill"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-3:nth-of-type(2) > div.sidebar > div.tag-list:nth-of-type(1) > a.tag-default.tag-pill:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_c06311b2e7f1",
+      "screen_id": "/|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1f71bd1fe43d",
+      "screen_id": "/login|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_35266b0db859",
+      "screen_id": "/login|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1d508157d1c8",
+      "screen_id": "/login|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b53dcc5b4a3f",
+      "screen_id": "/login|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_7e96df2c22fc",
+      "screen_id": "/login|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4fa89edf0723",
+      "screen_id": "/login|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "text-xs-center"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > h1.text-xs-center",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_34e17ec8099b",
+      "screen_id": "/login|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Need an account?",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > p.text-xs-center > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8250af3f35be",
+      "screen_id": "/login|anon",
+      "tag": "input",
+      "role": null,
+      "label": "Email",
+      "name_attr": "email",
+      "placeholder": "Email",
+      "input_type": "email",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(2) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3b73ea91b49c",
+      "screen_id": "/login|anon",
+      "tag": "input",
+      "role": null,
+      "label": "Password",
+      "name_attr": "password",
+      "placeholder": "Password",
+      "input_type": "password",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(3) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d415bb435393",
+      "screen_id": "/login|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": "submit",
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-lg",
+        "btn-primary",
+        "pull-xs-right"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > button.btn.btn-lg",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/users/login",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_c60a9dc273e4",
+      "screen_id": "/login|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_374bb97d678a",
+      "screen_id": "/register|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f4688566e4ca",
+      "screen_id": "/register|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f4334dd3c81a",
+      "screen_id": "/register|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3d12203c1fa0",
+      "screen_id": "/register|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4de0ec205bac",
+      "screen_id": "/register|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "text-xs-center"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > h1.text-xs-center",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_e3941f56c571",
+      "screen_id": "/register|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Have an account?",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > p.text-xs-center > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f496a94929ca",
+      "screen_id": "/register|anon",
+      "tag": "input",
+      "role": null,
+      "label": "Username",
+      "name_attr": "username",
+      "placeholder": "Username",
+      "input_type": "text",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(1) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_dcf51989a886",
+      "screen_id": "/register|anon",
+      "tag": "input",
+      "role": null,
+      "label": "Email",
+      "name_attr": "email",
+      "placeholder": "Email",
+      "input_type": "email",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(2) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_715b74747dd5",
+      "screen_id": "/register|anon",
+      "tag": "input",
+      "role": null,
+      "label": "Password",
+      "name_attr": "password",
+      "placeholder": "Password",
+      "input_type": "password",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(3) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_6cd8d0a56640",
+      "screen_id": "/register|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": "submit",
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-lg",
+        "btn-primary",
+        "pull-xs-right"
+      ],
+      "css_path": "app-root > app-auth-page > div.auth-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > button.btn.btn-lg",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/users",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_4c3dad74f9ca",
+      "screen_id": "/register|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_dc67bc3f7481",
+      "screen_id": "/profile/:p|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d8387ea839d9",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cec10b65831c",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1ca14dff4f8c",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ab80cc79a7a2",
+      "screen_id": "/profile/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Follow sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f65b14d359db",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "My Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cf02682eb6ec",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Favorited Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p/favorites",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3970703ffd92",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0263cb6a2008",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5e5a212a56c0",
+      "screen_id": "/profile/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4a2fd9e27aa4",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_fe15a3a84a94",
+      "screen_id": "/profile/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_fda877200541",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_503571f1b821",
+      "screen_id": "/article/:p|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_729dab919e95",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_57fd1d3dbcec",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_7c024e05b31c",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_32d73cdc0cd5",
+      "screen_id": "/article/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8d6a99fc8065",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3675e1e075ec",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c41ac3c1b1f0",
+      "screen_id": "/article/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Follow sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.article-actions:nth-of-type(2) > app-article-meta > div.article-meta > span > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1a1570744ccb",
+      "screen_id": "/article/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Favorite Article (1)",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.article-actions:nth-of-type(2) > app-article-meta > div.article-meta > span > app-favorite-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_33873dcad7cf",
+      "screen_id": "/article/:p|anon",
+      "tag": "h2",
+      "role": null,
+      "label": "3 items, e.g. 'Understanding the Basics'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row.article-content:nth-of-type(1) > div.col-md-12 > div > h2:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_3d0ff24ebf99",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign in",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/login",
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > div > a:nth-of-type(1)",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4f5d18d8a39a",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. ''",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "comment-author"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > app-article-comment:nth-of-type(1) > div.card > div.card-footer:nth-of-type(2) > a.comment-author:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_861c297a37b2",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d50390d2a1f9",
+      "screen_id": "/profile/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Follow mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_078ac619851b",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ef3f09fab769",
+      "screen_id": "/profile/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js Architectural patterns and best practices fo",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_6dbc9cd7f699",
+      "screen_id": "/profile/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_df4ee64b7232",
+      "screen_id": "/article/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d258e8045d3e",
+      "screen_id": "/article/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_9b687797ee97",
+      "screen_id": "/article/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Follow mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > span > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3c70f4647024",
+      "screen_id": "/tag/:p|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_132f96a91c69",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_246afe29190b",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0915d6ff7fcc",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_248dc057f729",
+      "screen_id": "/tag/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "logo-font"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.banner:nth-of-type(1) > div.container > h1.logo-font",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f1f342963de7",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Angular frontend",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.banner:nth-of-type(1) > div.container > p > a:nth-of-type(1)",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_470f28772fa0",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Global Feed",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f67e53668f3a",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "ai",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c5a6711e1fa3",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0c000893253e",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1e39545348db",
+      "screen_id": "/tag/:p|anon",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_606574821224",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_94a078d9b0d7",
+      "screen_id": "/tag/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8e0977b48646",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "15 items, e.g. 'ai'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/tag/:p",
+      "classes": [
+        "tag-default",
+        "tag-pill"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-3:nth-of-type(2) > div.sidebar > div.tag-list:nth-of-type(1) > a.tag-default.tag-pill:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_1d5eb3a89787",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_e2e934681415",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "api",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_392347c814de",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_13765deb7d8a",
+      "screen_id": "/tag/:p|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js Architectural patterns and best practices fo",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d52a48f6d8f8",
+      "screen_id": "/tag/:p|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page:nth-of-type(2) > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_51c37331c40e",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_88036b6f8413",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5e1cff2250c6",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ab92627dfd42",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Sign up",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/register",
+      "classes": [
+        "nav-link",
+        "nav-signup"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.nav-signup",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_0644ff2c8eb9",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Follow sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_561ee1e2b107",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "My Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3d2a8b43934f",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "Favorited Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p/favorites",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8fb5864cfcf2",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_582ed7e206f4",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "2 items, e.g. 'janesmith'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_16783371be3f",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "button",
+      "role": null,
+      "label": "2",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > app-favorite-button.pull-xs-right > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_00239ad2be5f",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "2 items, e.g. 'React Hooks: Best Practices and Common P'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_2cee1b139803",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "React Hooks: Best Practices and Common Pitfalls",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_9c4a46a9bc0c",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cec0878bc0f6",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ad49cbc1d38f",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "button",
+      "role": null,
+      "label": "Follow mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_83ba841c5bab",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "johndoe",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c66feae7dc3f",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "a",
+      "role": null,
+      "label": "How to Learn JavaScript Efficiently A comprehensive guide to mastering JavaScrip",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d2ddd1c1a25f",
+      "screen_id": "/profile/:p/favorites|anon",
+      "tag": "h1",
+      "role": null,
+      "label": "How to Learn JavaScript Efficiently",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4c7caa6c011b",
+      "screen_id": "/|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b2e336ac0ea8",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_25c08f35cf2b",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Home",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_7ee59766e960",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "3 items, e.g. 'New Article'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_465be0127f05",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Your Feed",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_17a1842d5b11",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Global Feed",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1338d656820a",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. ''",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_c686285d7102",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'sarahchen'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_11f7987bd7c2",
+      "screen_id": "/|authed",
+      "tag": "button",
+      "role": null,
+      "label": "4 items, e.g. '1'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > app-favorite-button.pull-xs-right > button.btn.btn-sm",
+      "repeated": true,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/articles/:p/favorite",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_415559798453",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_f2c8fbe5d7b5",
+      "screen_id": "/|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "4 items, e.g. 'Introduction to Machine Learning for Dev'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link > h1",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_daebada0961f",
+      "screen_id": "/|authed",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_9fdcef504ec6",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "15 items, e.g. 'ai'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/tag/:p",
+      "classes": [
+        "tag-default",
+        "tag-pill"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-3:nth-of-type(2) > div.sidebar > div.tag-list:nth-of-type(1) > a.tag-default.tag-pill:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_e21a0667890c",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8dc89fe19a18",
+      "screen_id": "/editor|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_6e078d143155",
+      "screen_id": "/editor|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ee2d5ef16b57",
+      "screen_id": "/editor|authed",
+      "tag": "a",
+      "role": null,
+      "label": "3 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_940de4716d33",
+      "screen_id": "/editor|authed",
+      "tag": "a",
+      "role": null,
+      "label": "New Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/editor",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_eae4e55fa8a7",
+      "screen_id": "/editor|authed",
+      "tag": "input",
+      "role": null,
+      "label": "Article Title",
+      "name_attr": "title",
+      "placeholder": "Article Title",
+      "input_type": "text",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(1) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f3bf44beec50",
+      "screen_id": "/editor|authed",
+      "tag": "input",
+      "role": null,
+      "label": "What's this article about?",
+      "name_attr": "description",
+      "placeholder": "What's this article about?",
+      "input_type": "text",
+      "href_template": null,
+      "classes": [
+        "form-control"
+      ],
+      "css_path": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(2) > input.form-control",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4b49dcb882be",
+      "screen_id": "/editor|authed",
+      "tag": "textarea",
+      "role": null,
+      "label": "Write your article (in markdown)",
+      "name_attr": "body",
+      "placeholder": "Write your article (in markdown)",
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "form-control"
+      ],
+      "css_path": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(3) > textarea.form-control",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1057898a8492",
+      "screen_id": "/editor|authed",
+      "tag": "input",
+      "role": null,
+      "label": "Enter tags",
+      "name_attr": null,
+      "placeholder": "Enter tags",
+      "input_type": "text",
+      "href_template": null,
+      "classes": [
+        "form-control"
+      ],
+      "css_path": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > fieldset.form-group:nth-of-type(4) > input.form-control",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_056643d01480",
+      "screen_id": "/editor|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Publish Article",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": "button",
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-lg",
+        "pull-xs-right",
+        "btn-primary"
+      ],
+      "css_path": "app-root > app-editor-page > div.editor-page > div.container.page > div.row > div.col-md-10.offset-md-1 > form > fieldset > button.btn.btn-lg",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/articles",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_f2dfb5169de6",
+      "screen_id": "/editor|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_587254ccdd9a",
+      "screen_id": "/settings|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_acaf1c5332f0",
+      "screen_id": "/settings|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_7b8735a77f0d",
+      "screen_id": "/settings|authed",
+      "tag": "a",
+      "role": null,
+      "label": "3 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_996c1c66fbae",
+      "screen_id": "/settings|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(3) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_a81d01e027c6",
+      "screen_id": "/settings|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "Your Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "text-xs-center"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > h1.text-xs-center",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_eb615e678d9c",
+      "screen_id": "/settings|authed",
+      "tag": "input",
+      "role": null,
+      "label": "URL of profile picture",
+      "name_attr": "image",
+      "placeholder": "URL of profile picture",
+      "input_type": "text",
+      "href_template": null,
+      "classes": [
+        "form-control"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(1) > input.form-control",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_fd908ea90215",
+      "screen_id": "/settings|authed",
+      "tag": "input",
+      "role": null,
+      "label": "Username",
+      "name_attr": "username",
+      "placeholder": "Username",
+      "input_type": "text",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(2) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_a0f98101cb5f",
+      "screen_id": "/settings|authed",
+      "tag": "textarea",
+      "role": null,
+      "label": "Short bio about you",
+      "name_attr": "bio",
+      "placeholder": "Short bio about you",
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(3) > textarea.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_5523d1de819b",
+      "screen_id": "/settings|authed",
+      "tag": "input",
+      "role": null,
+      "label": "Email",
+      "name_attr": "email",
+      "placeholder": "Email",
+      "input_type": "email",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(4) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_e069478759f6",
+      "screen_id": "/settings|authed",
+      "tag": "input",
+      "role": null,
+      "label": "New Password",
+      "name_attr": "password",
+      "placeholder": "New Password",
+      "input_type": "password",
+      "href_template": null,
+      "classes": [
+        "form-control",
+        "form-control-lg"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > fieldset.form-group:nth-of-type(5) > input.form-control.form-control-lg",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8d88c0ad93f1",
+      "screen_id": "/settings|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Update Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": "submit",
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-lg",
+        "btn-primary",
+        "pull-xs-right"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > form > fieldset > button.btn.btn-lg",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "PUT",
+          "path": "/api/user",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_9a6ef2375678",
+      "screen_id": "/settings|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Or click here to logout.",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-outline-danger"
+      ],
+      "css_path": "app-root > app-settings-page > div.settings-page > div.container.page > div.row > div.col-md-6.offset-md-3 > button.btn.btn-outline-danger",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "GET",
+          "path": "/api/articles",
+          "blocked": false
+        },
+        {
+          "method": "GET",
+          "path": "/api/tags",
+          "blocked": false
+        }
+      ]
+    },
+    {
+      "id": "el_91903cb57ed6",
+      "screen_id": "/settings|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_eb9d0edeca4c",
+      "screen_id": "/profile/:p|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_895ab71cfbcf",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ecb6304fb2c7",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "3 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_e9f6378b8e69",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-255fb7",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_2f4e31694d1e",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Edit Profile Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-secondary",
+        "action-btn"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > a.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_060fc9eef1a2",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "My Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_e9e7b266ecc6",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Favorited Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p/favorites",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_41a9759c3318",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cfa2575b9358",
+      "screen_id": "/|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_7b1e302c71be",
+      "screen_id": "/profile/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Follow sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_da11b1ddadf0",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4506d7de980e",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_9685cd760fda",
+      "screen_id": "/profile/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > app-favorite-button.pull-xs-right > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_3ea47feca757",
+      "screen_id": "/profile/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_951817e44d8c",
+      "screen_id": "/profile/:p|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-articles > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c215259db510",
+      "screen_id": "/article/:p|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c3f9bd237c0f",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_1824747bd992",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_322e816d6c72",
+      "screen_id": "/article/:p|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f301248c7c6f",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d506da1dd69c",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b560b77b7f88",
+      "screen_id": "/article/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Follow sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.article-actions:nth-of-type(2) > app-article-meta > div.article-meta > span > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/profiles/:p/follow",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_b07a9f77d06c",
+      "screen_id": "/article/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Favorite Article (1)",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.article-actions:nth-of-type(2) > app-article-meta > div.article-meta > span > app-favorite-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/articles/:p/favorite",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_ba6161a63cfb",
+      "screen_id": "/article/:p|authed",
+      "tag": "h2",
+      "role": null,
+      "label": "3 items, e.g. 'Understanding the Basics'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row.article-content:nth-of-type(1) > div.col-md-12 > div > h2:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_7f49f4cd56bb",
+      "screen_id": "/article/:p|authed",
+      "tag": "textarea",
+      "role": null,
+      "label": "Write a comment...",
+      "name_attr": null,
+      "placeholder": "Write a comment...",
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "form-control"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > div > form.card.comment-form > fieldset > div.card-block:nth-of-type(1) > textarea.form-control",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_6ba838f0fdb4",
+      "screen_id": "/article/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Post Comment",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": "submit",
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-primary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > div > form.card.comment-form > fieldset > div.card-footer:nth-of-type(2) > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": [
+        {
+          "method": "POST",
+          "path": "/api/articles/:p/comments",
+          "blocked": true
+        }
+      ]
+    },
+    {
+      "id": "el_26906f65e3e4",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. ''",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "comment-author"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.container.page:nth-of-type(2) > div.row:nth-of-type(3) > div.col-xs-12.col-md-8 > app-article-comment:nth-of-type(1) > div.card > div.card-footer:nth-of-type(2) > a.comment-author:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_96ddab48da62",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b6fc585edab6",
+      "screen_id": "/article/:p|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_130ac4eda2b6",
+      "screen_id": "/article/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_80d6328a2be9",
+      "screen_id": "/article/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Follow mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-article-page > div.article-page > div.banner:nth-of-type(1) > div.container > app-article-meta > div.article-meta > span > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cd4c8f02b6d6",
+      "screen_id": "/tag/:p|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_6384ac4560c6",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_7f030d5bc8db",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "4 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_283996f698ff",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Your Feed",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8907f2f9fe8b",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "ai",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(3) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8440e72bce63",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_cf555fea6b6c",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_2fb1a8398925",
+      "screen_id": "/tag/:p|authed",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_da4fed5cb611",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers Getting started with ML concepts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b03152ddfd2b",
+      "screen_id": "/tag/:p|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "Introduction to Machine Learning for Developers",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_2df08830f015",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "15 items, e.g. 'ai'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/tag/:p",
+      "classes": [
+        "tag-default",
+        "tag-pill"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-3:nth-of-type(2) > div.sidebar > div.tag-list:nth-of-type(1) > a.tag-default.tag-pill:nth-of-type(1)",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_8a4e75bf578d",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_f66431bc3a85",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "api",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > div.feed-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(3) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4ea885e36b9e",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "mikewilson",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_a4db6e743cf6",
+      "screen_id": "/tag/:p|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js Architectural patterns and best practices fo",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d20fdaaccc7a",
+      "screen_id": "/tag/:p|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "Building Scalable APIs with Node.js",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-home-page > div.home-page > div.container.page > div.row > div.col-md-9:nth-of-type(1) > app-article-list > app-article-preview > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8d4ac4d557d3",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "nav",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "navbar",
+        "navbar-light"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_4013a9680fee",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "navbar-brand"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > a.navbar-brand",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_c547994e34d0",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "3 items, e.g. 'Home'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_4d5c4cb04522",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "br-test-255fb7",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-layout-header > nav.navbar.navbar-light > div.container > ul.nav.navbar-nav > li.nav-item:nth-of-type(4) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b501606c4fdb",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Edit Profile Settings",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/settings",
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-secondary",
+        "action-btn"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > a.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_24fe17615d66",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "My Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "nav-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(1) > a.nav-link",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ac53c1401c9b",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "Favorited Posts",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p/favorites",
+      "classes": [
+        "nav-link",
+        "active"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > div.articles-toggle > ul.nav.nav-pills > li.nav-item:nth-of-type(2) > a.nav-link.active",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_42cb0cebc817",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "RealWorld OSS Project",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-layout-footer > footer > div.container > span.attribution > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_8390e0de257c",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "button",
+      "role": null,
+      "label": "Follow sarahchen",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "action-btn",
+        "btn-outline-secondary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.user-info:nth-of-type(1) > div.container > div.row > div.col-xs-12.col-md-10 > app-follow-button > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_b26541ace3a9",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > a",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_d840cbbf66a1",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "2 items, e.g. 'janesmith'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/profile/:p",
+      "classes": [
+        "author"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > div.info > a.author",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_eeb01ab74c3a",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "button",
+      "role": null,
+      "label": "2",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "btn",
+        "btn-sm",
+        "btn-outline-primary"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > app-article-meta > div.article-meta > app-favorite-button.pull-xs-right > button.btn.btn-sm",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_e12da09dff63",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "a",
+      "role": null,
+      "label": "2 items, e.g. 'React Hooks: Best Practices and Common P'",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": "/article/:p",
+      "classes": [
+        "preview-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link",
+      "repeated": true,
+      "triggers": []
+    },
+    {
+      "id": "el_2efd7c404f21",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "h1",
+      "role": null,
+      "label": "React Hooks: Best Practices and Common Pitfalls",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > app-article-preview:nth-of-type(1) > div.article-preview > a.preview-link > h1",
+      "repeated": false,
+      "triggers": []
+    },
+    {
+      "id": "el_ab9deecffd84",
+      "screen_id": "/profile/:p/favorites|authed",
+      "tag": "button",
+      "role": null,
+      "label": "1",
+      "name_attr": null,
+      "placeholder": null,
+      "input_type": null,
+      "href_template": null,
+      "classes": [
+        "page-link"
+      ],
+      "css_path": "app-root > app-profile-page > div.profile-page > div.container:nth-of-type(2) > div.row > div.col-xs-12.col-md-10 > app-profile-favorites > app-article-list > nav > ul.pagination > li.page-item.active > button.page-link",
+      "repeated": false,
+      "triggers": []
+    }
+  ],
+  "transitions": [
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_c65c9995ea4b",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_e011fdb53f17",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_af84a249e891",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_b226d54debf0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_672be6471bd0",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_c6f7a488d017",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_cbcfa0541ebf",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_5451cb290e1e",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_c65c9995ea4b",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_0a336e79b71e",
+      "to_template": "/realworld-apps/:p"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_20de6d8f5927",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/|anon",
+      "element_id": "el_c06311b2e7f1",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_35266b0db859",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_1d508157d1c8",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_b53dcc5b4a3f",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_7e96df2c22fc",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_34e17ec8099b",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_35266b0db859",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/login|anon",
+      "element_id": "el_c60a9dc273e4",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_f4688566e4ca",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_f4334dd3c81a",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_3d12203c1fa0",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_e3941f56c571",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_f4688566e4ca",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/register|anon",
+      "element_id": "el_4c3dad74f9ca",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_d8387ea839d9",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_cec10b65831c",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_1ca14dff4f8c",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_f65b14d359db",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_cf02682eb6ec",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_3970703ffd92",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_0263cb6a2008",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_4a2fd9e27aa4",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_d8387ea839d9",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_ab80cc79a7a2",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_5e5a212a56c0",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_fda877200541",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_729dab919e95",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_57fd1d3dbcec",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_7c024e05b31c",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_8d6a99fc8065",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_3675e1e075ec",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_8d6a99fc8065",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_3675e1e075ec",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_3d0ff24ebf99",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_4f5d18d8a39a",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_729dab919e95",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_1a1570744ccb",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_c41ac3c1b1f0",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_1a1570744ccb",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_861c297a37b2",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_d8387ea839d9",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_cec10b65831c",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_1ca14dff4f8c",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_f65b14d359db",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_cf02682eb6ec",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_3970703ffd92",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_078ac619851b",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_ef3f09fab769",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p|anon",
+      "element_id": "el_d8387ea839d9",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_729dab919e95",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_57fd1d3dbcec",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_7c024e05b31c",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_8d6a99fc8065",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_d258e8045d3e",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_8d6a99fc8065",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_d258e8045d3e",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_3d0ff24ebf99",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_4f5d18d8a39a",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|anon",
+      "element_id": "el_729dab919e95",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_132f96a91c69",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_246afe29190b",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_0915d6ff7fcc",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_470f28772fa0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_c5a6711e1fa3",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_0c000893253e",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_606574821224",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_8e0977b48646",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_132f96a91c69",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_f1f342963de7",
+      "to_template": "/realworld-apps/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_1e39545348db",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_1d5eb3a89787",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_132f96a91c69",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_246afe29190b",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_0915d6ff7fcc",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_470f28772fa0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_c5a6711e1fa3",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_392347c814de",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_13765deb7d8a",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_8e0977b48646",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/tag/:p|anon",
+      "element_id": "el_132f96a91c69",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_88036b6f8413",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_5e1cff2250c6",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_ab92627dfd42",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_561ee1e2b107",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_3d2a8b43934f",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_8fb5864cfcf2",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_582ed7e206f4",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_00239ad2be5f",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_88036b6f8413",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_0644ff2c8eb9",
+      "to_template": "/login"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_16783371be3f",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_cec0878bc0f6",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_88036b6f8413",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_5e1cff2250c6",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_ab92627dfd42",
+      "to_template": "/register"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_561ee1e2b107",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_3d2a8b43934f",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_8fb5864cfcf2",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_83ba841c5bab",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_c66feae7dc3f",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|anon",
+      "element_id": "el_88036b6f8413",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_b2e336ac0ea8",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_25c08f35cf2b",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_7ee59766e960",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_465be0127f05",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_17a1842d5b11",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_1338d656820a",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_c686285d7102",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_415559798453",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_9fdcef504ec6",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_b2e336ac0ea8",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_e21a0667890c",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/editor|authed",
+      "element_id": "el_6e078d143155",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/editor|authed",
+      "element_id": "el_ee2d5ef16b57",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/editor|authed",
+      "element_id": "el_940de4716d33",
+      "to_template": "/editor"
+    },
+    {
+      "from_screen": "/editor|authed",
+      "element_id": "el_6e078d143155",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/editor|authed",
+      "element_id": "el_f2dfb5169de6",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_acaf1c5332f0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_7b8735a77f0d",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_996c1c66fbae",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_acaf1c5332f0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_9a6ef2375678",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/settings|authed",
+      "element_id": "el_91903cb57ed6",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_895ab71cfbcf",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_ecb6304fb2c7",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_e9f6378b8e69",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_2f4e31694d1e",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_060fc9eef1a2",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_e9e7b266ecc6",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_895ab71cfbcf",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_41a9759c3318",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_b2e336ac0ea8",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_cfa2575b9358",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_465be0127f05",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_17a1842d5b11",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_17a1842d5b11",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_9fdcef504ec6",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/|authed",
+      "element_id": "el_b2e336ac0ea8",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_895ab71cfbcf",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_ecb6304fb2c7",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_060fc9eef1a2",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_e9e7b266ecc6",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_da11b1ddadf0",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_4506d7de980e",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_3ea47feca757",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p|authed",
+      "element_id": "el_895ab71cfbcf",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_c3f9bd237c0f",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_1824747bd992",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_f301248c7c6f",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_d506da1dd69c",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_f301248c7c6f",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_d506da1dd69c",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_26906f65e3e4",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_c3f9bd237c0f",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_96ddab48da62",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_c3f9bd237c0f",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_1824747bd992",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_f301248c7c6f",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_130ac4eda2b6",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_f301248c7c6f",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_130ac4eda2b6",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_26906f65e3e4",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/article/:p|authed",
+      "element_id": "el_c3f9bd237c0f",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_6384ac4560c6",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_7f030d5bc8db",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_283996f698ff",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_8440e72bce63",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_cf555fea6b6c",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_da4fed5cb611",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_2df08830f015",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_6384ac4560c6",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_8a4e75bf578d",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_6384ac4560c6",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_7f030d5bc8db",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_283996f698ff",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_8440e72bce63",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_4ea885e36b9e",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_a4db6e743cf6",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_2df08830f015",
+      "to_template": "/tag/:p"
+    },
+    {
+      "from_screen": "/tag/:p|authed",
+      "element_id": "el_6384ac4560c6",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_4013a9680fee",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_c547994e34d0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_4d5c4cb04522",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_b501606c4fdb",
+      "to_template": "/settings"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_24fe17615d66",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_ac53c1401c9b",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_4013a9680fee",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_42cb0cebc817",
+      "to_template": "/realworld-apps/realworld"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_4013a9680fee",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_c547994e34d0",
+      "to_template": "/"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_24fe17615d66",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_ac53c1401c9b",
+      "to_template": "/profile/:p/favorites"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_b26541ace3a9",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_d840cbbf66a1",
+      "to_template": "/profile/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_e12da09dff63",
+      "to_template": "/article/:p"
+    },
+    {
+      "from_screen": "/profile/:p/favorites|authed",
+      "element_id": "el_4013a9680fee",
+      "to_template": "/"
+    }
+  ],
+  "unreached": [
+    {
+      "template": "/realworld-apps/:p",
+      "auth": "anon",
+      "reason": "linked but outside crawl budget"
+    },
+    {
+      "template": "/realworld-apps/realworld",
+      "auth": "anon",
+      "reason": "linked but outside crawl budget"
+    },
+    {
+      "template": "/realworld-apps/:p",
+      "auth": "authed",
+      "reason": "linked but outside crawl budget"
+    },
+    {
+      "template": "/realworld-apps/realworld",
+      "auth": "authed",
+      "reason": "linked but outside crawl budget"
+    }
+  ]
+}
